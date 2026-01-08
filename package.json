@@ -1,7 +1,12 @@
 {
   "name": "vercel-fullstack-starter",
   "private": true,
+
+  "workspaces": [
+    "client"
+  ],
+
   "scripts": {
-    "dev": "npm run dev --prefix client"
+    "dev": "npm run dev --workspace client"
   }
 }
