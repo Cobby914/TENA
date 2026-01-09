@@ -1,12 +1,13 @@
 {
   "name": "vercel-fullstack-starter",
   "private": true,
-
   "workspaces": [
     "client"
   ],
-
   "scripts": {
     "dev": "npm run dev --workspace client"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.12.0"
   }
 }
