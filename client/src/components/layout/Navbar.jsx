@@ -28,7 +28,7 @@ export default function Navbar() {
             {/* Nav Buttons */}
             <Flex
                 alignItems="center"
-                gap="70px"
+                gap="40px"
             >
                 <Button>About Us</Button>
                 <Button>Programs</Button>

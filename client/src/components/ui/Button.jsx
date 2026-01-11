@@ -8,8 +8,8 @@ export default function Button({ children, ...props }) {
             color="black"
             fontWeight="normal"
             fontSize="2xl"
-            height="90px"
-            width="220px"
+            height="75px"
+            width="180px"
             borderRadius="none"
         >
             {children}

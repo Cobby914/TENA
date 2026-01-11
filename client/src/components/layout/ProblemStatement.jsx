@@ -12,9 +12,9 @@ export default function ProblemStatement() {
             height="600px"
         >
             {/* Top 2 Column Content*/}
-            <Flex justifyContent="space-between" alightItem="flex-start">
+            <Flex justifyContent="space-between" alignItem="flex-start">
                 {/*The Challenge*/}
-                <Box width="600px">
+                <Box width="600px" display="flex" flexDirection="column">
                     <Text fontSize="5xl" mb="4">
                         The Challenge
                     </Text>
@@ -29,7 +29,7 @@ export default function ProblemStatement() {
                 </Box>
 
                 {/*TENA Solution */}
-                <Box width="700px">
+                <Box width="700px" display="flex" flexDirection="column">
                     <Text fontSize="5xl" mb="2">
                         TENA "Solution"
                     </Text>
