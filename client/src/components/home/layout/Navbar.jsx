@@ -1,6 +1,6 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import Button from "../ui/Button";
-import logo from "../../assets/logoplaceholder.png";
+import logo from "../../../assets/logoplaceholder.png";
 
 export default function Navbar() {
     return (
@@ -11,6 +11,9 @@ export default function Navbar() {
             bg="rgb(217, 217, 217)"
             px="10"
             height="150px"
+            position="sticky"
+            top="0"
+            zIndex="1000"
         >
             {/* Logo/Label */}
             <Flex

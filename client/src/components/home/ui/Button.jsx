@@ -2,8 +2,8 @@ import { Button as ChakraButton} from "@chakra-ui/react";
 
 export default function Button({ children, ...props }) {
     return (
-        // Edit this styling to get consistent buttons
         <ChakraButton
+            {...props}
             bg="white"
             color="black"
             fontWeight="normal"
