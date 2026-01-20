@@ -13,7 +13,7 @@ export default function Navbar() {
             height="150px"
             position="sticky"
             top="0"
-            z-index="1000"
+            zIndex="1000"
         >
             {/* Logo/Label */}
             <Flex

@@ -6,6 +6,7 @@ export default function ProgramCard({
     description,
     imageSrc,
     buttonText,
+    ...props
 }) {
     return (
         <Card
@@ -14,6 +15,7 @@ export default function ProgramCard({
             p="6"
             border="1px solid black"
             borderRadius="0"
+            {...props}
         >
             <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr" h="100%">
 
@@ -28,14 +30,19 @@ export default function ProgramCard({
                 <GridItem display="flex" justifyContent="flex-end">
                     <Image
                         src={imageSrc}
-                        boxSize="64px"
+                        boxSize="128px"
                         objectFit="contain"
                     />
                 </GridItem>
 
                 {/* Description */}
                 <GridItem>
-                    <Text fontSize="sm">
+                    <Text 
+                        fontSize="sm"
+                        display="flex"
+                        alignItems="flex-end"
+                        h="100%"
+                    >
                         {description}
                     </Text>
                 </GridItem>

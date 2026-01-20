@@ -23,24 +23,28 @@ export default function Programs() {
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna"
                         imageSrc={logo}
                         buttonText="Learn More"
+                        backgroundColor="rgb(184, 184, 184)"
                     />
                     <ProgramCard
                         title="Program Name"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna"
                         imageSrc={logo}
                         buttonText="Learn More"
+                        backgroundColor="rgb(217, 217, 217)"
                     />
                     <ProgramCard
                         title="Program Name"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna"
                         imageSrc={logo}
                         buttonText="Learn More"
+                        backgroundColor="rgb(217, 217, 217)"
                     />
                     <ProgramCard
                         title="Program Name"
                         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna"
                         imageSrc={logo}
                         buttonText="Learn More"
+                        backgroundColor="rgb(184, 184, 184)"
                     />
                 </SimpleGrid>
             </Flex>
