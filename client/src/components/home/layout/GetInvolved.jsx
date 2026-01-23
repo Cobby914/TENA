@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Flex, Text, VStack, SimpleGrid } from "@chakra-ui/react"
 
 export default function GetInvolved() {
     return (
@@ -20,7 +20,16 @@ export default function GetInvolved() {
                     height="529px"
                     border="1.5px solid"
                 >
+                    {/* Header */}
+                    <VStack spacing="10" textAlign="center"  mt="120">
+                        <Text fontSize="5xl" fontWeight="bold" lineHeight="1.05">
+                            Join Our Mission.
+                        </Text>
+                    </VStack>
+                    {/* Row of Cards */}
+                    <SimpleGrid columns={3} spacing="220px" mt="50" mb="30">
 
+                    </SimpleGrid>
                 </Box>
             </Flex>
         </Box>
