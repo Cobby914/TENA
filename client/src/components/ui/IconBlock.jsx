@@ -1,6 +1,6 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 
-export default function IconBlock() {
+export default function IconBlock({ children, ...props }) {
     return(
         <VStack spacing="6" alignItems="center">
             <Box
