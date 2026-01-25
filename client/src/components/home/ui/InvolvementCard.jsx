@@ -15,12 +15,12 @@ export default function InvolvementCard({
             <SimpleGrid h="100%">
                  {/* Title */} 
                 <GridItem align = "left">
-                    <Text fontWeight="bold" fontSize={35}>{title}</Text>
+                    <Text fontWeight={700} fontSize={35}>{title}</Text>
                 </GridItem>
 
                 {/* Description */}
                 <GridItem align = "left">
-                    <Text fontSize={22} lineHeight={1} mt={5}>{description}</Text>
+                    <Text fontSize={23} fontWeight={400} lineHeight={1} mt={1}>{description}</Text>
                 </GridItem>
 
                 {/* Button for Links */}

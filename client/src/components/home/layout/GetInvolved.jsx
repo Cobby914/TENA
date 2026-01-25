@@ -19,14 +19,14 @@ export default function GetInvolved() {
                     bg="#D9D9D9"
                     width="1124px"
                     height="529px"
-                    border="2px solid"  
+                    border="1.5px solid"  
                     p={50}
                 >
                     <Text align = "center" fontWeight = "bold" fontSize= "5xl" mt={50}>
                         Join Our Mission.
                     </Text>
 
-                    <SimpleGrid columns = {3} spacing="200px" mt={10} ml={50} mr={50} mb={20}>
+                    <SimpleGrid columns = {3} spacing="120px" mt={10} ml={50} mr={50} mb={20}>
                         {/* Add links to buttons when applicable*/}
                         
                         <InvolvementCard title="Volunteer"
