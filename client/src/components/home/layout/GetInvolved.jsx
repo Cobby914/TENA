@@ -19,35 +19,34 @@ export default function GetInvolved() {
                     bg="#D9D9D9"
                     width="1124px"
                     height="529px"
-                    border="1px solid"
-                    
+                    border="2px solid"  
+                    p={50}
                 >
-                <SimpleGrid rows = {2} columns = {3}>
-                    {/* Add links to buttons when applicable*/}
-                    <GridItem colSpan={3} rowSpan = {1}>
-                            <Text align = "center" fontWeight = "bold" fontSize= "5xl">Join Our Mission.</Text>
-                    </GridItem>
-                    
+                    <Text align = "center" fontWeight = "bold" fontSize= "5xl" mt={50}>
+                        Join Our Mission.
+                    </Text>
 
-                    <InvolvementCard title="Volunteer"
-                                    description="Lend your time at our events"
-                                    linkname="Volunteer With Us"
-                                    
-                    /> {/* Aligned at 65 pixels right of box left edge*/}
+                    <SimpleGrid columns = {3} spacing="200px" mt={10} ml={50} mr={50} mb={20}>
+                        {/* Add links to buttons when applicable*/}
+                        
+                        <InvolvementCard title="Volunteer"
+                                        description="Lend your time at our events."
+                                        linkname="Volunteer With Us"
+                                        
+                        /> {/* Aligned at 65 pixels right of box left edge*/}
 
-                    <InvolvementCard title="Partner"
-                                    description="Collaborate with us to expand our reach."
-                                    linkname = "Become a Partner"
-                    />
+                        <InvolvementCard title="Partner"
+                                        description="Collaborate with us to expand our reach."
+                                        linkname = "Become a Partner"
+                        />
 
-                    <InvolvementCard title="Donate"
-                                    description="Your financial report fuels our mission"
-                                    linkname="Support our Cause"
-                     />
-                     {/*Right edge of button aligned at 89 pixels from box right edge*/}
+                        <InvolvementCard title="Donate"
+                                        description="Your financial report fuels our mission."
+                                        linkname="Support our Cause"
+                        />
+                        {/*Right edge of button aligned at 89 pixels from box right edge*/}
 
-                </SimpleGrid>
-                    
+                    </SimpleGrid>
                 </Box>
             </Flex>
         </Box>
