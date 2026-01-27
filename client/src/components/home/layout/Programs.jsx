@@ -1,5 +1,5 @@
 import { Box, Flex, SimpleGrid} from "@chakra-ui/react";
-import ProgramCard from "../ui/ProgramCard";
+import ProgramCard from "../../ui/ProgramCard";
 import logo from "../../../assets/logoplaceholder.png";
 
 export default function Programs() {

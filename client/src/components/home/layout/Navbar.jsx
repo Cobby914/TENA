@@ -1,5 +1,5 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 import logo from "../../../assets/logoplaceholder.png";
 
 export default function Navbar() {

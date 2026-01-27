@@ -1,5 +1,5 @@
 import { Box, Flex, Text, VStack, SimpleGrid, Button } from "@chakra-ui/react";
-import IconBlock from "../ui/IconBlock";
+import IconBlock from "../../ui/IconBlock";
 
 export default function BelowPrograms() {
     return (

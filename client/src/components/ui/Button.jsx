@@ -3,7 +3,6 @@ import { Button as ChakraButton} from "@chakra-ui/react";
 export default function Button({ children, ...props }) {
     return (
         <ChakraButton
-            {...props}
             bg="white"
             color="black"
             fontWeight="normal"
@@ -11,6 +10,7 @@ export default function Button({ children, ...props }) {
             height="75px"
             width="180px"
             borderRadius="none"
+            {...props}
         >
             {children}
         </ChakraButton>

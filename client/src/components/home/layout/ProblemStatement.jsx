@@ -1,5 +1,5 @@
 import { Text, Box, Flex, VStack } from "@chakra-ui/react";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 
 export default function ProblemStatement() {
     return (
