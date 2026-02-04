@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Image, VStack, Text } from "@chakra-ui/react";
 
 import logo from "../../../assets/logoplaceholder.png";
-import NewsLetter from "../ui/Newsletter";
+import Newsletter from "../../ui/Newsletter";
 
 // Still need to add the transparency seal
 // Future functionality: update text to required
@@ -80,7 +80,7 @@ export default function Footer({}
                 </VStack>
 
 
-                <NewsLetter align = "right" marginTop= "39px"></NewsLetter>
+                <Newsletter align = "right" marginTop= "39px"></Newsletter>
 
             </HStack>
             
