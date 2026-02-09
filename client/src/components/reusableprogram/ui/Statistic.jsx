@@ -5,8 +5,8 @@ export default function Statistic({ statisticLabel, statisticImage }) {
         <Flex
             flexDirection="column"
         >
-            <Image width="250px" src={statisticImage}/>
-            <Text fontSize="3xl">{statisticLabel}</Text>
+            <Image width={{ base: "200px", md: "225px", lg: "250px" }} src={statisticImage}/>
+            <Text fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}>{statisticLabel}</Text>
         </Flex>
     );
 }

@@ -10,27 +10,37 @@ export default function ProgramCard({
 }) {
     return (
         <Card
-            w="614px"
-            h="468px"
-            p="6"
+            w="100%"
+            maxW={{ base: "100%", md: "614px" }}
+            h={{ base: "auto", md: "468px" }}
+            minH={{ base: "350px", md: "468px" }}
+            p={{ base: 4, md: 6 }}
             border="1px solid black"
             borderRadius="0"
             {...props}
         >
-            <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr" h="100%">
+            <Grid 
+                templateColumns={{ base: "1fr", sm: "1fr 1fr" }}
+                templateRows={{ base: "auto auto auto auto", sm: "1fr 1fr" }}
+                h="100%"
+                gap={{ base: 4, sm: 0 }}
+            >
 
                 {/* Title */}
                 <GridItem>
-                    <Text fontSize="4xl">
+                    <Text fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}>
                         {title}
                     </Text>
                 </GridItem>
 
                 {/* Image */}
-                <GridItem display="flex" justifyContent="flex-end">
+                <GridItem 
+                    display="flex" 
+                    justifyContent={{ base: "center", sm: "flex-end" }}
+                >
                     <Image
                         src={imageSrc}
-                        boxSize="128px"
+                        boxSize={{ base: "100px", md: "128px" }}
                         objectFit="contain"
                     />
                 </GridItem>
@@ -38,9 +48,9 @@ export default function ProgramCard({
                 {/* Description */}
                 <GridItem>
                     <Text 
-                        fontSize="sm"
+                        fontSize={{ base: "xs", md: "sm" }}
                         display="flex"
-                        alignItems="flex-end"
+                        alignItems={{ base: "flex-start", sm: "flex-end" }}
                         h="100%"
                     >
                         {description}
@@ -50,7 +60,7 @@ export default function ProgramCard({
                 {/* Learn more button */}
                 <GridItem
                     display="flex"
-                    justifyContent="flex-end"
+                    justifyContent={{ base: "center", sm: "flex-end" }}
                     alignItems="flex-end"
                 >
                     <Button as="u">{buttonText}</Button>
