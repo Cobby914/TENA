@@ -9,35 +9,45 @@ export default function Navbar() {
             display="flex"
             justifyContent="space-between"
             bg="rgb(217, 217, 217)"
-            px="10"
-            height="150px"
+            px="2%"
+            height="8vw"
+            
             position="sticky"
             top="0"
             zIndex="1000"
+
+            width = "100vw"
+
         >
             {/* Logo/Label */}
             <Flex
                 alignItems="center"
-                gap="50px" 
+                gap="8%" 
+                marginTop = "2%"
+                marginBottom = "2%"
             >
                 <Image
                     src={logo}
                     alt="placeholder"
-                    boxSize="130px"
+                    width = "30%"
+
+                    maxHeight = "100%"
                 ></Image>
-                <Button>TENA Text Logo</Button>
+                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">TENA Text Logo (HOME)</Button>
             </Flex>
 
             {/* Nav Buttons */}
             <Flex
                 alignItems="center"
-                gap="40px"
+                gap="10%"
+                marginTop = "2%"
+                marginBottom = "2%"
             >
-                <Button>About Us</Button>
-                <Button>Programs</Button>
-                <Button>Join Movement</Button>
-                <Button>Contact Us</Button>
-                <Button>Donate</Button>
+                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">About Us</Button>
+                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Programs</Button>
+                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Join Movement</Button>
+                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Contact Us</Button>
+                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Donate</Button>
             </Flex>            
         </Box>
     );
