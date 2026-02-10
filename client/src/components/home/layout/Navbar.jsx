@@ -16,7 +16,7 @@ export default function Navbar() {
             top="0"
             zIndex="1000"
 
-            width = "100vw"
+            width = "99vw"
 
         >
             {/* Logo/Label */}
