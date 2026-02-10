@@ -33,21 +33,21 @@ export default function Navbar() {
 
                     maxHeight = "100%"
                 ></Image>
-                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">TENA Text Logo (HOME)</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw" marginLeft = "1vw">TENA Text Logo (HOME)</Button>
             </Flex>
 
             {/* Nav Buttons */}
             <Flex
                 alignItems="center"
-                gap="10%"
+                gap="0.8vw"
                 marginTop = "2%"
                 marginBottom = "2%"
             >
-                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">About Us</Button>
-                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Programs</Button>
-                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Join Movement</Button>
-                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Contact Us</Button>
-                <Button width = "13vw" ratio = {12/5} height = "10vh" fontSize = "1.5vw">Donate</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">About Us</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Programs</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Join Movement</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Contact Us</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Donate</Button>
             </Flex>            
         </Box>
     );

@@ -6,84 +6,106 @@ import Newsletter from "../../ui/Newsletter";
 // Still need to add the transparency seal
 // Future functionality: update text to required
 
-export default function Footer({}
-
+export default function Footer({
+ children, ...props}
 ) {
     return (
-        <Box width = "1440px" height = "611px" background = "#B8b8b8">
+        <Box as="section"
+             bg="#FFFFFF"
+             width="100vw"
+             height="800px"
+            >
+        
+            <Flex direction="column"
+                justifyContent="center" 
+                alignItems = "center">
 
-            <HStack>
-                <VStack align = "left">
+                <Box background = "#B8b8b8" width = "100vw" height = "100vh" ratio = {1440/661} 
+                maxWidth = "1440px" maxHeight= "661px" >
+                {/* For heights and widths smaller than the max, just use the same as a ratio of our maxes */}
+        
+                    <HStack width = "100vw">
+                        <VStack align = "left" maxWidth = "993px" width = "65vw" maxHeight = "661px" height = "100vh">
 
-                {/* Logos go here */}
-                <HStack width = "939px" height = "100px"  marginTop = "10px">
-                    <Image src = {logo} align = "left" height = "81px" width = "85px" marginLeft="52px">
+                            {/* Logos go here */}
+                            <HStack width = "30vw" height = "15vh"  marginTop = "1vh"
+                                maxWidth= "300px" maxHeight =  "100px">
 
-                    </Image>
-                    <Image src = {logo} align = "right" width = "151px" height = "55px" marginLeft = "16px">
+                                <Image src = {logo} align = "left"  ratio= {85/81} width = "6vw"
+                                maxWidth = "85px" maxHeight = "81px"
+                                marginLeft="2vw">
+                                </Image>
+                                
+                                {/* This will be the logo text in future, so ratio/size will still be TBD */}
+                                <Image src = {logo} align = "right" width = "10vw" height = "7vh"
+                                ratio = {151/55} marginLeft = "2vw"
+                                maxWidth = "151px" maxHeight = "55px">
+                                </Image>
+                            </HStack>
 
-                    </Image>
-                </HStack>
+                            {/* Separator Line */}
 
-                {/* Separator Line */}
+                            <Box width = "60vw"  height = "0.3vh" background = "#7f7f7f" marginLeft="2vw" marginTop = "0.5vh"></Box>
 
-                <Box width = "815px" height = "2px" background = "#7f7f7f" marginLeft="52px" marginTop = "15px"></Box>
+                            <HStack marginTop = "0.3vh" gap = "0px" maxWidth = "993px">
+                                <Box marginLeft="2vw">
+                                    <Text fontSize= "1.6vw" fontWeight={400} lineHeight="100%">Tena Foundation</Text>
+                                    <Text fontSize= "1.6vw" fontWeight={400} lineHeight="100%">Address Line</Text>
+                                    <Text fontSize= "1.6vw" fontWeight={400} lineHeight="100%">State</Text>
+                                    <Text fontSize= "1.6vw" fontWeight={400} lineHeight="100%">United States</Text>
+                                </Box>
 
-                <HStack marginTop = "18px">
-                    <Box marginLeft="52px">
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">Tena Foundation</Text>
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">Address Line</Text>
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">State</Text>
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">United States</Text>
-                    </Box>
-                    <Box marginLeft = "150px">
-                        <Text fontSize={24} fontWeight={700} lineHeight="100%">Link 1</Text>
-                        <Text fontSize={24} fontWeight={700} lineHeight="150%">Link 2</Text>
-                        
-                    </Box>
-                    <Box marginLeft = "20" marginTop="4px">
-                        <Text fontSize={24} fontWeight={700} lineHeight="100%">Link 3</Text>
-                        <Text fontSize={24} fontWeight={700} lineHeight="150%">Link 4</Text>
-                    </Box>
+                                <Box marginLeft = "12%">
+                                    <Text fontSize="2vw" fontWeight={700} lineHeight="100%">Link 1</Text>
+                                    <Text fontSize="2vw" fontWeight={700} lineHeight="150%">Link 2</Text>
+                                </Box>
 
-                     <Box marginLeft = "104px">
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">Contact Information</Text>
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">Contact Information</Text>
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">Contact Information</Text>
-                        <Text fontSize={20} fontWeight={400} lineHeight="100%">Contact Information</Text>
-                        <HStack>
-                            {/* Using Logo as placeholder */}
-                            <Image src = {logo} align = "left" height = "27px" width = "27px" marginTop = "15px" marginLeft = "34px"></Image>
-                            <Image src = {logo} height = "27px" width = "27px" marginTop = "15px" marginLeft = "5px" marginRight = "5px"></Image>
-                            <Image src = {logo} height = "27px" width = "27px" marginTop = "15px"></Image>
-                        </HStack>
+                                <Box marginLeft = "8%" marginTop="2%">
+                                    <Text fontSize="2vw" fontWeight={700} lineHeight="100%">Link 3</Text>
+                                    <Text fontSize="2vw" fontWeight={700} lineHeight="150%">Link 4</Text>
+                                </Box>
 
-                     </Box>
+                                <Box marginLeft = "6vw" marginTop = "2vh">
+                                    <Text fontSize="1.6vw" fontWeight={400} lineHeight="100%">Contact Information</Text>
+                                    <Text fontSize="1.6vw" fontWeight={400} lineHeight="100%">Contact Information</Text>
+                                    <Text fontSize="1.6vw" fontWeight={400} lineHeight="100%">Contact Information</Text>
+                                    <Text fontSize="1.6vw" fontWeight={400} lineHeight="100%">Contact Information</Text>
+                                    
+                                    <HStack gap = "0px" align = "center"marginTop = "4%">
+                                        {/* Using Logo as placeholder */}
+                                        <Image src = {logo} align = "left" maxHeight = "27px" maxWidth = "27px" marginLeft = "20%" width = "2vw"></Image>
+                                        <Image src = {logo} maxHeight = "27px" maxWidth = "27px"  marginLeft = "3%" marginRight = "3%" width = "2vw"></Image>
+                                        <Image src = {logo} maxHeight = "27px" maxWidth = "27px" width = "2vw"></Image>
+                                    </HStack>
+                                </Box>
 
-                </HStack>
+                            </HStack>
 
-                <Box>
-                    <Text marginLeft="52px" marginTop = "20px" fontSize = {18}>Additional information</Text>
-                    <Text width = "294px" marginLeft = "52px" fontSize = {18}>Lorem ipsum dolor sit ametctetur adipiscing tempor incididunt ut labore et dolore magna.</Text>
+                            <Box>
+                                <Text marginLeft="2vw" marginTop = "2%" fontSize = "1.2vw">Additional information</Text>
+                                <Text marginLeft="2vw" width = "25vw"  fontSize = "1.2vw">Lorem ipsum dolor sit ametctetur adipiscing tempor incididunt ut labore et dolore magna.</Text>
+                            </Box>
+               
+                            {/* This will be the transparency seal */}
+
+                            <Image src = {logo} align = "left"  ratio= {85/81} width = "6vw"
+                                maxWidth = "85px" maxHeight = "81px"
+                                marginLeft="2vw" marginTop = "15vh">
+                            </Image>
+
+                        </VStack>
+                    
+                    
+                        <Box align = "right" paddingRight = "2vw">
+                            <Newsletter></Newsletter>
+                        </Box>
+                    
+                    </HStack>
                 </Box>
-               
 
-
-                {/* This will be the transparency seal */}
-                
-                <Image src = {logo} width = "85px" height = "81px" marginLeft = "52px" marginTop = "90px" >
-
-                </Image>
-
-
-               
-                </VStack>
-
-
-                <Newsletter align = "right" marginTop= "39px"></Newsletter>
-
-            </HStack>
+            </Flex>
             
-            </Box>
+        </Box>
+
     );
 }
