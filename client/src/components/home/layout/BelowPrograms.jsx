@@ -1,5 +1,6 @@
 import { Box, Flex, Text, VStack, SimpleGrid, Button } from "@chakra-ui/react";
 import IconBlock from "../../ui/IconBlock";
+import { NavLink } from "react-router-dom";
 
 export default function BelowPrograms() {
     return (
@@ -35,7 +36,8 @@ export default function BelowPrograms() {
                     <IconBlock />
                 </SimpleGrid>
                 {/* About Us Button */}
-                <Button
+                <NavLink to="/about">
+                    <Button
                     bg="rgb(217, 217, 217)"
                     color="black"
                     fontWeight="bold"
@@ -45,6 +47,7 @@ export default function BelowPrograms() {
                 >
                     About Us
                 </Button>
+                </NavLink>
             </Flex>
         </Box>
     );

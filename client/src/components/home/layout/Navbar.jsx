@@ -1,4 +1,5 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import Button from "../../ui/Button";
 import logo from "../../../assets/logoplaceholder.png";
 
@@ -20,12 +21,16 @@ export default function Navbar() {
                 alignItems="center"
                 gap="50px" 
             >
+                <NavLink to="/">
                 <Image
                     src={logo}
                     alt="placeholder"
                     boxSize="130px"
                 ></Image>
-                <Button>TENA Text Logo</Button>
+                </NavLink>
+                <NavLink to="/">
+                    <Button>TENA Text Logo</Button>
+                </NavLink>
             </Flex>
 
             {/* Nav Buttons */}
@@ -33,9 +38,18 @@ export default function Navbar() {
                 alignItems="center"
                 gap="40px"
             >
-                <Button>About Us</Button>
-                <Button>Programs</Button>
-                <Button>Join Movement</Button>
+                <NavLink to="/about">
+                    <Button>About Us</Button>
+                </NavLink>
+                
+                <NavLink to="/programs">
+                    <Button>Programs</Button>
+                </NavLink>
+                
+                <NavLink to="/getInvolved">
+                    <Button>Join Movement</Button>
+                </NavLink>
+                
                 <Button>Contact Us</Button>
                 <Button>Donate</Button>
             </Flex>            
