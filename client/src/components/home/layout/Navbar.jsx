@@ -4,71 +4,61 @@ import Button from "../../ui/Button";
 import logo from "../../../assets/logoplaceholder.png";
 
 export default function Navbar() {
-    return (
-        <Box
-            as="nav"
-            display="flex"
-            justifyContent="space-between"
-            bg="rgb(217, 217, 217)"
-            px="2%"
-            height="8vw"
-            
-            position="sticky"
-            top="0"
-            zIndex="1000"
+  return (
+    <Box
+      as="nav"
+      position="sticky"
+      top="0"
+      zIndex="1000"
+      bg="rgb(217, 217, 217)"
+      w="100%"
+      px={{ base: 4, md: 8, lg: 16 }}
+      py={{ base: 3, md: 4 }}
+      boxShadow="sm"
+    >
+      <Flex justify="space-between" align="center">
 
-            width = "99vw"
+        {/* Logo Section */}
+        <NavLink to="/">
+          <Flex align="center" gap={3}>
+            <Image
+              src={logo}
+              alt="TENA Logo"
+              h={{ base: "40px", md: "50px" }}
+              objectFit="contain"
+            />
+            <Button>TENA</Button>
+          </Flex>
+        </NavLink>
 
+        {/* Navigation Links */}
+        <Flex
+          align="center"
+          gap={{ base: 2, md: 4 }}
+          display={{ base: "none", md: "flex" }}  // hide on mobile for now
         >
-            {/* Logo/Label */}
-            <Flex
-                alignItems="center"
-                gap="8%" 
-                marginTop = "2%"
-                marginBottom = "2%"
-            >
-                <NavLink to="/">
-                <Image
-                    src={logo}
-                    alt="placeholder"
-                    width = "30%"
+          <NavLink to="/about">
+            <Button>About Us</Button>
+          </NavLink>
 
-                    maxHeight = "100%"
-                ></Image>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw" marginLeft = "1vw">TENA Text Logo (HOME)</Button>
-                </NavLink>
-                <NavLink to="/">
-                    <Button>TENA Text Logo</Button>
-                </NavLink>
-            </Flex>
+          <NavLink to="/programs">
+            <Button>Programs</Button>
+          </NavLink>
 
-            {/* Nav Buttons */}
-            <Flex
-                alignItems="center"
-                gap="0.8vw"
-                marginTop = "2%"
-                marginBottom = "2%"
-            >
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">About Us</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Programs</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Join Movement</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Contact Us</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Donate</Button>
-                <NavLink to="/about">
-                    <Button>About Us</Button>
-                </NavLink>
-                
-                <NavLink to="/programs">
-                    <Button>Programs</Button>
-                </NavLink>
-                
-                <NavLink to="/getInvolved">
-                    <Button>Join Movement</Button>
-                </NavLink>
-                
-                <Button>Contact Us</Button>
-                <Button>Donate</Button>
-            </Flex>            
-        </Box>
-    );
+          <NavLink to="/getInvolved">
+            <Button>Join Movement</Button>
+          </NavLink>
+
+          <NavLink to="/contact">
+            <Button>Contact Us</Button>
+          </NavLink>
+
+          <NavLink to="/donate">
+            <Button>Donate</Button>
+          </NavLink>
+        </Flex>
+
+      </Flex>
+    </Box>
+  );
 }
