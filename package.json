@@ -8,6 +8,8 @@
     "dev": "npm run dev --workspace client"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^17.3.0",
     "react-router-dom": "^7.12.0"
   }
 }
