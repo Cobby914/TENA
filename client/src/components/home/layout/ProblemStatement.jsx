@@ -1,5 +1,6 @@
 import { Text, Box, Flex, VStack } from "@chakra-ui/react";
 import Button from "../../ui/Button";
+import { NavLink } from "react-router-dom";
 
 export default function ProblemStatement() {
     return (
@@ -73,6 +74,11 @@ export default function ProblemStatement() {
                         <Box mt={{ base: 0, lg: 20 }}>
                             <Button>About Us</Button>
                         </Box>
+                    {/*About Us Button*/}
+                    <Box mt="20">
+                        <NavLink to="/about">
+                            <Button>About Us</Button>
+                        </NavLink>
                     </Box>
                 </Flex>
 

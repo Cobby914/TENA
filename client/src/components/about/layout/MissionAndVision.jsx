@@ -1,4 +1,5 @@
 import { Text, Box, Flex, VStack, Button } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import ImagePlaceholder from "../../ui/MVimagePH";
 
 export default function MissionAndVision() {
@@ -36,7 +37,22 @@ export default function MissionAndVision() {
                                 Get Involved/
                                 <br />
                                 Join the movement
+                            {/* Button */}
+                            <NavLink to="/getInvolved">
+                                <Button
+                                    bg="rgb(245, 245, 245)"
+                                    color="black"
+                                    borderRadius="none"
+                                    height="60px"
+                                    width="260px"
+                                    whiteSpace="normal"
+                                >
+                                    Get Involved/
+                                    <br />
+                                    Join the movement
                             </Button>
+                            </NavLink>
+
                         </Box>
                         <Box flex="1" width="100%">
                             <ImagePlaceholder label="IMG" />
