@@ -10,23 +10,32 @@ export default function Navbar() {
             display="flex"
             justifyContent="space-between"
             bg="rgb(217, 217, 217)"
-            px="10"
-            height="150px"
+            px="2%"
+            height="8vw"
+            
             position="sticky"
             top="0"
             zIndex="1000"
+
+            width = "99vw"
+
         >
             {/* Logo/Label */}
             <Flex
                 alignItems="center"
-                gap="50px" 
+                gap="8%" 
+                marginTop = "2%"
+                marginBottom = "2%"
             >
                 <NavLink to="/">
                 <Image
                     src={logo}
                     alt="placeholder"
-                    boxSize="130px"
+                    width = "30%"
+
+                    maxHeight = "100%"
                 ></Image>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw" marginLeft = "1vw">TENA Text Logo (HOME)</Button>
                 </NavLink>
                 <NavLink to="/">
                     <Button>TENA Text Logo</Button>
@@ -36,8 +45,15 @@ export default function Navbar() {
             {/* Nav Buttons */}
             <Flex
                 alignItems="center"
-                gap="40px"
+                gap="0.8vw"
+                marginTop = "2%"
+                marginBottom = "2%"
             >
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">About Us</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Programs</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Join Movement</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Contact Us</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Donate</Button>
                 <NavLink to="/about">
                     <Button>About Us</Button>
                 </NavLink>
