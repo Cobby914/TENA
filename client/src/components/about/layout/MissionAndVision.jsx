@@ -33,7 +33,7 @@ export default function MissionAndVision() {
                                 width={{ base: "220px", md: "260px" }}
                                 fontSize={{ base: "sm", md: "md" }}
                                 whiteSpace="normal"
-                            >
+                            />
                                 Get Involved/
                                 <br />
                                 Join the movement
@@ -50,7 +50,7 @@ export default function MissionAndVision() {
                                     Get Involved/
                                     <br />
                                     Join the movement
-                            </Button>
+                                </Button>
                             </NavLink>
 
                         </Box>

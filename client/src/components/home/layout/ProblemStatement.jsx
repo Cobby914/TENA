@@ -54,7 +54,7 @@ export default function ProblemStatement() {
                         width={{ base: "100%", lg: "700px" }} 
                         display="flex" 
                         flexDirection="column"
-                    >
+                    />
                         <Text 
                             fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} 
                             mb={{ base: 1, md: 2 }}
