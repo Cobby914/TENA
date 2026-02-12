@@ -4,27 +4,39 @@ import ImagePlaceholder from "../../ui/MVimagePH";
 
 export default function MissionAndVision() {
     return (
-        <Box //Section Padding to Center Components
+        <Box
             as="section"
             bg="white"
             width="100%"
-            px="24"
-            py="20"
+            py={{ base: 10, md: 16, lg: 20 }}
         >
-            {/* Centered Page */}
-            <Box maxW="1400px" mx="auto">
-                <VStack spacing="24" alignItems="stretch">
-                    {/* Our Mission + ImagePH */}
-                    <Flex align="center" gap="80">
-                        <Box flex="1">
-                            <Text fontSize="5xl" mb="4">
+            <Box
+                maxW="1800px"
+                mx="auto"
+                px={{ base: 4, md: 10, lg: 24 }}
+            >
+                <VStack spacing={{ base: 12, md: 18, lg: 24 }} alignItems="stretch">
+                    <Flex direction={{ base: "column", lg: "row" }} align="center" gap={{ base: 8, md: 12, lg: 20 }}>
+                        <Box flex="1" maxW={{ lg: "600px" }} width="100%">
+                            <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} mb={{ base: 3, md: 4 }}>
                                 Our Mission
                             </Text>
-                            {/* Our Mission Description */}
-                            <Text fontSize="lg" lineHeight="1.35" mb="8">
+                            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35" mb={{ base: 6, md: 8 }}>
                                 To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting 
                                 communities to resources, care, and opportunities that promote lifelong wellness
                             </Text>
+                            <Button
+                                bg="rgb(245, 245, 245)"
+                                color="black"
+                                borderRadius="none"
+                                height={{ base: "55px", md: "60px" }}
+                                width={{ base: "220px", md: "260px" }}
+                                fontSize={{ base: "sm", md: "md" }}
+                                whiteSpace="normal"
+                            >
+                                Get Involved/
+                                <br />
+                                Join the movement
                             {/* Button */}
                             <NavLink to="/getInvolved">
                                 <Button
@@ -42,23 +54,20 @@ export default function MissionAndVision() {
                             </NavLink>
 
                         </Box>
-                        {/* Image Placeholder */}
-                        <Box flex="1">
+                        <Box flex="1" width="100%">
                             <ImagePlaceholder label="IMG" />
                         </Box>
                     </Flex>
 
-                    {/* Our Vision + Image PH */}
-                    <Flex allign="center" gap="80px">
-                        <Box flex="1">
+                    <Flex direction={{ base: "column-reverse", lg: "row" }} align="center" gap={{ base: 8, md: 12, lg: 20 }}>
+                        <Box flex="1" width="100%">
                             <ImagePlaceholder label="IMG" />
                         </Box>
-                        {/* Header + Text */}
-                        <Box flex="1">
-                            <Text fontSize="5xl" mb="mb">
+                        <Box flex="1" maxW={{ lg: "600px" }} width="100%">
+                            <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} mb={{ base: 3, md: 4 }}>
                                 Our Vision
                             </Text>
-                            <Text fontSize="lg" lineHeight="1.35">
+                            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35">
                                 All people achieving their highest health and wellness
                             </Text>
                         </Box>

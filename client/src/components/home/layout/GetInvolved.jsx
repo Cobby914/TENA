@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Grid, SimpleGrid, GridItem } from "@chakra-ui/react"
+import { Box, Flex, Text, SimpleGrid } from "@chakra-ui/react"
 import InvolvementCard from "../ui/InvolvementCard";
 
 export default function GetInvolved() {
@@ -7,48 +7,64 @@ export default function GetInvolved() {
             as="section"
             bg="rgb(255, 255, 255)"
             width="100%"
-            height="1000px"
-            p="20"
+            minHeight={{ base: "auto", lg: "1000px" }}
+            py={{ base: 8, md: 12, lg: 20 }}
         >
-            <Flex
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
+            <Box
+                maxW="2500px"
+                mx="auto"
+                px={{ base: 4, md: 10, lg: 20 }}
             >
-                <Box
-                    bg="#D9D9D9"
-                    width="1124px"
-                    height="529px"
-                    border="1.5px solid"  
-                    p={50}
+                <Flex
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
                 >
-                    <Text align = "center" fontWeight = "bold" fontSize= "5xl" mt={50}>
-                        Join Our Mission.
-                    </Text>
+                    <Box
+                        bg="#D9D9D9"
+                        width={{ base: "100%", lg: "1124px" }}
+                        maxW="100%"
+                        minH={{ base: "auto", lg: "529px" }}
+                        border="1.5px solid"  
+                        p={{ base: 6, md: 10, lg: 12 }}
+                    >
+                        <Text 
+                            align="center" 
+                            fontWeight="bold" 
+                            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} 
+                            mt={{ base: 6, md: 10, lg: 12 }}
+                        >
+                            Join Our Mission.
+                        </Text>
 
-                    <SimpleGrid columns = {3} spacing="120px" mt={10} ml={50} mr={50} mb={20}>
-                        {/* Add links to buttons when applicable*/}
-                        
-                        <InvolvementCard title="Volunteer"
-                                        description="Lend your time at our events."
-                                        linkname="Volunteer With Us"
-                                        
-                        /> {/* Aligned at 65 pixels right of box left edge*/}
+                        <SimpleGrid 
+                            columns={{ base: 1, md: 3 }} 
+                            spacing={{ base: 8, md: 10, lg: "120px" }} 
+                            mt={{ base: 6, md: 8, lg: 10 }} 
+                            mx={{ base: 0, lg: 12 }}
+                            mb={{ base: 6, md: 10, lg: 20 }}
+                        >
+                            <InvolvementCard 
+                                title="Volunteer"
+                                description="Lend your time at our events."
+                                linkname="Volunteer With Us"
+                            />
 
-                        <InvolvementCard title="Partner"
-                                        description="Collaborate with us to expand our reach."
-                                        linkname = "Become a Partner"
-                        />
+                            <InvolvementCard 
+                                title="Partner"
+                                description="Collaborate with us to expand our reach."
+                                linkname="Become a Partner"
+                            />
 
-                        <InvolvementCard title="Donate"
-                                        description="Your financial report fuels our mission."
-                                        linkname="Support our Cause"
-                        />
-                        {/*Right edge of button aligned at 89 pixels from box right edge*/}
-
-                    </SimpleGrid>
-                </Box>
-            </Flex>
+                            <InvolvementCard 
+                                title="Donate"
+                                description="Your financial report fuels our mission."
+                                linkname="Support our Cause"
+                            />
+                        </SimpleGrid>
+                    </Box>
+                </Flex>
+            </Box>
         </Box>
     );
 }

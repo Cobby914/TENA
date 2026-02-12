@@ -1,40 +1,48 @@
-import { VStack, Center } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import CareAndFairCard from "../ui/CareAndFairCard";
 
 export default function CareAndFair() {
     return(
-        <Center w="full" mt={40} mb={40}>
-            <VStack
-                spacing={48}
-                align="center"
-                width="80%"
+        <Box w="full" py={{ base: 12, md: 16, lg: 40 }}>
+            <Box
+                maxW="2500px"
+                mx="auto"
+                px={{ base: 4, md: 10, lg: 20 }}
             >
-                <CareAndFairCard
-                    title="Care Navigation"
-                    description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
+                <VStack
+                    spacing={{ base: 16, md: 24, lg: 48 }}
+                    align="center"
+                    width="100%"
+                    maxW="1400px"
+                    mx="auto"
                 >
-                </CareAndFairCard>
+                    <CareAndFairCard
+                        title="Care Navigation"
+                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
+                    >
+                    </CareAndFairCard>
 
-                <CareAndFairCard
-                    title="Fair Pre-Health Workforce"
-                    description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                    reversed={true}
-                >
-                </CareAndFairCard>
+                    <CareAndFairCard
+                        title="Fair Pre-Health Workforce"
+                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
+                        reversed={true}
+                    >
+                    </CareAndFairCard>
 
-                <CareAndFairCard
-                    title="Care Navigation"
-                    description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                >
-                </CareAndFairCard>
+                    <CareAndFairCard
+                        title="Care Navigation"
+                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
+                    >
+                    </CareAndFairCard>
 
-                <CareAndFairCard
-                    title="Fit Club"
-                    description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                    reversed={true}
-                >
-                </CareAndFairCard>
-            </VStack>
-        </Center>
+                    <CareAndFairCard
+                        title="Fit Club"
+                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
+                        reversed={true}
+                    >
+                    </CareAndFairCard>
+                </VStack>
+            </Box>
+        </Box>
     );    
 }

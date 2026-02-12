@@ -2,19 +2,23 @@ import { Box, Text, VStack } from "@chakra-ui/react";
 
 export default function IconBlock({ children, ...props }) {
     return(
-        <VStack spacing="6" alignItems="center">
+        <VStack spacing={{ base: 4, md: 6 }} alignItems="center">
             <Box
-                width="170px"
-                height="170px"
+                width={{ base: "140px", md: "155px", lg: "170px" }}
+                height={{ base: "140px", md: "155px", lg: "170px" }}
                 bg="rgb(217, 217, 217)"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
             >
-                <Text fontSize="2xl"> ICON </Text>
+                <Text fontSize={{ base: "xl", md: "2xl" }}> ICON </Text>
             </Box>
             {/* Text Below */}
-            <Text fontSize="2xl" lineHeight="1.15" textAlign="center">
+            <Text 
+                fontSize={{ base: "xl", md: "2xl" }} 
+                lineHeight="1.15" 
+                textAlign="center"
+            >
                 Expand Healthcare 
                 <br />
                 Access

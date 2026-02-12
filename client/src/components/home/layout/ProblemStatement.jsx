@@ -6,59 +6,106 @@ export default function ProblemStatement() {
     return (
         <Box
             as="section"
-            bg="rgb(217, 217, 217)" //Light Gray Section
+            bg="rgb(217, 217, 217)"
             width="100%"
-            px="20"
-            py="16"
-            height="600px"
+            py={{ base: 8, md: 12, lg: 16 }}
+            minHeight={{ base: "auto", lg: "600px" }}
         >
-            {/* Top 2 Column Content*/}
-            <Flex justifyContent="space-between" alignItem="flex-start">
-                {/*The Challenge*/}
-                <Box width="600px" display="flex" flexDirection="column">
-                    <Text fontSize="5xl" mb="4">
-                        The Challenge
-                    </Text>
+            <Box
+                maxW="2500px"
+                mx="auto"
+                px={{ base: 4, md: 10, lg: 20 }}
+            >  
+                {/* Top 2 Column Content*/}
+                <Flex 
+                    justifyContent="space-between" 
+                    alignItems="flex-start"
+                    direction={{ base: "column", lg: "row" }}
+                    gap={{ base: 8, md: 10, lg: 0 }}
+                >
+                    {/*The Challenge*/}
+                    <Box 
+                        width={{ base: "100%", lg: "600px" }} 
+                        display="flex" 
+                        flexDirection="column"
+                    >
+                        <Text 
+                            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} 
+                            mb={{ base: 3, md: 4 }}
+                        >
+                            The Challenge
+                        </Text>
 
-                    <Text fontSize="xl" lineHeight="1.4" mb="10">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-                        aliquip ex ea commodo consequat.
-                    </Text>
+                        <Text 
+                            fontSize={{ base: "md", md: "lg", lg: "xl" }} 
+                            lineHeight="1.4" 
+                            mb={{ base: 6, md: 8, lg: 10 }}
+                        >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                            aliquip ex ea commodo consequat.
+                        </Text>
 
-                    <Button>The Impact</Button>
-                </Box>
+                        <Button>The Impact</Button>
+                    </Box>
 
-                {/*TENA Solution */}
-                <Box width="700px" display="flex" flexDirection="column">
-                    <Text fontSize="5xl" mb="2">
-                        TENA "Solution"
-                    </Text>
+                    {/*TENA Solution */}
+                    <Box 
+                        width={{ base: "100%", lg: "700px" }} 
+                        display="flex" 
+                        flexDirection="column"
+                    >
+                        <Text 
+                            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} 
+                            mb={{ base: 1, md: 2 }}
+                        >
+                            TENA "Solution"
+                        </Text>
 
-                    <Text fontSize="xl" letterSpacing="wide" mb="12">
-                        PROGRAM OVERALL SUMMARY
-                    </Text>
+                        <Text 
+                            fontSize={{ base: "md", md: "lg", lg: "xl" }} 
+                            letterSpacing="wide" 
+                            mb={{ base: 6, md: 8, lg: 12 }}
+                        >
+                            PROGRAM OVERALL SUMMARY
+                        </Text>
 
+                        {/*About Us Button*/}
+                        <Box mt={{ base: 0, lg: 20 }}>
+                            <Button>About Us</Button>
+                        </Box>
                     {/*About Us Button*/}
                     <Box mt="20">
                         <NavLink to="/about">
                             <Button>About Us</Button>
                         </NavLink>
                     </Box>
-                </Box>
-            </Flex>
+                </Flex>
 
-            {/*What We Do + arrow*/}
-            <VStack spacing="2" mt="14" textAlign="center">
-                <Text fontSize="4xl">What we do</Text>
-                <Text fontSize="lg" opacity="0.5">
-                    subway:do...
-                </Text>
+                {/*What We Do + arrow*/}
+                <VStack 
+                    spacing={{ base: 1, md: 2 }} 
+                    mt={{ base: 10, md: 12, lg: 14 }} 
+                    textAlign="center"
+                >
+                    <Text fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}>
+                        What we do
+                    </Text>
+                    <Text 
+                        fontSize={{ base: "sm", md: "md", lg: "lg" }} 
+                        opacity="0.5"
+                    >
+                        subway:do...
+                    </Text>
 
-                <Text fontSize="7xl" lineHeight="1">
-                    ↓
-                </Text>
-            </VStack>
+                    <Text 
+                        fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }} 
+                        lineHeight="1"
+                    >
+                        ↓
+                    </Text>
+                </VStack>
+            </Box>
         </Box>
     );
 }
