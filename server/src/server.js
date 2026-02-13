@@ -1,6 +1,12 @@
-import app from "./app.js";
-import { env } from "./config/env.js";
+import express from "express";
 
-app.listen(env.port, () => {
-  console.log(` Server running at http://localhost:${env.port}`);
+const app = express();
+const PORT = 3001;
+
+app.get("/", (req, res) => {
+  res.send("Server is working!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
