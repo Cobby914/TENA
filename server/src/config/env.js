@@ -2,7 +2,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const required = ["DATABASE_URL", "GOOGLE_CLIENT_ID"];
+// const required = ["DATABASE_URL", "GOOGLE_CLIENT_ID"];
+const required = ["DATABASE_URL"];
 
 required.forEach((key) => {
   if (!process.env[key]) {
