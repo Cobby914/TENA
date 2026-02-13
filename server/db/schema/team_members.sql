@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS "TENA_Admin".team_members (
+SET search_path TO "TENA_Admin";
+
+CREATE TABLE IF NOT EXISTS team_members (
     id          SERIAL PRIMARY KEY,
     first_name  VARCHAR(100) NOT NULL,
     last_name   VARCHAR(100) NOT NULL,

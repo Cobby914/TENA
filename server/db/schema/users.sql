@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS "TENA_Admin".users (
+SET search_path TO "TENA_Admin";
+
+CREATE TABLE IF NOT EXISTS users (
     id              SERIAL PRIMARY KEY,
     email           VARCHAR(255) UNIQUE NOT NULL,
     password_hash   TEXT,

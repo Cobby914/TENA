@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS "TENA_Admin".program_stats (
+SET search_path TO "TENA_Admin";
+
+CREATE TABLE IF NOT EXISTS program_stats (
     id              SERIAL PRIMARY KEY,
     program_id      INT NOT NULL,
     label           VARCHAR(100) NOT NULL,
@@ -6,6 +8,6 @@ CREATE TABLE IF NOT EXISTS "TENA_Admin".program_stats (
     description     TEXT,
 
     FOREIGN KEY (program_id)
-        REFERENCES "TENA_Admin".programs(id)
+        REFERENCES programs(id)
         ON DELETE CASCADE
 );
