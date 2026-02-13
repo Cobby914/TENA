@@ -25,6 +25,7 @@ export default function MissionAndVision() {
                                 To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting 
                                 communities to resources, care, and opportunities that promote lifelong wellness
                             </Text>
+                            <NavLink to="/getInvolved">
                             <Button
                                 bg="rgb(245, 245, 245)"
                                 color="black"
@@ -33,24 +34,11 @@ export default function MissionAndVision() {
                                 width={{ base: "220px", md: "260px" }}
                                 fontSize={{ base: "sm", md: "md" }}
                                 whiteSpace="normal"
-                            />
+                            >
                                 Get Involved/
                                 <br />
                                 Join the movement
-                            {/* Button */}
-                            <NavLink to="/getInvolved">
-                                <Button
-                                    bg="rgb(245, 245, 245)"
-                                    color="black"
-                                    borderRadius="none"
-                                    height="60px"
-                                    width="260px"
-                                    whiteSpace="normal"
-                                >
-                                    Get Involved/
-                                    <br />
-                                    Join the movement
-                                </Button>
+                            </Button>
                             </NavLink>
 
                         </Box>
