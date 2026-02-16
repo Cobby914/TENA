@@ -3,7 +3,9 @@ import { Router } from "express";
 import programsRouter from "./programs.js";
 import teamMembersRouter from "./team_members.js";
 import newsletterSubscribersRouter from "./newsletter_subscribers.js";
-//Ave put your routes here:
+import companyInfoRouter from "./company_info.js";
+import programStatsRouter from "./program_stats.js";
+import users from "./users.js";
 
 const router = Router();
 
@@ -12,7 +14,9 @@ router.use("/team-members", teamMembersRouter);
 router.use("/newsletter-subscribers", newsletterSubscribersRouter);
 router.use("/team_members", teamMembersRouter);
 router.use("/newsletter_subscribers", newsletterSubscribersRouter);
-//Ave put 'router.use' here:
+router.use("/company_info", companyInfoRouter);
+router.use("/program_stats", companyInfoRouter);
+router.use("/users", companyInfoRouter);
 
 // router.use("/auth", authRoutes);
 // router.use("/programs", programsRoutes);
