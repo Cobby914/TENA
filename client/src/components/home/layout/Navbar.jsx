@@ -31,14 +31,12 @@ export default function Navbar() {
                 <Image
                     src={logo}
                     alt="placeholder"
-                    width = "30%"
-
+                    width = "8vw"
                     maxHeight = "100%"
                 ></Image>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw" marginLeft = "1vw">TENA Text Logo (HOME)</Button>
                 </NavLink>
                 <NavLink to="/">
-                    <Button>TENA Text Logo</Button>
+                    <Button  width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw" marginLeft = "1vw">TENA Text Logo</Button>
                 </NavLink>
             </Flex>
 
@@ -49,25 +47,20 @@ export default function Navbar() {
                 marginTop = "2%"
                 marginBottom = "2%"
             >
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">About Us</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Programs</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Join Movement</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Contact Us</Button>
-                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Donate</Button>
+
                 <NavLink to="/about">
-                    <Button>About Us</Button>
+                    <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">About Us</Button>
                 </NavLink>
                 
                 <NavLink to="/programs">
-                    <Button>Programs</Button>
+                    <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Programs</Button>
                 </NavLink>
                 
                 <NavLink to="/getInvolved">
-                    <Button>Join Movement</Button>
+                    <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Get Involved</Button>
                 </NavLink>
                 
-                <Button>Contact Us</Button>
-                <Button>Donate</Button>
+                <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw">Donate</Button>
             </Flex>            
         </Box>
     );
