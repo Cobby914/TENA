@@ -4,7 +4,7 @@ import CollapsibleSection from "../ui/CollapsibleSection";
 
 export default function OurTeam () {
     return (
-        <VStack p={{ base: 4, md: 10, lg: 20 }} spacing={{ base: 10, md: 20 }} alignItems="left">
+        <VStack p={{ base: 4, md: 10, lg: 20 }} spacing={{ base: 10, md: 20}} alignItems="left">
             <Text fontSize={{ base: "2xl", md: "3xl", lg: "40px" }} mt={{ base: -2, md: -5, lg: -10 }}>
                 The Team
             </Text>
@@ -17,7 +17,7 @@ export default function OurTeam () {
             </SimpleGrid>
 
             <CollapsibleSection title="2023 Winter Cohort">
-                <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={5} transform={{ base: "none", md: "scale(0.9)", lg: "scale(0.9)" }} transformOrigin="top left">
+                <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={5} transform={{ base: "scale(0.8)", md: "scale(0.9)", lg: "scale(0.9)" }} transformOrigin="top left">
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
