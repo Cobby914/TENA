@@ -1,7 +1,7 @@
 import {Text, Box, Stack, HStack, Icon, Collapse, useDisclosure} from "@chakra-ui/react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
-export default function CohortCollapsible ({title, children}) {
+export default function CollapsibleSection ({title, children}) {
     const { isOpen, onToggle } = useDisclosure()
 
     return (

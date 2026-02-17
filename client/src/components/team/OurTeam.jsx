@@ -1,6 +1,6 @@
 import {Text, VStack, SimpleGrid} from "@chakra-ui/react";
 import MemberCard from "../ui/MemberCard";
-import CohortCollapsible from "../ui/CohortCollapsible";
+import CollapsibleSection from "../ui/CollapsibleSection";
 
 export default function OurTeam () {
     return (
@@ -16,32 +16,32 @@ export default function OurTeam () {
                 <MemberCard name="Jemal Hussein" position="Position in Organization" />
             </SimpleGrid>
 
-            <CohortCollapsible title="2023 Winter Cohort">
+            <CollapsibleSection title="2023 Winter Cohort">
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={5} transform={{ base: "none", md: "scale(0.9)", lg: "scale(0.9)" }} transformOrigin="top left">
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                 </SimpleGrid>
-            </CohortCollapsible>
+            </CollapsibleSection>
 
-            <CohortCollapsible title="2023 Fall Cohort">
+            <CollapsibleSection title="2023 Fall Cohort">
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={5} transform={{ base: "none", md: "scale(0.9)", lg: "scale(0.9)" }} transformOrigin="top left">
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                 </SimpleGrid>
-            </CohortCollapsible>
+            </CollapsibleSection>
 
-            <CohortCollapsible title="2023 Summer Cohort">
+            <CollapsibleSection title="2023 Summer Cohort">
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={5} transform={{ base: "none", md: "scale(0.9)", lg: "scale(0.9)" }} transformOrigin="top left">
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                     <MemberCard name="Jemal Hussein" position="Position in Organization" />
                 </SimpleGrid>
-            </CohortCollapsible>
+            </CollapsibleSection>
 
         </VStack>
     );
