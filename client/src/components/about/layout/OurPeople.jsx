@@ -34,7 +34,7 @@ export default function OurPeople() {
                     my={{ base: "30px", md: "40px", lg: "50px" }}
                 >
                     <SubteamSection link={"/board"} src={placeholder} whoText="Our Board" buttonText="Find Out More"></SubteamSection>
-                    <SubteamSection src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection link={"/team"} src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
                     <SubteamSection src={placeholder} whoText="Our Partners" buttonText="Find Out More"></SubteamSection>
                 </SimpleGrid>
             </Box>
