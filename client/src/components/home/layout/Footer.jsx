@@ -2,6 +2,8 @@ import { Box, Flex, HStack, Image, VStack, Text } from "@chakra-ui/react";
 
 import logo from "../../../assets/logoplaceholder.png";
 import Newsletter from "../../ui/Newsletter";
+import main_logo from "../../../assets/transparent_tena_logo.png";
+import text_logo from "../../../assets/tena_text_logo.png";
 
 // Still need to add the transparency seal
 // Future functionality: update text to required
@@ -31,13 +33,13 @@ export default function Footer({
                             <HStack width = {{base: "clamp(20vw, 20vw, 939px)", lg: "939px"}} height = {{base: "clamp(15vh,15vh,100px)", lg: "100px"}}  marginTop = "1vh"
                                 maxWidth= "300px" maxHeight =  "100px">
 
-                                <Image src = {logo} align = "left"  ratio= {85/81} width = "6vw"
+                                <Image src = {main_logo} align = "left"  ratio= {85/81} width = "6vw"
                                 maxWidth = "85px" maxHeight = "81px"
                                 marginLeft = {{base:"min(3.4vw,52px)"}}>
                                 </Image>
                                 
                                 {/* This will be the logo text in future, so ratio/size will still be TBD */}
-                                <Image src = {logo} align = "right" width = "10vw" height = "7vh"
+                                <Image src = {text_logo} align = "right" width = "10vw" height = "7vh"
                                 ratio = {151/55} marginLeft = {{base:"min(2vw,16px)"}}
                                 maxWidth = "151px" maxHeight = "55px">
                                 </Image>
