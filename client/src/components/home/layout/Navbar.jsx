@@ -49,15 +49,23 @@ export default function Navbar() {
                 gap="0.8vw"
                 height = "100%"
             >
-                <Menu isLazy placement="bottom-start">
+                <Menu isLazy>
                     <MenuButton as = {ChakraButton} rightIcon={<ChevronDownIcon />} 
                     width = "11vw" height = "6vh" fontSize = "1.5vw" justifyContent="space-between" 
-                    textAlign="left" px="1vw" fontWeight = {600} rounded="5" >About Us</MenuButton>
-                    <MenuList>
-                        <MenuItem as ={NavLink} to = "/about">About Us</MenuItem>
-                        <MenuItem as ={NavLink} to = "/team">Our Team</MenuItem>
-                        <MenuItem as ={NavLink} to = "/board">Our Board</MenuItem>
-                        <MenuItem as ={NavLink} to = "/partners">Our Partners</MenuItem>
+                    textAlign="left" px="1vw" fontWeight = {600} rounded="4" >About Us</MenuButton>
+                    <MenuList minW="100%" w="100%" p = "0" align = "center" rounded = "0"> 
+                        <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"  borderRadius="none" fontSize = "1.2vw">
+                            <NavLink to = "/about">About Us</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"  borderRadius="none" fontSize = "1.2vw">
+                            <NavLink to = "/team">Our Team</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"   borderRadius="none" fontSize = "1.2vw">
+                            <NavLink to = "/board">Our Board</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"  borderRadius="none" fontSize = "1.2vw">
+                            <NavLink to = "/partners">Our Partners</NavLink>
+                        </MenuItem>
                     </MenuList>      
                 </Menu>
 
@@ -66,24 +74,35 @@ export default function Navbar() {
                 {/* Currently these pages are still under construction, and will need to be rerouted as needed */}
                  <Menu isLazy>
                     <MenuButton as = {ChakraButton} rightIcon={<ChevronDownIcon />} 
-                    width = "11vw" height = "6vh" fontSize = "1.5vw" justifyContent="space-between" 
-                    textAlign="left" px="1vw" fontWeight = {600} rounded="5" >Programs</MenuButton>
-                    <MenuList>
-                        <MenuItem as ={NavLink} to = "/programs" >Programs</MenuItem>
-                        <MenuItem as ={NavLink} to = "/">Care Navigation</MenuItem>
-                        <MenuItem as ={NavLink} to = "/">Community Health Fairs</MenuItem>
-                        <MenuItem as ={NavLink} to = "/">Pre-Health Workforce</MenuItem>
-                        <MenuItem as ={NavLink} to = "/">FitClub</MenuItem>
+                    width = "12vw" height = "6vh" fontSize = "1.5vw" justifyContent="space-between" 
+                    textAlign="left" px="1vw" fontWeight = {600} rounded="4" >Programs</MenuButton>
+                    <MenuList minW="100%" w="100%" p = "0" align = "center" borderRadius = "none" rounded = "0">
+                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                            <NavLink to = "/">Programs</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                            <NavLink to = "/" fontSize = "10vw">Care Navigation</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                            <NavLink to = "/">Community Health Fairs</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                            <NavLink to = "/">Pre-Health Workforce</NavLink>
+                        </MenuItem>
+                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                            <NavLink to = "/">FitClub</NavLink>
+                        </MenuItem>
+                       
                     </MenuList>
                 </Menu>
 
                 <NavLink to = "/getInvolved" style={{ display: 'flex', alignItems: 'center' }}>
-                    <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw"  rounded="5" fontWeight = {600}>Get Involved</Button>
+                    <Button width = "11vw" ratio = {12/5} height = "6vh" fontSize = "1.5vw"  rounded="4" fontWeight = {600}>Get Involved</Button>
                 </NavLink>
                
                {/* No Functionality for this component yet, but  */}
                 <NavLink to = "/" style={{ display: 'flex', alignItems: 'center' }}>
-                    <Button width = "8vw" ratio = {8/5} height = "6vh" fontSize = "1.5vw" rounded="5" fontWeight = {600}>Donate</Button>
+                    <Button width = "8vw" ratio = {8/5} height = "6vh" fontSize = "1.5vw" rounded="4" fontWeight = {600}>Donate</Button>
                 </NavLink>
             </Flex>            
         </Box>
