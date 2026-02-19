@@ -1,7 +1,10 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, Menu, MenuButton, MenuList,MenuItem, Button as ChakraButton,} from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+
 import Button from "../../ui/Button";
-import logo from "../../../assets/logoplaceholder.png";
+import main_logo from "../../../assets/transparent_tena_logo.png";
+import text_logo from "../../../assets/tena_text_logo.png";
 
 export default function Navbar() {
   return (
