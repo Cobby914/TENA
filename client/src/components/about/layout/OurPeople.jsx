@@ -36,6 +36,9 @@ export default function OurPeople() {
                     <SubteamSection link={"/board"} src={placeholder} whoText="Our Board" buttonText="Find Out More"></SubteamSection>
                     <SubteamSection link={"/team"} src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
                     <SubteamSection src={placeholder} whoText="Our Partners" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection src={placeholder} whoText="Our Board" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection link={"/partners"} src={placeholder} whoText="Our Partners" buttonText="Find Out More"></SubteamSection>
                 </SimpleGrid>
             </Box>
         </Box>
