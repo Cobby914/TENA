@@ -1,7 +1,7 @@
 import { Box, Flex, VStack, Text, SimpleGrid } from "@chakra-ui/react";
 import SubteamSection from "../../ui/SubteamSection";
 import placeholder from "../../../assets/logoplaceholder.png";
-
+import Board from "../../../pages/Board"
 export default function OurPeople() {
     return (
         <Box py={{ base: 8, md: 12, lg: 16 }}>
@@ -33,6 +33,9 @@ export default function OurPeople() {
                     mx="auto"
                     my={{ base: "30px", md: "40px", lg: "50px" }}
                 >
+                    <SubteamSection link={"/board"} src={placeholder} whoText="Our Board" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection link={"/team"} src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection src={placeholder} whoText="Our Partners" buttonText="Find Out More"></SubteamSection>
                     <SubteamSection src={placeholder} whoText="Our Board" buttonText="Find Out More"></SubteamSection>
                     <SubteamSection src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
                     <SubteamSection link={"/partners"} src={placeholder} whoText="Our Partners" buttonText="Find Out More"></SubteamSection>

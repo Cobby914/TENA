@@ -4,6 +4,8 @@ import AboutUs from "./pages/AboutUs";
 import ReusableProgram from "./pages/ReusableProgram";
 import GetInvolved from "./pages/GetInvolved";
 import Programs from "./pages/Programs";
+import Board from "./pages/Board"
+import Team from "./pages/Team"
 import Partners from "./pages/Partners";
 
 export default function App() {
@@ -15,6 +17,8 @@ export default function App() {
                 <Route path="/reusable-program" element={<ReusableProgram />} />
                 <Route path="/getInvolved" element={<GetInvolved />} />
                 <Route path="/programs" element={<Programs />} />
+                <Route path="/board" element={<Board />} />
+                <Route path="/team" element={<Team/>} />
                 <Route path="/partners" element={<Partners/>}/>
             </Routes>
         </BrowserRouter>
