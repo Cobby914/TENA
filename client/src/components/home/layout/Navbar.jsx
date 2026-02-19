@@ -1,6 +1,5 @@
 import { Box, Flex, Image, Menu, MenuButton, MenuList,MenuItem, Button as ChakraButton,} from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import { ChevronDownIcon } from "@chakra-ui/icons";
 
 import Button from "../../ui/Button";
 import main_logo from "../../../assets/transparent_tena_logo.png";
@@ -25,12 +24,12 @@ export default function Navbar() {
         <NavLink to="/">
           <Flex align="center" gap={3}>
             <Image
-              src={logo}
+              src={main_logo}
               alt="TENA Logo"
               h={{ base: "40px", md: "50px" }}
               objectFit="contain"
             />
-            <Button>TENA</Button>
+            {/* <Button>TENA</Button> */}
           </Flex>
         </NavLink>
 
