@@ -1,20 +1,21 @@
 import { Box, Text } from "@chakra-ui/react";
 
 export default function ImagePlaceholder({
-    width = "650px",
-    height = "360px",
-    label ="IMG",
+    width = "100%",
+    height = "450px",
+    label = "IMG",
 }) {
     return(
         <Box
             width={width}
-            height={height}
+            maxW={{ base: "100%", lg: "800px" }}
+            height={{ base: "300px", md: "375px", lg: height }}
             bg="rgb(217, 217, 217)"
             display="flex"
             alignItems="center"
             justifyContent="center"
         >
-            <Text fontSize="5xl" fontWeight="normal">
+            <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight="normal">
                 {label}
             </Text>
         </Box>

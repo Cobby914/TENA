@@ -1,4 +1,4 @@
-import {Text, Image, Box, Grid, GridItem, Button, VStack } from "@chakra-ui/react"
+import {Text, Box, Flex, Button, VStack } from "@chakra-ui/react"
 import ImagePlaceholder from "./MVimagePH";
 
 export default function CareAndFairCard ({
@@ -9,45 +9,44 @@ export default function CareAndFairCard ({
     reversed=false
 }) {
     return(
-        <Grid
-            templateColumns="repeat(2, 1fr)"
-            alignItems={reversed ? "left" : "right"}
-            height="324px"
-            width="full"
+        <Flex
+            direction={{ base: "column", lg: reversed ? "row-reverse" : "row" }}
+            alignItems="center"
+            gap={{ base: 6, md: 8, lg: 12 }}
+            width="100%"
         >
-            {/* Image */}
-            <GridItem
-                order={reversed ? 2 : 1}
-                width="90%"
-                justifySelf={reversed ? "end" : "start"}
+            <Box
+                flex="1"
+                width="100%"
             >
-                <ImagePlaceholder height="100%" width="100%"></ImagePlaceholder>
-            </GridItem>
+                <ImagePlaceholder height={{ base: "250px", md: "280px", lg: "324px" }} width="100%"></ImagePlaceholder>
+            </Box>
 
-            <GridItem
-                pl={reversed ? 0 : 20}
-                pr={reversed ? 20 : 0}
-                order={reversed ? 1 : 2}
-                
+            <Box
+                flex="1"
+                width="100%"
             >
-                <VStack h="full" align={reversed ? "end" : "start"} justifyContent="space-between">
-                    <Box textAlign={reversed ? "right" : "left"}>
-                        {/* Title */}
-                        <Text fontSize={40} fontWeight={400}>
+                <VStack h="full" align={{ base: "center", lg: reversed ? "end" : "start" }} justifyContent="space-between" spacing={{ base: 6, md: 8 }}>
+                    <Box textAlign={{ base: "center", lg: reversed ? "right" : "left" }} width="100%">
+                        <Text fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }} fontWeight={400}>
                             {title}
                         </Text>
-                        {/* Description */}
-                        <Text mt={5} fontSize={20} lineHeight={1.25}>
+                        <Text mt={{ base: 3, md: 5 }} fontSize={{ base: "md", md: "lg", lg: "xl" }} lineHeight={1.25}>
                             {description}
                         </Text>
                     </Box>
 
-                    {/* Button */}
-                    <Button borderRadius={0} p={7} rightIcon={<Text>→</Text>} background="rgb(245,245,245)">
+                    <Button 
+                        borderRadius={0} 
+                        p={{ base: 5, md: 6, lg: 7 }} 
+                        rightIcon={<Text>→</Text>} 
+                        background="rgb(245,245,245)"
+                        fontSize={{ base: "sm", md: "md" }}
+                    >
                         <Text>Explore Program</Text>
                     </Button>
                 </VStack>
-            </GridItem>
-        </Grid>
+            </Box>
+        </Flex>
     );
 }
