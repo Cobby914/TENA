@@ -10,10 +10,10 @@ export default function AdminPanelButton ({text, bgColor, textColor, fontWeight,
             bgColor={bgColor}
             borderColor="rgb(153,153,153)"
             fontWeight={fontWeight}
-            fontSize={16}
+            fontSize={{ base: "14px", md: "16px" }}
             textColor={textColor}
 
-            width="178px"
+            width="100%"
             height="45px"
             borderWidth="1px"
             borderRadius={0}
