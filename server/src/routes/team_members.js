@@ -8,7 +8,7 @@ const router = Router();
 router.get("/", async (req, res, next) => {
   try {
     const rows = await sql`
-      SELECT id, first_name, last_name, role, bio, image_key, created_at
+      SELECT id, first_name, last_name, role, bio, image_key, created_at, cohort
       FROM "TENA_Admin".team_members
       ORDER BY id ASC
     `;
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res, next) => {
     }
 
     const rows = await sql`
-      SELECT id, first_name, last_name, role, bio, image_key, created_at
+      SELECT id, first_name, last_name, role, bio, image_key, created_at, cohort
       FROM "TENA_Admin".team_members
       WHERE id = ${id}
     `;
@@ -44,11 +44,11 @@ router.get("/:id", async (req, res, next) => {
 });
 
 
-//POST /api/team_members (body: first_name, last_name, role?, bio?, image_key?)
+//POST /api/team_members (body: first_name, last_name, role?, bio?, image_key?, cohort?)
 
 router.post("/", async (req, res, next) => {
   try {
-    const { first_name, last_name, role, bio, image_key } = req.body;
+    const { first_name, last_name, role, bio, image_key, cohort } = req.body;
 
     if (!first_name || typeof first_name !== "string") {
       return res.status(400).json({ error: "first_name is required (string value)" });
@@ -58,9 +58,9 @@ router.post("/", async (req, res, next) => {
     }
 
     const rows = await sql`
-      INSERT INTO "TENA_Admin".team_members (first_name, last_name, role, bio, image_key)
-      VALUES (${first_name}, ${last_name}, ${role ?? null}, ${bio ?? null}, ${image_key ?? null})
-      RETURNING id, first_name, last_name, role, bio, image_key, created_at
+      INSERT INTO "TENA_Admin".team_members (first_name, last_name, role, bio, image_key, cohort)
+      VALUES (${first_name}, ${last_name}, ${role ?? null}, ${bio ?? null}, ${image_key ?? null}, ${cohort ?? null})
+      RETURNING id, first_name, last_name, role, bio, image_key, created_at, cohort
     `;
 
     res.status(201).json(rows[0]);
@@ -79,7 +79,7 @@ router.put("/:id", async (req, res, next) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const { first_name, last_name, role, bio, image_key } = req.body;
+    const { first_name, last_name, role, bio, image_key, cohort } = req.body;
 
     if (first_name !== undefined && typeof first_name !== "string") {
       return res.status(400).json({ error: "first_name must be a string" });
@@ -95,7 +95,8 @@ router.put("/:id", async (req, res, next) => {
         last_name = COALESCE(${last_name ?? null}, last_name),
         role = COALESCE(${role ?? null}, role),
         bio = COALESCE(${bio ?? null}, bio),
-        image_key = COALESCE(${image_key ?? null}, image_key)
+        image_key = COALESCE(${image_key ?? null}, image_key),
+        cohort = COALESCE(${cohort ?? null}, cohort)
       WHERE id = ${id}
       RETURNING id, first_name, last_name, role, bio, image_key, created_at
     `;
