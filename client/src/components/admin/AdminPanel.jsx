@@ -1,6 +1,6 @@
 import { Flex, Box, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react"; 
-import AdminPanelButton from "./ui/AdminPanelButton";
+import AdminPanelButton from "./AdminPanelButton";
 import AdminDashboard from "./AdminDashboard";
 import AdminPrograms from "./AdminPrograms";
 import AdminTeam from "./AdminTeam";
@@ -23,8 +23,8 @@ export default function AdminPanel () {
     }
 
     return (
-        <Flex direction="row">
-            <Box width={{ base: "30%", md: "220px" }} height="100vh" p={5} bgColor="rgb(224, 224, 224)" borderRight="2px solid rgb(153, 153, 153)">
+        <Flex direction="row" >
+            <Box minWidth={{ base: "110px", md: "220px" }} minHeight="100vh" p={5} bgColor="rgb(224, 224, 224)" borderRight="2px solid rgb(153, 153, 153)">
                 <VStack spacing={2} align="stretch">
                     <Text mb={5} width="100%" fontSize={14} fontWeight={700} textColor="rgb(51, 51, 51)" letterSpacing={1}>
                         ADMIN PANEL
@@ -44,7 +44,7 @@ export default function AdminPanel () {
             </Box>
 
             {/* Main Admin Screen Content */}
-            <Box flex="1" p={30}>
+            <Box flex="1" p={30} bgColor="rgb(245,245,245)">
                 {renderScreen()}
             </Box>
         </Flex>
