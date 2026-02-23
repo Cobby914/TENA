@@ -14,7 +14,7 @@ export default function AdminPanelButton ({text, bgColor, textColor, fontWeight,
             textColor={textColor}
 
             width="100%"
-            height="45px"
+            height="40px"
             borderWidth="1px"
             borderRadius={0}
             px="10px"
