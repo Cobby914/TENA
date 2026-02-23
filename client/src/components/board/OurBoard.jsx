@@ -63,9 +63,11 @@ const OurBoard = () => {
           </Heading>
 
           <SimpleGrid 
-            columns={{ base: 1, sm: 2, md: 3, lg: 4 }} 
-            spacing={10}
-            justifyItems="start"
+            minChildWidth="280px" 
+            spacingX={{ base: 4, md: 10 }}
+            spacingY={{ base: 8, md: 12 }}
+            width="100%"
+            justifyItems="center"
           >
             {board.map((member) => (
               <MemberCard 
