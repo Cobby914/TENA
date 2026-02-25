@@ -1,12 +1,8 @@
-import express from "express";
+import app from "./app.js";
+import { env } from "./config/env.js";
 
-const app = express();
-const PORT = 3001;
+const port = Number(env.port) || 3001;
 
-app.get("/", (req, res) => {
-  res.send("Server is working!");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
