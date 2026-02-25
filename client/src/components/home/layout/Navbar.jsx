@@ -29,7 +29,12 @@ export default function Navbar() {
               h={{ base: "40px", md: "50px" }}
               objectFit="contain"
             />
-            {/* <Button>TENA</Button> */}
+            <Image
+              src={text_logo}
+              alt="TENA Text Logo"
+              h={{ base: "40px", md: "50px" }}
+              objectFit="contain"
+            />
           </Flex>
         </NavLink>
 
