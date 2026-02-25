@@ -15,6 +15,7 @@
     "concurrently": "^8.2.2"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
     "lucide-react": "^0.564.0"
   }
 }
