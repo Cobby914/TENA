@@ -12,29 +12,29 @@ export default function NewsLetter({
             {/* We can create an input box component and use it here instead in future! */}
             <SimpleGrid maxWidth= "449px" maxHeight = "520px" height = "80vh" ratio = {449/520} width = "33vw">
                 <GridItem align = "center">
-                        <Text fontSize= {{ base: "2vw", md: "2vw", lg: "30px" }} fontWeight = {400}  whiteSpace={"nowrap"}
+                        <Text fontSize=  "min(2.2vw,30px)"f ontWeight = {400}  whiteSpace={"nowrap"}
                         marginTop = {{base: "clamp(4vh,4vh, 30px)", lg: "30px"}} letterSpacing={0} fontStyle = "regular">
                             Sign up for our Newsletter
                         </Text>
                 </GridItem>
-                <GridItem align = "left"  paddingLeft = {{base: "clamp(1.6vw, 1.6vw, 22px)", lg: "22px"}}>
+                <GridItem align = "left"  paddingLeft = {{base: "clamp(1.6vw, 1.6vw, 20px)", lg: "20px"}}>
                     <Text fontSize= {{ base: "1.7vw", md: "1.7vw", lg: "22px" }} fontWeight = {400} align = "left"
                          letterSpacing={0} fontStyle = "regular">
                         First Name
                         </Text>
                     <InputBox maxWidth = "401px" maxHeight = "44px" ratio = {401/44} 
-                    width = "30vw" height = "5vh" >
+                     width = "28vw" height = "5vh" >
                     {/*For future back end development */}
                     </InputBox>
 
                 </GridItem>
-                <GridItem align = "left"  paddingLeft = {{base: "clamp(1.6vw, 1.6vw, 22px)", lg: "22px"}}>
+                <GridItem align = "left"  paddingLeft = {{base: "clamp(1.6vw, 1.6vw, 20px)", lg: "20px"}}>
                     <Text fontSize= {{ base: "1.7vw", md: "1.7vw", lg: "22px" }} fontWeight = {400} align = "left"
                         letterSpacing={0} fontStyle = "regular">
                         Last Name
                         </Text>
                     <InputBox maxWidth = "401px" maxHeight = "44px" ratio = {401/44}
-                    width = "30vw" height = "5vh" >
+                     width = "28vw" height = "5vh" >
                     
                     {/*For future back end development */}
                     </InputBox>
@@ -42,13 +42,13 @@ export default function NewsLetter({
 
                 </GridItem>
 
-                <GridItem align = "left" paddingLeft = {{base: "clamp(1.6vw, 1.6vw, 22px)", lg: "22px"}}>
+                <GridItem align = "left" paddingLeft = {{base: "clamp(1.6vw, 1.6vw, 20px)", lg: "20px"}}>
                     <Text fontSize= {{ base: "1.7vw", md: "1.7vw", lg: "22px" }} fontWeight = {400} align = "left"
                         letterSpacing={0} fontStyle = "regular">
                         Email
                         </Text>
                     <InputBox maxWidth = "401px" maxHeight = "44px" ratio = {401/44}
-                    width = {{base: "clamp(28vw,28vw,401px)", lg: "401px"}} height = "5vh" >
+                    width = "28vw" height = "5vh" >
                     {/*For future back end development */}
                     </InputBox>
 

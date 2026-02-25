@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS team_members (
     role        VARCHAR(100),
     bio         TEXT,
     image_key   VARCHAR(255),
-    created_at  TIMESTAMP DEFAULT NOW()
+    created_at  TIMESTAMP DEFAULT NOW(),
+    cohort      VARCHAR(100)
 );
