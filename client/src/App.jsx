@@ -22,7 +22,6 @@ export default function App() {
                 <Route path="/board" element={<Board />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/admin" element={<Admin />} />
-                <Route path="/team" element={<Team/>} />
                 <Route path="/partners" element={<Partners/>}/>
                 <Route path="/approvals" element={<Approvals/>}/>
             </Routes>
