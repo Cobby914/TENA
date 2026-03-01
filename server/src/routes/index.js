@@ -3,7 +3,6 @@ import teamMembersRouter from "./team_members.js";
 import cohortsRouter from "./cohorts.js";
 
 import programsRouter from "./programs.js";
-import teamMembersRouter from "./team_members.js";
 import newsletterSubscribersRouter from "./newsletter_subscribers.js";
 import companyInfoRouter from "./company_info.js";
 import programStatsRouter from "./program_stats.js";
