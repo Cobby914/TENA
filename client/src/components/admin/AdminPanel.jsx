@@ -23,10 +23,10 @@ export default function AdminPanel () {
     }
 
     return (
-        <Flex direction={{ base: "column", md: "row" }}>
-            <Box width={{ base: "30%", md: "220px" }} height="100vh" p={5} bgColor="rgb(224, 224, 224)" borderColor="rgb(153, 153, 153)" borderWidth="2px">
+        <Flex direction="row" >
+            <Box minWidth={{ base: "110px", md: "220px" }} minHeight="100vh" p={5} bgColor="rgb(224, 224, 224)" borderRight="2px solid rgb(153, 153, 153)">
                 <VStack spacing={2} align="stretch">
-                    <Text mb={5} width="100%" fontSize={16} fontWeight={700} textColor="rgb(51, 51, 51)" letterSpacing={1}>
+                    <Text mb={5} width="100%" fontSize={14} fontWeight={700} textColor="rgb(51, 51, 51)" letterSpacing={1}>
                         ADMIN PANEL
                     </Text>
                     {screens.map((screen) => (
@@ -44,7 +44,7 @@ export default function AdminPanel () {
             </Box>
 
             {/* Main Admin Screen Content */}
-            <Box flex="1">
+            <Box flex="1" p={30} bgColor="rgb(245,245,245)">
                 {renderScreen()}
             </Box>
         </Flex>

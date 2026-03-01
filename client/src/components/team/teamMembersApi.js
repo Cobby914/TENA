@@ -1,13 +1,8 @@
-const RAW_API_BASE =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
 
-//Fetch from DB
 export async function fetchTeamMembers(signal) {
-  const endpoints = [
-    `${API_BASE}/api/team_members`,
-    `${API_BASE}/api/team-members`,
-  ];
+  const endpoints = [`${API_BASE}/api/team_members`, `${API_BASE}/api/team-members`];
   let lastError;
 
   for (const endpoint of endpoints) {
@@ -25,4 +20,13 @@ export async function fetchTeamMembers(signal) {
   }
 
   throw lastError ?? new Error("Failed to load team members");
+}
+
+export async function fetchCohorts(signal) {
+  const res = await fetch(`${API_BASE}/api/cohorts`, { signal });
+  if (!res.ok) throw new Error(`Request failed (${res.status})`);
+
+  const data = await res.json();
+  if (!Array.isArray(data)) throw new Error("Expected an array response");
+  return data;
 }

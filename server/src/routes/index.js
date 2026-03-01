@@ -1,4 +1,6 @@
 import { Router } from "express";
+import teamMembersRouter from "./team_members.js";
+import cohortsRouter from "./cohorts.js";
 
 import programsRouter from "./programs.js";
 import teamMembersRouter from "./team_members.js";
