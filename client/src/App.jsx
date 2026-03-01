@@ -7,6 +7,8 @@ import Programs from "./pages/Programs";
 import Board from "./pages/Board"
 import Team from "./pages/Team"
 import Admin from "./pages/Admin";
+import Partners from "./pages/Partners";
+import Approvals from "./pages/Approvals";
 
 export default function App() {
     return (
@@ -20,6 +22,8 @@ export default function App() {
                 <Route path="/board" element={<Board />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/partners" element={<Partners/>}/>
+                <Route path="/approvals" element={<Approvals/>}/>
             </Routes>
         </BrowserRouter>
     );
