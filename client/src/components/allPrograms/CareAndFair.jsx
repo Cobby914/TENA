@@ -1,7 +1,41 @@
-import { Box, VStack } from "@chakra-ui/react";
+import {
+  Box, Flex, Text, SimpleGrid, VStack, Container,
+  Spinner, Alert, AlertIcon, AlertTitle, AlertDescription, Heading, Center
+} from '@chakra-ui/react';
 import CareAndFairCard from "../ui/CareAndFairCard";
+import { createProgram } from './CreateProgram';
 
-export default function CareAndFair() {
+
+
+const Programs = () => {
+    const {prog, loading, error} = createProgram();
+
+    if (loading) {
+        return (
+          <Center minH="60vh">
+            <VStack spacing={4}>
+              <Spinner size="xl" color="blue.500" thickness="4px" />
+              <Text color="gray.500">Fetching programs...</Text>
+            </VStack>
+          </Center>
+        );
+      }
+        if (error) {
+          return (
+            <Container maxW="container.md" mt={10}>
+              <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" justifyContent="center" textAlign="center" borderRadius="lg" py={6}>
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">Data Fetching Failed</AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  {error}. Ensure your backend server is running on port 3001 and your database is connected.
+                </AlertDescription>
+              </Alert>
+            </Container>
+          );
+        }
+        console.log("Current program data:", prog);
+        const programList = prog ?? [];
+        console.log("Current program data:", programList);
     return(
         <Box w="full" py={{ base: 12, md: 16, lg: 40 }}>
             <Box
@@ -16,33 +50,26 @@ export default function CareAndFair() {
                     maxW="1400px"
                     mx="auto"
                 >
-                    <CareAndFairCard
-                        title="Care Navigation"
-                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                    >
-                    </CareAndFairCard>
 
-                    <CareAndFairCard
-                        title="Fair Pre-Health Workforce"
-                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                        reversed={true}
-                    >
-                    </CareAndFairCard>
+                    {programList.map((data) => (
+                    <CareAndFairCard 
+                        key={data.id} 
+                        title={data.title} 
+                        description={data.summary} 
+                        imgSrc={data.im} 
+                        link = {data.link}
+                        reversed = {data.reversed}/>))}
+                    </VStack>
 
-                    <CareAndFairCard
-                        title="Care Navigation"
-                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                    >
-                    </CareAndFairCard>
+                {programList.length === 0 && (
+                <Center py={20}>
+                <Text color="gray.400 italic">No programs found matching the criteria.</Text>
+                </Center>
+                )}
 
-                    <CareAndFairCard
-                        title="Fit Club"
-                        description="To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness"
-                        reversed={true}
-                    >
-                    </CareAndFairCard>
-                </VStack>
             </Box>
         </Box>
-    );    
-}
+
+    )};
+
+export default Programs;
