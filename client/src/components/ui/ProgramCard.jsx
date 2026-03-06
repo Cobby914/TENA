@@ -6,7 +6,7 @@ export default function ProgramCard({
     title,
     description,
     imageSrc,
-    buttonText,
+    link,
     ...props
 }) {
     return (
@@ -33,14 +33,16 @@ export default function ProgramCard({
                     {/* Description */}
                     <Text fontSize={14.7} lineHeight={"150%"}>{description}</Text>
                     {/* Button */}
-                    <NavLink to="/getInvolved" >
-                        <Button alignSelf={"flex-end"} height={8} borderRadius={6} px={3} bgColor="rgb(237, 242, 247)">
-                            <HStack gap={2}>
-                                <Text fontWeight={600} fontSize={13} lineHeight={18} textColor="rgb(26, 32, 44)">Learn More</Text>
-                                <ChevronRight size={18} style={{marginTop: "3px"}}/>
-                            </HStack>
-                        </Button>
-                    </NavLink>
+                    <Flex w="full" justify="flex-end" align="flex-end">
+                        <NavLink to={link} >
+                            <Button height={8} borderRadius={6} px={3} bgColor="rgb(237, 242, 247)">
+                                <HStack gap={2}>
+                                    <Text fontWeight={600} fontSize={13} lineHeight={18} textColor="rgb(26, 32, 44)">Learn More</Text>
+                                    <ChevronRight size={18} style={{marginTop: "3px"}}/>
+                                </HStack>
+                            </Button>
+                        </NavLink>
+                    </Flex>
                 </Flex>
             </HStack>
         </Card>

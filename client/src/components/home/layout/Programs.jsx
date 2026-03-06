@@ -23,6 +23,7 @@ export default function Programs() {
                             title={program.title}
                             description={program.summary}
                             imageSrc={null}
+                            link={null}
                         />
                     ))
                 }

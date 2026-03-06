@@ -56,7 +56,7 @@ export default function Slogan() {
           </Text>
         </VStack>
 
-        <NavLink to="/getInvolved" >
+        <NavLink to="/donate" >
           <Button mt={6} mb={10} height={12} borderRadius={6} px={6} bgColor="rgb(237, 242, 247)">
             <HStack gap={2}>
               <Text fontWeight={600} fontSize={18} lineHeight={28} textColor="rgb(26, 32, 44)">Donate</Text>
