@@ -7,6 +7,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import ApprovalsTable from "../components/approvals/ApprovalsTable";
 
 const API = "http://localhost:3001/api/users";
+const CACHE_KEY = "approvals_users";
 
 export default function Approvals() {
   const [users, setUsers]     = useState([]);
@@ -15,11 +16,18 @@ export default function Approvals() {
   const [currentPage, setCurrentPage] = useState(1);
   const toast = useToast();
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (force = false) => {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached && !force) {
+      setUsers(JSON.parse(cached));
+      setLoading(false);
+      return;
+    }
     try {
       const res  = await fetch(API);
       const data = await res.json();
       setUsers(data);
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
     } catch {
       toast({ title: "Failed to load users", status: "error", duration: 3000 });
     } finally {
@@ -36,7 +44,7 @@ export default function Approvals() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role, is_verified: true }),
       });
-      await fetchUsers();
+      await fetchUsers(true);
       toast({ title: "User approved", status: "success", duration: 2000 });
     } catch {
       toast({ title: "Failed to approve user", status: "error", duration: 3000 });
@@ -50,7 +58,7 @@ export default function Approvals() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: "denied" }),
       });
-      await fetchUsers();
+      await fetchUsers(true);
       toast({ title: "User denied", status: "warning", duration: 2000 });
     } catch {
       toast({ title: "Failed to deny user", status: "error", duration: 3000 });
