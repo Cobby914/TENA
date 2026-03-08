@@ -1,6 +1,6 @@
 import Navbar from "../components/home/layout/Navbar";
 import Slogan from "../components/home/layout/Slogan";
-import ProblemStatement from "../components/home/layout/ProblemStatement";
+import ChallengeSolution from "../components/home/layout/ChallengeSolution";
 import Programs from "../components/home/layout/Programs";
 import BelowPrograms from "../components/home/layout/BelowPrograms";
 import GetInvolved from "../components/home/layout/GetInvolved"
@@ -12,7 +12,7 @@ export default function Home() {
         <>
             <Navbar/>
             <Slogan/>
-            <ProblemStatement/>
+            <ChallengeSolution/>
             <Programs/>
             <BelowPrograms/>
             <GetInvolved/>

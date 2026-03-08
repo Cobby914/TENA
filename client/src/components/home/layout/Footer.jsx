@@ -15,7 +15,7 @@ export default function Footer({
         <Box as="section"
              bg="#FFFFFF"
              width="100vw"
-             height="800px"
+             minH="800px"
             >
         
             <Flex direction="column"
