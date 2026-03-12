@@ -19,7 +19,7 @@ router.use(requireRole("admin"));
 router.get("/", async (req, res, next) => {
   try {
     const rows = await sql`
-      SELECT id, email, auth_type, role, is_verified, created_at
+      SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
       FROM "TENA_Admin".users
       ORDER BY id ASC
     `;
@@ -39,7 +39,7 @@ router.get("/:id", async (req, res, next) => {
     }
 
     const rows = await sql`
-      SELECT id, email, auth_type, role, is_verified, created_at
+      SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
       FROM "TENA_Admin".users
       WHERE id = ${id}
     `;
@@ -53,11 +53,11 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// POST /api/users (body: email, password_hash?, auth_type, role?, is_verified?)
+// POST /api/users (body: email, first_name?, last_name?, password_hash?, auth_type, role?, is_verified?)
 
 router.post("/", async (req, res, next) => {
   try {
-    const { email, password_hash, auth_type, role, is_verified } = req.body;
+    const { email, first_name, last_name, password_hash, auth_type, role, is_verified } = req.body;
 
     if (!email || typeof email !== "string") {
       return res.status(400).json({ error: "email is required (string value)" });
@@ -65,7 +65,15 @@ router.post("/", async (req, res, next) => {
     if (!auth_type || typeof auth_type !== "string") {
       return res.status(400).json({ error: "auth_type is required (string value)" });
     }
+    if (first_name !== undefined && first_name !== null && typeof first_name !== "string") {
+      return res.status(400).json({ error: "first_name must be a string" });
+    }
+    if (last_name !== undefined && last_name !== null && typeof last_name !== "string") {
+      return res.status(400).json({ error: "last_name must be a string" });
+    }
     const normalizedEmail = normalizeEmail(email);
+    const normalizedFirstName = first_name == null ? null : String(first_name).trim();
+    const normalizedLastName = last_name == null ? null : String(last_name).trim();
     const normalizedAuthType = String(auth_type).trim().toLowerCase();
     const normalizedRole = role === undefined ? "pending" : String(role).trim().toLowerCase();
     const verifiedValue = is_verified === undefined ? false : is_verified;
@@ -87,9 +95,9 @@ router.post("/", async (req, res, next) => {
     }
 
     const rows = await sql`
-      INSERT INTO "TENA_Admin".users (email, password_hash, auth_type, role, is_verified)
-      VALUES (${normalizedEmail}, ${password_hash ?? null}, ${normalizedAuthType}, ${normalizedRole}, ${verifiedValue})
-      RETURNING id, email, auth_type, role, is_verified, created_at
+      INSERT INTO "TENA_Admin".users (email, first_name, last_name, password_hash, auth_type, role, is_verified)
+      VALUES (${normalizedEmail}, ${normalizedFirstName}, ${normalizedLastName}, ${password_hash ?? null}, ${normalizedAuthType}, ${normalizedRole}, ${verifiedValue})
+      RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
     `;
 
     res.status(201).json(rows[0]);
@@ -98,7 +106,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// PUT /api/users/:id (body: email?, password_hash?, auth_type?, role?, is_verified?)
+// PUT /api/users/:id (body: email?, first_name?, last_name?, password_hash?, auth_type?, role?, is_verified?)
 
 router.put("/:id", async (req, res, next) => {
   try {
@@ -107,13 +115,21 @@ router.put("/:id", async (req, res, next) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const { email, password_hash, auth_type, role, is_verified } = req.body;
+    const { email, first_name, last_name, password_hash, auth_type, role, is_verified } = req.body;
     const normalizedEmail = email === undefined ? undefined : normalizeEmail(email);
+    const normalizedFirstName = first_name === undefined ? undefined : (first_name == null ? null : String(first_name).trim());
+    const normalizedLastName = last_name === undefined ? undefined : (last_name == null ? null : String(last_name).trim());
     const normalizedAuthType = auth_type === undefined ? undefined : String(auth_type).trim().toLowerCase();
     const normalizedRole = role === undefined ? undefined : String(role).trim().toLowerCase();
 
     if (email !== undefined && typeof email !== "string") {
       return res.status(400).json({ error: "email must be a string" });
+    }
+    if (first_name !== undefined && first_name !== null && typeof first_name !== "string") {
+      return res.status(400).json({ error: "first_name must be a string or null" });
+    }
+    if (last_name !== undefined && last_name !== null && typeof last_name !== "string") {
+      return res.status(400).json({ error: "last_name must be a string or null" });
     }
     if (normalizedAuthType !== undefined && !VALID_AUTH_TYPES.has(normalizedAuthType)) {
       return res.status(400).json({ error: "auth_type must be one of: local, oauth" });
@@ -156,12 +172,14 @@ router.put("/:id", async (req, res, next) => {
       UPDATE "TENA_Admin".users
       SET
         email = COALESCE(${normalizedEmail ?? null}, email),
+        first_name = COALESCE(${normalizedFirstName ?? null}, first_name),
+        last_name = COALESCE(${normalizedLastName ?? null}, last_name),
         password_hash = COALESCE(${password_hash ?? null}, password_hash),
         auth_type = COALESCE(${normalizedAuthType ?? null}, auth_type),
         role = COALESCE(${normalizedRole ?? null}, role),
         is_verified = COALESCE(${is_verified ?? null}, is_verified)
       WHERE id = ${id}
-      RETURNING id, email, auth_type, role, is_verified, created_at
+      RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
     `;
 
     if (rows.length === 0) return res.status(404).json({ error: "User Not Found" });

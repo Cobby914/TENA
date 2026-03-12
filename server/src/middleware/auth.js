@@ -28,7 +28,7 @@ export async function verifyAuth(req, res, next) {
     }
 
     const rows = await sql`
-      SELECT id, email, auth_type, role, is_verified, created_at
+      SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
       FROM "TENA_Admin".users
       WHERE email = ${email}
       LIMIT 1

@@ -7,6 +7,12 @@ import { verifyAuth, requireApproved } from "../middleware/auth.js";
 const router = Router();
 const client = new OAuth2Client(env.googleClientId);
 
+function normalizeName(value) {
+  if (typeof value !== "string") return null;
+  const normalized = value.trim();
+  return normalized.length ? normalized : null;
+}
+
 router.post("/google", async (req, res, next) => {
   try {
     if (!env.googleClientId) {
@@ -30,11 +36,20 @@ router.post("/google", async (req, res, next) => {
 
     const email = String(payload.email).trim().toLowerCase();
     const emailVerified = Boolean(payload.email_verified);
+    let firstName = normalizeName(payload.given_name);
+    let lastName = normalizeName(payload.family_name);
+    if ((!firstName || !lastName) && typeof payload.name === "string") {
+      const parts = payload.name.trim().split(/\s+/).filter(Boolean);
+      if (parts.length > 0) {
+        firstName = firstName ?? parts[0];
+        lastName = lastName ?? (parts.length > 1 ? parts.slice(1).join(" ") : null);
+      }
+    }
 
     let user =
       (
         await sql`
-          SELECT id, email, auth_type, role, is_verified, created_at
+          SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
           FROM "TENA_Admin".users
           WHERE email = ${email}
           LIMIT 1
@@ -44,18 +59,21 @@ router.post("/google", async (req, res, next) => {
     if (!user) {
       user = (
         await sql`
-          INSERT INTO "TENA_Admin".users (email, auth_type, is_verified)
-          VALUES (${email}, 'oauth', ${emailVerified})
-          RETURNING id, email, auth_type, role, is_verified, created_at
+          INSERT INTO "TENA_Admin".users (email, first_name, last_name, auth_type, is_verified)
+          VALUES (${email}, ${firstName}, ${lastName}, 'oauth', ${emailVerified})
+          RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
         `
       )[0];
     } else {
       user = (
         await sql`
           UPDATE "TENA_Admin".users
-          SET is_verified = ${emailVerified}
+          SET
+            is_verified = ${emailVerified},
+            first_name = COALESCE(${firstName}, first_name),
+            last_name = COALESCE(${lastName}, last_name)
           WHERE id = ${user.id}
-          RETURNING id, email, auth_type, role, is_verified, created_at
+          RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
         `
       )[0];
     }
@@ -93,7 +111,7 @@ router.get("/me", verifyAuth, requireApproved, async (req, res, next) => {
     if (!email) return res.status(401).json({ error: "Unauthorized" });
 
     const rows = await sql`
-      SELECT id, email, auth_type, role, is_verified, created_at
+      SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
       FROM "TENA_Admin".users
       WHERE email = ${email}
       LIMIT 1

@@ -1,6 +1,12 @@
 ALTER TABLE "TENA_Admin".users
     ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT NOW();
 
+ALTER TABLE "TENA_Admin".users
+    ADD COLUMN IF NOT EXISTS first_name VARCHAR(100);
+
+ALTER TABLE "TENA_Admin".users
+    ADD COLUMN IF NOT EXISTS last_name VARCHAR(100);
+
 UPDATE "TENA_Admin".users
 SET email = LOWER(TRIM(email))
 WHERE email <> LOWER(TRIM(email));

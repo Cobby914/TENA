@@ -1,6 +1,8 @@
 CREATE TABLE IF NOT EXISTS "TENA_Admin".users (
     id              SERIAL PRIMARY KEY,
     email           VARCHAR(255) UNIQUE NOT NULL,
+    first_name      VARCHAR(100),
+    last_name       VARCHAR(100),
     password_hash   TEXT,
     auth_type       VARCHAR(20) NOT NULL,
     role            VARCHAR(20) DEFAULT 'pending',
