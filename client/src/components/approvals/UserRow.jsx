@@ -16,6 +16,7 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
   const isDenied   = user.role === "denied";
   const isApproved = user.role === "user" || user.role === "admin";
   const currentApprovedRole = user.role === "admin" ? "admin" : "user";
+  const approvedRoleOptions = currentApprovedRole === "admin" ? ["admin", "user"] : ["user", "admin"];
 
   const firstName = String(user.first_name ?? "").trim();
   const lastName = String(user.last_name ?? "").trim();
@@ -25,11 +26,10 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
   const [selectedRole, setSelectedRole] = useState(isApproved ? currentApprovedRole : "");
   const canApprove  = isPending && selectedRole !== "";
   const canRestore = isDenied && selectedRole !== "";
-  const canSaveApprovedRole = isApproved && selectedRole !== "" && selectedRole !== currentApprovedRole;
 
   useEffect(() => {
-    setSelectedRole(isApproved ? currentApprovedRole : "");
-  }, [isApproved, currentApprovedRole, user.id]);
+    setSelectedRole("");
+  }, [user.id, user.role]);
 
   return (
     <Tr
@@ -112,8 +112,13 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
         ) : isApproved ? (
           <Select
             size="sm"
-            value={selectedRole}
-            onChange={(e) => setSelectedRole(e.target.value)}
+            value={currentApprovedRole}
+            onChange={(e) => {
+              const nextRole = e.target.value;
+              if (nextRole !== currentApprovedRole) {
+                onAssignRole(user.id, nextRole);
+              }
+            }}
             isDisabled={isProcessing}
             bg="white"
             borderColor="gray.400"
@@ -122,7 +127,13 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
             fontFamily="body"
             w="145px"
             _focus={{ borderColor: "gray.600", boxShadow: "none" }}
-          />
+          >
+            {approvedRoleOptions.map((role) => (
+              <option key={role} value={role}>
+                {role === "admin" ? "Admin" : "User"}
+              </option>
+            ))}
+          </Select>
         ) : (
           <Select
             size="sm"
@@ -168,21 +179,6 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
 
         {isApproved && (
           <HStack spacing={2}>
-            <Button
-              size="sm"
-              borderRadius="sm"
-              borderWidth="2px"
-              bg={canSaveApprovedRole ? "gray.700" : "gray.300"}
-              color="white"
-              fontFamily="body"
-              borderColor={canSaveApprovedRole ? "gray.700" : "gray.300"}
-              _hover={canSaveApprovedRole ? { bg: "gray.600" } : {}}
-              isDisabled={!canSaveApprovedRole || isProcessing}
-              isLoading={isProcessing}
-              onClick={() => onAssignRole(user.id, selectedRole)}
-            >
-              SAVE
-            </Button>
             <Button
               size="sm"
               variant="outline"

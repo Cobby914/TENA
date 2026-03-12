@@ -95,6 +95,37 @@ export default function Approvals() {
     }
   };
 
+  const deleteUser = async (id, successTitle, successStatus = "warning") => {
+    setUserProcessing(id, true);
+    try {
+      const res = await fetch(`${API}/${id}`, {
+        method: "DELETE",
+        headers: withAuthHeaders()
+      });
+      if (res.status === 401) {
+        clearAuthSession();
+        navigate("/login", { replace: true });
+        return false;
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to remove user");
+      }
+      await fetchUsers(true);
+      toast({ title: successTitle, status: successStatus, duration: 2000 });
+      return true;
+    } catch (err) {
+      toast({
+        title: err instanceof Error ? err.message : "Failed to remove user",
+        status: "error",
+        duration: 3000
+      });
+      return false;
+    } finally {
+      setUserProcessing(id, false);
+    }
+  };
+
   const handleApprove = async (id, role) => {
     await updateUser(id, { role, is_verified: true }, "User approved");
   };
@@ -104,11 +135,11 @@ export default function Approvals() {
   };
 
   const handleDeny = async (id) => {
-    await updateUser(id, { role: "denied", is_verified: false }, "User denied", "warning");
+    await deleteUser(id, "User denied and removed");
   };
 
   const handleRevoke = async (id) => {
-    await updateUser(id, { role: "pending", is_verified: false }, "Access revoked", "warning");
+    await deleteUser(id, "Access revoked and account removed");
   };
 
   const filtered = useMemo(() => {
