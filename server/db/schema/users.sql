@@ -1,6 +1,4 @@
-SET search_path TO "TENA_Admin";
-
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS "TENA_Admin".users (
     id              SERIAL PRIMARY KEY,
     email           VARCHAR(255) UNIQUE NOT NULL,
     password_hash   TEXT,
@@ -20,4 +18,4 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE UNIQUE INDEX IF NOT EXISTS users_email_lower_uidx
-    ON users (LOWER(email));
+    ON "TENA_Admin".users (LOWER(email));
