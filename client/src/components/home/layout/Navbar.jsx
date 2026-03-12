@@ -63,6 +63,10 @@ export default function Navbar() {
           <NavLink to="/donate">
             <Button>Donate</Button>
           </NavLink>
+
+          <NavLink to="/login">
+            <Button>Login</Button>
+          </NavLink>
         </Flex>
 
       </Flex>
