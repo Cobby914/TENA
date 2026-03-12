@@ -116,6 +116,13 @@ router.put("/:id", async (req, res, next) => {
     }
 
     const { email, first_name, last_name, password_hash, auth_type, role, is_verified } = req.body;
+    const hasEmail = Object.prototype.hasOwnProperty.call(req.body, "email");
+    const hasFirstName = Object.prototype.hasOwnProperty.call(req.body, "first_name");
+    const hasLastName = Object.prototype.hasOwnProperty.call(req.body, "last_name");
+    const hasPasswordHash = Object.prototype.hasOwnProperty.call(req.body, "password_hash");
+    const hasAuthType = Object.prototype.hasOwnProperty.call(req.body, "auth_type");
+    const hasRole = Object.prototype.hasOwnProperty.call(req.body, "role");
+    const hasIsVerified = Object.prototype.hasOwnProperty.call(req.body, "is_verified");
     const normalizedEmail = email === undefined ? undefined : normalizeEmail(email);
     const normalizedFirstName = first_name === undefined ? undefined : (first_name == null ? null : String(first_name).trim());
     const normalizedLastName = last_name === undefined ? undefined : (last_name == null ? null : String(last_name).trim());
@@ -171,13 +178,13 @@ router.put("/:id", async (req, res, next) => {
     const rows = await sql`
       UPDATE "TENA_Admin".users
       SET
-        email = COALESCE(${normalizedEmail ?? null}, email),
-        first_name = COALESCE(${normalizedFirstName ?? null}, first_name),
-        last_name = COALESCE(${normalizedLastName ?? null}, last_name),
-        password_hash = COALESCE(${password_hash ?? null}, password_hash),
-        auth_type = COALESCE(${normalizedAuthType ?? null}, auth_type),
-        role = COALESCE(${normalizedRole ?? null}, role),
-        is_verified = COALESCE(${is_verified ?? null}, is_verified)
+        email = CASE WHEN ${hasEmail} THEN ${normalizedEmail ?? null} ELSE email END,
+        first_name = CASE WHEN ${hasFirstName} THEN ${normalizedFirstName ?? null} ELSE first_name END,
+        last_name = CASE WHEN ${hasLastName} THEN ${normalizedLastName ?? null} ELSE last_name END,
+        password_hash = CASE WHEN ${hasPasswordHash} THEN ${password_hash ?? null} ELSE password_hash END,
+        auth_type = CASE WHEN ${hasAuthType} THEN ${normalizedAuthType ?? null} ELSE auth_type END,
+        role = CASE WHEN ${hasRole} THEN ${normalizedRole ?? null} ELSE role END,
+        is_verified = CASE WHEN ${hasIsVerified} THEN ${is_verified ?? null} ELSE is_verified END
       WHERE id = ${id}
       RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
     `;

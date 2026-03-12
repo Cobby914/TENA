@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { sql } from "../db/index.js";
+import { verifyAuth, requireApproved, requireRole } from "../middleware/auth.js";
 
 const router = Router();
+const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
 
 //GET /api/team_members
 
@@ -46,7 +48,7 @@ router.get("/:id", async (req, res, next) => {
 
 //POST /api/team_members (body: first_name, last_name, role?, bio?, image_key?, cohort?)
 
-router.post("/", async (req, res, next) => {
+router.post("/", ...adminOnly, async (req, res, next) => {
   try {
     const { first_name, last_name, role, bio, image_key, cohort } = req.body;
 
@@ -72,7 +74,7 @@ router.post("/", async (req, res, next) => {
 
 // PUT /api/team_members/:id (body: first_name?, last_name?, role?, bio?, image_key?)
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", ...adminOnly, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) {
@@ -111,7 +113,7 @@ router.put("/:id", async (req, res, next) => {
 
 //DELETE /api/team_members/:id
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", ...adminOnly, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) {
