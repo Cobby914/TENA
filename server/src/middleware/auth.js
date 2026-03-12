@@ -5,7 +5,12 @@ const client = new OAuth2Client(env.googleClientId);
 
 export async function verifyAuth(req, res, next) {
   try {
-    const token = req.headers.authorization?.split("Bearer ")[1];
+    if (!env.googleClientId) {
+      return res.status(500).json({ error: "GOOGLE_CLIENT_ID is not configured" });
+    }
+
+    const authHeader = req.headers.authorization ?? "";
+    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
     if (!token) {
       return res.status(401).json({ error: "No token provided" });
     }

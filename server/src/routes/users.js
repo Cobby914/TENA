@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { sql } from "../db/index.js";
+import { verifyAuth } from "../middleware/auth.js";
 
 const router = Router();
+
+router.use(verifyAuth);
 
 // GET /api/users
 

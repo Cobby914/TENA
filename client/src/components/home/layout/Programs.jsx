@@ -10,7 +10,6 @@ export default function Programs() {
             as="section"
             bg="white"
             minW="100%"
-            alignContents={"center"}
         >
             <SimpleGrid 
                 columns={{ base: 1, md: 2 }} spacing={8} py={30} px={{base: 0 , lg: 40}} minW={"100%"} justifyItems={"center"} alignItems={"center"}>

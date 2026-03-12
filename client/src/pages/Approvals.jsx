@@ -5,8 +5,11 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import ApprovalsTable from "../components/approvals/ApprovalsTable";
+import { clearAuthSession, withAuthHeaders } from "../auth/session";
+import { useNavigate } from "react-router-dom";
 
-const API = "http://localhost:3001/api/users";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+const API = `${API_BASE}/api/users`;
 const CACHE_KEY = "approvals_users";
 
 export default function Approvals() {
@@ -15,6 +18,7 @@ export default function Approvals() {
   const [search, setSearch]   = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const fetchUsers = async (force = false) => {
     const cached = localStorage.getItem(CACHE_KEY);
@@ -24,8 +28,16 @@ export default function Approvals() {
       return;
     }
     try {
-      const res  = await fetch(API);
+      const res  = await fetch(API, { headers: withAuthHeaders() });
+      if (res.status === 401) {
+        clearAuthSession();
+        navigate("/login", { replace: true });
+        return;
+      }
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || "Failed to load users");
+      }
       setUsers(data);
       localStorage.setItem(CACHE_KEY, JSON.stringify(data));
     } catch {
@@ -41,7 +53,7 @@ export default function Approvals() {
     try {
       await fetch(`${API}/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: withAuthHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ role, is_verified: true }),
       });
       await fetchUsers(true);
@@ -55,7 +67,7 @@ export default function Approvals() {
     try {
       await fetch(`${API}/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: withAuthHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ role: "denied" }),
       });
       await fetchUsers(true);
