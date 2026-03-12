@@ -2,10 +2,16 @@ import { Router } from "express";
 import { OAuth2Client } from "google-auth-library";
 import { sql } from "../db/index.js";
 import { env } from "../config/env.js";
-import { verifyAuth } from "../middleware/auth.js";
+import { verifyAuth, requireApproved } from "../middleware/auth.js";
 
 const router = Router();
 const client = new OAuth2Client(env.googleClientId);
+
+function normalizeName(value) {
+  if (typeof value !== "string") return null;
+  const normalized = value.trim();
+  return normalized.length ? normalized : null;
+}
 
 router.post("/google", async (req, res, next) => {
   try {
@@ -28,13 +34,22 @@ router.post("/google", async (req, res, next) => {
       return res.status(401).json({ error: "Invalid Google token payload" });
     }
 
-    const email = payload.email.toLowerCase();
+    const email = String(payload.email).trim().toLowerCase();
     const emailVerified = Boolean(payload.email_verified);
+    let firstName = normalizeName(payload.given_name);
+    let lastName = normalizeName(payload.family_name);
+    if ((!firstName || !lastName) && typeof payload.name === "string") {
+      const parts = payload.name.trim().split(/\s+/).filter(Boolean);
+      if (parts.length > 0) {
+        firstName = firstName ?? parts[0];
+        lastName = lastName ?? (parts.length > 1 ? parts.slice(1).join(" ") : null);
+      }
+    }
 
     let user =
       (
         await sql`
-          SELECT id, email, auth_type, role, is_verified, created_at
+          SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
           FROM "TENA_Admin".users
           WHERE email = ${email}
           LIMIT 1
@@ -44,11 +59,28 @@ router.post("/google", async (req, res, next) => {
     if (!user) {
       user = (
         await sql`
-          INSERT INTO "TENA_Admin".users (email, auth_type, is_verified)
-          VALUES (${email}, 'oauth', ${emailVerified})
-          RETURNING id, email, auth_type, role, is_verified, created_at
+          INSERT INTO "TENA_Admin".users (email, first_name, last_name, auth_type, is_verified)
+          VALUES (${email}, ${firstName}, ${lastName}, 'oauth', ${emailVerified})
+          RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
         `
       )[0];
+    } else {
+      user = (
+        await sql`
+          UPDATE "TENA_Admin".users
+          SET
+            is_verified = ${emailVerified},
+            first_name = COALESCE(${firstName}, first_name),
+            last_name = COALESCE(${lastName}, last_name)
+          WHERE id = ${user.id}
+          RETURNING id, email, first_name, last_name, auth_type, role, is_verified, created_at
+        `
+      )[0];
+    }
+
+    const role = String(user.role ?? "").toLowerCase();
+    if (role === "pending" || role === "denied") {
+      return res.status(403).json({ error: "Account is not approved", user });
     }
 
     await sql`
@@ -73,13 +105,13 @@ router.post("/google", async (req, res, next) => {
   }
 });
 
-router.get("/me", verifyAuth, async (req, res, next) => {
+router.get("/me", verifyAuth, requireApproved, async (req, res, next) => {
   try {
-    const email = req.user?.email?.toLowerCase();
+    const email = String(req.user?.email ?? "").trim().toLowerCase();
     if (!email) return res.status(401).json({ error: "Unauthorized" });
 
     const rows = await sql`
-      SELECT id, email, auth_type, role, is_verified, created_at
+      SELECT id, email, first_name, last_name, auth_type, role, is_verified, created_at
       FROM "TENA_Admin".users
       WHERE email = ${email}
       LIMIT 1

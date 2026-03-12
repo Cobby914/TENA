@@ -98,7 +98,7 @@ router.put("/:id", async (req, res, next) => {
         image_key = COALESCE(${image_key ?? null}, image_key),
         cohort = COALESCE(${cohort ?? null}, cohort)
       WHERE id = ${id}
-      RETURNING id, first_name, last_name, role, bio, image_key, created_at
+      RETURNING id, first_name, last_name, role, bio, image_key, created_at, cohort
     `;
 
     if (rows.length === 0) return res.status(404).json({ error: "Team Member Not Found" });

@@ -12,6 +12,7 @@ import authRouter from "./auth.js";
 const router = Router();
 
 router.use("/programs", programsRouter);
+router.use("/cohorts", cohortsRouter);
 router.use("/team-members", teamMembersRouter);
 router.use("/newsletter-subscribers", newsletterSubscribersRouter);
 router.use("/team_members", teamMembersRouter);
