@@ -1,5 +1,0 @@
-ALTER TABLE "TENA_Admin".programs
-    ADD COLUMN IF NOT EXISTS image_key VARCHAR(255);
-
-ALTER TABLE "TENA_Admin".programs
-    ADD COLUMN IF NOT EXISTS link VARCHAR(255);
