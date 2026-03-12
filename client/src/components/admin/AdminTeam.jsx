@@ -23,7 +23,7 @@ export default function AdminTeam() {
   }
 
   return (
-    <VStack gap={30} width="1700px" textColor="rgb(51,51,51)">
+    <VStack gap={8} width="100%" maxW="1400px" textColor="rgb(51,51,51)" align="stretch">
       <Box borderBottom="2px solid rgb(51,51,51)" pb={10} height={10} width="100%">
         <Text textAlign="left" fontWeight={700} fontSize={24} width="100%">
           Team & Cohorts
@@ -36,8 +36,8 @@ export default function AdminTeam() {
         </Box>
       ) : null}
 
-      <Flex width="100%" gap={30} direction={{ base: "column", md: "row" }}>
-        <VStack width={{ base: "100%", md: "50%" }} height="100%" border="2px solid rgb(51,51,51)" p={6} gap={4}>
+      <Flex width="100%" gap={6} direction={{ base: "column", xl: "row" }}>
+        <VStack width={{ base: "100%", xl: "50%" }} height="100%" border="2px solid rgb(51,51,51)" p={6} gap={4}>
           <HStack borderBottom="2px solid rgb(51,51,51)" justifyContent="space-between" pb={2} width="100%">
             <Text textAlign="left" fontWeight={600} fontSize={16} width={32}>
               TEAM MEMBERS
@@ -62,7 +62,7 @@ export default function AdminTeam() {
           ))}
         </VStack>
 
-        <VStack width={{ base: "100%", md: "50%" }} height="100%" border="2px solid rgb(51,51,51)" p={6} gap={4}>
+        <VStack width={{ base: "100%", xl: "50%" }} height="100%" border="2px solid rgb(51,51,51)" p={6} gap={4}>
           <HStack borderBottom="2px solid rgb(51,51,51)" justifyContent="space-between" pb={2} width="100%">
             <Text textAlign="left" fontWeight={600} fontSize={16} width={32}>
               COHORTS

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import {useEffect} from "react";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
@@ -12,6 +12,10 @@ import Partners from "./pages/Partners";
 import Approvals from "./pages/Approvals";
 import Login from "./pages/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import AdminDashboard from "./components/admin/AdminDashboard";
+import AdminPrograms from "./components/admin/AdminPrograms";
+import AdminTeam from "./components/admin/AdminTeam";
+import AdminSettings from "./components/admin/AdminSettings";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,9 +41,16 @@ export default function App() {
                 <Route path="/board" element={<Board />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+                <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}>
+                  <Route index element={<Navigate to="dashboard" replace />} />
+                  <Route path="dashboard" element={<AdminDashboard />} />
+                  <Route path="approvals" element={<Approvals />} />
+                  <Route path="programs" element={<AdminPrograms />} />
+                  <Route path="team" element={<AdminTeam />} />
+                  <Route path="settings" element={<AdminSettings />} />
+                </Route>
                 <Route path="/partners" element={<Partners/>}/>
-                <Route path="/approvals" element={<ProtectedRoute><Approvals/></ProtectedRoute>}/>
+                <Route path="/approvals" element={<Navigate to="/admin/approvals" replace />} />
             </Routes>
         </BrowserRouter>
     );

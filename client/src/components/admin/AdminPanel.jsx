@@ -1,36 +1,34 @@
 import { Flex, Box, Text, VStack } from "@chakra-ui/react";
-import { useState } from "react"; 
-import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import AdminPanelButton from "./AdminPanelButton";
-import AdminDashboard from "./AdminDashboard";
-import AdminPrograms from "./AdminPrograms";
-import AdminTeam from "./AdminTeam";
-import AdminSettings from "./AdminSettings";
 import { clearAuthSession, getAuthSession } from "../../auth/session";
 
-export default function AdminPanel () {
-    const [currScreen, setCurrScreen] = useState('Dashboard');
+const NAV_ITEMS = [
+    { label: "Dashboard", path: "/admin/dashboard" },
+    { label: "Approvals", path: "/admin/approvals" },
+    { label: "Programs", path: "/admin/programs" },
+    { label: "Team & Cohorts", path: "/admin/team" },
+    { label: "Settings", path: "/admin/settings" }
+];
+
+export default function AdminPanel({ children }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const session = getAuthSession();
-    const screens = ['Dashboard', 'Programs', 'Team & Cohorts', 'Settings']
 
     const handleLogout = () => {
         clearAuthSession();
         navigate("/login", { replace: true });
     };
 
-    const renderScreen = () => {
-        switch (currScreen) {
-            case 'Dashboard':
-                return <AdminDashboard />
-            case 'Programs':
-                return <AdminPrograms />
-            case 'Team & Cohorts':
-                return <AdminTeam />
-            case 'Settings':
-                return <AdminSettings />
-        }
-    }
+    const activePath = useMemo(() => {
+        const pathname = location.pathname.replace(/\/+$/, "");
+        const exactMatch = NAV_ITEMS.find((item) => item.path === pathname);
+        if (exactMatch) return exactMatch.path;
+        const prefixMatch = NAV_ITEMS.find((item) => pathname.startsWith(item.path));
+        return prefixMatch?.path ?? "/admin/dashboard";
+    }, [location.pathname]);
 
     return (
         <Flex direction="row" >
@@ -42,14 +40,14 @@ export default function AdminPanel () {
                     <Text mb={3} width="100%" fontSize={12} textColor="rgb(102, 102, 102)">
                         {session?.user?.email ?? "Not signed in"}
                     </Text>
-                    {screens.map((screen) => (
+                    {NAV_ITEMS.map((item) => (
                         <AdminPanelButton 
-                            key={screen}
-                            onClick={() => setCurrScreen(screen)}
-                            text={screen}
-                            bgColor={currScreen === screen ? "rgb(102,102,102)" : "white"}
-                            textColor={currScreen === screen ? "white" : "rgb(51, 51, 51)"}
-                            fontWeight={currScreen === screen ? 600 : 400}
+                            key={item.path}
+                            onClick={() => navigate(item.path)}
+                            text={item.label}
+                            bgColor={activePath === item.path ? "rgb(102,102,102)" : "white"}
+                            textColor={activePath === item.path ? "white" : "rgb(51, 51, 51)"}
+                            fontWeight={activePath === item.path ? 600 : 400}
                         />
                     ))}
                     <AdminPanelButton text="Logout" textColor="rgb(51, 51, 51)" bgColor= "white" fontWeight={400} onClick={handleLogout}/>
@@ -57,8 +55,8 @@ export default function AdminPanel () {
             </Box>
 
             {/* Main Admin Screen Content */}
-            <Box flex="1" p={30} bgColor="rgb(245,245,245)">
-                {renderScreen()}
+            <Box flex="1" p={{ base: 4, md: 8 }} bgColor="rgb(245,245,245)">
+                {children}
             </Box>
         </Flex>
     );
