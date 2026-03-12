@@ -51,11 +51,15 @@ export default function Approvals() {
 
   const handleApprove = async (id, role) => {
     try {
-      await fetch(`${API}/${id}`, {
+      const res = await fetch(`${API}/${id}`, {
         method: "PUT",
         headers: withAuthHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ role, is_verified: true }),
       });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to approve user");
+      }
       await fetchUsers(true);
       toast({ title: "User approved", status: "success", duration: 2000 });
     } catch {
@@ -65,11 +69,15 @@ export default function Approvals() {
 
   const handleDeny = async (id) => {
     try {
-      await fetch(`${API}/${id}`, {
+      const res = await fetch(`${API}/${id}`, {
         method: "PUT",
         headers: withAuthHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ role: "denied" }),
       });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to deny user");
+      }
       await fetchUsers(true);
       toast({ title: "User denied", status: "warning", duration: 2000 });
     } catch {

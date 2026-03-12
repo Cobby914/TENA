@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { sql } from "../db/index.js";
+import { verifyAuth, requireApproved, requireRole } from "../middleware/auth.js";
 
 const router = Router();
+const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
 
 //GET /api/newsletter_subscribers
 
-router.get("/", async (req, res, next) => {
+router.get("/", ...adminOnly, async (req, res, next) => {
   try {
     const rows = await sql`
       SELECT email, first_name, last_name, subscribed_at
@@ -21,7 +23,7 @@ router.get("/", async (req, res, next) => {
 
 //GET /api/newsletter-subscribers/:email
 
-router.get("/:email", async (req, res, next) => {
+router.get("/:email", ...adminOnly, async (req, res, next) => {
   try {
     const { email } = req.params;
 
@@ -64,7 +66,7 @@ router.post("/", async (req, res, next) => {
 
 //PUT /api/newsletter_subscribers/:email (body: first_name?, last_name?)
 
-router.put("/:email", async (req, res, next) => {
+router.put("/:email", ...adminOnly, async (req, res, next) => {
   try {
     const { email } = req.params;
     const { first_name, last_name } = req.body;
@@ -88,7 +90,7 @@ router.put("/:email", async (req, res, next) => {
 
 //DELETE /api/newsletter_subscribers/:email
 
-router.delete("/:email", async (req, res, next) => {
+router.delete("/:email", ...adminOnly, async (req, res, next) => {
   try {
     const { email } = req.params;
 
