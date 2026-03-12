@@ -10,6 +10,8 @@ import Team from "./pages/Team"
 import Admin from "./pages/Admin";
 import Partners from "./pages/Partners";
 import Approvals from "./pages/Approvals";
+import Login from "./pages/Login";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,9 +36,10 @@ export default function App() {
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/board" element={<Board />} />
                 <Route path="/team" element={<Team />} />
-                <Route path="/admin" element={<Admin />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
                 <Route path="/partners" element={<Partners/>}/>
-                <Route path="/approvals" element={<Approvals/>}/>
+                <Route path="/approvals" element={<ProtectedRoute><Approvals/></ProtectedRoute>}/>
             </Routes>
         </BrowserRouter>
     );

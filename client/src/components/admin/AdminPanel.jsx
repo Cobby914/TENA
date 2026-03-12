@@ -1,14 +1,24 @@
 import { Flex, Box, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react"; 
+import { useNavigate } from "react-router-dom";
 import AdminPanelButton from "./AdminPanelButton";
 import AdminDashboard from "./AdminDashboard";
 import AdminPrograms from "./AdminPrograms";
 import AdminTeam from "./AdminTeam";
 import AdminSettings from "./AdminSettings";
+import { clearAuthSession, getAuthSession } from "../../auth/session";
 
 export default function AdminPanel () {
     const [currScreen, setCurrScreen] = useState('Dashboard');
+    const navigate = useNavigate();
+    const session = getAuthSession();
     const screens = ['Dashboard', 'Programs', 'Team & Cohorts', 'Settings']
+
+    const handleLogout = () => {
+        clearAuthSession();
+        navigate("/login", { replace: true });
+    };
+
     const renderScreen = () => {
         switch (currScreen) {
             case 'Dashboard':
@@ -29,6 +39,9 @@ export default function AdminPanel () {
                     <Text mb={5} width="100%" fontSize={14} fontWeight={700} textColor="rgb(51, 51, 51)" letterSpacing={1}>
                         ADMIN PANEL
                     </Text>
+                    <Text mb={3} width="100%" fontSize={12} textColor="rgb(102, 102, 102)">
+                        {session?.user?.email ?? "Not signed in"}
+                    </Text>
                     {screens.map((screen) => (
                         <AdminPanelButton 
                             key={screen}
@@ -39,7 +52,7 @@ export default function AdminPanel () {
                             fontWeight={currScreen === screen ? 600 : 400}
                         />
                     ))}
-                    <AdminPanelButton text="Logout" textColor="rgb(51, 51, 51)" bgColor= "white" fontWeight={400}/>
+                    <AdminPanelButton text="Logout" textColor="rgb(51, 51, 51)" bgColor= "white" fontWeight={400} onClick={handleLogout}/>
                 </VStack>
             </Box>
 
