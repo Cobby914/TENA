@@ -31,7 +31,7 @@ export default function Slogan() {
 
           <Text
             as="h1"
-            maW="1120px"
+            maxW="1120px"
             fontSize={{ base: "4xl", sm: "5xl", md: "6xl", lg: "72px" }}
             fontWeight="700"
             lineHeight={{ base: "1.00", lg: "1.05" }}

@@ -11,7 +11,7 @@ const programImages = import.meta.glob(
 );
 
 {
-  /* Getting The Images and Propping them to it's respective cardd */
+  /* Getting The Images and Propping them to it's respective card */
 }
 function normalizeProgramKey(value) {
   return String(value ?? "")
