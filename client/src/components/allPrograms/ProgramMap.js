@@ -26,7 +26,9 @@ export function Program(data, ind){
 
     //GET RID OF THIS AFTER ADDING PROGRAM IMAGE (and link)!
     const im = placeholder;
-    const link = "/"
+    const providedLink = typeof data.link === "string" ? data.link.trim() : "";
+    const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, "");
+    const link = providedLink || (normalizedTitle === "carenavigation" ? "/programs/carenavigation" : "/");
 
     const id = String(data.id).trim();
 

@@ -5,6 +5,8 @@ import AboutUs from "./pages/AboutUs";
 import ReusableProgram from "./pages/ReusableProgram";
 import GetInvolved from "./pages/GetInvolved";
 import Programs from "./pages/Programs";
+import ProgramsLayout from "./pages/ProgramsLayout";
+import CareNavigation from "./pages/CareNavigation";
 import Board from "./pages/Board"
 import Team from "./pages/Team"
 import Admin from "./pages/Admin";
@@ -37,7 +39,10 @@ export default function App() {
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/reusable-program" element={<ReusableProgram />} />
                 <Route path="/getInvolved" element={<GetInvolved />} />
-                <Route path="/programs" element={<Programs />} />
+                <Route path="/programs" element={<ProgramsLayout />}>
+                  <Route index element={<Programs />} />
+                  <Route path="carenavigation" element={<CareNavigation />} />
+                </Route>
                 <Route path="/board" element={<Board />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/login" element={<Login />} />

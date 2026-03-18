@@ -38,6 +38,8 @@ export default function CareAndFairCard ({
                     </Box>
 
                     <Button 
+                        as={NavLink}
+                        to={link}
                         borderRadius={0} 
                         p={{ base: 5, md: 6, lg: 7 }} 
                         leftIcon={reversed ? <Text>←</Text> : undefined}
@@ -45,7 +47,7 @@ export default function CareAndFairCard ({
                         background="rgb(245,245,245)"
                         fontSize={{ base: "sm", md: "md" }}
                     >
-                        <NavLink to = {link}>Explore Program</NavLink>
+                        Explore Program
                     </Button>
                 </VStack>
             </Box>
