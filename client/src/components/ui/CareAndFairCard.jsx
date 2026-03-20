@@ -1,12 +1,13 @@
 import {Text, Box, Flex, Button, VStack } from "@chakra-ui/react"
 import ImagePlaceholder from "./MVimagePH";
 
+import { NavLink } from "react-router-dom";
 export default function CareAndFairCard ({
     title,
     description,
     imageSrc,
-    link="",
-    reversed=false
+    link="/",
+    reversed
 }) {
     return(
         <Flex
@@ -37,13 +38,16 @@ export default function CareAndFairCard ({
                     </Box>
 
                     <Button 
+                        as={NavLink}
+                        to={link}
                         borderRadius={0} 
                         p={{ base: 5, md: 6, lg: 7 }} 
-                        rightIcon={<Text>→</Text>} 
+                        leftIcon={reversed ? <Text>←</Text> : undefined}
+                        rightIcon={!reversed ? <Text>→</Text> : undefined}
                         background="rgb(245,245,245)"
                         fontSize={{ base: "sm", md: "md" }}
                     >
-                        <Text>Explore Program</Text>
+                        Explore Program
                     </Button>
                 </VStack>
             </Box>

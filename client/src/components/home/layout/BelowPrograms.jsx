@@ -1,72 +1,105 @@
-import { Box, Flex, Text, VStack, SimpleGrid, Button } from "@chakra-ui/react";
-import IconBlock from "../../ui/IconBlock";
+import {
+  Box,
+  Flex,
+  Text,
+  HStack,
+  VStack,
+  SimpleGrid,
+  Button,
+  Image,
+} from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+import diversifyImg from "./DCEimgs/Diversity.png";
+import compassionImg from "./DCEimgs/Compassion.png";
+import equityImg from "./DCEimgs/Equity.png";
+
+const valueCards = [
+  { imageSrc: diversifyImg, alt: "Diversify icon" },
+  { imageSrc: compassionImg, alt: "Compassion icon" },
+  { imageSrc: equityImg, alt: "Equity icon" },
+];
 
 export default function BelowPrograms() {
   return (
-    <Box
-      as="section"
-      bg="white"
-      w="100%"
-      py={{ base: 12, md: 20 }}
-    >
-      <Box
-        maxW="1200px"
-        mx="auto"
-        px={{ base: 6, md: 12, lg: 20 }}
-      >
+    <Box as="section" bg="white" w="100%" mt={20} py={{ base: 12, md: 20 }}>
+      <Box maxW="1200px" mx="auto" px={{ base: 6, md: 12, lg: 20 }}>
         <Flex direction="column" align="center">
-
-          {/* Title Section */}
-          <VStack
-            spacing={{ base: 6, md: 8 }}
-            textAlign="center"
-            maxW="900px"
-            mb={{ base: 12, md: 16 }}
-          >
+          <VStack spacing={{ base: 6, md: 8 }} textAlign="center" maxW="1140px">
             <Text
-              fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
+              fontSize={{ base: "32px", md: "48px", lg: "60px" }}
+              fontWeight={700}
               lineHeight="1.1"
+              maxW="1070px"
+              color="#1573CF"
             >
-              A community driven non-profit
-              <br />
-              focused on lasting health equity.
+              A community driven non-profit focused on lasting{" "}
+              <Text as="span" color="#5CDAC5">
+                health equity
+              </Text>
+              .
             </Text>
 
             <Text
-              fontSize={{ base: "md", md: "lg", lg: "xl" }}
+              fontSize={{ base: "18px", md: "22px", lg: "30px" }}
               lineHeight="1.6"
+              color="#3F5F85"
+              maxW="1180px"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              To eradicate health disparities by empowering underrepresented
+              individuals, building a diverse healthcare workforce, and
+              connecting communities to resources, care, and opportunities that
+              promote lifelong wellness.
             </Text>
           </VStack>
 
-          {/* Icon Grid */}
           <SimpleGrid
-            columns={{ base: 1, md: 2, lg: 3 }}
-            spacing={{ base: 10, md: 12 }}
-            mb={{ base: 12, md: 16 }}
+            columns={{ base: 1, lg: 3 }}
+            spacing={{ base: 12, md: 20, lg: 28 }}
+            mb={{ base: 10, md: 16, lg: 20 }}
+            mt={{ base: 16, md: 24, lg: 28 }}
+            justifyItems="center"
+            w="100%"
+            maxW="960px"
           >
-            <IconBlock />
-            <IconBlock />
-            <IconBlock />
+            {valueCards.map((card) => (
+              <VStack
+                key={card.alt}
+                spacing={{ base: 5, md: 6 }}
+                align="center"
+                textAlign="center"
+              >
+                <Image
+                  src={card.imageSrc}
+                  alt={card.alt}
+                  h={{ base: "132px", md: "160px", lg: "180px" }}
+                  objectFit="contain"
+                />
+              </VStack>
+            ))}
           </SimpleGrid>
 
-          {/* Button */}
           <NavLink to="/about">
             <Button
-              bg="rgb(217, 217, 217)"
-              color="black"
-              fontWeight="bold"
-              borderRadius="none"
-              h={{ base: "55px", md: "60px" }}
-              w={{ base: "200px", md: "240px" }}
+              height={16}
+              width={64}
+              borderRadius={6}
+              px={6}
+              bgColor="#5CDAC5"
             >
-              About Us
+              <HStack gap={2}>
+                <Text
+                  fontWeight={600}
+                  fontSize={18}
+                  lineHeight={28}
+                  textColor="rgb(26, 32, 44)"
+                >
+                  About Us
+                </Text>
+                <ChevronRight size={18} style={{ marginTop: "3px" }} />
+              </HStack>
             </Button>
           </NavLink>
-
         </Flex>
       </Box>
     </Box>

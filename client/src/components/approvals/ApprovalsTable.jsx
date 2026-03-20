@@ -7,7 +7,16 @@ import UserRow from "./UserRow";
 
 const PAGE_SIZE = 7;
 
-export default function ApprovalsTable({ users, currentPage, onPageChange, onApprove, onDeny }) {
+export default function ApprovalsTable({
+  users,
+  currentPage,
+  onPageChange,
+  onApprove,
+  onAssignRole,
+  onDeny,
+  onRevoke,
+  processingByUser
+}) {
   const totalPages = Math.ceil(users.length / PAGE_SIZE);
   const pageUsers  = users.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
@@ -45,7 +54,10 @@ export default function ApprovalsTable({ users, currentPage, onPageChange, onApp
                 key={user.id}
                 user={user}
                 onApprove={onApprove}
+                onAssignRole={onAssignRole}
                 onDeny={onDeny}
+                onRevoke={onRevoke}
+                isProcessing={Boolean(processingByUser?.[user.id])}
               />
             ))}
           </Tbody>

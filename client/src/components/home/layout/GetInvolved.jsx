@@ -7,51 +7,56 @@ export default function GetInvolved() {
       as="section"
       bg="white"
       w="100%"
+      minH={{ base: "1000px", md: "1100px" }}
       py={{ base: 12, md: 20 }}
     >
       <Box
-        maxW="1200px"
+        maxW="1024px"
+        height="500px"
         mx="auto"
         px={{ base: 6, md: 12, lg: 20 }}
+        bg="white"
+        border="1px solid rgba(226, 232, 240, 1)"
+        p={{ base: 8, md: 12 }}
+        borderRadius="md"
+        boxShadow={"sm"}
       >
-        <Box
-          bg="#D9D9D9"
-          border="1.5px solid"
-          p={{ base: 8, md: 12 }}
-          borderRadius="md"
+        <Text
+          textAlign="center"
+          fontWeight={700}
+          fontSize={{ base: "30px", md: "40px", lg: "48px" }}
+          mb={{ base: 8, md: 12 }}
+          textColor="#1573CF"
         >
-          <Text
-            textAlign="center"
-            fontWeight="bold"
-            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
-            mb={{ base: 8, md: 12 }}
-          >
-            Join Our Mission.
-          </Text>
+          Join Our Mission.
+        </Text>
 
-          <SimpleGrid
-            columns={{ base: 1, md: 2, lg: 3 }}
-            spacing={{ base: 8, md: 10 }}
-          >
-            <InvolvementCard
-              title="Volunteer"
-              description="Lend your time at our events."
-              linkname="Volunteer With Us"
-            />
+        <SimpleGrid
+          columns={{ base: 1, md: 3 }}
+          spacing={{ base: 18, md: 20 }}
+          w="full"
+        >
+          <InvolvementCard
+            title="Volunteer"
+            description="Lend your time at our events."
+            linkname="Volunteer With Us"
+            link="/getInvolved"
+          />
 
-            <InvolvementCard
-              title="Partner"
-              description="Collaborate with us to expand our reach."
-              linkname="Become a Partner"
-            />
+          <InvolvementCard
+            title="Partner"
+            description="Collaborate with us to expand our reach."
+            linkname="Become a Partner"
+            link="/partners"
+          />
 
-            <InvolvementCard
-              title="Donate"
-              description="Your financial support fuels our mission."
-              linkname="Support our Cause"
-            />
-          </SimpleGrid>
-        </Box>
+          <InvolvementCard
+            title="Donate"
+            description="Your financial support fuels our mission."
+            linkname="Support our Cause"
+            link="/donate"
+          />
+        </SimpleGrid>
       </Box>
     </Box>
   );

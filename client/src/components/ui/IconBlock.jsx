@@ -1,28 +1,32 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
-export default function IconBlock({ children, ...props }) {
+export default function IconBlock({ children, text, route, ...props }) {
     return(
         <VStack spacing={{ base: 4, md: 6 }} alignItems="center">
-            <Box
-                width={{ base: "140px", md: "155px", lg: "170px" }}
-                height={{ base: "140px", md: "155px", lg: "170px" }}
-                bg="rgb(217, 217, 217)"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Text fontSize={{ base: "xl", md: "2xl" }}> ICON </Text>
-            </Box>
+            <NavLink to={route}>
+                <Box
+                    width={{ base: '120px', md: '160px', lg: '192px' }}
+                    height={{ base: '120px', md: '160px', lg: '192px' }}
+                    bg="rgb(217, 217, 217)"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    {/* Image here */}
+                </Box>
+            </NavLink>
             {/* Text Below */}
             <Text 
-                fontSize={{ base: "xl", md: "2xl" }} 
+                fontSize={{ base: '24px', md: '30px', lg: '36px' }}
                 lineHeight="1.15" 
                 textAlign="center"
             >
-                Expand Healthcare 
-                <br />
-                Access
+                {text}
             </Text>
+
+            {children}
+
         </VStack>
     )
 }

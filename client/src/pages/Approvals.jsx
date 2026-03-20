@@ -5,21 +5,43 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import ApprovalsTable from "../components/approvals/ApprovalsTable";
+import { clearAuthSession, withAuthHeaders } from "../auth/session";
+import { useNavigate } from "react-router-dom";
 
-const API = "http://localhost:3001/api/users";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+const API = `${API_BASE}/api/users`;
+const CACHE_KEY = "approvals_users";
 
 export default function Approvals() {
   const [users, setUsers]     = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch]   = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [processingByUser, setProcessingByUser] = useState({});
   const toast = useToast();
+  const navigate = useNavigate();
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (force = false) => {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached && !force) {
+      setUsers(JSON.parse(cached));
+      setLoading(false);
+      return;
+    }
     try {
-      const res  = await fetch(API);
+      const res  = await fetch(API, { headers: withAuthHeaders() });
+      if (res.status === 401) {
+        clearAuthSession();
+        navigate("/login", { replace: true });
+        return;
+      }
       const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || "Failed to load users");
+      }
       setUsers(data);
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
     } catch {
       toast({ title: "Failed to load users", status: "error", duration: 3000 });
     } finally {
@@ -29,39 +51,122 @@ export default function Approvals() {
 
   useEffect(() => { fetchUsers(); }, []);
 
-  const handleApprove = async (id, role) => {
+  const setUserProcessing = (id, isProcessing) => {
+    setProcessingByUser((prev) => {
+      const next = { ...prev };
+      if (isProcessing) {
+        next[id] = true;
+      } else {
+        delete next[id];
+      }
+      return next;
+    });
+  };
+
+  const updateUser = async (id, payload, successTitle, successStatus = "success") => {
+    setUserProcessing(id, true);
     try {
-      await fetch(`${API}/${id}`, {
+      const res = await fetch(`${API}/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role, is_verified: true }),
+        headers: withAuthHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(payload),
       });
-      await fetchUsers();
-      toast({ title: "User approved", status: "success", duration: 2000 });
-    } catch {
-      toast({ title: "Failed to approve user", status: "error", duration: 3000 });
+      if (res.status === 401) {
+        clearAuthSession();
+        navigate("/login", { replace: true });
+        return false;
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to update user");
+      }
+      await fetchUsers(true);
+      toast({ title: successTitle, status: successStatus, duration: 2000 });
+      return true;
+    } catch (err) {
+      toast({
+        title: err instanceof Error ? err.message : "Failed to update user",
+        status: "error",
+        duration: 3000
+      });
+      return false;
+    } finally {
+      setUserProcessing(id, false);
     }
   };
 
-  const handleDeny = async (id) => {
+  const deleteUser = async (id, successTitle, successStatus = "warning") => {
+    setUserProcessing(id, true);
     try {
-      await fetch(`${API}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "denied" }),
+      const res = await fetch(`${API}/${id}`, {
+        method: "DELETE",
+        headers: withAuthHeaders()
       });
-      await fetchUsers();
-      toast({ title: "User denied", status: "warning", duration: 2000 });
-    } catch {
-      toast({ title: "Failed to deny user", status: "error", duration: 3000 });
+      if (res.status === 401) {
+        clearAuthSession();
+        navigate("/login", { replace: true });
+        return false;
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to remove user");
+      }
+      await fetchUsers(true);
+      toast({ title: successTitle, status: successStatus, duration: 2000 });
+      return true;
+    } catch (err) {
+      toast({
+        title: err instanceof Error ? err.message : "Failed to remove user",
+        status: "error",
+        duration: 3000
+      });
+      return false;
+    } finally {
+      setUserProcessing(id, false);
     }
+  };
+
+  const handleApprove = async (id, role) => {
+    await updateUser(id, { role, is_verified: true }, "User approved");
+  };
+
+  const handleAssignRole = async (id, role) => {
+    await updateUser(id, { role, is_verified: true }, "Role updated");
+  };
+
+  const handleDeny = async (id) => {
+    await deleteUser(id, "User denied and removed");
+  };
+
+  const handleRevoke = async (id) => {
+    await deleteUser(id, "Access revoked and account removed");
   };
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
-    if (!q) return users;
-    return users.filter((u) => u.email.toLowerCase().includes(q));
-  }, [users, search]);
+    const base = users.filter((u) => {
+      if (!q) return true;
+      return String(u.email ?? "").toLowerCase().includes(q);
+    });
+
+    if (statusFilter === "Pending") {
+      return base.filter((u) => u.role === "pending");
+    }
+    if (statusFilter === "Approved") {
+      return base.filter((u) => u.role === "user" || u.role === "admin");
+    }
+    if (statusFilter === "Denied") {
+      return base.filter((u) => u.role === "denied");
+    }
+    return base;
+  }, [users, search, statusFilter]);
+
+  useEffect(() => {
+    const maxPage = Math.max(1, Math.ceil(filtered.length / 7));
+    if (currentPage > maxPage) {
+      setCurrentPage(maxPage);
+    }
+  }, [filtered.length, currentPage]);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -109,7 +214,7 @@ export default function Approvals() {
             />
           </InputGroup>
 
-          {filterButtons.map((label, i) => (
+          {filterButtons.map((label) => (
             <Button
               key={label}
               size="sm"
@@ -118,12 +223,15 @@ export default function Approvals() {
               fontSize="sm"
               px={4}
               borderWidth="2px"
-              variant={i === 0 ? "solid" : "outline"}
-              bg={i === 0 ? "gray.800" : "white"}
-              color={i === 0 ? "white" : "gray.700"}
-              borderColor={i === 0 ? "gray.800" : "gray.400"}
-              _hover={{ bg: i === 0 ? "gray.700" : "gray.100" }}
-              // functionality to be added later
+              variant={label === statusFilter ? "solid" : "outline"}
+              bg={label === statusFilter ? "gray.800" : "white"}
+              color={label === statusFilter ? "white" : "gray.700"}
+              borderColor={label === statusFilter ? "gray.800" : "gray.400"}
+              _hover={{ bg: label === statusFilter ? "gray.700" : "gray.100" }}
+              onClick={() => {
+                setStatusFilter(label);
+                setCurrentPage(1);
+              }}
             >
               {label}
             </Button>
@@ -141,7 +249,10 @@ export default function Approvals() {
             currentPage={currentPage}
             onPageChange={setCurrentPage}
             onApprove={handleApprove}
+            onAssignRole={handleAssignRole}
             onDeny={handleDeny}
+            onRevoke={handleRevoke}
+            processingByUser={processingByUser}
           />
         )}
       </Container>

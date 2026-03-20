@@ -12,7 +12,7 @@ export default function NewsLetter({
             {/* We can create an input box component and use it here instead in future! */}
             <SimpleGrid maxWidth= "449px" maxHeight = "520px" height = "80vh" ratio = {449/520} width = "33vw">
                 <GridItem align = "center">
-                        <Text fontSize=  "min(2.2vw,30px)"fontWeight = {400}  whiteSpace={"nowrap"}
+                        <Text fontSize=  "min(2.2vw,30px)" fontWeight = {400}  whiteSpace={"nowrap"}
                         marginTop = {{base: "clamp(4vh,4vh, 30px)", lg: "30px"}} letterSpacing={0} fontStyle = "regular">
                             Sign up for our Newsletter
                         </Text>

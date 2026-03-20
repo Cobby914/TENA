@@ -1,57 +1,84 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import ProgramCard from "../../ui/ProgramCard";
-import logo from "../../../assets/logoplaceholder.png";
+import { useProgramData } from "../../allPrograms/useProgramsData";
+
+const programImages = import.meta.glob(
+  "./programHomePageIMGS/*.{png,jpg,jpeg,webp}",
+  {
+    eager: true,
+    import: "default",
+  },
+);
+
+{
+  /* Getting The Images and Propping them to it's respective card */
+}
+function normalizeProgramKey(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/\.[a-z0-9]+$/i, "")
+    .replace(/\s+img$/, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function getProgramImagePath(title) {
+  const targetKey = normalizeProgramKey(title);
+
+  const matchedEntry = Object.entries(programImages).find(([filePath]) => {
+    const fileName = filePath.split("/").pop() ?? "";
+    return normalizeProgramKey(fileName) === targetKey;
+  });
+
+  return matchedEntry?.[1] ?? null;
+}
 
 export default function Programs() {
-    return (
-        <Box
-            as="section"
-            bg="white"
-            width="100%"
-            py={{ base: 8, md: 12, lg: 16 }}
-        >
-            <Box
-                maxW="1400px"
-                mx="auto"
-                px={{ base: 4, md: 10, lg: 20 }}
-            >
-                <SimpleGrid 
-                    columns={{ base: 1, md: 2 }} 
-                    spacing={8}
-                >
-                    <ProgramCard
-                        title="Program Name"
-                        description="Lorem ipsum dolor sit amet..."
-                        imageSrc={logo}
-                        buttonText="Learn More"
-                        backgroundColor="rgb(184, 184, 184)"
-                    />
+  const { programs, errorMsg, isLoading } = useProgramData(4);
 
-                    <ProgramCard
-                        title="Program Name"
-                        description="Lorem ipsum dolor sit amet..."
-                        imageSrc={logo}
-                        buttonText="Learn More"
-                        backgroundColor="rgb(217, 217, 217)"
-                    />
+  return (
+    <Box
+      as="section"
+      bg="white"
+      px={{ base: 6, md: 10, lg: 24 }}
+      py={{ base: 12, md: 16 }}
+    >
+      <SimpleGrid
+        columns={{ base: 1, xl: 2 }}
+        spacing={{ base: 8, md: 10 }}
+        maxW="1280px"
+        mx="auto"
+      >
+        {isLoading
+          ? [1, 2, 3, 4].map((i) => (
+              <Skeleton
+                key={i}
+                height={{ base: "360px", md: "285px" }}
+                borderRadius="12px"
+              />
+            ))
+          : programs.map((program) => (
+              <ProgramCard
+                key={program.id}
+                title={program.title}
+                description={program.summary}
+                imageSrc={getProgramImagePath(program.title)}
+                link="/programs"
+              />
+            ))}
+      </SimpleGrid>
 
-                    <ProgramCard
-                        title="Program Name"
-                        description="Lorem ipsum dolor sit amet..."
-                        imageSrc={logo}
-                        buttonText="Learn More"
-                        backgroundColor="rgb(217, 217, 217)"
-                    />
+      {!isLoading && !programs.length && !errorMsg ? (
+        <Text mt={8} textAlign="center" color="#3F5F85">
+          No programs available right now.
+        </Text>
+      ) : null}
 
-                    <ProgramCard
-                        title="Program Name"
-                        description="Lorem ipsum dolor sit amet..."
-                        imageSrc={logo}
-                        buttonText="Learn More"
-                        backgroundColor="rgb(184, 184, 184)"
-                    />
-                </SimpleGrid>
-            </Box>
-        </Box>
-    );
+      {errorMsg ? (
+        <Text mt={8} textAlign="center" color="red.500">
+          {errorMsg}
+        </Text>
+      ) : null}
+    </Box>
+  );
 }

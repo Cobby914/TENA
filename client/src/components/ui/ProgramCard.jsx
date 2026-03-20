@@ -1,72 +1,86 @@
-import { Card, Grid, GridItem, Text, Image } from "@chakra-ui/react";
-import Button from "./Button";
+import { Box, Button, Card, Flex, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 
 export default function ProgramCard({
-    title,
-    description,
-    imageSrc,
-    buttonText,
-    ...props
+  title,
+  description,
+  imageSrc,
+  link,
+  ...props
 }) {
-    return (
-        <Card
-            w="100%"
-            maxW={{ base: "100%", md: "614px" }}
-            h={{ base: "auto", md: "468px" }}
-            minH={{ base: "350px", md: "468px" }}
-            p={{ base: 4, md: 6 }}
-            border="1px solid black"
-            borderRadius="0"
-            {...props}
+  return (
+    <Card
+      w="100%"
+      maxW="600px"
+      minH={{ base: "auto", md: "285px" }}
+      px={{ base: 6, md: 8 }}
+      py={{ base: 6, md: 8 }}
+      bg="white"
+      border="1px solid #E2E8F0"
+      borderRadius="12px"
+      boxShadow="sm"
+      {...props}
+    >
+      <VStack align="stretch" spacing={6}>
+        <Text
+          fontWeight={700}
+          fontSize={{ base: "2xl", md: "36px" }}
+          lineHeight="1.2"
+          color="#1573CF"
         >
-            <Grid 
-                templateColumns={{ base: "1fr", sm: "1fr 1fr" }}
-                templateRows={{ base: "auto auto auto auto", sm: "1fr 1fr" }}
-                h="100%"
-                gap={{ base: 4, sm: 0 }}
-            >
+          {title}
+        </Text>
 
-                {/* Title */}
-                <GridItem>
-                    <Text fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}>
-                        {title}
-                    </Text>
-                </GridItem>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          align="stretch"
+          gap={{ base: 5, md: 7 }}
+        >
+          <Image
+            src={imageSrc}
+            alt={title}
+            w={{ base: "100%", md: "164px" }}
+            h={{ base: "210px", md: "170px" }}
+            objectFit="cover"
+            borderRadius="4px"
+            fallback={
+              <Box
+                w={{ base: "100%", md: "164px" }}
+                h={{ base: "210px", md: "170px" }}
+                bg="gray.200"
+                borderRadius="4px"
+              />
+            }
+          />
 
-                {/* Image */}
-                <GridItem 
-                    display="flex" 
-                    justifyContent={{ base: "center", sm: "flex-end" }}
+          <Flex direction="column" flex="1" minH={{ md: "170px" }}>
+            <Text fontSize={{ base: "md", md: "18px" }} lineHeight="1.55" color="#1A202C">
+              {description}
+            </Text>
+
+            <Flex justify={{ base: "flex-start", md: "flex-end" }} mt={{ base: 6, md: "auto" }}>
+              <NavLink to={link}>
+                <Button
+                  height="40px"
+                  borderRadius="8px"
+                  px={4}
+                  bg="#1573CF"
+                  color="white"
+                  _hover={{ bg: "#0F64B5" }}
                 >
-                    <Image
-                        src={imageSrc}
-                        boxSize={{ base: "100px", md: "128px" }}
-                        objectFit="contain"
-                    />
-                </GridItem>
-
-                {/* Description */}
-                <GridItem>
-                    <Text 
-                        fontSize={{ base: "xs", md: "sm" }}
-                        display="flex"
-                        alignItems={{ base: "flex-start", sm: "flex-end" }}
-                        h="100%"
-                    >
-                        {description}
+                  <HStack gap={2}>
+                    <Text fontWeight={600} fontSize="14px" lineHeight="20px" color="white">
+                      Learn More
                     </Text>
-                </GridItem>
-
-                {/* Learn more button */}
-                <GridItem
-                    display="flex"
-                    justifyContent={{ base: "center", sm: "flex-end" }}
-                    alignItems="flex-end"
-                >
-                    <Button as="u">{buttonText}</Button>
-                </GridItem>
-
-            </Grid>
-        </Card>
-    );
+                    <ChevronRight size={16} />
+                  </HStack>
+                </Button>
+              </NavLink>
+            </Flex>
+          </Flex>
+        </Flex>
+      </VStack>
+    </Card>
+  );
 }
