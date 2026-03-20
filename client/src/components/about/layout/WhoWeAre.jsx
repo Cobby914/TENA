@@ -14,32 +14,20 @@ export default function WhoWeAre() {
                 px={{ base: 4, md: 10, lg: 20 }}
             >
                 <Flex direction="column" alignItems="flex-start" maxW="950px">
-                    <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} fontWeight="normal" mb={{ base: 4, md: 6 }}>
+                    <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} fontWeight="700" mb={{ base: 4, md: 6 }} fontFamily = "INTER" color = "#1573CF">
                         Who We Are
                     </Text>
                     <VStack spacing={{ base: 4, md: 6 }} alignItems="flex-start" mb={{ base: 6, md: 10 }}>
-                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35">
-                            TENA is a community-centric nonprofit building ecosystems that empower underserved communities to overcome systemic barriers 
-                            through optimizing access to resources, knowledge, and entry to healthcare professions.
+                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35" fontFamily = "INTER" color = "#1D232E">
+                            TENA was born from lived  experience and community collaboration. What began as grassroots support for families navigating the healthcare system revealed a deeper truth: access alone is not enough without guidance, trust, and relationship.
                         </Text>
-                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35">
-                            TENA recognizes that access to quality healthcare, resources, and health education can be difficult to obtain in many
-                            communities, and works hard to bridge this gap. Composed primarily of Los Angeles County natives, the team draws upon the 
-                            social determinants of health to provide services that support the health and wellness of their neighborhoods and beyond. 
-                            TENA believes in empowering others to have the tools, knowledge, and resources they need to live a healthy and enriched life.
+                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35" fontFamily = "INTER" color = "#1D232E">
+                            TENA's founders,  inspired by community voices and driven by data, built an organization that meets people holistically blending care navigation, preventive  outreach, and workforce development in ways that truly uplift  communities.
+                        </Text>
+                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35" fontFamily = "INTER" color = "#1D232E">
+                            Today, TENA  continues to grow as a community-anchored nonprofit tackling inequities through programs that are responsive, evidence-informed, and rooted in human dignity.
                         </Text>
                     </VStack>
-                    <Button
-                        bg="white"
-                        color="black"
-                        fontWeight="normal"
-                        borderRadius="none"
-                        height={{ base: "60px", md: "70px" }}
-                        width={{ base: "180px", md: "220px" }}
-                        fontSize={{ base: "md", md: "lg" }}
-                    >
-                        Find Out More
-                    </Button>
                 </Flex>
             </Box>
         </Box>
