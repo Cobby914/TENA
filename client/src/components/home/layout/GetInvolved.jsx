@@ -26,6 +26,7 @@ export default function GetInvolved() {
           fontWeight={700}
           fontSize={{ base: "30px", md: "40px", lg: "48px" }}
           mb={{ base: 8, md: 12 }}
+          textColor="#1573CF"
         >
           Join Our Mission.
         </Text>
