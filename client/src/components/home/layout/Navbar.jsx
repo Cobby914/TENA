@@ -2,8 +2,6 @@ import {
   Box,
   Flex,
   Image,
-  Menu,
-  MenuButton,
   MenuList,
   MenuItem,
   Button as ChakraButton,
@@ -11,12 +9,19 @@ import {
 import { ChevronDown } from "lucide-react";
 import { LockKeyhole } from "lucide-react";
 import { NavLink } from "react-router-dom";
-
+import DropdownButton from "../ui/DropdownButton";
 import Button from "../../ui/Button";
 import main_logo from "../../../assets/transparent_tena_logo.png";
 import text_logo from "../../../assets/tena_text_logo.png";
 
 export default function Navbar() {
+  const menuAnimation = {
+    initial: { opacity: 0, y: -10 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 },
+    transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
+  };
+
   return (
     <Box
       as="nav"
@@ -25,14 +30,14 @@ export default function Navbar() {
       zIndex="1000"
       bg="rgb(255, 255, 255)"
       w="100%"
-      px={{ base: 4, md: 8, lg: 16 }}
-      py={{ base: 3, md: 4 }}
+      px={{ base: 6, md: 8}}
+      py={4}
       boxShadow="sm"
     >
       <Flex justify="space-between" align="center">
         {/* Logo Section */}
         <NavLink to="/">
-          <Flex align="center" gap={3}>
+          <Flex align="center" gap={0}>
             <Image
               src={main_logo}
               alt="TENA Logo"
@@ -55,16 +60,33 @@ export default function Navbar() {
           display={{ base: "none", md: "flex" }} // hide on mobile for now
         >
           <NavLink to="/about">
-            <Button rightIcon={<ChevronDown size={18} />}>About Us</Button>
+            <DropdownButton text="About Us" rightIcon={<ChevronDown size={18} />}>
+              <MenuList motionProps={menuAnimation} mt={3} borderRadius={18} boxShadow={"sm"}>
+                <MenuItem as={NavLink} to="/team">Our Team</MenuItem>
+                <MenuItem as={NavLink} to="/board">Our Board</MenuItem>
+                <MenuItem as={NavLink} to="/partners">Our Partners</MenuItem>
+              </MenuList>
+            </DropdownButton>
           </NavLink>
 
           <NavLink to="/programs">
-            <Button rightIcon={<ChevronDown size={18} />}>Programs</Button>
-          </NavLink>
+            <DropdownButton text="Programs" rightIcon={<ChevronDown size={18} />}>
+              <MenuList motionProps={menuAnimation} mt={3} borderRadius={18} boxShadow={"sm"}>
+                <MenuItem as={NavLink} to="/programs">Care Navigation</MenuItem>
+                <MenuItem as={NavLink} to="/programs">Community Health Fairs</MenuItem>
+                <MenuItem as={NavLink} to="/programs">Pre-Health Workforce</MenuItem>
+                <MenuItem as={NavLink} to="/programs">Fitclub</MenuItem>
+              </MenuList>
+            </DropdownButton>          </NavLink>
 
           <NavLink to="/getInvolved">
-            <Button rightIcon={<ChevronDown size={18} />}>Get Involved</Button>
-          </NavLink>
+            <DropdownButton text="Get Involved" rightIcon={<ChevronDown size={18} />}>
+              <MenuList motionProps={menuAnimation} mt={3} borderRadius={18} boxShadow={"sm"}>
+                <MenuItem as={NavLink} to="/getInvolved">Donations</MenuItem>
+                <MenuItem as={NavLink} to="/getInvolved">Partnership</MenuItem>
+                <MenuItem as={NavLink} to="/getInvolved">Volunteering</MenuItem>
+              </MenuList>
+            </DropdownButton>          </NavLink>
 
           <NavLink to="/donate">
             <Button>Donate</Button>

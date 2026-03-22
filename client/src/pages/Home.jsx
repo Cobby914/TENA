@@ -6,11 +6,11 @@ import Sponsors from "../components/home/layout/Sponsors";
 import BelowPrograms from "../components/home/layout/BelowPrograms";
 import GetInvolved from "../components/home/layout/GetInvolved"
 import Footer from "../components/home/layout/Footer"
-
+import { Box } from "@chakra-ui/react"
 
 export default function Home() {
     return (
-        <>
+        <Box overflow={"hidden"}>
             <Navbar/>
             <Slogan/>
             <ChallengeSolution/>
@@ -19,6 +19,6 @@ export default function Home() {
             <BelowPrograms/>
             <GetInvolved/>
             <Footer/>
-        </>
+        </Box>
     );
 }
