@@ -1,9 +1,12 @@
-import { Box, Flex, HStack, Image, VStack, Text } from "@chakra-ui/react";
-
+import { Box, Flex, Stack, HStack, Image, VStack, Text, Link, Icon } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
+import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 import logo from "../../../assets/logoplaceholder.png";
 import Newsletter from "../../ui/Newsletter";
 import main_logo from "../../../assets/transparent_tena_logo.png";
 import text_logo from "../../../assets/tena_text_logo.png";
+import gold_transparency from "../../../assets/gold_transparency_candid.png";
+
 
 // Still need to add the transparency seal
 // Future functionality: update text to required
@@ -14,95 +17,84 @@ export default function Footer({
     return (
         <Box as="section"
              bg="#FFFFFF"
-             width="100vw"
-             minH="800px"
+             width="100%"
+             minH="100%"
             >
         
             <Flex direction="column"
                 justifyContent="center" 
-                alignItems = "center">
+                alignItems = "center"
+                >
 
-                <Box background = "#B8b8b8" width = "100vw" height = "100vh" ratio = {1440/661} 
-                maxWidth = "1452px" maxHeight= "661px" >
+                <Box background="rgba(248, 249, 251)" width="100%" ratio={1537/613}  py={{ base: 10, md: 12 }} px={{ base: 6, md: 8, lg: 10 }}>
                 {/* For heights and widths smaller than the max, just use the same as a ratio of our maxes */}
         
-                    <HStack width = "100vw" maxWidth = "1452px" gap = "0px">    
-                        <VStack align = "left" maxWidth = "930px" width = "65vw" maxHeight = "661px" height = "100vh">
+                    <Stack direction={{base: "column", lg: "row"}} width="100%" h="100%" gap={{ base: 12, lg: 10 }} alignItems="flex-start">    
+                        <VStack align="flex-start" width={{base: "100%", lg:"65%"}} gap={6}>
 
                             {/* Logos go here */}
-                            <HStack width = {{base: "clamp(20vw, 20vw, 939px)", lg: "939px"}} height = {{base: "clamp(15vh,15vh,100px)", lg: "100px"}}  marginTop = "1vh"
-                                maxWidth= "300px" maxHeight =  "100px">
-
-                                <Image src = {main_logo} align = "left"  ratio= {85/81} width = "6vw"
-                                maxWidth = "85px" maxHeight = "81px"
-                                marginLeft = {{base:"min(3.4vw,52px)"}}>
-                                </Image>
-                                
+                            <HStack gap={0}>
+                                <Image src = {main_logo} align = "left"  ratio= {85/81} width={{ base: "60px", lg: "85px" }}
+                                maxWidth = "85px"/>
+                            
                                 {/* This will be the logo text in future, so ratio/size will still be TBD */}
-                                <Image src = {text_logo} align = "right" width = "10vw" height = "7vh"
-                                ratio = {151/55} marginLeft = {{base:"min(2vw,16px)"}}
-                                maxWidth = "151px" maxHeight = "55px">
-                                </Image>
+                                <Image src = {text_logo} align = "right" ratio={153/51} width={{base: "150px", lg: "200px"}}
+                                maxWidth = "200px" />
                             </HStack>
 
                             {/* Separator Line */}
 
-                            <Box width = "56vw"  height = "min(0.5vh, 2px)" background = "#7f7f7f" marginLeft = {{base:"min(3.4vw,52px)"}} marginTop = "min(0.5vh,5px)" maxWidth = "805px" gap = "0px"></Box>
+                            <Box width="100%"  height={{base: "2px", lg: "4px"}} background = "rgba(92, 218, 197, 1)" />
 
-                            <HStack marginTop = "0.3vh" gap = "0px" maxWidth = "993px">
-                                <Box marginLeft = {{base:"min(3.4vw,52px)"}}>
-                                    <Text fontSize={{ base: "min(1.5vw, 23px)"}} fontWeight={400} lineHeight="100%" maxWidth = "300px" width = "16vw" >Tena Foundation</Text>
-                                    <Text fontSize={{ base: "min(1.5vw, 23px)"}} fontWeight={400} lineHeight="100%" maxWidth = "300px" width = "16vw">Address Line</Text>
-                                    <Text fontSize={{ base: "min(1.5vw, 23px)"}} fontWeight={400} lineHeight="100%" maxWidth = "300px" width = "16vw">State</Text>
-                                    <Text fontSize={{ base: "min(1.5vw, 23px)"}} fontWeight={400} lineHeight="100%" maxWidth = "300px" width = "16vw">United States</Text>
-                                </Box>
-                                {/* marginLeft = {{base:"clamp(,3vw,70px)", lg: "70px"}} */}
-                                <Box marginLeft = {{base:"min(4vw, 80px)"}}>
-                                    <Text fontSize= {{ base: "min(2vw,24px)"}} fontWeight={700} lineHeight="100%" maxWidth = "100px" width = "6vw">Link 1</Text>
-                                    <Text fontSize= {{ base: "min(2vw,24px)" }} fontWeight={700} lineHeight="150%" maxWidth = "100px" width = "6vw">Link 2</Text>
-                                </Box>
-
-                                <Box marginLeft = {{base:"min(1.2vw,16px)"}} marginTop="min(2vh,5px)">
-                                    <Text fontSize= {{ base: "min(2vw,24px)"}} fontWeight={700} lineHeight="100%" maxWidth = "100px" width = "6vw">Link 3</Text>
-                                    <Text fontSize= {{ base: "min(2vw,24px)"}} fontWeight={700} lineHeight="150%" maxWidth = "100px" width = "6vw">Link 4</Text>
-                                </Box>
-
-                                <Box marginLeft = {{base:"min(11vw,90px)"}} marginTop = "min(2vh, 5px)">
-                                    <Text fontSize={{ base: "min(1.5vw, 20px)"}} fontWeight={400} lineHeight="100%" maxWidth = "180px" width = "16vw">Contact Information</Text>
-                                    <Text fontSize={{ base: "min(1.5vw, 20px)"}} fontWeight={400} lineHeight="100%" maxWidth = "180px" width = "16vw">Contact Information</Text>
-                                    <Text fontSize={{ base: "min(1.5vw, 20px)"}} fontWeight={400} lineHeight="100%" maxWidth = "180px" width = "16vw">Contact Information</Text>
-                                    <Text fontSize={{ base: "min(1.5vw, 20px)"}} fontWeight={400} lineHeight="100%" maxWidth = "180px" width = "16vw">Contact Information</Text>
-                                    
-                                    <HStack gap = "0px" align = "center" marginTop = "4%" width = "16vw" maxWidth = "180px"  >
-                                        {/* Using Logo as placeholder */}
-                                        <Image src = {logo} maxHeight = "27px" maxWidth = "27px" width = "2vw" marginLeft = {{base: "clamp(3vw,3vw,45px)", lg: "45px"}}></Image>
-                                        <Image src = {logo} maxHeight = "27px" maxWidth = "27px"  marginLeft = {{base: "clamp(0.4vw,0.4vw,3px)", lg: "3px"}} marginRight = {{base: "clamp(0.4vw,0.4vw,3px)", lg: "3px"}} width = "2vw"></Image>
-                                        <Image src = {logo} maxHeight = "27px" maxWidth = "27px" width = "2vw"></Image>
+                            <HStack gap={{ base: "10px", md: "65px" }} alignItems="flex-start" width="100%">
+                                <VStack  minW="200px" gap={10} alignItems="flex-start" >
+                                    <Box>
+                                        <Text fontSize={{ base: 12, md: 14, lg: 16}} fontWeight={500} lineHeight="tall">1001 E Rosecrans Ave</Text>
+                                        <Text fontSize={{ base: 12, md: 14, lg: 16}} fontWeight={500} lineHeight="tall">Los Angeles, CA 90059</Text>
+                                        <Text fontSize={{ base: 12, md: 14, lg: 16}} fontWeight={500} lineHeight="tall">United States</Text>
+                                    </Box>
+                                    <HStack gap={4}>
+                                        <Link href="https://www.linkedin.com/company/tena-cares/" isExternal>
+                                            <Icon as={FaLinkedin} boxSize={7} />
+                                        </Link>
+                                        <Link href="https://www.instagram.com/tenacares/" isExternal>
+                                            <Icon as={FaInstagram} boxSize={7} />
+                                        </Link>
                                     </HStack>
-                                </Box>
+                                </VStack>
+                                <VStack minW="150px" gap={6} alignItems="flex-start">
+                                    <NavLink to="/about">
+                                        <Text fontSize={{ base: 20, md: 22, lg: 24}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>About Us</Text>
+                                    </NavLink>
+                                    <NavLink to="/programs">
+                                        <Text fontSize={{ base: 20, md: 22, lg: 24}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Programs</Text>
+                                    </NavLink>
+                                    <NavLink to="/getInvolved">
+                                    <Text fontSize={{ base: 20, md: 22, lg: 24}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Get Involved</Text>
+                                    </NavLink>
+                                    <NavLink to="/donate">
+                                        <Text fontSize={{ base: 20, md: 22, lg: 24}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Donate</Text>
+                                    </NavLink>
+                                </VStack>
+
+                                <VStack maxW="260px" gap={5} alignItems={"flex-start"}>
+                                    <Text fontSize={{ base: 12, md: 14, lg: 16}} fontWeight={500} lineHeight="24px" width="100%">TENA is a 501(c)(3) not-for-profit organization.</Text>
+                                    <Text fontSize={{ base: 12, md: 14, lg: 16}} fontWeight={500} lineHeight="24px" width="100%">Our Tax ID: 83-4267004</Text>
+                                </VStack>
 
                             </HStack>
 
-                            <Box>
-                                <Text marginLeft = {{base:"min(3.4vw,52px)"}} marginTop = "2%" fontSize={{ base: "clamp(1.2vw, 1.2vw,18px)",lg: "18px" }}>Additional information</Text>
-                                <Text marginLeft = {{base:"min(3.4vw,52px)"}} width = "25vw" maxWidth = "294px" fontSize={{ base: "clamp(1.2vw, 1.2vw,18px)",lg: "18px" }}>Lorem ipsum dolor sit ametctetur adipiscing tempor incididunt ut labore et dolore magna.</Text>
-                            </Box>
-               
-                            {/* This will be the transparency seal */}
-
-                            <Image src = {logo} align = "left"  ratio= {85/81} width = "6vw"
-                                maxWidth = "85px" maxHeight = "81px"
-                                marginLeft = {{base:"min(3.4vw,52px)"}} marginTop = {{base: "min(15vh,90px)"}}>
-                            </Image>
-
+                            <HStack mt={6} align="flex-end" justify="space-between" width="100%">
+                                <Image src={gold_transparency} ratio={1} width={"90px"} />
+                                <Text fontSize={{ base: 12, md: 14, lg: 16}} fontWeight={500} lineHeight="24px" >© 2026 TENA CARE. All rights reserved</Text>
+                            </HStack>
                         </VStack>
                     
-                    
-                        <Box align = "right" paddingRight = {{base:"clamp(2vw,2vw,52px)", lg: "52px"}} paddingLeft ={{base:"clamp(1vw,1vw,20px)", lg: "20px"}} >
+                        <Box align="center" w={{base: "100%", lg:"40%"}} mt={{base: 10, lg: 0}} ml={{base: 0, lg: 14}}>
                             <Newsletter></Newsletter>
                         </Box>
                     
-                    </HStack>
+                    </Stack>
                 </Box>
 
             </Flex>

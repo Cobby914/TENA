@@ -41,7 +41,7 @@ export default function Sponsors () {
     const dupLogos = [...logos, ...logos];
     
     return (
-        <Box mt={20} overflow={"hidden"} bg="white" py={10} w="100vw" border="1px solid rgba(226, 232, 240, 1)">
+        <Box mt={20} overflow={"hidden"} bg="white" py={10} w="100%" border="1px solid rgba(226, 232, 240, 1)">
             <style>
                 {`
                     @keyframes scroll {
