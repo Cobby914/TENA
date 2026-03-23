@@ -16,8 +16,8 @@ export default function DropdownButton ({text, children, ...props}) {
                     bg="white"
                     color="black"
                     fontWeight="600"
-                    fontSize= "1.5vw"
-                    width = "10vw"
+                    fontSize= {{base: 16, lg: 18}}
+                    width ="auto"
                     height="6vh"
                     px = "1vw"
                     textAlign = "left"
