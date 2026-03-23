@@ -9,7 +9,6 @@ export default function DropdownButton ({text, children, ...props}) {
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
             display="inline-block"
-            width={{ base: "150px", md: "160px" }}
         >
             <Menu isOpen={isOpen} placement="bottom-start" gutter={0} transition="none" w="100%">
                 <MenuButton
@@ -17,10 +16,13 @@ export default function DropdownButton ({text, children, ...props}) {
                     bg="white"
                     color="black"
                     fontWeight="600"
-                    fontSize={{ base: 10, md: 20}}
-                    height={{ base: "50px", md: "55px"}}
-                    width="auto"
-                    borderRadius={6}
+                    fontSize= "1.5vw"
+                    width = "10vw"
+                    height="6vh"
+                    px = "1vw"
+                    textAlign = "left"
+                    borderRadius={4}
+
                     _active={"none"}
                     {...props}
                 >
