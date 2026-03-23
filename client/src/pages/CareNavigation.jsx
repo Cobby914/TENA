@@ -1,13 +1,11 @@
-import CareNavigationHeader from "../components/allPrograms/ProgramsChildComponents/CareNavigationComponents/CareNavigationHeader";
-import CareNaviProblemSolution from "../components/allPrograms/ProgramsChildComponents/CareNavigationComponents/CareNaviProblemSolution";
-import CareNavigationProgress from "../components/allPrograms/ProgramsChildComponents/CareNavigationComponents/CareNavigationProgress";
+import ProgramPage from "../components/allPrograms/ProgramsChildComponents/ProgramComponents/ProgramPage";
 
 export default function CareNavigation() {
   return (
-    <>
-      <CareNavigationHeader />
-      <CareNaviProblemSolution />
-      <CareNavigationProgress />
-    </>
+    <ProgramPage
+      id={3}
+      title="Care Navigation"
+      introCopy="TENA provides personalized, one-on-one care navigation to help individuals understand their options and successfully access healthcare and social services."
+    />
   );
 }
