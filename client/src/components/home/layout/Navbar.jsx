@@ -70,13 +70,13 @@ export default function Navbar() {
           <NavLink to="/about">
             <DropdownButton text="About Us" rightIcon={<ChevronDown size= "1.2vw" />}>
               <MenuList motionProps={menuAnimation} minW="100%" width = "10vw" fontSize = "1.2vw" p = "0" align = "center" rounded = "0">
-                <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"  borderRadius="none" fontSize = "1.2vw">
+                <MenuItem as = {ChakraButton} width = "10vw" height = "4vh"  borderRadius="none" fontSize = "1vw">
                     <NavLink to = "/team">Our Team</NavLink>
                 </MenuItem>
-                <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"   borderRadius="none" fontSize = "1.2vw">
+                <MenuItem as = {ChakraButton} width = "10vw" height = "4vh"   borderRadius="none" fontSize = "1vw">
                     <NavLink to = "/board">Our Board</NavLink>
                  </MenuItem>
-                <MenuItem as = {ChakraButton} width = "11vw" height = "4vh"  borderRadius="none" fontSize = "1.2vw">
+                <MenuItem as = {ChakraButton} width = "10vw" height = "4vh"  borderRadius="none" fontSize = "1vw">
                     <NavLink to = "/partners">Our Partners</NavLink>
                  </MenuItem>
               </MenuList>
@@ -84,18 +84,18 @@ export default function Navbar() {
           </NavLink>
 
           <NavLink to="/programs">
-            <DropdownButton text="Programs" rightIcon={<ChevronDown size="1.2vw" />}>
-              <MenuList motionProps={menuAnimation} minW="100%" width = "10vw" fontSize = "1.2vw" p = "0" align = "center" rounded = "0">
-                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+            <DropdownButton text="Programs" rightIcon={<ChevronDown size="1.2vw" />} width = "11.5vw">
+              <MenuList motionProps={menuAnimation} minW="100%" width = "11.5vw" fontSize = "1.2vw" p = "0" align = "center" rounded = "0">
+                        <MenuItem as = {ChakraButton} width = "11.5vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
                             <NavLink to = "/programs" fontSize = "10vw">Care Navigation</NavLink>
                         </MenuItem>
-                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                        <MenuItem as = {ChakraButton} width = "11.5vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
                             <NavLink to = "/programs">Community Health Fairs</NavLink>
                         </MenuItem>
-                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                        <MenuItem as = {ChakraButton} width = "11.5vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
                             <NavLink to = "/programs">Pre-Health Workforce</NavLink>
                         </MenuItem>
-                        <MenuItem as = {ChakraButton} width = "12vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
+                        <MenuItem as = {ChakraButton} width = "11.5vw" height = "5vh"  borderRadius="none" fontSize = "1vw">
                             <NavLink to = "/programs">FitClub</NavLink>
                         </MenuItem>
               </MenuList>
