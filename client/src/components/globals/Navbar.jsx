@@ -8,14 +8,13 @@ import {
   Button as ChakraButton,
 } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
-import { LockKeyhole } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import DropdownButton from "../ui/DropdownButton";
-import Button from "../../ui/Button";
-import main_logo from "../../../assets/transparent_tena_logo.png";
-import text_logo from "../../../assets/tena_text_logo.png";
+import DropdownButton from "../home/ui/DropdownButton";
+import Button from "../ui/Button";
+import main_logo from "../../assets/transparent_tena_logo.png";
+import text_logo from "../../assets/tena_text_logo.png";
 
-import Lock from "../../../assets/Locked.png"
+import Lock from "../../assets/Locked.png"
 
 export default function Navbar() {
   const menuAnimation={
@@ -24,6 +23,7 @@ export default function Navbar() {
     exit: { opacity: 0, y: -10 },
     transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
   };
+
 
   return (
     <Box
