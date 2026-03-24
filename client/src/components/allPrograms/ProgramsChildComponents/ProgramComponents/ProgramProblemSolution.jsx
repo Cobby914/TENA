@@ -15,6 +15,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useProgramById } from "../../useProgramsById";
+import { resolveProgramImage } from "../../programImageResolver";
 
 function splitSolutionText(solutionText) {
   const lines = String(solutionText ?? "")
@@ -39,6 +40,8 @@ function splitSolutionText(solutionText) {
 export default function ProgramProblemSolution({ id, introCopy }) {
   const { program, isLoading, errorMsg } = useProgramById(id);
   const { paragraphs, bullets } = splitSolutionText(program?.solution);
+  const problemImageSrc = resolveProgramImage(program?.problem_image);
+  const solutionImageSrc = resolveProgramImage(program?.solution_image);
 
   if (isLoading) {
     return (
@@ -107,9 +110,9 @@ export default function ProgramProblemSolution({ id, introCopy }) {
             </Box>
 
             <Box flex="1" width="100%" minH="430px" overflow="hidden" borderRadius="md" bg="gray.200">
-              {program?.problem_image && (
+              {problemImageSrc && (
                 <Image
-                  src={`/${program.problem_image}`}
+                  src={problemImageSrc}
                   alt="The problem"
                   objectFit="cover"
                   w="100%"
@@ -125,9 +128,9 @@ export default function ProgramProblemSolution({ id, introCopy }) {
             gap={{ base: 8, md: 10, lg: 14 }}
           >
             <Box flex="1" width="100%" minH="430px" overflow="hidden" borderRadius="md" bg="gray.200">
-              {program?.solution_image && (
+              {solutionImageSrc && (
                 <Image
-                  src={`/${program.solution_image}`}
+                  src={solutionImageSrc}
                   alt="What we're doing"
                   objectFit="cover"
                   w="100%"
