@@ -1,5 +1,5 @@
-import Navbar from "../components/home/layout/Navbar";
-import Footer from "../components/home/layout/Footer";
+import Navbar from "../components/globals/Navbar";
+import Footer from "../components/globals/Footer";
 import OurBoard from "../components/board/OurBoard";
 
 export default function Board() {

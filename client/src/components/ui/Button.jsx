@@ -6,10 +6,12 @@ export default function Button({ children, ...props }) {
       bg="white"
       color="black"
       fontWeight="600"
-      fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
-      height={{ base: "60px", md: "70px", lg: "75px" }}
-      width={{ base: "150px", md: "165px", lg: "180px" }}
+      fontSize={{ base: 10, md: 20}}
+      height={{ base: "60px", md: "60px"}}
+      width={{ base: "150px", md: "160px" }}
       borderRadius="none"
+      _hover={"none"}
+      _active={"none"}
       {...props}
     >
       {children}
