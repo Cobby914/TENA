@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 
-export default function CareNavigationHeader() {
+export default function ProgramHeader({ title }) {
   return (
     <Box
       as="section"
@@ -27,17 +27,9 @@ export default function CareNavigationHeader() {
               fontWeight="normal"
               mb={{ base: 4, md: 6 }}
             >
-              Care Navigation
+              {title}
             </Text>
           </Flex>
-          <Flex
-            flex="1"
-            minH={{ base: "200px", md: "230px", lg: "260px" }}
-            align="center"
-            justify="center"
-            bg="rgb(184, 184, 184)"
-            width="100%"
-          ></Flex>
         </Flex>
       </Box>
     </Box>

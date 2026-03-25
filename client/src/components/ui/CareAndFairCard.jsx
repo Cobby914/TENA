@@ -1,6 +1,5 @@
 import {Text, Box, Flex, Button, VStack } from "@chakra-ui/react"
 import ImagePlaceholder from "./MVimagePH";
-
 import { NavLink } from "react-router-dom";
 export default function CareAndFairCard ({
     title,
