@@ -2,6 +2,11 @@ import { Box, Flex, VStack, Text, SimpleGrid } from "@chakra-ui/react";
 import SubteamSection from "../../ui/SubteamSection";
 import placeholder from "../../../assets/logoplaceholder.png";
 import Board from "../../../pages/Board"
+
+import OurBoardPNG from "../../../assets/OurBoard.png";
+import OurTeamPNG from "../../../assets/OurTeam.png";
+import OurPartnersPNG from "../../../assets/OurPartners.png";
+
 export default function OurPeople() {
     return (
         <Box py={{ base: 8, md: 12, lg: 16 }}>
@@ -19,10 +24,9 @@ export default function OurPeople() {
                     mx="auto"
                 >
                     <VStack spacing="1" alignItems="center" justifyContent="center" textAlign="center">
-                        <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} mb={{ base: 3, md: 5 }}>Our People</Text>
-                        <Text fontSize={{ base: "md", md: "lg", lg: "xl" }}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  occaecat cupidatat non proident, sunt in culpa qui officia deserunt  mollit anim id est laborum.
-                        </Text>
+                        <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} mb={{ base: 3, md: 5 }} fontFamily = "INTER" fontWeight = "700" color = "#1573CF">Our People</Text>
+                        <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontFamily = "INTER" fontWeight = "400" color = "#3F5F85">
+Our staff, board, and partners bring lived experience, professional expertise, and deep community commitment to everything we do.                           </Text>
                     </VStack>
                 </Flex>
 
@@ -33,9 +37,9 @@ export default function OurPeople() {
                     mx="auto"
                     my={{ base: "30px", md: "40px", lg: "50px" }}
                 >
-                    <SubteamSection link={"/board"} src={placeholder} whoText="Our Board" buttonText="Find Out More"></SubteamSection>
-                    <SubteamSection link={"/team"} src={placeholder} whoText="Our Team" buttonText="Find Out More"></SubteamSection>
-                    <SubteamSection link={"/partners"} src={placeholder} whoText="Our Partners" buttonText="Find Out More"></SubteamSection>
+                    <SubteamSection link={"/board"} src={OurBoardPNG} whoText="Our Board" buttonText="Find Out More >"></SubteamSection>
+                    <SubteamSection link={"/team"} src={OurTeamPNG} whoText="Our Team" buttonText="Find Out More >"></SubteamSection>
+                    <SubteamSection link={"/partners"} src={OurPartnersPNG} whoText="Our Partners" buttonText="Find Out More >"></SubteamSection>
                 </SimpleGrid>
             </Box>
         </Box>

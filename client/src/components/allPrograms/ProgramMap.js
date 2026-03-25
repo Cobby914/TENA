@@ -1,11 +1,11 @@
 import placeholder from "../../assets/logoplaceholder.png";
+import { resolveProgramImage } from "./programImageResolver";
 
-export function Program(data, ind){
+export function Program(data, ind) {
+  const title = String(data.title ?? "RandomTitle").trim();
+  const summary = String(data.summary ?? "Insert Summary").trim();
 
-    const title = String(data.title ?? "RandomTitle").trim();
-    const summary = String(data.summary ?? "Insert Summary").trim(); 
-
-    /* Use the following code once the program images becomes available and potentially the link
+  /* Use the following code once the program images becomes available and potentially the link
 
 
     "im" will be the image of the program and "link" will be the route to the page
@@ -23,14 +23,24 @@ export function Program(data, ind){
     const link = "/" + title;
     */
 
+  const imageKey =
+    (typeof data.image_key === "string" && data.image_key.trim()) ||
+    (typeof data.problem_image === "string" && data.problem_image.trim()) ||
+    "";
+  const im = resolveProgramImage(imageKey, placeholder);
+  const providedLink = typeof data.link === "string" ? data.link.trim() : "";
+  const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const generatedLinkByTitle = {
+    carenavigation: "/programs/carenavigation",
+    communityhealthfairs: "/programs/communityhealthfairs",
+    prehealthworkforcereadiness: "/programs/prehealthworkforcereadiness",
+    fitclub: "/programs/fitclub",
+  };
+  const link = providedLink || generatedLinkByTitle[normalizedTitle] || "/";
 
-    //GET RID OF THIS AFTER ADDING PROGRAM IMAGE (and link)!
-    const im = placeholder;
-    const link = "/"
+  const id = String(data.id).trim();
 
-    const id = String(data.id).trim();
+  const reversed = ind % 2 !== 0;
 
-    const reversed = ind % 2 !== 0;
-
-    return {id, title, summary, im, link, reversed};
+  return { id, title, summary, im, link, reversed };
 }

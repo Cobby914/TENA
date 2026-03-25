@@ -6,10 +6,8 @@ import Footer from "../components/globals/Footer"
 export default function Programs() {
     return (
         <>
-            <Navbar />
             <OurPrograms />
             <CareAndFair />
-            <Footer/>
         </>
     );
 }
