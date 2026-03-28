@@ -35,7 +35,7 @@ Our staff, board, and partners bring lived experience, professional expertise, a
                 <SimpleGrid 
                     columns={{ base: 1, md: 3 }} 
                     spacing={{ base: 8, md: 10 }}
-                    maxW="1600px"
+                    maxW="1000px"
                     mx="auto"
                     my={{ base: "30px", md: "40px", lg: "50px" }}
                     position="relative" zIndex = "3"
