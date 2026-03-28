@@ -16,6 +16,7 @@ export default function OurValues() {
                 maxW="2500px"
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 20 }}
+                zIndex = "-0.5"
             >
                 <Box maxW="1300px" mx="auto" mt={{ base: "100px", md: "175px", lg: "250px" }} align = "center">
                     <Text pl={{ base: 0, md: 10 }} fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} fontFamily = "INTER" fontWeight = "700" color = "#1573CF">Our Values</Text>

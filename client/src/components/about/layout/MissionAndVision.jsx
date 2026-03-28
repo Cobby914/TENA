@@ -12,21 +12,23 @@ export default function MissionAndVision() {
             bg="white"
             width="100%"
             py={{ base: 10, md: 16, lg: 20 }}
+            zIndex = "-0.5"
+            
         >
             <Box
                 maxW="1800px"
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 24 }}
+                zIndex = "-0.5"
             >
                 <VStack spacing={{ base: 12, md: 18, lg: 24 }} alignItems="stretch">
                     <Flex direction={{ base: "column", lg: "row" }} align="center" gap={{ base: 8, md: 12, lg: 20 }}>
-                        <Box flex="1" maxW={{ lg: "600px" }} width="100%" align = "center">
+                        <Box flex="1" maxW={{ lg: "600px" }} width="100%" align = "right">
                             <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} mb={{ base: 3, md: 4 }} fontFamily = "INTER" color = "#1573CF">
-                                Our Vision
+                                Our Goal
                             </Text>
                             <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35" mb={{ base: 6, md: 8 }} fontFamily = "INTER" color = "#3F5F85">
-                                People achieving their highest health and wellness.
-                            </Text>
+Today, TENA continues to grow as a community-anchored nonprofit tackling inequities through programs that are responsive, evidence-informed, and rooted in human dignity.                            </Text>
                             <NavLink to="/getInvolved">
                             <Button
                                 bg="#5CDAC5"

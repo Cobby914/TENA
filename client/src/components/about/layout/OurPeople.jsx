@@ -9,11 +9,12 @@ import OurPartnersPNG from "../../../assets/OurPartners.png";
 
 export default function OurPeople() {
     return (
-        <Box py={{ base: 8, md: 12, lg: 16 }}>
+        <Box py={{ base: 8, md: 12, lg: 16 }} bg = "#F1F4F8" zIndex = "-0.5">
             <Box
                 maxW="2500px"
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 20 }}
+                zIndex = "-0.5"
             >
                 <Flex
                     maxW="750px"
