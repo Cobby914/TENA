@@ -79,7 +79,7 @@ router.get("/:id", async (req, res, next) => {
 
 
 // POST /api/team_members
-router.post("/", ...adminOnly, async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const {
       first_name,
@@ -139,7 +139,7 @@ router.post("/", ...adminOnly, async (req, res, next) => {
 
 
 // PUT /api/team_members/:id
-router.put("/:id", ...adminOnly, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) {
@@ -186,7 +186,7 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
 
 
 // DELETE /api/team_members/:id
-router.delete("/:id", ...adminOnly, async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) {
