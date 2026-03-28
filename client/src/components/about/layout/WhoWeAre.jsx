@@ -1,4 +1,5 @@
-import { Text, Box, Flex, VStack, Button } from "@chakra-ui/react";
+import { Text, Box, Flex, VStack, HStack, Button, Image, Circle } from "@chakra-ui/react";
+import GroupPhoto from "../../../assets/SouthLACafeGroup.jpg"
 
 export default function WhoWeAre() {
     return (
@@ -7,40 +8,42 @@ export default function WhoWeAre() {
             bg="rgb(184, 184, 184)"
             width="100%"
             py={{ base: 8, md: 12, lg: 16 }}
+            position="relative"
+            zIndex=  "1"
+            maxW = "1536px"
         >
             <Box
-                maxW="2500px"
+                maxW="1426px"
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 20 }}
+                position="relative" 
+                zIndex = "3"
+            
             >
+                <HStack w = "100%" gap = {{base: "15px", md : "30px"}}>
                 <Flex direction="column" alignItems="flex-start" maxW="950px">
-                    <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} fontWeight="normal" mb={{ base: 4, md: 6 }}>
+                
+                    <Text fontSize={{ base: "24px", md: "48px"}} fontWeight="700" fontStyle = "normal" lineHeight="100%" mb={{ base: 4, md: 6 }} fontFamily = "INTER" color = "#1573CF">
                         Who We Are
                     </Text>
                     <VStack spacing={{ base: 4, md: 6 }} alignItems="flex-start" mb={{ base: 6, md: 10 }}>
-                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35">
-                            TENA is a community-centric nonprofit building ecosystems that empower underserved communities to overcome systemic barriers 
-                            through optimizing access to resources, knowledge, and entry to healthcare professions.
-                        </Text>
-                        <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.35">
-                            TENA recognizes that access to quality healthcare, resources, and health education can be difficult to obtain in many
-                            communities, and works hard to bridge this gap. Composed primarily of Los Angeles County natives, the team draws upon the 
-                            social determinants of health to provide services that support the health and wellness of their neighborhoods and beyond. 
-                            TENA believes in empowering others to have the tools, knowledge, and resources they need to live a healthy and enriched life.
-                        </Text>
+                        <Text fontSize={{ base: "12px", md: "24px" }} lineHeight="150%" fontFamily = "INTER" fontStyle = "normal" fontWeight = "400" color = "#3F5F85">
+TENA was born from lived experience and community collaboration. What began as grassroots support for families navigating the healthcare system revealed a deeper truth: access alone is not enough without guidance, trust, and relationship.                        </Text>
+                        <Text fontSize={{ base: "12px", md: "24px" }} lineHeight="150%" fontFamily = "INTER" fontStyle = "normal" fontWeight = "400" color = "#3F5F85">
+TENA's founders,  inspired by community voices and driven by data, built an organization that meets people holistically blending care navigation, preventive  outreach, and workforce development in ways that truly uplift  communities                        </Text>
+                        
                     </VStack>
-                    <Button
-                        bg="white"
-                        color="black"
-                        fontWeight="normal"
-                        borderRadius="none"
-                        height={{ base: "60px", md: "70px" }}
-                        width={{ base: "180px", md: "220px" }}
-                        fontSize={{ base: "md", md: "lg" }}
-                    >
-                        Find Out More
-                    </Button>
+                    
+                    
                 </Flex>
+                <Circle as = {Image} src = {GroupPhoto} maxW = "444px" maxH = "444px"
+                    width = {{base : "250px", md: "444px"}} height={{ base: "250px", md: "444px" }}
+                    objectFit="cover" borderRadius="full" overflow="hidden">
+                    
+                </Circle>
+                </HStack>
+                
+                
             </Box>
         </Box>
     );

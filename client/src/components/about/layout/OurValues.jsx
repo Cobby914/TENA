@@ -1,35 +1,62 @@
-import { Box , Text, SimpleGrid } from "@chakra-ui/react";
+import { Box , Text, SimpleGrid, Flex, Image } from "@chakra-ui/react";
 import ValueIcon from "../../ui/ValueIcon";
 import placeholder from "../../../assets/logoplaceholder.png";
 
+import Diversity from "../../../assets/Diversity.png";
+import Integrity from "../../../assets/Integrity.png";
+import Compassion from "../../../assets/Compassion.png";
+import Excellence from "../../../assets/Excellence.png";
+import Equity from "../../../assets/Equity.png";
+
+
 export default function OurValues() {
     return (
-        <Box py={{ base: 12, md: 16, lg: 20 }}>
+        <Box py={{ base: 12, md: 16, lg: 20 }} position="relative" zIndex = "1"> 
             <Box
                 maxW="2500px"
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 20 }}
+                position="relative" zIndex = "3"
+
             >
-                <Box maxW="1300px" mx="auto" mt={{ base: "100px", md: "175px", lg: "250px" }}>
-                    <Text pl={{ base: 0, md: 10 }} fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }}>Our Values</Text>
-                    <SimpleGrid 
-                        columns={{ base: 1, md: 2, lg: 3 }} 
-                        mx="auto" 
-                        justifyItems="center" 
-                        alignItems="center"
-                        spacing={{ base: 6, md: 8, lg: 10 }}
-                        mt={{ base: 8, md: 10 }}
-                    >
-                        <ValueIcon src={placeholder} labelText="Compassion"/>
-                        <ValueIcon src={placeholder} labelText="Innovation"/>
-                        <ValueIcon src={placeholder} labelText="Equity"/>
-                        <ValueIcon src={placeholder} labelText="Integrity"/>
-                        <ValueIcon src={placeholder} labelText="Leadership"/>
-                        <ValueIcon src={placeholder} labelText="Education"/>
-                        <ValueIcon src={placeholder} labelText="Diversity"/>
-                        <ValueIcon src={placeholder} labelText="Excellence"/>
-                        <ValueIcon src={placeholder} labelText="Empowerment"/>
-                    </SimpleGrid>
+                <Box maxW="1300px" mx="auto" mt={{ base: "100px", md: "175px", lg: "250px" }} align = "center">
+                    <Text pl={{ base: 0, md: 10 }} fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} fontFamily = "INTER" fontWeight = "700" color = "#1573CF">Our Values</Text>
+                    <Flex wrap="wrap" justify="center" align="center"
+                        gap={{ base: 12, md: 40, lg: 100 }} mx="auto" mt={{ base: 8, md: 10 }} maxWidth = "1100px">
+
+                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{base: 8, md: 10 }} 
+                width="250px"  height="250px"  background="#E2E8F0"  rounded="5">
+                    <Image src = {Diversity}></Image>
+                    <Text fontFamily = "INTER" fontWeight = "700" color = "#3F5F85" fontSize = "30px">Diversity</Text>
+                    </Box>
+
+                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{base: 8, md: 10 }} 
+                width="250px"  height="250px"  background="#E2E8F0"  rounded="5">
+                    <Image src = {Integrity}></Image>
+                    <Text fontFamily = "INTER" fontWeight = "700" color = "#3F5F85" fontSize = "30px">Integrity</Text>
+                    </Box>
+
+
+                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{ base: 8, md: 10 }} 
+                width="250px"  height="250px"  background="#E2E8F0"  rounded="5">
+                    <Image src = {Compassion}></Image>
+                    <Text fontFamily = "INTER" fontWeight = "700" color = "#3F5F85" fontSize = "30px">Compassion</Text>
+                    </Box>
+
+                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{base: 8, md: 10 }} 
+                width="250px"  height="250px"  background="#E2E8F0"  rounded="5">
+                    <Image src = {Excellence}></Image>
+                    <Text fontFamily = "INTER" fontWeight = "700" color = "#3F5F85" fontSize = "30px">Excellence</Text>
+                    </Box>
+
+
+                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{ base: 8, md: 10 }} 
+                width="250px"  height="250px"  background="#E2E8F0"  rounded="5">
+                    <Image src = {Equity}></Image>
+                    <Text fontFamily = "INTER" fontWeight = "700" color = "#3F5F85" fontSize = "30px">Equity</Text>
+                    </Box>
+
+                    </Flex>
                 </Box>
             </Box>
         </Box>

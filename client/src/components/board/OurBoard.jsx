@@ -36,12 +36,12 @@ const OurBoard = () => {
   }
 
   return (
-    <Box width="100vw" background="#FFFFFF" overflowX="hidden">
+    <Box width="100%" background="#FFFFFF" overflowX="hidden">
       <Flex direction="column" alignItems="center">
         
         <Box 
           background="#b8b8b8" 
-          width="100vw" 
+          width="100%" 
           maxWidth="1536px" 
           height="50vh" 
           maxHeight="380px"

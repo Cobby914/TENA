@@ -56,7 +56,7 @@ const Programs = () => {
                         key={data.id} 
                         title={data.title} 
                         description={data.summary} 
-                        imgSrc={data.im} 
+                        imageSrc={data.im} 
                         link = {data.link}
                         reversed = {data.reversed}/>))}
                     </VStack>
