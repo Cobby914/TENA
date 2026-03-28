@@ -1,6 +1,10 @@
 import { Router } from "express";
 import { sql } from "../db/index.js";
-import { verifyAuth, requireApproved, requireRole } from "../middleware/auth.js";
+import {
+  verifyAuth,
+  requireApproved,
+  requireRole,
+} from "../middleware/auth.js";
 
 const router = Router();
 const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
