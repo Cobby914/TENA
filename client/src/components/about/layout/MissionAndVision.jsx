@@ -12,14 +12,16 @@ export default function MissionAndVision() {
             bg="white"
             width="100%"
             py={{ base: 10, md: 16, lg: 20 }}
-            zIndex = "-0.5"
+            position="relative"
+            zIndex = "1"
             
         >
             <Box
                 maxW="1800px"
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 24 }}
-                zIndex = "-0.5"
+                position="relative"
+                zIndex = "3"
             >
                 <VStack spacing={{ base: 12, md: 18, lg: 24 }} alignItems="stretch">
                     <Flex direction={{ base: "column", lg: "row" }} align="center" gap={{ base: 8, md: 12, lg: 20 }}>
