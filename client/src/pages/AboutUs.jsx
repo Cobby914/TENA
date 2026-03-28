@@ -13,9 +13,9 @@ import { Box, Container, Image } from "@chakra-ui/react";
 
 export default function AboutUs() {
     return (
-        <Box position="relative" width="100%" maxW="100vw" display="block" overflowX="hidden">
+        <Box width="100%" overflowX="hidden" position="relative" display = "block">
           
-          
+          <Box position="relative" width="100%" maxW="2500px" mx="auto">
           <Box
                 position="absolute"
                 right="-5px"
@@ -55,15 +55,13 @@ export default function AboutUs() {
                 <Image src={RightSemi} objectFit="contain" />
             </Box>
         
-            <Navbar />
-            <Container maxW="container.xl" position="relative">
+                <Navbar />
                 <WhoWeAre />
                 <MissionAndVision />
                 <OurPeople />
                 <OurValues />
-            </Container>
-            <Footer />
-        
+                <Footer />
+        </Box>
         </Box>
     );
 }
