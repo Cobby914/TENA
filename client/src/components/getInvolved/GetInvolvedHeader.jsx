@@ -76,7 +76,7 @@ export default function GetInvolvedHeader() {
                         . Get 
                         <Text as = "span" fontFamily ="INTER" fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "#5CDAC5"> Involved</Text>
                     </Text>
-                    <Text color = "#F8F9FB" maxW = "982px" fontFamilly = "INTER" fontSize = {{base: "12px", md : "25px"}} fontStyle = "normal" fontWeight = "400" lineHeight="150%">
+                    <Text color = "#F8F9FB" maxW = "982px" fontFamily = "INTER" fontSize = {{base: "12px", md : "25px"}} fontStyle = "normal" fontWeight = "400" lineHeight="150%">
                         TENA’s work is powered by community, partnership, and shared purpose. Whether you want to give your time, support our mission, collaborate with us, or simply find help, here’s how you can be part of lasting change.
                     </Text>
                     
