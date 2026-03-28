@@ -38,7 +38,7 @@ export default function GetInvolvedCard ({
                 </Image>
             
                 
-                <VStack alignItems="flex-start" spacing={{ base: 3, md: 4 }} width="100%">
+                <VStack alignItems="flex-start" spacing={{ base: 3, md: 4 }} width="100%" ml = {{base: "30px",md : "50px"}}>
                     <Text fontFamily = "INTER" fontWeight = "700" fontStyle = "normal" fontSize = {{base: "18px", md : "36px"}} lineHeight= "120%">
                         {title}
                     </Text>
@@ -49,6 +49,7 @@ export default function GetInvolvedCard ({
                     
                         <Flex width="100%" justifyContent={{ base: "center", lg: "flex-end" }} pt={{ base: 6, md: 8, lg: 10 }}>
                             <Button
+                                
                                 as={NavLink}
                                 to={destination}
                                 bg="#FFFFFF"
@@ -58,6 +59,7 @@ export default function GetInvolvedCard ({
                                 height={{ base: "38px", md: "48px" }}
                                 px={{ base: 8, md: 10 }}
                                 rightIcon={<Icon as={ChevronRight} boxSize={{ base: "12px", lg: "18px"}}/>}
+                                _hover = {{bg: "#3f5f85"}}
                             >
                                 {buttonName}
                             </Button>
