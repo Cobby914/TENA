@@ -6,14 +6,14 @@ import Inside from "../../assets/GetInvolved/HeaderInside.svg"
 
 export default function GetInvolvedHeader() {
     return(
-    <Box width="100%" overflowX="hidden" position="relative" display = "block">
+    <Box width="100%" overflow="hidden" position="relative" display = "block" maxH = "530px">
           
           <Box position="relative" width="100%" maxW="2500px" mx="auto">
 
         {/* Circle Overlays */}
         <Box
                 position="absolute"
-                right="-5px"
+                right = "0px"
                 top="12%"
                 zIndex="2"
                 pointerEvents="none"
@@ -26,7 +26,7 @@ export default function GetInvolvedHeader() {
 
         <Box
                 position="absolute"
-                left="-5px"
+                
                 top="40%"
                 zIndex="2"
                 pointerEvents="none"
