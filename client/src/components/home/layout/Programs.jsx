@@ -39,9 +39,10 @@ export default function Programs() {
   return (
     <Box
       as="section"
-      bg="white"
+      bg="rgba(241, 244, 248, 1)"
       px={{ base: 6, md: 10, lg: 24 }}
       py={{ base: 12, md: 16 }}
+      mt={20}
     >
       <SimpleGrid
         columns={{ base: 1, xl: 2 }}
