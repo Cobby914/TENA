@@ -50,7 +50,7 @@ export default function Sponsors () {
                     }
                 `}
             </style>
-            <Flex display="inline-flex" width="max-content" animation={"scroll 40s linear infinite"}>
+            {/* <Flex display="inline-flex" width="max-content" animation={"scroll 40s linear infinite"}>
                 {dupLogos.map((logo, index) => (
                     <Box key={index} px={10} flexShrink={0} display="flex" alignItems="center">
                         <Image src={logo.src} alt={logo.alt} h="60px" objectFit="contain" />
@@ -59,7 +59,7 @@ export default function Sponsors () {
             </Flex>
             <Text width="100%" textAlign="center" mt={5} fontSize={30}>
                 .........
-            </Text>
+            </Text> */}
             <Box mt={20} overflow={"hidden"} bg="white" py={10} w="100vw">
                 <style>
                     {`
