@@ -13,31 +13,27 @@ import { Dot, ChevronRight } from "lucide-react";
 
 export default function ChallengeSolution() {
   return (
-    <Box p={{ base: 10, md: 20 }} maxW="100%">
+    <Box p={{ base: 10, md: 28 }} maxW="100%">
+      <Text fontWeight={700} fontSize={60} maxW="900px" py={16} lineHeight={"100%"}>
+        Solving Health Inequality One Step at a Time
+      </Text>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 14, md: 28 }}>
         {/* Problem */}
         <VStack align="start" spacing={5}>
           <Text
-            fontWeight={800}
-            fontSize={24}
-            lineHeight="150%"
-            textColor="#1573CF"
-          >
-            WHY WE EXIST
-          </Text>
-          <Text
             fontWeight={700}
             fontSize={36}
             lineHeight="120%"
-            textColor="#3F5F85"
+            textColor="rgba(63, 95, 133, 1)"
           >
             The Challenge
           </Text>
           <Text
             mt={3}
             fontWeight={400}
-            fontSize={{ base: "md", md: "lg", lg: "xl" }}
+            fontSize={{ base: 20, md: 22 }}
             lineHeight="150%"
+            letterSpacing={0}
           >
             Across Los Angeles County, structural inequities rooted in economic
             disparity, housing instability, racial segregation, and uneven
@@ -58,34 +54,26 @@ export default function ChallengeSolution() {
         {/* Solution */}
         <VStack align="start" spacing={5}>
           <Text
-            fontWeight={800}
-            fontSize={24}
-            lineHeight="150%"
-            textColor="#1573CF"
-          >
-            OUR APPROACH
-          </Text>
-          <Text
-            mt={-2}
             fontWeight={700}
             fontSize={36}
             lineHeight="120%"
-            textColor="#3F5F85"
+            textColor="rgba(63, 95, 133, 1)"
           >
             TENA's Solution
           </Text>
           <Text
-            mt={5}
+            mt={3}
             fontWeight={400}
-            fontSize={{ base: "md", md: "lg", lg: "xl" }}
+            fontSize={{ base: 20, md: 22 }}
             lineHeight="150%"
+            letterSpacing={0}
           >
             At the heart of TENA's mission is the belief that health equity
             isn't just access to services — it's access with dignity, trust, and
             relationship.
           </Text>
           <List
-            fontSize={{ base: "md", md: "lg", lg: "xl" }}
+            fontSize={{ base: 20, md: 22 }}
             mt={3}
             spacing={8}
           >
@@ -130,21 +118,24 @@ export default function ChallengeSolution() {
         pt={{ base: 6, md: 10 }}
       >
         <NavLink to="/getInvolved">
-          <Button height={12} borderRadius={6} px={6} bgColor="#5CDAC5">
+          <Button height={12} borderRadius={6} px={6} bgColor="rgba(21, 115, 207, 1)" color="white">
             <HStack gap={2}>
               <Text
                 fontWeight={600}
                 fontSize={18}
                 lineHeight={28}
-                textColor="rgb(26, 32, 44)"
+                textColor="white"
               >
                 Get Involved
               </Text>
-              <ChevronRight size={20} style={{ marginTop: "4px" }} />
+              <ChevronRight size={18} style={{ marginTop: "4px" }} />
             </HStack>
           </Button>
         </NavLink>
       </Box>
+
+      <Box position="absolute" left={"-3%"} top={"22%"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={-1} />
+      <Box position="absolute" right={"-10%"} top={"27%"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "250px", md: "350px" }} h={{ base: "250px", md: "350px" }} borderRadius="full" zIndex={-1} />
     </Box>
   );
 }

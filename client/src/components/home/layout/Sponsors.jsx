@@ -60,6 +60,23 @@ export default function Sponsors () {
             <Text width="100%" textAlign="center" mt={5} fontSize={30}>
                 .........
             </Text>
+            <Box mt={20} overflow={"hidden"} bg="white" py={10} w="100vw">
+                <style>
+                    {`
+                        @keyframes scroll {
+                            0% { transofrm: translateX(0); }
+                            100% { transform: translateX(-50%); }
+                        }
+                    `}
+                </style>
+                <Flex display="inline-flex" width="max-content" animation={"scroll 50s linear infinite"}>
+                    {dupLogos.map((logo, index) => (
+                        <Box key={index} px={14} flexShrink={0} display="flex" alignItems="center">
+                            <Image src={logo.src} alt={logo.alt} h="100px" objectFit="contain" />
+                        </Box>
+                    ))}
+                </Flex>
+            </Box>
         </Box>
     );
 }

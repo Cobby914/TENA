@@ -1,41 +1,42 @@
-import { Box, Flex, VStack, Text, HStack } from "@chakra-ui/react";
+import { Box, Flex, VStack, Text, HStack, Image, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import Button from "../../ui/Button";
 import { ChevronRight } from "lucide-react";
+import sloganImage from "../images/Home Screen SLA.png"
 
 export default function Slogan() {
   return (
     <Box
       as="section"
       maxW="100%"
-      bg="rgb(222, 227, 235)"
+      bg="rgba(9, 39, 81, 1)"
       py={{ base: 12, md: 20 }}
-      px={{ base: 6, md: 12, lg: 24 }}
+      px={{ base: 6, md: 12, lg: 32 }}
+      borderBottomRadius={50}
     >
       <Flex
-        direction="column"
+        direction="row"
         align="flex-start"
         gap={{ base: 6, md: 8 }}
         maxW="1200px"
       >
         <VStack align="flex-start" spacing={{ base: 2, md: 3 }}>
           <Text
-            fontSize={{ base: "lg", md: "2xl" }}
+            fontSize={{ base: 16, md: 20}}
             size="20px"
             fontWeight="400"
             lineHeight="1.4"
-            color="#1573CF"
+            color="white"
           >
             Eradicating Health Disparity
           </Text>
 
           <Text
             as="h1"
-            maxW="1120px"
-            fontSize={{ base: "4xl", sm: "5xl", md: "6xl", lg: "72px" }}
+            maxW="750px"
+            fontSize={{ base: 36, md: 48}}
             fontWeight="700"
             lineHeight={{ base: "1.00", lg: "1.05" }}
-            color="#1573CF"
+            color="white"
           >
             We strengthen communitites through{" "}
             <Text as="span" color="#5CDAC5">
@@ -45,44 +46,49 @@ export default function Slogan() {
           </Text>
 
           <Text
-            fontSize={{ base: "lg", md: "2xl" }}
+            fontSize={{ base: 16, md: 20}}
+            py={10}
             maxW="780px"
             lineHeight="1.55"
-            textColor="#3F5F85"
+            textColor="white"
           >
             At TENA, we partner with neighbors, students, volunteers,and
             organizations to expand equitable access to health services, build
             career pathways in healthcare, and empower every voice in Los
             Angeles County to thrive.
           </Text>
+          <NavLink to="/donate">
+            <Button
+              mb={10}
+              height={12}
+              borderRadius={6}
+              px={6}
+              bgColor="rgba(92, 218, 197, 1)"
+            >
+              <HStack gap={2}>
+                <Text
+                  fontWeight={600}
+                  fontSize={18}
+                  lineHeight={28}
+                  textColor="black"
+                >
+                  Donate
+                </Text>
+                <ChevronRight
+                  size={16}
+                  color="black"
+                  style={{ marginTop: "4px" }}
+                />
+              </HStack>
+            </Button>
+          </NavLink>
         </VStack>
 
-        <NavLink to="/donate">
-          <Button
-            mt={6}
-            mb={10}
-            height={12}
-            borderRadius={6}
-            px={6}
-            bgColor="#1573CF"
-          >
-            <HStack gap={2}>
-              <Text
-                fontWeight={600}
-                fontSize={18}
-                lineHeight={28}
-                textColor="#FFFFFF"
-              >
-                Donate
-              </Text>
-              <ChevronRight
-                size={20}
-                color="#FFFFFF"
-                style={{ marginTop: "4px" }}
-              />
-            </HStack>
-          </Button>
-        </NavLink>
+        <Box position="relative" borderRadius="full" overflow="hidden" zIndex={2} display={{base:"none", md:"block"}}>
+          <Image src={sloganImage} objectFit="contain" w={{ base: "200px", md: "400px" }} h={{ base: "200px", md: "400px" }} />
+        </Box>
+        <Box position="absolute" right={"4%"} top={"3%"} border="20px solid rgba(92, 218, 197, 0.2)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={1} />
+        <Box position="absolute" right={"10%"} top={"9%"} border="15px solid rgba(92, 218, 197, 0.2)" w={{ base: "150px", md: "180px" }} h={{ base: "150px", md: "180px" }} borderRadius="full" zIndex={1} />
       </Flex>
     </Box>
   );

@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import diversifyImg from "./DCEimgs/Diversity.png";
+import diversifyImg from "./DCEimgs/Diversify.png";
 import compassionImg from "./DCEimgs/Compassion.png";
 import equityImg from "./DCEimgs/Equity.png";
 
@@ -22,7 +22,7 @@ const valueCards = [
 
 export default function BelowPrograms() {
   return (
-    <Box as="section" bg="white" w="100%" mt={20} py={{ base: 12, md: 20 }}>
+    <Box as="section" bg="rgba(241, 244, 248, 1)" w="100%" mt={40} py={{ base: 12, md: 28 }}>
       <Box maxW="1200px" mx="auto" px={{ base: 6, md: 12, lg: 20 }}>
         <Flex direction="column" align="center">
           <VStack spacing={{ base: 6, md: 8 }} textAlign="center" maxW="1140px">
@@ -31,19 +31,21 @@ export default function BelowPrograms() {
               fontWeight={700}
               lineHeight="1.1"
               maxW="1070px"
-              color="#1573CF"
+              color="black"
             >
               A community driven non-profit focused on lasting{" "}
-              <Text as="span" color="#5CDAC5">
-                health equity
+              <Text as="span" color="rgba(21, 115, 207, 1)">
+                health equity.
               </Text>
-              .
             </Text>
 
             <Text
               fontSize={{ base: "18px", md: "22px", lg: "30px" }}
-              lineHeight="1.6"
-              color="#3F5F85"
+              lineHeight="150%"
+              letterSpacing={0}
+              fontWeight={400}
+              mt={10}
+              color="black"
               maxW="1180px"
             >
               To eradicate health disparities by empowering underrepresented
@@ -81,18 +83,19 @@ export default function BelowPrograms() {
 
           <NavLink to="/about">
             <Button
-              height={16}
-              width={64}
+              height={14}
               borderRadius={6}
-              px={6}
-              bgColor="#5CDAC5"
+              mt={10}
+              px={20}
+              bgColor="rgba(21, 115, 207, 1)"
+              color="white"
             >
               <HStack gap={2}>
                 <Text
                   fontWeight={600}
                   fontSize={18}
                   lineHeight={28}
-                  textColor="rgb(26, 32, 44)"
+                  textColor="white"
                 >
                   About Us
                 </Text>

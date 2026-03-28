@@ -10,12 +10,13 @@ export default function InvolvementCard({
   return (
     <Box
       bgColor="white"
-      width={{ base: "100%", md: "230px" }}
+      width={{ base: "100%", md: "235px" }}
       height={{ base: "200px", md: "220px" }}
-      minH={{ base: "200px", md: "200px" }}
+      minW={{ base: "100%", md: "235px" }}
+      minH={{ base: "200px", md: "220px" }}
       shadow={false}
     >
-      <VStack align="stretch" justify="space-between" h="100%" w="100%">
+      <VStack align="stretch" h="100%" w="100%">
         {/* Title */}
         <Text
           w="100%"
@@ -24,6 +25,7 @@ export default function InvolvementCard({
           fontSize={{ base: 24, md: 26, lg: 30 }}
           lineHeight={"133%"}
           textColor="#3F5F85"
+          mb={2}
         >
           {title}
         </Text>
@@ -35,8 +37,8 @@ export default function InvolvementCard({
           w="full"
           textAlign={"center"}
           lineHeight={"150%"}
-          mt={1}
-          textColor="#1D232E"
+          letterSpacing={0}
+          textColor="rgba(29, 35, 46, 1)"
         >
           {description}
         </Text>
@@ -46,13 +48,13 @@ export default function InvolvementCard({
           <Button
             bgColor="#1573CF"
             w="full"
-            height={{ base: "35px", md: "40px" }}
-            borderRadius={6}
-            px={4}
+            borderRadius={8}
+            p={6}
+            mt={8}
           >
             <Text
               fontSize={{ base: 14, lg: 16 }}
-              fontWeight={600}
+              fontWeight={500}
               textColor="#FFFFFF"
             >
               {linkname}
