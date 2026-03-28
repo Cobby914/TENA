@@ -39,10 +39,10 @@ export default function GetInvolvedCard ({
             
                 
                 <VStack alignItems="flex-start" spacing={{ base: 3, md: 4 }} width="100%" ml = {{base: "30px",md : "50px"}}>
-                    <Text fontFamily = "INTER" fontWeight = "700" fontStyle = "normal" fontSize = {{base: "18px", md : "36px"}} lineHeight= "120%">
+                    <Text fontFamily = {"INTER"} fontWeight = "700" fontStyle = "normal" fontSize = {{base: "18px", md : "36px"}} lineHeight= "120%">
                         {title}
                     </Text>
-                    <Text fontFamily = "INTER" fontWeight = "400" fontStyle = "normal" fontSize = {{base: "12px", md : "24px"}} lineHeight= "150%"
+                    <Text fontFamily = {"INTER"} fontWeight = "400" fontStyle = "normal" fontSize = {{base: "12px", md : "24px"}} lineHeight= "150%"
                         maxW = "539px">
                         {description}
                     </Text>
@@ -60,6 +60,7 @@ export default function GetInvolvedCard ({
                                 px={{ base: 8, md: 10 }}
                                 rightIcon={<Icon as={ChevronRight} boxSize={{ base: "12px", lg: "18px"}}/>}
                                 _hover = {{bg: "#3f5f85"}}
+                                fontFamily = {"INTER"}
                             >
                                 {buttonName}
                             </Button>
