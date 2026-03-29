@@ -28,8 +28,12 @@ function toAdminCohort(cohort, index) {
 
 function isIntern(member) {
   const role = String(member.role ?? "").toLowerCase();
-  const cohort = String(member.cohort ?? "").trim();
-  return Boolean(cohort) || /\bintern\b/.test(role);
+  const memberTypes = Array.isArray(member.member_types)
+    ? member.member_types.map((type) => String(type ?? "").toLowerCase())
+    : [];
+  const hasCohort = member.cohort_id != null || String(member.cohort_name ?? "").trim().length > 0;
+
+  return hasCohort || memberTypes.includes("intern") || /\bintern\b/.test(role);
 }
 
 export function useAdminTeamData() {

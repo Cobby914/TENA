@@ -13,9 +13,22 @@ const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
 router.get("/", async (req, res, next) => {
   try {
     const rows = await sql`
-      SELECT id, year, term, term_order, name, created_at
-      FROM "TENA_Admin".cohorts
-      ORDER BY id ASC
+      SELECT
+        c.id,
+        c.year,
+        c.term,
+        c.term_order,
+        c.name,
+        COUNT(DISTINCT tm.id) FILTER (WHERE LOWER(mt.name) = 'intern')::INT AS enrollment
+      FROM "TENA_Admin".cohorts c
+      LEFT JOIN "TENA_Admin".team_members tm
+        ON tm.cohort_id = c.id
+      LEFT JOIN "TENA_Admin".team_member_types tmt
+        ON tmt.team_member_id = tm.id
+      LEFT JOIN "TENA_Admin".member_types mt
+        ON mt.id = tmt.member_type_id
+      GROUP BY c.id, c.year, c.term, c.term_order, c.name
+      ORDER BY c.year DESC, c.term_order ASC, c.id ASC
     `;
     res.json(rows);
   } catch (err) {
@@ -88,60 +101,33 @@ router.put("/:id", async (req, res, next) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const { year, term, term_order, name } = req.body;
+    const cohorts = rows.map((row) => {
+      const title =
+        String(row.name ?? "").trim() ||
+        `${String(row.year ?? "").trim()} ${String(row.term ?? "").trim()} Cohort`.trim();
 
-    if (year !== undefined && !Number.isInteger(Number(year))) {
-      return res.status(400).json({ error: "year must be an integer" });
-    }
-    if (term !== undefined && typeof term !== "string") {
-      return res.status(400).json({ error: "term must be a string" });
-    }
-    if (term_order !== undefined && !Number.isInteger(Number(term_order))) {
-      return res.status(400).json({ error: "term_order must be an integer" });
-    }
-    if (name !== undefined && name !== null && typeof name !== "string") {
-      return res.status(400).json({ error: "name must be a string" });
-    }
+      return {
+        id: row.id,
+        title,
+        year: row.year,
+        term: row.term,
+        term_order: row.term_order,
+        name: row.name,
+        enrollment: Number(row.enrollment ?? 0),
+        status: "In Progress",
+        participants: [],
+        members: {
+          coordinator: "N/A",
+          staff: []
+        }
+      };
+    });
 
-    const rows = await sql`
-      UPDATE "TENA_Admin".cohorts
-      SET
-        year = COALESCE(${year ?? null}, year),
-        term = COALESCE(${term ?? null}, term),
-        term_order = COALESCE(${term_order ?? null}, term_order),
-        name = COALESCE(${name ?? null}, name)
-      WHERE id = ${id}
-      RETURNING id, year, term, term_order, name, created_at
-    `;
-
-    if (rows.length === 0)
-      return res.status(404).json({ error: "Cohort Not Found" });
-    res.json(rows[0]);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// DELETE /api/cohorts/:id
-router.delete("/:id", async (req, res, next) => {
-  try {
-    const id = Number(req.params.id);
-    if (!Number.isInteger(id) || id < 1) {
-      return res.status(400).json({ error: "Invalid ID" });
-    }
-
-    const rows = await sql`
-      DELETE FROM "TENA_Admin".cohorts
-      WHERE id = ${id}
-      RETURNING id
-    `;
-
-    if (rows.length === 0)
-      return res.status(404).json({ error: "Cohort Not Found" });
-    res.json({ deleted: rows[0].id });
+    res.json(cohorts);
   } catch (err) {
     next(err);
   }
 });
 
 export default router;
+
