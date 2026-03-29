@@ -1,4 +1,5 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Link } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import { useProgramById } from "../../useProgramsById";
 import { resolveProgramImage } from "../../programImageResolver";
 
@@ -11,7 +12,8 @@ export default function ProgramHeader({ id, title, backgroundPosition }) {
       as="section"
       width="100%"
       position="relative"
-      overflow="hidden"
+      overflow="visible"
+      minH={{ base: "300px", md: "400px", lg: "500px" }}
       py={{ base: 24, md: 36, lg: 52 }}
       {...(backgroundImageSrc && {
         backgroundImage: `url(${backgroundImageSrc})`,
@@ -29,33 +31,78 @@ export default function ProgramHeader({ id, title, backgroundPosition }) {
         />
       )}
 
-      <Box maxW="2500px" mx="auto" px={{ base: 4, md: 10, lg: 20 }} position="relative" zIndex={1}>
-        <Flex
-          maxW="1200px"
-          mx="auto"
-          align="center"
-          justify="space-between"
-          gap={{ base: 8, md: 12, lg: 20 }}
-          direction={{ base: "column", lg: "row" }}
-        >
-          <Flex
-            direction="column"
-            alignItems="flex-start"
-            maxW={{ base: "100%", lg: "520px" }}
-          >
+      <Box
+        position="absolute"
+        right={{ base: "-167px", md: "-167px", lg: "-167px" }}
+        top="100%"
+        transform="translateY(-50%)"
+        width="334px"
+        height="334px"
+        borderRadius="334px"
+        border="40px solid #5CDAC5"
+        opacity={0.15}
+        zIndex={2}
+        pointerEvents="none"
+        display={{ base: "none", md: "block" }}
+      />
+
+      <Box
+          position="absolute"
+          top={{ base: 16, md: 20, lg: 28 }}
+          left={{ base: 8, md: 14, lg: 28 }}
+          zIndex={1}
+      >
+        <Flex direction="column" alignItems="flex-start">
+          <Flex align="center" mb={8} gap={2}>
+            <Link
+              as={NavLink}
+              to="/programs"
+              fontFamily="Inter"
+              fontSize="26px"
+              fontWeight="800"
+              lineHeight="32px"
+              color="#F8F9FB"
+              sx={{
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline !important",
+                  opacity: 0.75,
+                },
+              }}
+            >
+              Programs
+            </Link>
             <Text
-                fontFamily="Inter"
-                fontSize="48px"
-                fontStyle="normal"
-                fontWeight="700"
-                lineHeight="100%"
-                textAlign="left"
-                mb={{ base: 4, md: 6 }}
-                color="#F8F9FB"
+              fontFamily="Inter"
+              fontSize="26px"
+              fontWeight="800"
+              lineHeight="32px"
+              color="#F8F9FB"
+            >
+              &gt;
+            </Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="26px"
+              fontWeight="800"
+              lineHeight="32px"
+              color="#F8F9FB"
             >
               {title}
             </Text>
           </Flex>
+
+          <Text
+              fontFamily="Inter"
+              fontSize="64px"
+              fontStyle="normal"
+              fontWeight="800"
+              lineHeight="100%"
+              textAlign="left"
+              color="#F8F9FB"
+          >
+            {title}
+          </Text>
         </Flex>
       </Box>
     </Box>

@@ -1,6 +1,6 @@
-import {Text, Box, Flex, Button, VStack } from "@chakra-ui/react"
-import ImagePlaceholder from "./MVimagePH";
+import { Text, Box, Flex, Button, VStack } from "@chakra-ui/react"
 import { NavLink } from "react-router-dom";
+
 export default function CareAndFairCard ({
     title,
     description,
@@ -18,9 +18,13 @@ export default function CareAndFairCard ({
             <Box
                 flex="1"
                 width="100%"
-            >
-                <ImagePlaceholder height={{ base: "250px", md: "280px", lg: "324px" }} width="100%"></ImagePlaceholder>
-            </Box>
+                height={{ base: "250px", md: "320px", lg: "430px" }}
+                backgroundImage={imageSrc ? `url(${imageSrc})` : undefined}
+                backgroundSize="cover"
+                backgroundPosition="center"
+                backgroundRepeat="no-repeat"
+                bg={!imageSrc ? "gray.200" : undefined}
+            />
 
             <Box
                 flex="1"
@@ -28,10 +32,10 @@ export default function CareAndFairCard ({
             >
                 <VStack h="full" align={{ base: "center", lg: reversed ? "end" : "start" }} justifyContent="space-between" spacing={{ base: 6, md: 8 }}>
                     <Box textAlign={{ base: "center", lg: reversed ? "right" : "left" }} width="100%">
-                        <Text fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }} fontWeight={400}>
+                        <Text fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight={700} color="#1573CF">
                             {title}
                         </Text>
-                        <Text mt={{ base: 3, md: 5 }} fontSize={{ base: "md", md: "lg", lg: "xl" }} lineHeight={1.25}>
+                        <Text mt={{ base: 3, md: 5 }} fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }} lineHeight={1.25}>
                             {description}
                         </Text>
                     </Box>
@@ -39,12 +43,21 @@ export default function CareAndFairCard ({
                     <Button 
                         as={NavLink}
                         to={link}
-                        borderRadius={0} 
-                        p={{ base: 5, md: 6, lg: 7 }} 
+                        borderRadius="6px"
+                        border="1px solid"
+                        borderColor="#E2E8F0"
+                        h="48px"
+                        px="24px"
+                        py={0}
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        gap="8px"
                         leftIcon={reversed ? <Text>←</Text> : undefined}
                         rightIcon={!reversed ? <Text>→</Text> : undefined}
                         background="rgb(245,245,245)"
                         fontSize={{ base: "sm", md: "md" }}
+                        _hover={{ background: "gray.100" }}
                     >
                         Explore Program
                     </Button>
