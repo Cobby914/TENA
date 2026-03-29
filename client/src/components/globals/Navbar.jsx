@@ -83,18 +83,22 @@ export default function Navbar() {
           <GIMenu></GIMenu>
 
           <NavLink to="/donate" style={{ display: 'flex', alignItems: 'center' }}>
-            <Button width="7vw"
+            <Button w = {{base : "60px", md : "110px"}}
                     height="6vh"
                     fontWeight="600"
-                    fontSize={{base: 16, lg: 20}}           
+                    fontSize={{base: 8, lg: 18}}
+                    bg = "#5CDAC5"   
+                    color = "#1D232E" 
+                    rounded = "10"     
+                    borderWidth = {{base: "1px", md : "2px"}}  
+                    borderColor = "#1D232E"
             >Donate</Button>
+
           </NavLink>
 
 
 
-          <NavLink to="/login" style={{ display: 'flex', alignItems: 'center' }}>
-            <Image src={Lock} ml={10} width={{base: 5, lg: 6}} height={{base: 5, lg: 6}}></Image>
-          </NavLink>
+          
         </Flex>
     </Box>
   );
