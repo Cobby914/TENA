@@ -70,7 +70,7 @@ export default function Programs() {
               />
             ))
           : programs.map((program, index) => (
-              <MotionBox key={program.id} initial="initial" whileInView={"animate"} viewport={{ once: false, amount: 0.8, margin: "0px 0px -50px 0px" }} variants={fadeInCard} custom={index}>
+              <MotionBox key={program.id} initial="initial" whileInView={"animate"} viewport={{ once: false, amount: 0.4, margin: "0px 0px -50px 0px" }} variants={fadeInCard} custom={index}>
                 <ProgramCard
                   title={program.title}
                   description={program.summary}
