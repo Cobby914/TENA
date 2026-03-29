@@ -1,6 +1,9 @@
 import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import ProgramCard from "../../ui/ProgramCard";
 import { useProgramData } from "../../allPrograms/useProgramsData";
+
+const MotionBox = motion(Box);
 
 const programImages = import.meta.glob(
   "./programHomePageIMGS/*.{png,jpg,jpeg,webp}",
@@ -22,8 +25,8 @@ function normalizeProgramKey(value) {
     .trim();
 }
 
-function getProgramImagePath(title) {
-  const targetKey = normalizeProgramKey(title);
+function getProgramImagePath(imgName) {
+  const targetKey = normalizeProgramKey(imgName);
 
   const matchedEntry = Object.entries(programImages).find(([filePath]) => {
     const fileName = filePath.split("/").pop() ?? "";
@@ -35,6 +38,11 @@ function getProgramImagePath(title) {
 
 export default function Programs() {
   const { programs, errorMsg, isLoading } = useProgramData(4);
+  const fadeInCard = {
+    initial: { opacity: 0, y: 20},
+    animate: { opacity: 1, y: 0},
+    transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1.0] }
+  };
 
   return (
     <Box
@@ -44,6 +52,9 @@ export default function Programs() {
       py={{ base: 12, md: 16 }}
       mt={20}
     >
+      <Text fontWeight={700} fontSize={60} letterSpacing={0} lineHeight={"100%"} textColor={"rgba(29, 35, 46, 1)"} textAlign={"center"} my={20}>
+        TENA Initiatives
+      </Text>
       <SimpleGrid
         columns={{ base: 1, xl: 2 }}
         spacing={{ base: 8, md: 10 }}
@@ -58,14 +69,15 @@ export default function Programs() {
                 borderRadius="12px"
               />
             ))
-          : programs.map((program) => (
-              <ProgramCard
-                key={program.id}
-                title={program.title}
-                description={program.summary}
-                imageSrc={getProgramImagePath(program.title)}
-                link="/programs"
-              />
+          : programs.map((program, index) => (
+              <MotionBox key={program.id} initial="initial" whileInView={"animate"} viewport={{ once: false, amount: 0.4, margin: "0px 0px -50px 0px" }} variants={fadeInCard} custom={index}>
+                <ProgramCard
+                  title={program.title}
+                  description={program.summary}
+                  imageSrc={getProgramImagePath(program.background_image)}
+                  link="/programs"
+                />
+              </MotionBox>
             ))}
       </SimpleGrid>
 

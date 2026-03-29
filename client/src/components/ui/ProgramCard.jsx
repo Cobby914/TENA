@@ -12,7 +12,7 @@ export default function ProgramCard({
   return (
     <Card
       w="100%"
-      maxW="600px"
+      minW="600px"
       minH={{ base: "auto", md: "285px" }}
       px={{ base: 6, md: 8 }}
       py={{ base: 6, md: 8 }}
