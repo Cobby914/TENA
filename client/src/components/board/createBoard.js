@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { getBoard } from "./boardApi";
-import { BoardMember } from "./mapBoard";
+import { toBoardCardMember } from "./mapBoard";
 
-export function createBoard(){
-  const [members, setMembers] = useState([]);
+export function useBoardMembers() {
+  const [rawMembers, setRawMembers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -14,21 +14,24 @@ export function createBoard(){
       try {
         setLoading(true);
         const rows = await getBoard(controller.signal);
-        setMembers(rows);
+        setRawMembers(rows);
       } catch (err) {
         if (err?.name === "AbortError") return;
-        setError(err instanceof Error ? err.message : "Unable to load team members",
-        );
+        setError(err instanceof Error ? err.message : "Unable to load board members");
       } finally {
         setLoading(false);
       }
-
     })();
 
     return () => controller.abort();
   }, []);
 
-  const board = useMemo(() => members.map(( (m,i) =>BoardMember(m, i)),[members]))
+  const board = useMemo(() => {
+    return rawMembers
+      .map(toBoardCardMember)
+      .sort((a, b) => (a.displayOrder - b.displayOrder) || a.name.localeCompare(b.name));
+  }, [rawMembers]);
 
-  return {board, loading, error}
+  return { board, loading, error };
 }
+
