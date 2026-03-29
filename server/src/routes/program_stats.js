@@ -9,6 +9,22 @@ const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
 
 router.get("/", async (req, res, next) => {
   try {
+    const programId = req.query.program_id ? Number(req.query.program_id) : null;
+
+    if (programId !== null) {
+      if (!Number.isInteger(programId) || programId < 1) {
+        return res.status(400).json({ error: "Invalid program_id" });
+      }
+
+      const rows = await sql`
+        SELECT id, program_id, label, value, description
+        FROM "TENA_Admin".program_stats
+        WHERE program_id = ${programId}
+        ORDER BY id ASC
+      `;
+      return res.json(rows);
+    }
+
     const rows = await sql`
       SELECT id, program_id, label, value, description
       FROM "TENA_Admin".program_stats

@@ -37,7 +37,32 @@ function splitSolutionText(solutionText) {
   return { paragraphs, bullets };
 }
 
-export default function ProgramProblemSolution({ id, introCopy }) {
+// Parses **word** markers into bold spans and word^ suffix markers into blue text
+function parseBold(text) {
+  const parts = String(text ?? "").split(/\*\*(.*?)\*\*/g);
+  return parts.flatMap((part, i) => {
+    if (i % 2 === 1) {
+      return (
+        <Text as="span" key={`bold-${i}`} fontWeight="700">
+          {part}
+        </Text>
+      );
+    }
+
+    const subParts = part.split(/(\S+?)\^/g);
+    return subParts.map((sub, j) =>
+      j % 2 === 1 ? (
+        <Text as="span" key={`blue-${i}-${j}`} color="#1573CF">
+          {sub}
+        </Text>
+      ) : (
+        sub
+      )
+    );
+  });
+}
+
+export default function ProgramProblemSolution({ id }) {
   const { program, isLoading, errorMsg } = useProgramById(id);
   const { paragraphs, bullets } = splitSolutionText(program?.solution);
   const problemImageSrc = resolveProgramImage(program?.problem_image);
@@ -75,48 +100,54 @@ export default function ProgramProblemSolution({ id, introCopy }) {
       width="100%"
       py={{ base: 12, md: 16, lg: 20 }}
     >
-      <Box maxW="2500px" mx="auto" px={{ base: 4, md: 10, lg: 20 }}>
+      <Box maxW="2500px" mx="auto" px={{ base: 24, md: 52, lg: 80 }}>
         <VStack
           spacing={{ base: 12, md: 16, lg: 20 }}
           align="stretch"
-          maxW="1200px"
-          mx="auto"
         >
           <Heading
             as="h2"
-            fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+            fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
             lineHeight={{ base: 1.2, md: 1.25 }}
-            maxW={{ base: "100%", lg: "980px" }}
           >
-            {introCopy}
+            {parseBold(program?.summary)}
           </Heading>
 
           <Flex
             direction={{ base: "column", lg: "row" }}
-            align="flex-start"
+            align="stretch"
             gap={{ base: 8, md: 10, lg: 14 }}
           >
             <Box flex="1.2">
-              <Heading as="h3" fontSize={{ base: "2xl", md: "3xl" }} mb={5}>
+              <Heading as="h3" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} mb={5} color="#3F5F85">
                 The Problem
               </Heading>
               <Text
-                fontSize={{ base: "lg", md: "xl" }}
+                fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
                 lineHeight={1.5}
                 whiteSpace="pre-line"
               >
-                {program?.problem}
+                {parseBold(program?.problem)}
               </Text>
             </Box>
 
-            <Box flex="1" width="100%" minH="430px" overflow="hidden" borderRadius="md" bg="gray.200">
+            <Box
+              flex="1"
+              minH={{ base: "300px", lg: 0 }}
+              position="relative"
+              overflow="hidden"
+              borderRadius="md"
+              bg="gray.200"
+            >
               {problemImageSrc && (
                 <Image
                   src={problemImageSrc}
                   alt="The problem"
+                  position="absolute"
+                  inset={0}
                   objectFit="cover"
                   w="100%"
-                  h="430px"
+                  h="100%"
                 />
               )}
             </Box>
@@ -124,34 +155,43 @@ export default function ProgramProblemSolution({ id, introCopy }) {
 
           <Flex
             direction={{ base: "column", lg: "row" }}
-            align="flex-start"
+            align="stretch"
             gap={{ base: 8, md: 10, lg: 14 }}
           >
-            <Box flex="1" width="100%" minH="430px" overflow="hidden" borderRadius="md" bg="gray.200">
+            <Box
+              flex="1"
+              minH={{ base: "300px", lg: 0 }}
+              position="relative"
+              overflow="hidden"
+              borderRadius="md"
+              bg="gray.200"
+            >
               {solutionImageSrc && (
                 <Image
                   src={solutionImageSrc}
                   alt="What we're doing"
+                  position="absolute"
+                  inset={0}
                   objectFit="cover"
                   w="100%"
-                  h="430px"
+                  h="100%"
                 />
               )}
             </Box>
 
             <Box flex="1.2">
-              <Heading as="h3" fontSize={{ base: "2xl", md: "3xl" }} mb={5}>
+              <Heading as="h3" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} mb={5} color="#3F5F85">
                 What We're Doing
               </Heading>
 
               {paragraphs.map((paragraph, idx) => (
                 <Text
                   key={`solution-paragraph-${idx}`}
-                  fontSize={{ base: "lg", md: "xl" }}
+                  fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
                   lineHeight={1.5}
                   mb={bullets.length > 0 || idx < paragraphs.length - 1 ? 4 : 0}
                 >
-                  {paragraph}
+                  {parseBold(paragraph)}
                 </Text>
               ))}
 
@@ -160,9 +200,9 @@ export default function ProgramProblemSolution({ id, introCopy }) {
                   {bullets.map((bullet, idx) => (
                     <ListItem
                       key={`solution-bullet-${idx}`}
-                      fontSize={{ base: "lg", md: "xl" }}
+                      fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
                     >
-                      {bullet}
+                      {parseBold(bullet)}
                     </ListItem>
                   ))}
                 </UnorderedList>
