@@ -26,8 +26,8 @@ export default function OurPeople() {
                     mx="auto"
                 >
                     <VStack spacing="1" alignItems="center" justifyContent="center" textAlign="center" position="relative" zIndex = "3">
-                        <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} mb={{ base: 3, md: 5 }} fontFamily = "INTER" fontWeight = "700" color = "#1573CF">Our People</Text>
-                        <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontFamily = "INTER" fontWeight = "400" color = "#3F5F85">
+                        <Text fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }} mb={{ base: 3, md: 5 }}  fontWeight = "700" color = "#1573CF">Our People</Text>
+                        <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontWeight = "400" color = "#3F5F85">
 Our staff, board, and partners bring lived experience, professional expertise, and deep community commitment to everything we do.                           </Text>
                     </VStack>
                 </Flex>
