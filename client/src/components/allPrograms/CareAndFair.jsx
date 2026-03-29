@@ -61,7 +61,7 @@ const Programs = () => {
               </Alert>
             </Container>
           );
-        }
+        }     
         const programList = prog ?? [];
     return(
         <Box w="full" py={{ base: 12, md: 16, lg: 40 }} position="relative">
