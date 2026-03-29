@@ -15,7 +15,7 @@ const GetInvolvedMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const handleMainClick = () => {
-    navigate('/about');
+    navigate('/AboutUs');
   
   };
     const menuAnimation={

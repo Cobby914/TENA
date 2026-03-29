@@ -42,6 +42,7 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                                 fontSize={{ base: "sm", md: "md" }}
                                 whiteSpace="normal"
                                 rounded = {{base: "3", md: "6"}}
+                                fontFamily = "INTER"
                                 fontWeight = "600"
                             >
                                 Get Involved
@@ -59,10 +60,10 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                             <Image src = {OurMission} objectFit="contain"/>
                         </Box>
                         <Box flex="1" maxW= "600px" width="100%" maxH = "324px">
-                            <Text fontSize={{ base: "18px", md: "36px" }} mb={{ base: 1, md: 2 }}  fontWeight = "700" color = "#1573CF">
+                            <Text fontSize={{ base: "18px", md: "36px" }} mb={{ base: 1, md: 2 }} fontFamily = "INTER" fontWeight = "700" color = "#1573CF">
                                 Our Mission
                             </Text>
-                            <Text fontSize={{ base: "10px", md: "20px" }} lineHeight="150%" mb={{ base: 2, md: 4 }} fontStyle = "normal" fontWeight = "400" color = "#3F5F85">
+                            <Text fontSize={{ base: "10px", md: "20px" }} lineHeight="150%" mb={{ base: 2, md: 4 }} fontStyle = "normal" fontFamily = "INTER" fontWeight = "400" color = "#3F5F85">
                                 To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness.
                             </Text>
                             <NavLink to="/home">
@@ -75,6 +76,7 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                                 fontSize={{ base: "sm", md: "md" }}
                                 whiteSpace="normal"
                                 rounded = {{base: "3", md: "6"}}
+                                fontFamily = "INTER"
                                 fontWeight = "600"
 
                             >
