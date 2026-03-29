@@ -32,10 +32,8 @@ const Programs = () => {
               </Alert>
             </Container>
           );
-        }
-        console.log("Current program data:", prog);
+        }     
         const programList = prog ?? [];
-        console.log("Current program data:", programList);
     return(
         <Box w="full" py={{ base: 12, md: 16, lg: 40 }}>
             <Box

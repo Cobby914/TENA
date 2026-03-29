@@ -4,15 +4,21 @@ import {
   Image,
   MenuList,
   MenuItem,
-  Icon,
+  Icon, Menu, MenuButton,
   Button as ChakraButton,
+  useDisclosure
 } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import DropdownButton from "../home/ui/DropdownButton";
 import Button from "../ui/Button";
 import main_logo from "../../assets/transparent_tena_logo.png";
 import text_logo from "../../assets/tena_text_logo.png";
+
+import AUMenu from "./AboutUsMenu"
+import PMenu from "./ProgramsMenu"
+import GIMenu from "./GetInvolvedMenu"
+
 
 import Lock from "../../assets/Locked.png"
 
@@ -70,56 +76,11 @@ export default function Navbar() {
         align="center" gap={{base: 5, lg: 8}} height="100%"
         //display={{ base: "none", md: "flex" }} // hide on mobile for now
         >
-          <NavLink to="/about">
-            <DropdownButton text="About Us" rightIcon={<Icon as={ChevronDown} boxSize={{ base: "12px", lg: "18px"}} />}>
-              <MenuList motionProps={menuAnimation} mt={2} minW="100%" width="125%" rounded={8}>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="auto"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/team">Our Team</NavLink>
-                </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="auto"   borderRadius={0}  fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/board">Our Board</NavLink>
-                 </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="auto"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/partners">Our Partners</NavLink>
-                 </MenuItem>
-              </MenuList>
-            </DropdownButton>
-          </NavLink>
+          <AUMenu></AUMenu>
 
-          <NavLink to="/programs">
-            <DropdownButton text="Programs" rightIcon={<Icon as={ChevronDown} boxSize={{ base: "12px", lg: "18px"}} />} >
-              <MenuList motionProps={menuAnimation} mt={2} minW="100%" width="125%" fontSize="1.2vw"  align="center" rounded={8} textAlign="left">
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/programs" fontSize="10vw">Care Navigation</NavLink>
-                </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/programs">Community Health Fairs</NavLink>
-                </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/programs">Pre-Health Workforce</NavLink>
-                </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/programs">FitClub</NavLink>
-                </MenuItem>
-              </MenuList>
-            </DropdownButton>          
-            </NavLink>
+          <PMenu></PMenu>
 
-          <NavLink to="/getInvolved" style={{ display: 'flex', alignItems: 'center' }}>
-            <DropdownButton text="Get Involved" rightIcon={<Icon as={ChevronDown} boxSize={{ base: "12px", lg: "18px"}} />}>
-              <MenuList motionProps={menuAnimation} mt={2} minW="100%" width="125%" fontSize="1.2vw" align="center" rounded={8}>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh" borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/getInvolved">Donations</NavLink>
-                </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/getInvolved">Partnership</NavLink>
-                </MenuItem>
-                <MenuItem as={ChakraButton} fontWeight={400} width="100%" height="5vh"  borderRadius={0} fontSize={{base: 12, lg:16}} textAlign={"left"} justifyContent={"flex-start"}>
-                    <NavLink to="/getInvolved">Volunteering</NavLink>
-                </MenuItem>                
-              </MenuList>
-            </DropdownButton>          
-            </NavLink>
+          <GIMenu></GIMenu>
 
           <NavLink to="/donate" style={{ display: 'flex', alignItems: 'center' }}>
             <Button width="7vw"
@@ -128,6 +89,8 @@ export default function Navbar() {
                     fontSize={{base: 16, lg: 20}}           
             >Donate</Button>
           </NavLink>
+
+
 
           <NavLink to="/login" style={{ display: 'flex', alignItems: 'center' }}>
             <Image src={Lock} ml={10} width={{base: 5, lg: 6}} height={{base: 5, lg: 6}}></Image>
