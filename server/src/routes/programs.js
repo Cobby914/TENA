@@ -9,7 +9,7 @@ const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
 router.get("/", async (req, res, next) => {
   try {
     const rows = await sql`
-      SELECT id, title, summary, problem, solution, problem_image, solution_image, link, created_at, updated_at
+      SELECT id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link, created_at, updated_at
       FROM "TENA_Admin".programs
       ORDER BY id ASC
     `;
@@ -28,7 +28,7 @@ router.get("/:id", async (req, res, next) => {
     }
 
     const rows = await sql`
-      SELECT id, title, summary, problem, solution, problem_image, solution_image, link, created_at, updated_at
+      SELECT id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link, created_at, updated_at
       FROM "TENA_Admin".programs
       WHERE id = ${id}
     `;
@@ -45,7 +45,7 @@ router.get("/:id", async (req, res, next) => {
 // POST /api/programs
 router.post("/", ...adminOnly, async (req, res, next) => {
   try {
-    const { title, summary, problem, solution, problem_image, solution_image, link } = req.body;
+    const { title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link } = req.body;
 
     if (!title || typeof title !== "string") {
       return res.status(400).json({ error: "Title is required (string)" });
@@ -56,14 +56,25 @@ router.post("/", ...adminOnly, async (req, res, next) => {
     if (solution_image !== undefined && solution_image !== null && typeof solution_image !== "string") {
       return res.status(400).json({ error: "solution_image must be a string" });
     }
+    if (background_image !== undefined && background_image !== null && typeof background_image !== "string") {
+      return res.status(400).json({ error: "background_image must be a string" });
+    }
+    [stat1, stat2, stat3, stat4].forEach((value, index) => {
+      if (value !== undefined && value !== null && typeof value !== "string") {
+        throw new Error(`stat${index + 1} must be a string`);
+      }
+    });
     if (link !== undefined && link !== null && typeof link !== "string") {
       return res.status(400).json({ error: "link must be a string" });
     }
 
     const rows = await sql`
-      INSERT INTO "TENA_Admin".programs (title, summary, problem, solution, problem_image, solution_image, link)
-      VALUES (${title}, ${summary ?? null}, ${problem ?? null}, ${solution ?? null}, ${problem_image ?? null}, ${solution_image ?? null}, ${link ?? null})
-      RETURNING id, title, summary, problem, solution, problem_image, solution_image, link, created_at, updated_at
+      INSERT INTO "TENA_Admin".programs (title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link)
+      VALUES (
+        ${title}, ${summary ?? null}, ${description ?? null}, ${problem ?? null}, ${solution ?? null}, ${problem_image ?? null}, ${solution_image ?? null}, ${background_image ?? null},
+        ${stat1 ?? null}, ${stat2 ?? null}, ${stat3 ?? null}, ${stat4 ?? null}, ${link ?? null}
+      )
+      RETURNING id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link, created_at, updated_at
     `;
 
     res.status(201).json(rows[0]);
@@ -80,7 +91,7 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const { title, summary, problem, solution, problem_image, solution_image, link } = req.body;
+    const { title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link } = req.body;
 
     if (problem_image !== undefined && problem_image !== null && typeof problem_image !== "string") {
       return res.status(400).json({ error: "problem_image must be a string" });
@@ -88,6 +99,14 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
     if (solution_image !== undefined && solution_image !== null && typeof solution_image !== "string") {
       return res.status(400).json({ error: "solution_image must be a string" });
     }
+    if (background_image !== undefined && background_image !== null && typeof background_image !== "string") {
+      return res.status(400).json({ error: "background_image must be a string" });
+    }
+    [stat1, stat2, stat3, stat4].forEach((value, index) => {
+      if (value !== undefined && value !== null && typeof value !== "string") {
+        throw new Error(`stat${index + 1} must be a string`);
+      }
+    });
     if (link !== undefined && link !== null && typeof link !== "string") {
       return res.status(400).json({ error: "link must be a string" });
     }
@@ -95,16 +114,22 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
     const rows = await sql`
       UPDATE "TENA_Admin".programs
       SET
-        title          = COALESCE(${title ?? null}, title),
-        summary        = COALESCE(${summary ?? null}, summary),
-        problem        = COALESCE(${problem ?? null}, problem),
-        solution       = COALESCE(${solution ?? null}, solution),
-        problem_image  = COALESCE(${problem_image ?? null}, problem_image),
-        solution_image = COALESCE(${solution_image ?? null}, solution_image),
-        link           = COALESCE(${link ?? null}, link),
-        updated_at     = NOW()
+        title            = COALESCE(${title ?? null}, title),
+        summary          = COALESCE(${summary ?? null}, summary),
+        description      = COALESCE(${description ?? null}, description),
+        problem          = COALESCE(${problem ?? null}, problem),
+        solution         = COALESCE(${solution ?? null}, solution),
+        problem_image    = COALESCE(${problem_image ?? null}, problem_image),
+        solution_image   = COALESCE(${solution_image ?? null}, solution_image),
+        background_image = COALESCE(${background_image ?? null}, background_image),
+        stat1            = COALESCE(${stat1 ?? null}, stat1),
+        stat2            = COALESCE(${stat2 ?? null}, stat2),
+        stat3            = COALESCE(${stat3 ?? null}, stat3),
+        stat4            = COALESCE(${stat4 ?? null}, stat4),
+        link             = COALESCE(${link ?? null}, link),
+        updated_at       = NOW()
       WHERE id = ${id}
-      RETURNING id, title, summary, problem, solution, problem_image, solution_image, link, created_at, updated_at
+      RETURNING id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, link, created_at, updated_at
     `;
 
     if (rows.length === 0) {

@@ -25,7 +25,7 @@ export async function getProgram(sig){
             error = err;
          } 
     }
-    throw error ?? new Error("Failed to load board.");
+    throw error ?? new Error("Failed to load programs.");
 
 }
     

@@ -4,29 +4,35 @@ import InvolvementCard from "../ui/InvolvementCard";
 export default function GetInvolved() {
   return (
     <Box
+      position="relative"
       as="section"
-      bg="white"
       w="100%"
-      minH={{ base: "1000px", md: "1100px" }}
-      py={{ base: 12, md: 20 }}
+
+      py={{ base: 22, md: 40 }}
     >
+
+      <Box position="absolute" right={"60px"} top={"220px"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={-1} />
+      <Box position="absolute" left={"60px"} bottom={"-50px"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "300px", md: "400px" }} h={{ base: "300px", md: "400px" }} borderRadius="full" zIndex={-1} />
+
       <Box
-        maxW="1024px"
+        maxW="1100px"
+        position="relative"
         height="500px"
         mx="auto"
         px={{ base: 6, md: 12, lg: 20 }}
         bg="white"
         border="1px solid rgba(226, 232, 240, 1)"
-        p={{ base: 8, md: 12 }}
-        borderRadius="md"
-        boxShadow={"sm"}
+        py={{ base: 8, md: 12 }}
+        borderRadius={10}
+        boxShadow={"md"}
+        zindex={1}
       >
         <Text
           textAlign="center"
           fontWeight={700}
           fontSize={{ base: "30px", md: "40px", lg: "48px" }}
-          mb={{ base: 8, md: 12 }}
-          textColor="#1573CF"
+          my={{ base: 8, md: 10 }}
+          textColor="black"
         >
           Join Our Mission.
         </Text>
@@ -58,6 +64,8 @@ export default function GetInvolved() {
           />
         </SimpleGrid>
       </Box>
+
+
     </Box>
   );
 }

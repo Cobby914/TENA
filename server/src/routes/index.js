@@ -7,7 +7,6 @@ import teamMemberTypesRouter from "./team_member_types.js";
 import programsRouter from "./programs.js";
 import newsletterSubscribersRouter from "./newsletter_subscribers.js";
 import companyInfoRouter from "./company_info.js";
-import programStatsRouter from "./program_stats.js";
 import usersRouter from "./users.js";
 import authRouter from "./auth.js";
 
@@ -24,7 +23,6 @@ router.use("/newsletter-subscribers", newsletterSubscribersRouter);
 router.use("/team_members", teamMembersRouter);
 router.use("/newsletter_subscribers", newsletterSubscribersRouter);
 router.use("/company_info", companyInfoRouter);
-router.use("/program_stats", programStatsRouter);
 router.use("/users", usersRouter);
 router.use("/auth", authRouter);
 
