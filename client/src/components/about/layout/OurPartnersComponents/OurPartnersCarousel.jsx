@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Box, Button, Flex, HStack, Image, Text } from "@chakra-ui/react";
 import leftArrow from "../../../../assets/OurPartners/ArrowButtons/left circle.svg";
 import leftArrowHover from "../../../../assets/OurPartners/ArrowButtons/left arrow filled.svg";
@@ -9,23 +9,13 @@ export default function OurPartnersCarousel({
   title,
   images = [],
   logosPerView = 4,
+  autoScrollInterval = 3000
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
 
   const totalImages = images.length;
-  const visibleCount = Math.min(logosPerView, totalImages || 1);
-
-  //builds the current visible logos based of activeIndex, then uses mod to wrap around images from end to start
-  const visibleImages = useMemo(() => {
-    if (!totalImages) return [];
-
-    return Array.from({ length: visibleCount }, (_, offset) => {
-      const imageIndex = (activeIndex + offset) % totalImages;
-      return images[imageIndex];
-    });
-  }, [activeIndex, images, totalImages, visibleCount]);
 
   //moves one step left then wraps to the last image based on user index
   const goToPrevious = () => {
@@ -39,6 +29,26 @@ export default function OurPartnersCarousel({
     setActiveIndex((prev) => (prev + 1) % totalImages);
   };
 
+  useEffect(() => {
+    if (totalImages <= logosPerView) return;
+    const interval = setInterval (() => {
+      goToNext();
+    }, autoScrollInterval);
+
+    return () => clearInterval(interval);
+  }, [goToNext, totalImages, logosPerView, autoScrollInterval]);
+
+  const visibleImages = useMemo(() => {
+    if (!totalImages) return [];
+    // If images are fewer than the view count, just show them all
+    const count = Math.min(logosPerView, totalImages);
+    
+    return Array.from({ length: count }, (_, offset) => {
+      const imageIndex = (activeIndex + offset) % totalImages;
+      return images[imageIndex];
+    });
+  }, [activeIndex, images, totalImages, logosPerView]);
+
   return (
     <Box width="100%">
       <Flex align="center" justify="space-between" mb={4}>
@@ -46,7 +56,7 @@ export default function OurPartnersCarousel({
           fontFamily="body"
           fontWeight="700"
           fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
-          color="#000000"
+          color="#black"
         >
           {title}
         </Text>
@@ -101,9 +111,8 @@ export default function OurPartnersCarousel({
       <Box
         border="1px solid #D3D8DF"
         borderRadius="8px"
-        bg="#FFFFFF"
-        px={{ base: 6, md: 8 }}
-        py={{ base: 6, md: 8 }}
+        bg="white"
+        p={{ base: 6, md: 8 }}
       >
         <Flex align="center" justify="space-between" gap={{ base: 4, md: 8 }}>
           {visibleImages.map((src, index) => (
@@ -116,7 +125,7 @@ export default function OurPartnersCarousel({
             >
               <Image
                 src={src}
-                alt={`${title} logo ${index + 1}`}
+                alt={`${title} logo ${index}`}
                 maxH={{ base: "60px", md: "95px" }}
                 objectFit="contain"
               />
@@ -126,12 +135,13 @@ export default function OurPartnersCarousel({
 
         {totalImages > 0 && (
           <HStack justify="center" spacing={2} mt={{ base: 6, md: 8 }}>
-            {Array.from({ length: totalImages }).map((_, index) => (
+            {images.map((_, index) => (
               <Box
-                key={`${title}-dot-${index}`}
+                key={index}
                 width="8px"
                 height="8px"
                 borderRadius="full"
+                transition="all 0.3s"
                 bg={index === activeIndex ? "#1573CF" : "#000000"}
               />
             ))}
