@@ -15,17 +15,16 @@ export default function DPVCards() {
 
 
                 <Box
-                                position="absolute"
-                                right = "0%"
-                                top = "80%"
-                                zIndex="0"
-                                pointerEvents="none"
-                                width={{ base: "100px", md: "196px" }}
-                                height={{ base: "100px", md: "196px" }}
-                                >
-                
-                                <Image src={MidCirc} objectFit="contain" />
-                            </Box>
+                    position="absolute"
+                    right = "0%"
+                    top = "80%"
+                    zIndex="0"
+                    pointerEvents="none"
+                    width={{ base: "100px", md: "196px" }}
+                    height={{ base: "100px", md: "196px" }}
+                    >
+                        <Image src={MidCirc} objectFit="contain" />
+                    </Box>
 
 
         <Box as="section" bg="white" width="100%" pb={{ base: 10, md: 16, lg: 20 }}>
