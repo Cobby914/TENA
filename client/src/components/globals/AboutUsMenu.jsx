@@ -53,7 +53,7 @@ const GetInvolvedMenu = () => {
         onMouseEnter={onOpen}
         onMouseLeave={onClose}
         minW="100%"
-        w= "auto"
+        w = {{base: "100px", md: "140px"}}
         p="0"
         align="center"
         borderRadius="none"
