@@ -50,6 +50,18 @@ export const theme = extendTheme({
           borderRadius: "lg",
           overflow: "hidden",
         },
+        item: {
+          _focus: {
+            bg: "transparent",
+            boxShadow: "none",
+            outline: "none",
+          },
+          _focusVisible: {
+            bg: "surface.muted",
+            boxShadow: "none",
+            outline: "none",
+          },
+        },
       },
     },
   },

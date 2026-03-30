@@ -14,9 +14,6 @@ export default function Navbar() {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      position="sticky"
-      top="0"
-      zIndex="1000"
       bg="surface.default"
       w="100%"
       px={{ base: 4, md: 8, lg: 12 }}

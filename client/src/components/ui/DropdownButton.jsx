@@ -14,6 +14,39 @@ import { NavLink, useNavigate } from "react-router-dom";
 const CLOSE_DELAY_MS = 120;
 
 /**
+ * No blue browser/Chakra focus ring — keyboard users still get a muted fill via _focusVisible.
+ * Chakra Menu also sets box-shadow rings; strip those everywhere.
+ */
+const menuItemProps = {
+  _hover: { bg: "surface.soft" },
+  _focus: {
+    bg: "transparent",
+    boxShadow: "none !important",
+    outline: "none !important",
+  },
+  _focusVisible: {
+    bg: "surface.muted",
+    boxShadow: "none !important",
+    outline: "none !important",
+  },
+  sx: {
+    outline: "none !important",
+    "&:focus, &:focus-visible": {
+      outline: "none !important",
+      boxShadow: "none !important",
+    },
+    "&:focus:not(:focus-visible)": {
+      bg: "transparent",
+    },
+    // Chakra roving-focus attribute (often keeps a shadow ring)
+    "&[data-focus], &[data-focus-visible]": {
+      boxShadow: "none !important",
+      outline: "none !important",
+    },
+  },
+};
+
+/**
  * Navbar-style hover dropdown: hover opens the panel; clicking the label navigates to `mainPath`.
  * Items are `{ label, to }` for in-app routes or `{ label, href }` for external links.
  */
@@ -68,9 +101,17 @@ export default function DropdownButton({ label, mainPath, items }) {
         _hover={{ bg: "surface.soft" }}
         _active={{ bg: "surface.muted" }}
         _expanded={{ bg: "surface.soft" }}
+        _focus={{ boxShadow: "none", outline: "none" }}
+        _focusVisible={{ boxShadow: "none", outline: "none" }}
         onMouseEnter={handleEnter}
         onMouseLeave={scheduleClose}
         onClick={() => navigate(mainPath)}
+        sx={{
+          "&:focus, &:focus-visible": {
+            outline: "none !important",
+            boxShadow: "none !important",
+          },
+        }}
       >
         {label}
       </MenuButton>
@@ -105,8 +146,7 @@ export default function DropdownButton({ label, mainPath, items }) {
               py={2.5}
               px={4}
               borderRadius="none"
-              _hover={{ bg: "surface.soft" }}
-              _focus={{ bg: "surface.soft" }}
+              {...menuItemProps}
             >
               {item.label}
             </MenuItem>
@@ -121,8 +161,7 @@ export default function DropdownButton({ label, mainPath, items }) {
               py={2.5}
               px={4}
               borderRadius="none"
-              _hover={{ bg: "surface.soft" }}
-              _focus={{ bg: "surface.soft" }}
+              {...menuItemProps}
               onClick={onClose}
             >
               {item.label}
