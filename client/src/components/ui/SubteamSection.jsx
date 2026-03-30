@@ -5,8 +5,14 @@ import Button from "./Button";
 export default function SubteamSection({ link, src, whoText, buttonText }) {
     return (
         <VStack spacing={{ base: 3, md: 4 }} alignItems="center">
-            <Box width={{ base: "180px", md: "210px" }} height="120px">
-                <Image src={src} alt="placeholder" />
+            <Box
+                width={{ base: "180px", md: "210px" }}
+                height="120px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+            >
+                <Image src={src} alt="placeholder" maxH="100%" maxW="100%" objectFit="contain" />
             </Box>
 
             <Text fontSize={{ base: "xl", md: "2xl" }} textAlign="center" fontFamily="INTER" color="#1573CF" fontWeight="700">
