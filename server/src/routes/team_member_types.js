@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { sql } from "../db/index.js";
+import { syncCohortForMemberInternStatus } from "../lib/internCohort.js";
 import {
   verifyAuth,
   requireApproved,
@@ -184,6 +185,7 @@ router.post("/", async (req, res, next) => {
     `;
 
     const row = await fetchTeamMemberTypeById(rows[0].id);
+    await syncCohortForMemberInternStatus(teamMemberId);
     res.status(201).json(row);
   } catch (err) {
     return handleDbInsertOrUpdateError(err, res, next);
@@ -244,6 +246,10 @@ router.put("/:id", async (req, res, next) => {
     `;
 
     const row = await fetchTeamMemberTypeById(id);
+    await syncCohortForMemberInternStatus(existing.team_member_id);
+    if (teamMemberId !== existing.team_member_id) {
+      await syncCohortForMemberInternStatus(teamMemberId);
+    }
     res.json(row);
   } catch (err) {
     return handleDbInsertOrUpdateError(err, res, next);
@@ -256,6 +262,10 @@ router.delete("/:id", async (req, res, next) => {
     const id = toId(req.params.id);
     if (!id) return res.status(400).json({ error: "Invalid ID" });
 
+    const existing = await fetchTeamMemberTypeById(id);
+    if (!existing)
+      return res.status(404).json({ error: "Team Member Type Not Found" });
+
     const rows = await sql`
       DELETE FROM "TENA_Admin".team_member_types
       WHERE id = ${id}
@@ -264,6 +274,7 @@ router.delete("/:id", async (req, res, next) => {
 
     if (rows.length === 0)
       return res.status(404).json({ error: "Team Member Type Not Found" });
+    await syncCohortForMemberInternStatus(existing.team_member_id);
     res.json({ deleted: rows[0].id });
   } catch (err) {
     next(err);

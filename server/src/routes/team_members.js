@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { sql } from "../db/index.js";
 import {
+  assertMemberMayHaveCohort,
+} from "../lib/internCohort.js";
+import {
   verifyAuth,
   requireApproved,
   requireRole,
@@ -207,7 +210,6 @@ router.post("/", async (req, res, next) => {
         ? null
         : Number(req.body.display_order);
     const cohortId = toOptionalId(req.body.cohort_id);
-
     if (displayOrder !== null && !Number.isInteger(displayOrder)) {
       return res
         .status(400)
@@ -223,10 +225,17 @@ router.post("/", async (req, res, next) => {
         .json({ error: "cohort_id must be a positive integer" });
     }
 
+    if (cohortId !== null) {
+      return res.status(400).json({
+        error:
+          "cohort_id cannot be set on create. Create the member, assign the intern member type, then update with cohort_id.",
+      });
+    }
+
     const inserted = await sql`
       INSERT INTO "TENA_Admin".team_members
       (first_name, last_name, role, bio, profile_image_key, display_order, linkedin_link, cohort_id)
-      VALUES (${firstName}, ${lastName}, ${role}, ${bio}, ${profileImageKey}, ${displayOrder}, ${linkedinLink}, ${cohortId})
+      VALUES (${firstName}, ${lastName}, ${role}, ${bio}, ${profileImageKey}, ${displayOrder}, ${linkedinLink}, NULL)
       RETURNING id
     `;
 
@@ -311,6 +320,17 @@ router.put("/:id", async (req, res, next) => {
       req.body,
       "cohort_id",
     );
+
+    if (hasCohortId && cohortId !== null) {
+      try {
+        await assertMemberMayHaveCohort(id, cohortId);
+      } catch (e) {
+        if (e.statusCode === 400) {
+          return res.status(400).json({ error: e.message });
+        }
+        throw e;
+      }
+    }
 
     const rows = await sql`
       UPDATE "TENA_Admin".team_members

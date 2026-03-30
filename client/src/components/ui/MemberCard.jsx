@@ -1,26 +1,66 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 
+/** Design specs (px): cohort / intern cards */
+const COHORT = {
+  w: 221,
+  h: 284,
+  radius: 2.83,
+  border: 0.71
+};
+
+/** Design specs (px): main team strip */
+const TEAM = {
+  w: 276,
+  h: 352,
+  radius: 3.53,
+  border: 0.88
+};
+
 const CARD_VARIANTS = {
   board: {
     width: { base: "260px", md: "288px" },
     imageHeight: { base: "200px", md: "242px" },
     nameSize: { base: "2xl", md: "30px" },
     roleSize: { base: "sm", md: "md" },
-    padding: { base: 4, md: 5 }
+    padding: { base: 4, md: 5 },
+    cardBg: "#F0F2F5",
+    nameUnderline: true,
+    fillGrid: false,
+    borderRadius: "4px",
+    borderWidth: "1px"
   },
   team: {
-    width: { base: "200px", md: "240px" },
-    imageHeight: { base: "150px", md: "180px" },
     nameSize: { base: "lg", md: "xl" },
     roleSize: { base: "xs", md: "sm" },
-    padding: { base: 3, md: 4 }
+    padding: { base: 3, md: 4 },
+    cardBg: "#F0F2F5",
+    nameUnderline: true,
+    fixedSize: TEAM,
+    borderRadius: `${TEAM.radius}px`,
+    borderWidth: `${TEAM.border}px`
+  },
+  /** Cohort interns: fixed 221×284 — square photo, bold name, light panel */
+  cohort: {
+    nameSize: { base: "md", md: "md" },
+    roleSize: { base: "xs", md: "xs" },
+    padding: "10px",
+    cardBg: "#F4F5F7",
+    nameUnderline: false,
+    fixedSize: COHORT,
+    borderRadius: `${COHORT.radius}px`,
+    borderWidth: `${COHORT.border}px`
   },
   compact: {
     width: { base: "160px", md: "190px" },
     imageHeight: { base: "120px", md: "140px" },
     nameSize: { base: "md", md: "lg" },
     roleSize: { base: "xs", md: "xs" },
-    padding: { base: 3, md: 3 }
+    padding: { base: 3, md: 3 },
+    cardBg: "#F0F2F5",
+    nameUnderline: true,
+    fillGrid: false,
+    borderRadius: "4px",
+    borderWidth: "1px"
   }
 };
 
@@ -31,39 +71,117 @@ export default function MemberCard({
   variant = "board"
 }) {
   const style = CARD_VARIANTS[variant] ?? CARD_VARIANTS.board;
+  const cardBg = style.cardBg ?? "#F0F2F5";
+  const nameUnderline = style.nameUnderline !== false;
+  const fillGrid = style.fillGrid === true;
+  const fixedSize = style.fixedSize;
+  const roleColor = variant === "cohort" ? "#6B7280" : "#1D232E";
+  const borderRadius = style.borderRadius ?? "4px";
+  const borderWidth = style.borderWidth ?? "1px";
+
+  const boxProps =
+    fixedSize != null
+      ? {
+          w: `min(${fixedSize.w}px, 100%)`,
+          h: `${fixedSize.h}px`,
+          maxW: `${fixedSize.w}px`,
+          flex: "none",
+          minW: 0
+        }
+      : {
+          width: style.width,
+          maxW: fillGrid ? "none" : undefined,
+          flex: fillGrid ? "1" : undefined,
+          minW: fillGrid ? 0 : undefined,
+          h: fillGrid ? "100%" : undefined,
+          minH: fillGrid ? 0 : undefined
+        };
 
   return (
     <Box
-      width={style.width}
-      bg="#F0F2F5"
-      border="1px solid"
+      {...boxProps}
+      display="flex"
+      flexDirection="column"
+      bg={cardBg}
+      borderStyle="solid"
       borderColor="#D8DCE2"
-      borderRadius="4px"
+      borderWidth={borderWidth}
+      borderRadius={borderRadius}
       p={style.padding}
+      boxSizing="border-box"
+      overflow="hidden"
     >
-      <Image
-        src={imageSrc}
-        alt={name}
-        width="100%"
-        height={style.imageHeight}
-        objectFit="cover"
-        bg="#D9D9D9"
-      />
+      {variant === "cohort" && fixedSize != null ? (
+        <Box
+          w="100%"
+          position="relative"
+          overflow="hidden"
+          borderRadius="2px"
+          bg="#E5E7EB"
+          flexShrink={0}
+          sx={{ aspectRatio: "1 / 1" }}
+        >
+          <Image
+            src={imageSrc}
+            alt={name}
+            position="absolute"
+            inset={0}
+            w="100%"
+            h="100%"
+            objectFit="cover"
+          />
+        </Box>
+      ) : (
+        <Image
+          src={imageSrc}
+          alt={name}
+          width="100%"
+          height={
+            fixedSize != null
+              ? "100%"
+              : style.imageHeight != null
+                ? style.imageHeight
+                : "auto"
+          }
+          flex={fixedSize != null ? "1" : undefined}
+          minH={fixedSize != null ? 0 : undefined}
+          flexShrink={fixedSize != null ? 1 : 0}
+          objectFit="cover"
+          bg={variant === "cohort" ? "#E8EAED" : "#D9D9D9"}
+        />
+      )}
 
-      <Text
-        mt={{ base: 3, md: 4 }}
-        fontSize={style.nameSize}
-        color="#1D232E"
-        lineHeight="1.15"
-        textDecoration="underline"
+      <Box
+        flex={fixedSize != null ? "0 0 auto" : "1"}
+        display="flex"
+        flexDirection="column"
+        minH={0}
+        mt={fixedSize != null ? (variant === "cohort" ? 3 : 2) : { base: 3, md: 3 }}
       >
-        {name}
-      </Text>
+        <Text
+          fontSize={style.nameSize}
+          fontWeight={variant === "cohort" ? "700" : undefined}
+          color="#111827"
+          lineHeight="1.25"
+          textAlign="left"
+          textDecoration={nameUnderline ? "underline" : "none"}
+          noOfLines={2}
+        >
+          {name}
+        </Text>
 
-      <Text mt={1} fontSize={style.roleSize} color="#1D232E" lineHeight="1.2">
-        {position}
-      </Text>
+        <Text
+          mt={1}
+          fontSize={style.roleSize}
+          fontWeight={variant === "cohort" ? "400" : undefined}
+          color={roleColor}
+          lineHeight="1.35"
+          textAlign="left"
+          noOfLines={2}
+        >
+          {position}
+        </Text>
+      </Box>
     </Box>
   );
 }
-

@@ -7,22 +7,28 @@ export function useTeamMembers() {
   const query = useQuery({
     queryKey: ["team", "public", "roster"],
     queryFn: async ({ signal }) => {
-      const [teamMembers, cohorts] = await Promise.all([
+      const [teamMembers, cohorts, interns] = await Promise.all([
         fetchMembersByType("team", signal),
-        fetchCohorts(signal)
+        fetchCohorts(signal),
+        fetchMembersByType("intern", signal)
       ]);
-      return { teamMembers, cohorts };
+      return { teamMembers, cohorts, interns };
     }
   });
 
   const rawTeamMembers = query.data?.teamMembers ?? [];
   const rawCohorts = query.data?.cohorts ?? [];
+  const rawInterns = query.data?.interns ?? [];
 
   const members = useMemo(() => {
     return rawTeamMembers
       .map(toCardMember)
       .sort((a, b) => (a.displayOrder - b.displayOrder) || a.name.localeCompare(b.name));
   }, [rawTeamMembers]);
+
+  const internCards = useMemo(() => {
+    return rawInterns.map(toCardMember);
+  }, [rawInterns]);
 
   const cohorts = useMemo(() => {
     return rawCohorts
@@ -31,8 +37,15 @@ export function useTeamMembers() {
         if (a.year !== null && b.year !== null && a.year !== b.year) return b.year - a.year;
         if (a.termOrder !== b.termOrder) return a.termOrder - b.termOrder;
         return a.title.localeCompare(b.title);
-      });
-  }, [rawCohorts]);
+      })
+      .map((cohort) => ({
+        ...cohort,
+        interns:
+          cohort.numericId != null
+            ? internCards.filter((m) => m.cohortId === cohort.numericId)
+            : []
+      }));
+  }, [rawCohorts, internCards]);
 
   return {
     members,

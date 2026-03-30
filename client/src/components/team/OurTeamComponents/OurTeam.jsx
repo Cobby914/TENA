@@ -6,10 +6,9 @@ import {
   AccordionPanel,
   Box,
   Center,
+  SimpleGrid,
   Spinner,
   Text,
-  Wrap,
-  WrapItem,
 } from "@chakra-ui/react";
 import { useTeamMembers } from "../../../hooks/useTeamMembers";
 import MemberCard from "../../ui/MemberCard";
@@ -53,22 +52,23 @@ export default function OurTeam() {
               {errorMsg}
             </Text>
           ) : (
-            <Wrap
+            <SimpleGrid
               mt={{ base: 8, md: 10 }}
+              columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
               spacing={{ base: 4, md: 5 }}
-              justify="flex-start"
+              w="100%"
+              justifyItems="center"
             >
               {members.map((member) => (
-                <WrapItem key={member.id}>
-                  <MemberCard
-                    name={member.name}
-                    position={member.role}
-                    imageSrc={member.imageSrc}
-                    variant="team"
-                  />
-                </WrapItem>
+                <MemberCard
+                  key={member.id}
+                  name={member.name}
+                  position={member.role}
+                  imageSrc={member.imageSrc}
+                  variant="team"
+                />
               ))}
-            </Wrap>
+            </SimpleGrid>
           )}
         </Box>
       </Box>
@@ -89,35 +89,51 @@ export default function OurTeam() {
               <h3>
                 <AccordionButton
                   px={0}
-                  py={{ base: 5, md: 6 }}
+                  py={{ base: 4, md: 5 }}
                   _hover={{ bg: "transparent" }}
+                  alignItems="center"
                 >
-                  <Box flex="1" textAlign="left">
+                  <Box flex="1" textAlign="left" pr={2}>
                     <Text
+                      as="span"
                       fontWeight="700"
-                      fontSize={{ base: "3xl", md: "4xl" }}
+                      fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
                       color="#111827"
+                      lineHeight="1.2"
                     >
                       {cohort.title}
                     </Text>
                   </Box>
-                  <AccordionIcon color="#111827" />
+                  <AccordionIcon
+                    color="#111827"
+                    fontSize={{ base: "xl", md: "2xl" }}
+                  />
                 </AccordionButton>
               </h3>
 
-              <AccordionPanel px={0} pb={{ base: 7, md: 10 }}>
-                <Box
-                  border="1px solid #D8DCE2"
-                  bg="#F3F5F7"
-                  borderRadius="4px"
-                  py={{ base: 4, md: 5 }}
-                  px={{ base: 4, md: 6 }}
-                >
-                  <Text color="#4B5563" fontSize={{ base: "sm", md: "md" }}>
-                    COLIN PLEASEEEEEE IMPLEMENT THIS INTERN FILTERING SECTIONS
-                    PLEAWSEE
+              <AccordionPanel px={0} pb={{ base: 8, md: 10 }} pt={0}>
+                {cohort.interns.length === 0 ? (
+                  <Text color="#6B7280" fontSize={{ base: "sm", md: "md" }}>
+                    No interns listed for this cohort yet.
                   </Text>
-                </Box>
+                ) : (
+                  <SimpleGrid
+                    columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+                    spacing={{ base: 4, md: 5 }}
+                    w="100%"
+                    justifyItems="center"
+                  >
+                    {cohort.interns.map((intern) => (
+                      <MemberCard
+                        key={intern.id}
+                        name={intern.name}
+                        position={intern.role}
+                        imageSrc={intern.imageSrc}
+                        variant="cohort"
+                      />
+                    ))}
+                  </SimpleGrid>
+                )}
               </AccordionPanel>
             </AccordionItem>
           ))}
