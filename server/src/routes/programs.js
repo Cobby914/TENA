@@ -59,11 +59,12 @@ router.post("/", ...adminOnly, async (req, res, next) => {
     if (background_image !== undefined && background_image !== null && typeof background_image !== "string") {
       return res.status(400).json({ error: "background_image must be a string" });
     }
-    [stat1, stat2, stat3, stat4].forEach((value, index) => {
+    for (let i = 0; i < 4; i++) {
+      const value = [stat1, stat2, stat3, stat4][i];
       if (value !== undefined && value !== null && typeof value !== "string") {
-        throw new Error(`stat${index + 1} must be a string`);
+        return res.status(400).json({ error: `stat${i + 1} must be a string` });
       }
-    });
+    }
     if (link !== undefined && link !== null && typeof link !== "string") {
       return res.status(400).json({ error: "link must be a string" });
     }
@@ -102,11 +103,12 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
     if (background_image !== undefined && background_image !== null && typeof background_image !== "string") {
       return res.status(400).json({ error: "background_image must be a string" });
     }
-    [stat1, stat2, stat3, stat4].forEach((value, index) => {
+    for (let i = 0; i < 4; i++) {
+      const value = [stat1, stat2, stat3, stat4][i];
       if (value !== undefined && value !== null && typeof value !== "string") {
-        throw new Error(`stat${index + 1} must be a string`);
+        return res.status(400).json({ error: `stat${i + 1} must be a string` });
       }
-    });
+    }
     if (link !== undefined && link !== null && typeof link !== "string") {
       return res.status(400).json({ error: "link must be a string" });
     }

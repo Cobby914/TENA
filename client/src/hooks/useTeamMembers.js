@@ -1,36 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchCohorts, fetchMembersByType } from "../api/teamMembersApi";
 import { toCardMember, toCohortOption } from "../lib/teamMemberMapper";
 
 export function useTeamMembers() {
-  const [rawTeamMembers, setRawTeamMembers] = useState([]);
-  const [rawCohorts, setRawCohorts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState("");
+  const query = useQuery({
+    queryKey: ["team", "public", "roster"],
+    queryFn: async ({ signal }) => {
+      const [teamMembers, cohorts] = await Promise.all([
+        fetchMembersByType("team", signal),
+        fetchCohorts(signal)
+      ]);
+      return { teamMembers, cohorts };
+    }
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    (async () => {
-      try {
-        setLoading(true);
-        const [teamMembers, cohorts] = await Promise.all([
-          fetchMembersByType("team", controller.signal),
-          fetchCohorts(controller.signal)
-        ]);
-
-        setRawTeamMembers(teamMembers);
-        setRawCohorts(cohorts);
-      } catch (err) {
-        if (err?.name === "AbortError") return;
-        setErrorMsg(err instanceof Error ? err.message : "Unable to load team members");
-      } finally {
-        setLoading(false);
-      }
-    })();
-
-    return () => controller.abort();
-  }, []);
+  const rawTeamMembers = query.data?.teamMembers ?? [];
+  const rawCohorts = query.data?.cohorts ?? [];
 
   const members = useMemo(() => {
     return rawTeamMembers
@@ -48,5 +34,14 @@ export function useTeamMembers() {
       });
   }, [rawCohorts]);
 
-  return { members, cohorts, loading, errorMsg };
+  return {
+    members,
+    cohorts,
+    loading: query.isPending,
+    errorMsg: query.error
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load team members"
+      : ""
+  };
 }

@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchCohorts, fetchTeamMembers } from "../api/teamMembersApi";
 
 function toAdminMember(member, index) {
@@ -37,37 +38,33 @@ function isIntern(member) {
 }
 
 export function useAdminTeamData() {
-  const [rawTeamMembers, setRawTeamMembers] = useState([]);
-  const [rawCohorts, setRawCohorts] = useState([]);
-  const [errorMsg, setErrorMsg] = useState("");
+  const query = useQuery({
+    queryKey: ["team", "admin", "roster"],
+    queryFn: async ({ signal }) => {
+      const [teamMembers, cohorts] = await Promise.all([
+        fetchTeamMembers(signal),
+        fetchCohorts(signal)
+      ]);
+      return { teamMembers, cohorts };
+    }
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    (async () => {
-      try {
-        const [teamMembers, cohorts] = await Promise.all([
-          fetchTeamMembers(controller.signal),
-          fetchCohorts(controller.signal)
-        ]);
-
-        setRawTeamMembers(teamMembers);
-        setRawCohorts(cohorts);
-      } catch (err) {
-        if (err?.name === "AbortError") return;
-        setErrorMsg(err instanceof Error ? err.message : "Unable to load admin data");
-      }
-    })();
-
-    return () => controller.abort();
-  }, []);
+  const rawTeamMembers = query.data?.teamMembers ?? [];
+  const rawCohorts = query.data?.cohorts ?? [];
 
   const teamMembers = useMemo(() => {
-    return rawTeamMembers
-      .filter((member) => !isIntern(member))
-      .map(toAdminMember);
+    return rawTeamMembers.filter((member) => !isIntern(member)).map(toAdminMember);
   }, [rawTeamMembers]);
+
   const cohorts = useMemo(() => rawCohorts.map(toAdminCohort), [rawCohorts]);
 
-  return { teamMembers, cohorts, errorMsg };
+  return {
+    teamMembers,
+    cohorts,
+    errorMsg: query.error
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load admin data"
+      : ""
+  };
 }
