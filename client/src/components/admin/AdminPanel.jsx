@@ -2,7 +2,7 @@ import { Flex, Box, Text, VStack } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AdminPanelButton from "./AdminPanelButton";
-import { clearAuthSession, getAuthSession } from "../../auth/session";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const NAV_ITEMS = [
     { label: "Dashboard", path: "/admin/dashboard" },
@@ -15,10 +15,11 @@ const NAV_ITEMS = [
 export default function AdminPanel({ children }) {
     const navigate = useNavigate();
     const location = useLocation();
-    const session = getAuthSession();
+    const session = useAuthStore((s) => s.session);
+    const clearSession = useAuthStore((s) => s.clearSession);
 
     const handleLogout = () => {
-        clearAuthSession();
+        clearSession();
         navigate("/login", { replace: true });
     };
 

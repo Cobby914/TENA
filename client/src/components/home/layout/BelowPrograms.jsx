@@ -10,9 +10,9 @@ import {
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import diversifyImg from "./DCEimgs/Diversify.png";
-import compassionImg from "./DCEimgs/Compassion.png";
-import equityImg from "./DCEimgs/Equity.png";
+const diversifyImg = "/AboutUs/Values/Diversity.png";
+const compassionImg = "/AboutUs/Values/Compassion.png";
+const equityImg = "/AboutUs/Values/Equity.png";
 
 const valueCards = [
   { imageSrc: diversifyImg, alt: "Diversify icon" },

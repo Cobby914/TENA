@@ -1,8 +1,8 @@
 import { Box, Text, VStack, Image } from "@chakra-ui/react";
 
-import Right from "../../assets/GetInvolved/HeaderRight.svg"
-import Left from "../../assets/GetInvolved/HeaderLeft.svg"
-import Inside from "../../assets/GetInvolved/HeaderInside.svg"
+const Right = "/GetInvolved/vectors/HeaderRight.svg";
+const Left = "/GetInvolved/vectors/HeaderLeft.svg";
+const Inside = "/GetInvolved/vectors/HeaderInside.svg";
 
 export default function GetInvolvedHeader() {
     return(

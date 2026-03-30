@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
-import { getAuthSession, setAuthSession } from "../auth/session";
+import { useAuthStore } from "../store/useAuthStore";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
@@ -26,7 +26,8 @@ export default function Login() {
   const toast = useToast();
   const location = useLocation();
   const navigate = useNavigate();
-  const session = getAuthSession();
+  const session = useAuthStore((s) => s.session);
+  const setSession = useAuthStore((s) => s.setSession);
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   if (session) {
@@ -55,7 +56,7 @@ export default function Login() {
         throw new Error(data?.error || "Unable to sign in");
       }
 
-      setAuthSession({ token: credential, user: data.user });
+      setSession({ token: credential, user: data.user });
       navigate(destination, { replace: true });
     } catch (err) {
       toast({

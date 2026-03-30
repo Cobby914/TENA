@@ -1,8 +1,8 @@
 import { Box, Button, Flex, HStack, Text, VStack, Card, Image } from "@chakra-ui/react";
 
-import Partners from "../../assets/GetInvolved/GetInvolvedPartnerships.jpg"
-import PTop from "../../assets/GetInvolved/PartnershipTop.svg"
-import PBottom from "../../assets/GetInvolved/PartnershipBottom.svg"
+const Partners = "/GetInvolved/GetInvolvedPartnerships.jpg";
+const PTop = "/GetInvolved/vectors/PartnershipTop.svg";
+const PBottom = "/GetInvolved/vectors/PartnershipBottom.svg";
 import GIC from "./GetInvolvedCard"
 
 export default function GetInvolvedCard ({

@@ -1,11 +1,11 @@
 import { Box, Flex, VStack, Text, SimpleGrid } from "@chakra-ui/react";
 import SubteamSection from "../../ui/SubteamSection";
-import placeholder from "../../../assets/logoplaceholder.png";
 import Board from "../../../pages/Board"
 
-import OurBoardPNG from "../../../assets/OurBoard.png";
-import OurTeamPNG from "../../../assets/OurTeam.png";
-import OurPartnersPNG from "../../../assets/OurPartners.png";
+const placeholder = "/logoplaceholder.png";
+const OurBoardPNG = "/AboutUs/People/OurBoard.png";
+const OurTeamPNG = "/AboutUs/People/OurTeam.png";
+const OurPartnersPNG = "/AboutUs/People/OurPartners.png";
 
 export default function OurPeople() {
     return (

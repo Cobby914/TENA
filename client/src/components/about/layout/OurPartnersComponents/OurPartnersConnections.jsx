@@ -1,40 +1,38 @@
 import OurPartnersCarousel from "./OurPartnersCarousel";
 import { Box, Text, VStack } from "@chakra-ui/react";
 
-//return image path in consistent order at every refresh
-const sortImageModules = (modules) =>
-  Object.entries(modules)
-    .sort(([pathA], [pathB]) =>
-      pathA.localeCompare(pathB, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      }),
-    )
-    .map(([, imagePath]) => imagePath);
+const communityBasedOrgImages = [
+  "/OurPartners/CommunityBasedOrgs/12221 1.png",
+  "/OurPartners/CommunityBasedOrgs/30045 1.png",
+  "/OurPartners/CommunityBasedOrgs/33784 1.png",
+  "/OurPartners/CommunityBasedOrgs/36354 1.png",
+  "/OurPartners/CommunityBasedOrgs/62141 1.png",
+  "/OurPartners/CommunityBasedOrgs/83406 1.png",
+  "/OurPartners/CommunityBasedOrgs/99933 1.png",
+  "/OurPartners/CommunityBasedOrgs/SCR-20260112-bsvd 1.png",
+].map(encodeURI);
 
-const communityBasedOrgImages = sortImageModules(
-  import.meta.glob(
-    "../../../../assets/OurPartners/CommunityBasedOrgs/*.png", //only using pngs since that is the only file type in assests change it as a multi-extension pattern if diff file types will be used
-    {
-      eager: true,
-      import: "default",
-    },
-  ),
-);
+const educationalImages = [
+  "/OurPartners/Educational/2486 1.png",
+  "/OurPartners/Educational/16055 1.png",
+  "/OurPartners/Educational/64671 1.png",
+  "/OurPartners/Educational/66838 1.png",
+  "/OurPartners/Educational/95664 1.png",
+  "/OurPartners/Educational/SCR-20260112-bspa 1.png",
+  "/OurPartners/Educational/SCR-20260112-bsrh 1.png",
+  "/OurPartners/Educational/SCR-20260112-bssf 1.png",
+].map(encodeURI);
 
-const educationalImages = sortImageModules(
-  import.meta.glob("../../../../assets/OurPartners/Educational/*.png", {
-    eager: true,
-    import: "default",
-  }),
-);
-
-const partnersSponsorsImages = sortImageModules(
-  import.meta.glob("../../../../assets/OurPartners/Sponsors/*.png", {
-    eager: true,
-    import: "default",
-  }),
-);
+const partnersSponsorsImages = [
+  "/OurPartners/Sponsors/bombas.png",
+  "/OurPartners/Sponsors/DEO.png",
+  "/OurPartners/Sponsors/GroundGameHealth.png",
+  "/OurPartners/Sponsors/JCO.png",
+  "/OurPartners/Sponsors/Kaiser.png",
+  "/OurPartners/Sponsors/PublicHealth.png",
+  "/OurPartners/Sponsors/SCR-20260112-bsnr 1.png",
+  "/OurPartners/Sponsors/SouthLA.png",
+].map(encodeURI);
 
 export default function OurPartnersConnections() {
   return (

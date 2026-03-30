@@ -1,5 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap');
 
+/**
+ * Design tokens — use in plain CSS as var(--token-name).
+ * Chakra maps these in src/theme/index.js (brand.*, neutral.*, surface.*, border.*).
+ */
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-brand-primary: #1573cf;
+  --color-brand-accent: #5cdac5;
+  --color-brand-heading: #3f5f85;
+
+  --color-neutral-text: #1d232e;
+  --color-neutral-strong: #111827;
+  --color-neutral-muted: #4b5563;
+  --color-neutral-subtle: #6b7280;
+
+  --color-surface-default: #ffffff;
+  --color-surface-soft: #f3f5f7;
+  --color-surface-muted: #dee3eb;
+
+  --color-border-default: #d8dce2;
+  --color-border-light: #e1e6ed;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+
+  --space-section-y: 3rem;
+  --space-section-y-lg: 4.5rem;
+  --content-max-width: 72rem;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  color: var(--color-neutral-text);
+  background-color: var(--color-surface-default);
+}
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

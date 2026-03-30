@@ -1,9 +1,9 @@
 import { useMemo, useState, useEffect } from "react";
 import { Box, Button, Flex, HStack, Image, Text } from "@chakra-ui/react";
-import leftArrow from "../../../../assets/OurPartners/ArrowButtons/left circle.svg";
-import leftArrowHover from "../../../../assets/OurPartners/ArrowButtons/left arrow filled.svg";
-import rightArrow from "../../../../assets/OurPartners/ArrowButtons/right arrow.svg";
-import rightArrowHover from "../../../../assets/OurPartners/ArrowButtons/right arrow filled.svg";
+const leftArrow = "/OurPartners/ArrowButtons/left circle.svg";
+const leftArrowHover = "/OurPartners/ArrowButtons/left arrow filled.svg";
+const rightArrow = "/OurPartners/ArrowButtons/right arrow.svg";
+const rightArrowHover = "/OurPartners/ArrowButtons/right arrow filled.svg";
 
 export default function OurPartnersCarousel({
   title,

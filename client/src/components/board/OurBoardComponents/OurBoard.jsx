@@ -11,7 +11,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { useBoardMembers } from "../createBoard";
+import { useBoardMembers } from "../../../hooks/useBoardMembers";
 import MemberCard from "../../ui/MemberCard";
 
 export default function OurBoard() {

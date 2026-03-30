@@ -3,7 +3,7 @@ import { useState } from "react";
 import EditMemberCard from "./team/EditMemberCard";
 import ManageCohortCard from "./team/ManageCohortCard";
 import EditCohort from "./team/EditCohort";
-import { useAdminTeamData } from "./useAdminTeamData";
+import { useAdminTeamData } from "../../hooks/useAdminTeamData";
 
 export default function AdminTeam() {
   const [editingMember, setEditingMember] = useState(null);

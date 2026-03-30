@@ -3,7 +3,7 @@ import {
   Spinner, Alert, AlertIcon, AlertTitle, AlertDescription, Heading, Center
 } from '@chakra-ui/react';
 import CareAndFairCard from "../ui/CareAndFairCard";
-import { createProgram } from './CreateProgram';
+import { createProgram } from "../../hooks/createProgram";
 
 function MultiRingCircle({ width = 300, height = 300 }) {
   return (

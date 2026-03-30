@@ -1,7 +1,7 @@
 import { Box, Flex, VStack, Text, HStack, Image, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import sloganImage from "../images/Home Screen SLA.png"
+const sloganImage = "/Home/SouthLACafeGroup.jpg";
 
 export default function Slogan() {
   return (

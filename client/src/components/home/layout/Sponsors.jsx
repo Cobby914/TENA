@@ -1,43 +1,17 @@
 import { Box, Flex, Image, Text} from "@chakra-ui/react";
 
-const logoImgs = import.meta.glob(
-  "./sponsorHomepageImgs/*.{png,jpg,jpeg,webp}",
-  {
-    eager: true,
-    import: "default",
-  },
-);
-
-function normalize(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .replace(/\.[a-z0-9]+$/i, "")
-    .replace(/\s+img$/, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
-
-function getLogoImgPath(title) {
-  const targetKey = normalize(title);
-
-  const matchedEntry = Object.entries(logoImgs).find(([filePath]) => {
-    const fileName = filePath.split("/").pop() ?? "";
-    return normalize(fileName) === targetKey;
-  });
-
-  return matchedEntry?.[1] ?? null;
-}
+const logos = [
+  { src: "/Home/Sponsers/BIUT.png", alt: "IBTU" },
+  { src: "/Home/Sponsers/SLA.png", alt: "South LA Cafe" },
+  { src: "/Home/Sponsers/USCMED.png", alt: "USC Keck School of Medicine" },
+  { src: "/Home/Sponsers/PEAR_SUITE.png", alt: "Pear Suite" },
+  { src: "/Home/Sponsers/KGI_LOGO.png", alt: "KGI" },
+  { src: "/Home/Sponsers/BOMBAS.png", alt: "Bombas" },
+  { src: "/Home/Sponsers/ICOH_LOGO.png", alt: "ICOH" },
+  { src: "/Home/Sponsers/MBKU.png", alt: "MBKU" },
+];
 
 export default function Sponsors () {
-
-    const logos = [
-        {src: getLogoImgPath("IBTU_logo"), alt: "IBTU"},
-        {src: getLogoImgPath("SLA_Cafe_logo"), alt: "SLA Cafe"},
-        {src: getLogoImgPath("USC_KSM_logo"), alt: "USC KSM"},
-        {src: getLogoImgPath("Pear_Suite_logo"), alt: "Pear Suite"},
-        {src: getLogoImgPath("KGI_logo"), alt: "KGI"}
-    ];
-
     const dupLogos = [...logos, ...logos];
     
     return (

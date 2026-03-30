@@ -10,8 +10,8 @@ export default function Button({ children, ...props }) {
       height={{ base: "60px", md: "60px"}}
       width={{ base: "150px", md: "160px" }}
       borderRadius="none"
-      _hover={"none"}
-      _active={"none"}
+      _hover={{}}
+      _active={{}}
       {...props}
     >
       {children}
