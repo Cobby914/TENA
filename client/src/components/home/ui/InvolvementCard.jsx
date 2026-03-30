@@ -1,4 +1,4 @@
-import { Box, Text, Button, VStack } from "@chakra-ui/react";
+import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
 export default function InvolvementCard({
@@ -11,13 +11,11 @@ export default function InvolvementCard({
     <Box
       bgColor="white"
       width={{ base: "100%", md: "235px" }}
-      height={{ base: "200px", md: "220px" }}
+      h="100%"
       minW={{ base: "100%", md: "235px" }}
-      minH={{ base: "200px", md: "220px" }}
       shadow={false}
     >
-      <VStack align="stretch" h="100%" w="100%">
-        {/* Title */}
+      <Flex direction="column" align="stretch" h="100%" w="100%">
         <Text
           w="100%"
           textAlign={"center"}
@@ -26,12 +24,13 @@ export default function InvolvementCard({
           lineHeight={"133%"}
           textColor="#3F5F85"
           mb={2}
+          flexShrink={0}
         >
           {title}
         </Text>
 
-        {/* Description */}
         <Text
+          flex="1"
           fontSize={{ base: 18, md: 20, lg: 24 }}
           fontWeight={400}
           w="full"
@@ -43,14 +42,14 @@ export default function InvolvementCard({
           {description}
         </Text>
 
-        {/* Button for Links */}
-        <NavLink to={link}>
+        <NavLink to={link} style={{ width: "100%" }}>
           <Button
             bgColor="#1573CF"
             w="full"
             borderRadius={8}
             p={6}
             mt={8}
+            flexShrink={0}
           >
             <Text
               fontSize={{ base: 14, lg: 16 }}
@@ -61,7 +60,7 @@ export default function InvolvementCard({
             </Text>
           </Button>
         </NavLink>
-      </VStack>
+      </Flex>
     </Box>
   );
 }
