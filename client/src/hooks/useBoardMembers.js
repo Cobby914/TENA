@@ -1,30 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getBoard } from "../api/boardApi";
 import { toBoardCardMember } from "../lib/mapBoard";
 
 export function useBoardMembers() {
-  const [rawMembers, setRawMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const query = useQuery({
+    queryKey: ["team", "board"],
+    queryFn: ({ signal }) => getBoard(signal)
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    (async () => {
-      try {
-        setLoading(true);
-        const rows = await getBoard(controller.signal);
-        setRawMembers(rows);
-      } catch (err) {
-        if (err?.name === "AbortError") return;
-        setError(err instanceof Error ? err.message : "Unable to load board members");
-      } finally {
-        setLoading(false);
-      }
-    })();
-
-    return () => controller.abort();
-  }, []);
+  const rawMembers = query.data ?? [];
 
   const board = useMemo(() => {
     return rawMembers
@@ -32,5 +17,13 @@ export function useBoardMembers() {
       .sort((a, b) => (a.displayOrder - b.displayOrder) || a.name.localeCompare(b.name));
   }, [rawMembers]);
 
-  return { board, loading, error };
+  return {
+    board,
+    loading: query.isPending,
+    error: query.error
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load board members"
+      : ""
+  };
 }

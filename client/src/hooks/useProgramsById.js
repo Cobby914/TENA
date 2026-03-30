@@ -1,31 +1,20 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchProgramById } from "../api/programsAPI";
 
 export function useProgramById(id) {
-  const [program, setProgram] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState("");
+  const query = useQuery({
+    queryKey: ["programs", "detail", id],
+    queryFn: ({ signal }) => fetchProgramById(id, signal),
+    enabled: id != null && id !== ""
+  });
 
-  useEffect(() => {
-    if (!id) return;
-    const controller = new AbortController();
-
-    (async () => {
-      setIsLoading(true);
-      setErrorMsg("");
-      try {
-        const data = await fetchProgramById(id, controller.signal);
-        setProgram(data);
-      } catch (err) {
-        if (err?.name === "AbortError") return;
-        setErrorMsg(err instanceof Error ? err.message : "Unable to load program");
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-
-    return () => controller.abort();
-  }, [id]);
-
-  return { program, isLoading, errorMsg };
+  return {
+    program: query.data ?? null,
+    isLoading: query.isPending,
+    errorMsg: query.error
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load program"
+      : ""
+  };
 }

@@ -1,33 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
-import { getProgram } from "../api/programAPI";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPrograms } from "../api/programsAPI";
 import { Program } from "../lib/programMap";
 
-export function createProgram(){
-  const [programs, setMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export function createProgram() {
+  const query = useQuery({
+    queryKey: ["programs", "list", "all"],
+    queryFn: ({ signal }) => fetchPrograms(undefined, signal)
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
+  const programs = query.data ?? [];
+  const prog = useMemo(() => programs.map((m, i) => Program(m, i)), [programs]);
 
-    (async () => {
-      try {
-        setLoading(true);
-        const rows = await getProgram(controller.signal);
-        setMembers(rows);
-      } catch (err) {
-        if (err?.name === "AbortError") return;
-        setError(err instanceof Error ? err.message : "Unable to load programs",
-        );
-      } finally {
-        setLoading(false);
-      }
-
-    })();
-
-    return () => controller.abort();
-  }, []);
-
- const prog = useMemo(() => programs.map((m, i) => Program(m, i)), [programs]);
-  return {prog, loading, error}
+  return {
+    prog,
+    loading: query.isPending,
+    error: query.error
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load programs"
+      : null
+  };
 }
