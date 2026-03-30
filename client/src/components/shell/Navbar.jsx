@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
 import { NavLink, useNavigate} from "react-router-dom";
-import DropdownButton from "../home/ui/DropdownButton";
+import DropdownButton from "../ui/DropdownButton";
 import Button from "../ui/Button";
 const main_logo = "/transparent_tena_logo.png";
 const text_logo = "/tena_text_logo.png";
