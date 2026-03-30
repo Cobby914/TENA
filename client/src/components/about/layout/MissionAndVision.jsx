@@ -1,5 +1,6 @@
 import { Text, Box, Flex, VStack, Button, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import SimpleCircle from "../../ui/SimpleCircle";
 
 const OurVision = "/AboutUs/AboutUs-OurVision.jpg";
 const OurMission = "/AboutUs/AboutUsMission.png";
@@ -48,8 +49,23 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                             </NavLink>
 
                         </Box>
-                        <Box flex="1" width="100%">
-                            <Image src={OurVision}/>
+                        <Box flex="1" width="100%" position="relative">
+                            <Box
+                                position="absolute"
+                                top="-50px"
+                                right="-100px"
+                                zIndex="0"
+                                pointerEvents="none"
+                                aria-hidden
+                            >
+                                <SimpleCircle
+                                    size="157px"
+                                    strokeWidth="20px"
+                                    strokeColor="#5CDAC5"
+                                    opacity={0.2}
+                                />
+                            </Box>
+                            <Image src={OurVision} position="relative" zIndex="1" />
                         </Box>
                     </Flex>
 

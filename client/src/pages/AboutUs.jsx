@@ -4,42 +4,29 @@ import MissionAndVision from "../components/about/layout/MissionAndVision";
 import OurPeople from "../components/about/layout/OurPeople";
 import OurValues from "../components/about/layout/OurValues";
 import Footer from "../components/shell/Footer"
-
-const RightSemi = "/pageOverlays/RIghtSemi.png";
-const LeftTriangle = "/pageOverlays/LeftTriangle.png";
-const RightFadedSemi = "/pageOverlays/RIghtFadedSemi.png";
-
-import { Box, Container, Image } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import SimpleCircle from "../components/ui/SimpleCircle";
+import MultiRingCircle from "../components/ui/MultiRingCircle";
 
 export default function AboutUs() {
     return (
         <Box width="100%" overflowX="hidden" position="relative" display = "block">
-          
           <Box position="relative" width="100%" maxW="2500px" mx="auto">
-            <Box
-                    position="absolute"
-                    right="-5px"
-                    top="12%"
-                    zIndex="2"
-                    pointerEvents="none"
-                    width={{ base: "50px", md: "95px" }}
-                    height={{ base: "100px", md: "262px" }}
-                    >
-
-                    <Image src={RightFadedSemi} objectFit="contain" />
-                </Box>
-            
                 <Box
                     position="absolute"
-                    left="-20px"
-                    top="21%"
+                    left="-60px"
+                    top="33%"
                     zIndex="2"
                     pointerEvents="none"
                     width={{ base: "50px", md: "90px" }}
                     height={{ base: "60px", md: "156px" }}
                     >
-
-                    <Image src={LeftTriangle} objectFit="contain" />
+                    <SimpleCircle
+                        size={{ base: "80px", md: "130px" }}
+                        strokeWidth={{ base: "8px", md: "12px" }}
+                        strokeColor="#5CDAC5"
+                        opacity={0.25}
+                    />
                 </Box>
             
                 <Box
@@ -51,8 +38,7 @@ export default function AboutUs() {
                     width={{ base: "150px", md: "190px" }}
                     height={{ base: "150px", md: "298px" }}
                     >
-
-                    <Image src={RightSemi} objectFit="contain" />
+                    <MultiRingCircle width={300} height={300} />
                 </Box>
             
                     <Navbar />
