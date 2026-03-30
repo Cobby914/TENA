@@ -32,7 +32,7 @@ export default function AboutUs() {
                 <Box
                     position="absolute"
                     right="-52px"
-                    top="52%"
+                    top="53.6%"
                     zIndex="2"
                     pointerEvents="none"
                     width={{ base: "150px", md: "190px" }}
