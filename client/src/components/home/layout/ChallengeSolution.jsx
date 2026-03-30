@@ -9,7 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import { Dot, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export default function ChallengeSolution() {
   return (
@@ -77,30 +77,45 @@ export default function ChallengeSolution() {
             mt={3}
             spacing={8}
           >
-            <ListItem display="flex" alignItems="flex-start">
-              <Box>
-                <Dot size={40} />
-              </Box>
+            <ListItem display="flex" alignItems="flex-start" gap={3}>
+              <Box
+                flexShrink={0}
+                mt={2}
+                w="10px"
+                h="10px"
+                borderRadius="2px"
+                bg="rgba(21, 115, 207, 1)"
+              />
               <Box>
                 Personalized Care Navigation — Connecting residents to
                 insurance, medical homes, preventive care, and social resources
                 that truly work for them
               </Box>
             </ListItem>
-            <ListItem display="flex" alignItems="flex-start">
-              <Box>
-                <Dot size={40} />
-              </Box>
+            <ListItem display="flex" alignItems="flex-start" gap={3}>
+              <Box
+                flexShrink={0}
+                mt={2}
+                w="10px"
+                h="10px"
+                borderRadius="2px"
+                bg="rgba(21, 115, 207, 1)"
+              />
               <Box>
                 Community Health Access Points — Free health fairs offering
                 screenings, education, referrals, and support in trusted
                 neighborhood spaces
               </Box>
             </ListItem>
-            <ListItem display="flex" alignItems="flex-start">
-              <Box>
-                <Dot size={40} />
-              </Box>
+            <ListItem display="flex" alignItems="flex-start" gap={3}>
+              <Box
+                flexShrink={0}
+                mt={2}
+                w="10px"
+                h="10px"
+                borderRadius="2px"
+                bg="rgba(21, 115, 207, 1)"
+              />
               <Box>
                 Workforce Readiness & Youth Empowerment — Training the next
                 generation of diverse healthcare leaders rooted in lived
@@ -133,9 +148,6 @@ export default function ChallengeSolution() {
           </Button>
         </NavLink>
       </Box>
-
-      <Box position="absolute" left={"-3%"} top={"22%"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={-1} />
-      <Box position="absolute" right={"-10%"} top={"27%"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "250px", md: "350px" }} h={{ base: "250px", md: "350px" }} borderRadius="full" zIndex={-1} />
     </Box>
   );
 }

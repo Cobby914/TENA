@@ -11,9 +11,6 @@ export default function GetInvolved() {
       py={{ base: 22, md: 40 }}
     >
 
-      <Box position="absolute" right={"60px"} top={"220px"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={-1} />
-      <Box position="absolute" left={"60px"} bottom={"-50px"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "300px", md: "400px" }} h={{ base: "300px", md: "400px" }} borderRadius="full" zIndex={-1} />
-
       <Box
         maxW="1100px"
         position="relative"
