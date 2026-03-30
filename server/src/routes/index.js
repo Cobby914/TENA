@@ -5,6 +5,7 @@ import memberTypesRouter from "./member_types.js";
 import teamMemberTypesRouter from "./team_member_types.js";
 
 import programsRouter from "./programs.js";
+import programStatsRouter from "./program_stats.js";
 import newsletterSubscribersRouter from "./newsletter_subscribers.js";
 import companyInfoRouter from "./company_info.js";
 import usersRouter from "./users.js";
@@ -13,6 +14,7 @@ import authRouter from "./auth.js";
 const router = Router();
 
 router.use("/programs", programsRouter);
+router.use("/program_stats", programStatsRouter);
 router.use("/cohorts", cohortsRouter);
 router.use("/member-types", memberTypesRouter);
 router.use("/member_types", memberTypesRouter);
@@ -25,8 +27,5 @@ router.use("/newsletter_subscribers", newsletterSubscribersRouter);
 router.use("/company_info", companyInfoRouter);
 router.use("/users", usersRouter);
 router.use("/auth", authRouter);
-
-// router.use("/auth", authRoutes);
-// router.use("/programs", programsRoutes);
 
 export default router;
