@@ -4,10 +4,12 @@ import { QueryClient } from "@tanstack/react-query";
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60_000,
+      /** Public content does not need constant refetch; reduces work and UI stalls. */
+      staleTime: 3 * 60_000,
       gcTime: 30 * 60_000,
       retry: 1,
-      refetchOnWindowFocus: true
+      /** Tab focus refetches every active query — often feels like random lag. */
+      refetchOnWindowFocus: false
     }
   }
 });

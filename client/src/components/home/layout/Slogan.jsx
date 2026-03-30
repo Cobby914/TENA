@@ -85,7 +85,15 @@ export default function Slogan() {
         </VStack>
 
         <Box position="relative" borderRadius="full" overflow="hidden" zIndex={2} display={{base:"none", md:"block"}}>
-          <Image src={sloganImage} objectFit="contain" w={{ base: "200px", md: "400px" }} h={{ base: "200px", md: "400px" }} />
+          <Image
+            src={sloganImage}
+            alt="Community members at a TENA event"
+            objectFit="contain"
+            w={{ base: "200px", md: "400px" }}
+            h={{ base: "200px", md: "400px" }}
+            fetchPriority="high"
+            decoding="async"
+          />
         </Box>
         <Box position="absolute" right={"4%"} top={"3%"} border="20px solid rgba(92, 218, 197, 0.2)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={1} />
         <Box position="absolute" right={"10%"} top={"9%"} border="15px solid rgba(92, 218, 197, 0.2)" w={{ base: "150px", md: "180px" }} h={{ base: "150px", md: "180px" }} borderRadius="full" zIndex={1} />
