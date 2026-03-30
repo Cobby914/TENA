@@ -1,4 +1,5 @@
 import { Text, Box, Flex, VStack, Image, Circle, Container } from "@chakra-ui/react";
+import SimpleCircle from "../../ui/SimpleCircle";
 
 const heroImage = "/AboutUs/AboutUs-Hero.jpg";
 
@@ -68,10 +69,53 @@ export default function WhoWeAre() {
                             </Text>
                         </VStack>
                     </Flex>
-                    <Box flexShrink={0}>
+                    <Box
+                        flexShrink={0}
+                        position="relative"
+                        w="fit-content"
+                        mx={{ base: "auto", lg: 0 }}
+                    >
+                        <Box
+                            position="absolute"
+                            zIndex={0}
+                            pointerEvents="none"
+                            aria-hidden
+                            top={{
+                                base: "38%",
+                                sm: "40%",
+                                md: "44%",
+                                lg: "46%",
+                                xl: "49%",
+                                "2xl": "46%",
+                            }}
+                            left={{
+                                base: "41%",
+                                sm: "38%",
+                                md: "44%",
+                                lg: "46%",
+                                xl: "49%",
+                                "2xl": "46%",
+                            }}
+                        >
+                            <SimpleCircle
+                                size={{
+                                    base: "220px",
+                                    sm: "245px",
+                                    md: "265px",
+                                    lg: "285px",
+                                    xl: "285px",
+                                    "2xl": "285px",
+                                }}
+                                strokeWidth="20px"
+                                strokeColor="#092751"
+                                opacity={0.18}
+                            />
+                        </Box>
                         <Circle
                             as={Image}
                             src={heroImage}
+                            position="relative"
+                            zIndex={1}
                             boxSize={{
                                 base: "min(220px, 72vw)",
                                 sm: "min(260px, 55vw)",
