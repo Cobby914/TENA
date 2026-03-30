@@ -1,50 +1,93 @@
-import { Text, Box, Flex, VStack, HStack, Button, Image, Circle } from "@chakra-ui/react";
-const GroupPhoto = "/Home/SouthLACafeGroup.jpg";
+import { Text, Box, Flex, VStack, Image, Circle, Container } from "@chakra-ui/react";
+
+const heroImage = "/AboutUs/AboutUs-Hero.jpg";
+
+/** Full-viewport-width strip (breaks out of max-width page wrappers). */
+const fullBleedSx = {
+    width: "100vw",
+    maxWidth: "100vw",
+    position: "relative",
+    marginLeft: "calc(50% - 50vw)",
+};
 
 export default function WhoWeAre() {
     return (
-        <Box
-            as="section"
-            bg="rgb(184, 184, 184)"
-            width="100%"
-            py={{ base: 8, md: 12, lg: 16 }}
-            position="relative"
-            zIndex=  "1"
-            maxW = "1536px"
-        >
-            <Box
-                maxW="1426px"
-                mx="auto"
-                px={{ base: 4, md: 10, lg: 20 }}
-                position="relative" 
-                zIndex = "3"
-            
-            >
-                <HStack w = "100%" gap = {{base: "15px", md : "30px"}}>
-                <Flex direction="column" alignItems="flex-start" maxW="950px">
-                
-                    <Text fontSize={{ base: "24px", md: "48px"}} fontWeight="700" fontStyle = "normal" lineHeight="100%" mb={{ base: 4, md: 6 }}  color = "#1573CF">
-                        Who We Are
-                    </Text>
-                    <VStack spacing={{ base: 4, md: 6 }} alignItems="flex-start" mb={{ base: 6, md: 10 }}>
-                        <Text fontSize={{ base: "12px", md: "24px" }} lineHeight="150%"  fontStyle = "normal" fontWeight = "400" color = "#3F5F85">
-TENA was born from lived experience and community collaboration. What began as grassroots support for families navigating the healthcare system revealed a deeper truth: access alone is not enough without guidance, trust, and relationship.                        </Text>
-                        <Text fontSize={{ base: "12px", md: "24px" }} lineHeight="150%"  fontStyle = "normal" fontWeight = "400" color = "#3F5F85">
-TENA's founders,  inspired by community voices and driven by data, built an organization that meets people holistically blending care navigation, preventive  outreach, and workforce development in ways that truly uplift  communities                        </Text>
-                        
-                    </VStack>
-                    
-                    
+        <Box as="section" bg="#3F5F85" py={{ base: 8, md: 10, lg: 12 }} position="relative" zIndex="1" sx={fullBleedSx}>
+            <Container maxW="1536px" px={{ base: 4, sm: 6, md: 8, lg: 10, xl: 12, "2xl": 14 }} centerContent={false}>
+                <Flex
+                    direction={{ base: "column", lg: "row" }}
+                    alignItems="center"
+                    justifyContent={{ base: "center", lg: "space-between" }}
+                    gap={{ base: 8, md: 10, lg: 8, xl: 10 }}
+                    w="100%"
+                    mx="auto"
+                >
+                    <Flex
+                        direction="column"
+                        alignItems={{ base: "center", lg: "flex-start" }}
+                        flex="1 1 auto"
+                        minW={0}
+                        w="100%"
+                        maxW={{ lg: "min(100%, 58rem)" }}
+                        textAlign={{ base: "center", lg: "left" }}
+                    >
+                        <Text
+                            fontWeight="700"
+                            fontStyle="normal"
+                            lineHeight="100%"
+                            mb={{ base: 4, md: 6 }}
+                            color="#F8F9FB"
+                            fontSize={{ base: "24px", md: "clamp(28px, 3.2vw, 48px)" }}
+                        >
+                            Who We Are
+                        </Text>
+                        <VStack spacing={{ base: 4, md: 6 }} alignItems={{ base: "center", lg: "flex-start" }} w="100%">
+                            <Text
+                                lineHeight="150%"
+                                fontStyle="normal"
+                                fontWeight="400"
+                                color="#F8F9FB"
+                                fontSize={{ base: "12px", md: "clamp(14px, 1.35vw, 24px)" }}
+                                w="100%"
+                            >
+                                TENA was born from lived experience and community collaboration. What began as
+                                grassroots support for families navigating the healthcare system revealed a deeper
+                                truth: access alone is not enough without guidance, trust, and relationship.
+                            </Text>
+                            <Text
+                                lineHeight="150%"
+                                fontStyle="normal"
+                                fontWeight="400"
+                                color="#F8F9FB"
+                                fontSize={{ base: "12px", md: "clamp(14px, 1.35vw, 24px)" }}
+                                w="100%"
+                            >
+                                TENA&apos;s founders, inspired by community voices and driven by data, built an
+                                organization that meets people holistically blending care navigation, preventive
+                                outreach, and workforce development in ways that truly uplift communities
+                            </Text>
+                        </VStack>
+                    </Flex>
+                    <Box flexShrink={0}>
+                        <Circle
+                            as={Image}
+                            src={heroImage}
+                            boxSize={{
+                                base: "min(220px, 72vw)",
+                                sm: "min(260px, 55vw)",
+                                md: "min(300px, 42vw)",
+                                lg: "min(280px, 28vw)",
+                                xl: "min(360px, 24vw)",
+                                "2xl": "min(444px, 22vw)",
+                            }}
+                            objectFit="cover"
+                            borderRadius="full"
+                            overflow="hidden"
+                            alt="TENA community event"
+                        />
+                    </Box>
                 </Flex>
-                <Circle as = {Image} src = {GroupPhoto} maxW = "444px" maxH = "444px"
-                    width = {{base : "250px", md: "444px"}} height={{ base: "250px", md: "444px" }}
-                    objectFit="cover" borderRadius="full" overflow="hidden">
-                    
-                </Circle>
-                </HStack>
-                
-                
-            </Box>
+            </Container>
         </Box>
     );
 }
