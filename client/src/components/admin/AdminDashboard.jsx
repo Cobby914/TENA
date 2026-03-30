@@ -14,8 +14,8 @@ import {
   VStack
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { fetchPrograms } from "../allPrograms/programsAPI";
-import { fetchTeamMembers, fetchCohorts } from "../team/teamMembersApi";
+import { fetchPrograms } from "../../api/programsAPI";
+import { fetchTeamMembers, fetchCohorts } from "../../api/teamMembersApi";
 import { withAuthHeaders } from "../../auth/session";
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:3001").replace(/\/+$/, "");

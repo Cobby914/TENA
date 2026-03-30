@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { fetchCohorts, fetchMembersByType } from "./teamMembersApi";
-import { toCardMember, toCohortOption } from "./teamMemberMapper";
+import { fetchCohorts, fetchMembersByType } from "../api/teamMembersApi";
+import { toCardMember, toCohortOption } from "../lib/teamMemberMapper";
 
 export function useTeamMembers() {
   const [rawTeamMembers, setRawTeamMembers] = useState([]);
@@ -50,4 +50,3 @@ export function useTeamMembers() {
 
   return { members, cohorts, loading, errorMsg };
 }
-

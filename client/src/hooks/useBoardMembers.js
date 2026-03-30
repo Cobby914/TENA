@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { getBoard } from "./boardApi";
-import { toBoardCardMember } from "./mapBoard";
+import { getBoard } from "../api/boardApi";
+import { toBoardCardMember } from "../lib/mapBoard";
 
 export function useBoardMembers() {
   const [rawMembers, setRawMembers] = useState([]);
@@ -34,4 +34,3 @@ export function useBoardMembers() {
 
   return { board, loading, error };
 }
-

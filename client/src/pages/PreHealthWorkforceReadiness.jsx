@@ -1,4 +1,4 @@
-import ProgramPage from "../components/allPrograms/ProgramsChildComponents/ProgramComponents/ProgramPage";
+import ProgramPage from "../components/allPrograms/program/ProgramPage";
 
 export default function PreHealthWorkforceReadiness() {
   return (

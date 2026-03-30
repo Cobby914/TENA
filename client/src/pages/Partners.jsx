@@ -1,6 +1,6 @@
-import Navbar from "../components/globals/Navbar";
+import Navbar from "../components/shell/Navbar";
 import OurPartners from "../components/about/layout/OurPartners.jsx";
-import Footer from "../components/globals/Footer";
+import Footer from "../components/shell/Footer";
 
 export default function Partners() {
   return (

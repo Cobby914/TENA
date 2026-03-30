@@ -43,4 +43,3 @@ export function toCohortOption(cohort, index) {
       Number.isInteger(Number(cohort.term_order)) ? Number(cohort.term_order) : Number.MAX_SAFE_INTEGER
   };
 }
-

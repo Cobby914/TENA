@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { fetchPrograms } from "./programsAPI";
+import { fetchPrograms } from "../api/programsAPI";
 
 export function useProgramData (limit) {
     const [isLoading, setIsLoading] = useState(true);

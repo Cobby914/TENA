@@ -14,8 +14,8 @@ import {
   ListItem,
   VStack,
 } from "@chakra-ui/react";
-import { useProgramById } from "../../useProgramsById";
-import { resolveProgramImage } from "../../programImageResolver";
+import { useProgramById } from "../../../hooks/useProgramsById";
+import { resolveProgramImage } from "../../../lib/programImageResolver";
 
 function splitSolutionText(solutionText) {
   const lines = String(solutionText ?? "")

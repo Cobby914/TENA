@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchProgramById } from "./programsAPI";
+import { fetchProgramById } from "../api/programsAPI";
 
 export function useProgramById(id) {
   const [program, setProgram] = useState(null);

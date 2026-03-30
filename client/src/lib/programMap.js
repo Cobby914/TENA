@@ -1,5 +1,6 @@
-const placeholder = "/logoplaceholder.png";
 import { resolveProgramImage } from "./programImageResolver";
+
+const placeholder = "/logoplaceholder.png";
 
 export function Program(data, ind) {
   const title = String(data.title ?? "RandomTitle").trim();

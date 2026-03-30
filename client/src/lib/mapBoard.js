@@ -25,4 +25,3 @@ export function toBoardCardMember(member, index) {
       Number.isInteger(Number(member.display_order)) ? Number(member.display_order) : Number.MAX_SAFE_INTEGER
   };
 }
-

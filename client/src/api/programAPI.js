@@ -1,9 +1,12 @@
+/**
+ * Fetches the full programs list for UI that maps rows to cards (navbar programs menu,
+ * Care & Fair section). Prefer `fetchPrograms` in `programsAPI.js` for new code; this module
+ * exists for the `createProgram` hook’s legacy `getProgram` call shape.
+ */
 const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
 
-/* This retrieves all the programs from the DB*/
-
-
+/** Returns every program as an array (same endpoint tried twice for backward compatibility). */
 export async function getProgram(sig){
     const end = [`${API_BASE}/api/programs` , `${API_BASE}/api/programs`];
 

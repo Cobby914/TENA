@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Link } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import { useProgramById } from "../../useProgramsById";
-import { resolveProgramImage } from "../../programImageResolver";
+import { useProgramById } from "../../../hooks/useProgramsById";
+import { resolveProgramImage } from "../../../lib/programImageResolver";
 
 export default function ProgramHeader({ id, title, backgroundPosition }) {
   const { program } = useProgramById(id);

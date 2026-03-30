@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { getProgram } from "./ProgramAPI";
-import { Program } from "./ProgramMap";
+import { getProgram } from "../api/programAPI";
+import { Program } from "../lib/programMap";
 
 export function createProgram(){
   const [programs, setMembers] = useState([]);

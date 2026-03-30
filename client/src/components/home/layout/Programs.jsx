@@ -1,8 +1,8 @@
 import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProgramCard from "../../ui/ProgramCard";
-import { useProgramData } from "../../allPrograms/useProgramsData";
-import { resolveProgramImage } from "../../allPrograms/programImageResolver";
+import { useProgramData } from "../../../hooks/useProgramsData";
+import { resolveProgramImage } from "../../../lib/programImageResolver";
 
 const MotionBox = motion.create(Box);
 

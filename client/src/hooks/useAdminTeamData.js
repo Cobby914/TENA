@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { fetchCohorts, fetchTeamMembers } from "../team/teamMembersApi";
+import { fetchCohorts, fetchTeamMembers } from "../api/teamMembersApi";
 
 function toAdminMember(member, index) {
   const first = String(member.first_name ?? "").trim();

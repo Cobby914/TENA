@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useProgramById } from "../../useProgramsById";
+import { useProgramById } from "../../../hooks/useProgramsById";
 const inTheWorksImg = "/programs/InTheWorksIMG.png";
 
 function parseStatString(rawStat) {
