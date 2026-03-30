@@ -1,16 +1,20 @@
-const programImageModules = import.meta.glob("../../../public/programs/**/*.{png,jpg,jpeg}", {
-  eager: true,
-  import: "default",
-});
-
-const programImageByFilename = Object.entries(programImageModules).reduce(
-  (acc, [modulePath, url]) => {
-    const filename = modulePath.split("/").pop();
-    if (filename) acc[filename.toLowerCase()] = url;
-    return acc;
-  },
-  {},
-);
+const programImageByFilename = {
+  "intheworksimg.png": "/programs/InTheWorksIMG.png",
+  "joinusbackgroundimg.png": "/programs/JoinUsBackgroundIMG.png",
+  "programsheaderimg.jpg": "/programs/ProgramsHeaderIMG.jpg",
+  "carenavigationbackgroundimg.jpg": "/programs/CareNavigation/CareNavigationBackgroundIMG.jpg",
+  "carenavigationproblemimg.jpg": "/programs/CareNavigation/CareNavigationProblemIMG.jpg",
+  "carenavigationsolutionimg.jpg": "/programs/CareNavigation/CareNavigationSolutionIMG.jpg",
+  "communityhealthfairbackgroundimg.jpg": "/programs/CommunityHealthFair/CommunityHealthFairBackgroundIMG.jpg",
+  "communityhealthfairproblemimg.jpg": "/programs/CommunityHealthFair/CommunityHealthFairProblemIMG.jpg",
+  "communityhealthfairsolutionimg.jpg": "/programs/CommunityHealthFair/CommunityHealthFairSolutionIMG.jpg",
+  "fitclubbackgroundimg.jpg": "/programs/FitClub/FitClubBackgroundIMG.jpg",
+  "fitclubproblemimg.jpg": "/programs/FitClub/FitClubProblemIMG.jpg",
+  "fitclubsolutionimg.jpg": "/programs/FitClub/FitClubSolutionIMG.jpg",
+  "prehealthworkforcebackgroundimg.jpg": "/programs/PreHealthWorkForce/PreHealthWorkForceBackgroundIMG.jpg",
+  "prehealthworkforceproblemimg.jpg": "/programs/PreHealthWorkForce/PreHealthWorkForceProblemIMG.jpg",
+  "prehealthworkforcesolutionimg.jpg": "/programs/PreHealthWorkForce/PreHealthWorkForceSolutionIMG.jpg",
+};
 
 function normalizeImageKey(value) {
   return String(value ?? "")
@@ -22,7 +26,9 @@ function normalizeImageKey(value) {
     .replace(/^client\/src\/assets\/programs\//i, "")
     .replace(/^src\/assets\/programs\//i, "")
     .replace(/^assets\/programs\//i, "")
-    .replace(/^programs\//i, "");
+    .replace(/^programs\//i, "")
+    .split("/")
+    .pop();
 }
 
 export function resolveProgramImage(imageKey, fallback = "") {
@@ -37,7 +43,6 @@ export function resolveProgramImage(imageKey, fallback = "") {
     return programImageByFilename[normalized];
   }
 
-  // Supports public/ assets if key is already a web path.
   if (cleanKey.startsWith("/")) return cleanKey;
   if (/^(programs|images|team)\//i.test(cleanKey)) return `/${cleanKey}`;
 

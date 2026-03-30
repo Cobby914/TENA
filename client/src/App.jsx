@@ -44,7 +44,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/reusable-program" element={<ReusableProgram />} />
         <Route path="/getInvolved" element={<GetInvolved />} />
 

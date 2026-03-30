@@ -2,39 +2,9 @@ import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProgramCard from "../../ui/ProgramCard";
 import { useProgramData } from "../../allPrograms/useProgramsData";
+import { resolveProgramImage } from "../../allPrograms/programImageResolver";
 
-const MotionBox = motion(Box);
-
-const programImages = import.meta.glob(
-  "../../../../public/programs/**/*.{png,jpg,jpeg,webp}",
-  {
-    eager: true,
-    import: "default",
-  },
-);
-
-{
-  /* Getting The Images and Propping them to it's respective card */
-}
-function normalizeProgramKey(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .replace(/\.[a-z0-9]+$/i, "")
-    .replace(/\s+img$/, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
-
-function getProgramImagePath(imgName) {
-  const targetKey = normalizeProgramKey(imgName);
-
-  const matchedEntry = Object.entries(programImages).find(([filePath]) => {
-    const fileName = filePath.split("/").pop() ?? "";
-    return normalizeProgramKey(fileName) === targetKey;
-  });
-
-  return matchedEntry?.[1] ?? null;
-}
+const MotionBox = motion.create(Box);
 
 export default function Programs() {
   const { programs, errorMsg, isLoading } = useProgramData(4);
@@ -74,7 +44,7 @@ export default function Programs() {
                 <ProgramCard
                   title={program.title}
                   description={program.summary}
-                  imageSrc={getProgramImagePath(program.background_image)}
+                  imageSrc={resolveProgramImage(program.background_image)}
                   link="/programs"
                 />
               </MotionBox>

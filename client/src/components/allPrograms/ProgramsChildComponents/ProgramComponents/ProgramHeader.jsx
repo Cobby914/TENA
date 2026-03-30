@@ -62,12 +62,10 @@ export default function ProgramHeader({ id, title, backgroundPosition }) {
               fontWeight="800"
               lineHeight="32px"
               color="#F8F9FB"
-              sx={{
-                textDecoration: "none",
-                "&:hover": {
-                  textDecoration: "underline !important",
+              textDecoration="none"
+              _hover={{
+                  textDecoration: "underline",
                   opacity: 0.75,
-                },
               }}
             >
               Programs

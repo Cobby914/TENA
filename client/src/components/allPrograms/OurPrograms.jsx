@@ -82,12 +82,10 @@ export default function OurPrograms() {
                     lineHeight="32px"
                     color="#F8F9FB"
                     mb={8}
-                    sx={{
-                        textDecoration: "none",
-                        "&:hover": {
-                            textDecoration: "underline !important",
-                            opacity: 0.75,
-                        },
+                    textDecoration="none"
+                    _hover={{
+                        textDecoration: "underline",
+                        opacity: 0.75,
                     }}
                 >
                     Programs

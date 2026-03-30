@@ -23,7 +23,7 @@ export default function DropdownButton ({text, children, ...props}) {
                     textAlign = "left"
                     borderRadius={4}
 
-                    _active={"none"}
+                    _active={{}}
                     {...props}
                 >
                     {text}
