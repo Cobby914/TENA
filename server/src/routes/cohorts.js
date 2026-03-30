@@ -101,29 +101,52 @@ router.put("/:id", async (req, res, next) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const cohorts = rows.map((row) => {
-      const title =
-        String(row.name ?? "").trim() ||
-        `${String(row.year ?? "").trim()} ${String(row.term ?? "").trim()} Cohort`.trim();
+    const existingRows = await sql`
+      SELECT id, year, term, term_order, name, created_at
+      FROM "TENA_Admin".cohorts
+      WHERE id = ${id}
+    `;
 
-      return {
-        id: row.id,
-        title,
-        year: row.year,
-        term: row.term,
-        term_order: row.term_order,
-        name: row.name,
-        enrollment: Number(row.enrollment ?? 0),
-        status: "In Progress",
-        participants: [],
-        members: {
-          coordinator: "N/A",
-          staff: []
-        }
-      };
-    });
+    if (existingRows.length === 0) {
+      return res.status(404).json({ error: "Cohort Not Found" });
+    }
 
-    res.json(cohorts);
+    const existing = existingRows[0];
+    const has = (k) => Object.prototype.hasOwnProperty.call(req.body, k);
+
+    const year = has("year") ? Number(req.body.year) : existing.year;
+    const term = has("term") ? String(req.body.term ?? "").trim() : existing.term;
+    const term_order = has("term_order")
+      ? Number(req.body.term_order)
+      : existing.term_order;
+    const name = has("name")
+      ? req.body.name === null || req.body.name === ""
+        ? null
+        : String(req.body.name).trim()
+      : existing.name;
+
+    if (!Number.isInteger(Number(year))) {
+      return res.status(400).json({ error: "year must be an integer" });
+    }
+    if (!term) {
+      return res.status(400).json({ error: "term must be a non-empty string" });
+    }
+    if (!Number.isInteger(Number(term_order))) {
+      return res.status(400).json({ error: "term_order must be an integer" });
+    }
+
+    const updated = await sql`
+      UPDATE "TENA_Admin".cohorts
+      SET
+        year = ${year},
+        term = ${term},
+        term_order = ${term_order},
+        name = ${name}
+      WHERE id = ${id}
+      RETURNING id, year, term, term_order, name, created_at
+    `;
+
+    res.json(updated[0]);
   } catch (err) {
     next(err);
   }

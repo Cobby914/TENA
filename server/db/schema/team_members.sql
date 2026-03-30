@@ -1,14 +1,16 @@
 SET search_path TO "TENA_Admin";
 
+-- Roles (board, intern, team, etc.) live in member_types + team_member_types.
+-- cohort_id references cohorts; only members who have the "intern" member type
+-- should have cohort_id set (enforced in application logic).
+
 CREATE TABLE IF NOT EXISTS team_members (
     id SERIAL PRIMARY KEY,
 
     first_name VARCHAR(100) NOT NULL,
     last_name  VARCHAR(100) NOT NULL,
 
-    role VARCHAR(150) NOT NULL,                 -- UI title
-    member_type member_type_enum NOT NULL,      -- 'board' or 'cohort_member'
-
+    role VARCHAR(150),
     bio TEXT,
     profile_image_key VARCHAR(255),
 
@@ -18,11 +20,5 @@ CREATE TABLE IF NOT EXISTS team_members (
 
     linkedin_link VARCHAR(255),
 
-    created_at TIMESTAMP DEFAULT NOW(),
-
-    CONSTRAINT valid_member_type_cohort CHECK (
-        (member_type = 'board' AND cohort_id IS NULL)
-        OR
-        (member_type = 'cohort_member' AND cohort_id IS NOT NULL)
-    )
+    created_at TIMESTAMP DEFAULT NOW()
 );

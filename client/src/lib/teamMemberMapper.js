@@ -16,11 +16,17 @@ export function toCardMember(member, index) {
   const name = `${first} ${last}`.trim() || `Member ${index + 1}`;
   const role = String(member.role ?? "Position in Organization").trim() || "Position in Organization";
 
+  const cohortIdRaw = member.cohort_id;
+  const cohortId =
+    cohortIdRaw != null && cohortIdRaw !== ""
+      ? Number(cohortIdRaw)
+      : null;
+
   return {
     id: member.id != null ? String(member.id) : `${name}-${index}`,
     name,
     role,
-    cohortId: member.cohort_id ?? null,
+    cohortId: Number.isFinite(cohortId) ? cohortId : null,
     cohortName: String(member.cohort_name ?? "").trim(),
     imageSrc: resolveImageSrc(member),
     displayOrder:
@@ -34,8 +40,15 @@ export function toCohortOption(cohort, index) {
     `${String(cohort.year ?? "").trim()} ${String(cohort.term ?? "").trim()} Cohort`.trim() ||
     `Cohort ${index + 1}`;
 
+  const cohortIdRaw = cohort.id;
+  const cohortNumericId =
+    cohortIdRaw != null && cohortIdRaw !== ""
+      ? Number(cohortIdRaw)
+      : null;
+
   return {
     id: cohort.id ?? `${title}-${index}`,
+    numericId: Number.isFinite(cohortNumericId) ? cohortNumericId : null,
     title,
     year: Number.isInteger(Number(cohort.year)) ? Number(cohort.year) : null,
     term: String(cohort.term ?? "").trim(),
