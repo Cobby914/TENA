@@ -17,7 +17,7 @@ export default function Programs() {
   return (
     <Box
       as="section"
-      bg="rgba(241, 244, 248, 1)"
+      bg="#F1F4F8"
       px={{ base: 6, md: 10, lg: 24 }}
       py={{ base: 12, md: 16 }}
       mt={20}
@@ -30,6 +30,7 @@ export default function Programs() {
         spacing={{ base: 8, md: 10 }}
         maxW="1280px"
         mx="auto"
+        alignItems="stretch"
       >
         {isLoading
           ? [1, 2, 3, 4].map((i) => (
@@ -47,12 +48,17 @@ export default function Programs() {
                 viewport={{ once: true, amount: 0.4, margin: "0px 0px -50px 0px" }}
                 variants={fadeInCard}
                 custom={index}
+                h="100%"
+                display="flex"
+                flexDirection="column"
               >
                 <ProgramCard
                   title={program.title}
                   description={program.summary}
                   imageSrc={resolveProgramImage(program.background_image)}
                   link="/programs"
+                  flex="1"
+                  minH="0"
                 />
               </MotionBox>
             ))}

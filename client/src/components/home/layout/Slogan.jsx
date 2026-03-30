@@ -1,7 +1,15 @@
 import { Box, Flex, VStack, Text, HStack, Image, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import MultiRingCircle from "../../ui/MultiRingCircle";
+
 const sloganImage = "/Home/SouthLACafeGroup.jpg";
+
+const donateHover = {
+  bg: "transparent",
+  color: "#5CDAC5",
+  borderColor: "#5CDAC5",
+};
 
 export default function Slogan() {
   return (
@@ -14,15 +22,23 @@ export default function Slogan() {
       borderBottomRadius={50}
     >
       <Flex
-        direction="row"
-        align="flex-start"
-        gap={{ base: 6, md: 8 }}
+        direction={{ base: "column", md: "row" }}
+        align={{ base: "stretch", md: "center" }}
+        justify="space-between"
+        gap={{ base: 10, md: 12 }}
         maxW="1200px"
+        mx="auto"
+        w="100%"
       >
-        <VStack align="flex-start" spacing={{ base: 2, md: 3 }}>
+        <VStack
+          align="flex-start"
+          spacing={{ base: 2, md: 3 }}
+          textAlign="left"
+          flex="1"
+          minW={0}
+        >
           <Text
-            fontSize={{ base: 16, md: 20}}
-            size="20px"
+            fontSize={{ base: 16, md: 20 }}
             fontWeight="400"
             lineHeight="1.4"
             color="white"
@@ -33,12 +49,12 @@ export default function Slogan() {
           <Text
             as="h1"
             maxW="750px"
-            fontSize={{ base: 36, md: 48}}
+            fontSize={{ base: 36, md: 48 }}
             fontWeight="700"
             lineHeight={{ base: "1.00", lg: "1.05" }}
             color="white"
           >
-            We strengthen communitites through{" "}
+            We strengthen communities through{" "}
             <Text as="span" color="#5CDAC5">
               compassionate care
             </Text>
@@ -46,13 +62,13 @@ export default function Slogan() {
           </Text>
 
           <Text
-            fontSize={{ base: 16, md: 20}}
+            fontSize={{ base: 16, md: 20 }}
             py={10}
             maxW="780px"
             lineHeight="1.55"
             textColor="white"
           >
-            At TENA, we partner with neighbors, students, volunteers,and
+            At TENA, we partner with neighbors, students, volunteers, and
             organizations to expand equitable access to health services, build
             career pathways in healthcare, and empower every voice in Los
             Angeles County to thrive.
@@ -64,39 +80,73 @@ export default function Slogan() {
               borderRadius={6}
               px={6}
               bgColor="rgba(92, 218, 197, 1)"
+              color="black"
+              border="2px solid"
+              borderColor="rgba(92, 218, 197, 1)"
+              transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
+              _hover={donateHover}
+              _active={donateHover}
             >
               <HStack gap={2}>
                 <Text
                   fontWeight={600}
                   fontSize={18}
                   lineHeight={28}
-                  textColor="black"
+                  textColor="inherit"
                 >
                   Donate
                 </Text>
                 <ChevronRight
                   size={16}
-                  color="black"
                   style={{ marginTop: "4px" }}
+                  color="currentColor"
                 />
               </HStack>
             </Button>
           </NavLink>
         </VStack>
 
-        <Box position="relative" borderRadius="full" overflow="hidden" zIndex={2} display={{base:"none", md:"block"}}>
-          <Image
-            src={sloganImage}
-            alt="Community members at a TENA event"
-            objectFit="contain"
-            w={{ base: "200px", md: "400px" }}
-            h={{ base: "200px", md: "400px" }}
-            fetchPriority="high"
-            decoding="async"
-          />
+        <Box
+          className="hero-photo-fade-in"
+          position="relative"
+          alignSelf={{ base: "center", md: "auto" }}
+          flexShrink={0}
+          w={{ base: "260px", md: "400px" }}
+          h={{ base: "260px", md: "400px" }}
+          overflow="visible"
+        >
+          <Box
+            position="absolute"
+            left={{ base: "80%", md: "80%" }}
+            top={{ base: "22%", md: "24%" }}
+            transform="translate(-50%, -50%)"
+            zIndex={0}
+            pointerEvents="none"
+            w={{ base: "80%", md: "80%" }}
+            h={{ base: "80%", md: "80%" }}
+          >
+            <MultiRingCircle variant="solid" width="100%" height="100%" />
+          </Box>
+          <Box
+            position="relative"
+            zIndex={1}
+            borderRadius="full"
+            overflow="hidden"
+            w="100%"
+            h="100%"
+            bg="rgba(9, 39, 81, 1)"
+          >
+            <Image
+              src={sloganImage}
+              alt="Community members at a TENA event"
+              objectFit="cover"
+              w="100%"
+              h="100%"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </Box>
         </Box>
-        <Box position="absolute" right={"4%"} top={"3%"} border="20px solid rgba(92, 218, 197, 0.2)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={1} />
-        <Box position="absolute" right={"10%"} top={"9%"} border="15px solid rgba(92, 218, 197, 0.2)" w={{ base: "150px", md: "180px" }} h={{ base: "150px", md: "180px" }} borderRadius="full" zIndex={1} />
       </Flex>
     </Box>
   );

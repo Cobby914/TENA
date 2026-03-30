@@ -10,7 +10,7 @@ import { Box } from "@chakra-ui/react"
 
 export default function Home() {
     return (
-        <Box overflowX="hidden" pos="relative" width="100%" maxW="100vw"> 
+        <Box overflowX="visible" pos="relative" width="100%" maxW="100vw"> 
             <Navbar/>
             <Slogan/>
             <ChallengeSolution/>

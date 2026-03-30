@@ -38,7 +38,11 @@ export default function AboutUs() {
                     width={{ base: "150px", md: "190px" }}
                     height={{ base: "150px", md: "298px" }}
                     >
-                    <MultiRingCircle width={300} height={300} />
+                    <MultiRingCircle
+                        width={300}
+                        height={300}
+                        gradientStyle="semicircle"
+                    />
                 </Box>
             
                     <Navbar />

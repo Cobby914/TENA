@@ -1,5 +1,23 @@
-import { Box, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid } from "@chakra-ui/react";
 import InvolvementCard from "../ui/InvolvementCard";
+import SimpleCircle from "../../ui/SimpleCircle";
+
+/** Figma 1440px frame — maps x with calc(50vw - 720px + x). Circles are 0° (no rotation). */
+const DECOR_FRAME_HALF = "720px";
+
+const joinMissionTopRightCircle = {
+  size: "272px",
+  strokeWidth: "30px",
+  opacity: 0.1,
+  color: "#5CDAC5",
+};
+
+const joinMissionBottomLeftCircle = {
+  size: "490px",
+  strokeWidth: "40px",
+  opacity: 0.07,
+  color: "#5CDAC5",
+};
 
 export default function GetInvolved() {
   return (
@@ -7,65 +25,89 @@ export default function GetInvolved() {
       position="relative"
       as="section"
       w="100%"
-
+      overflow="visible"
       py={{ base: 22, md: 40 }}
     >
-
-      <Box position="absolute" right={"60px"} top={"220px"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "200px", md: "250px" }} h={{ base: "200px", md: "250px" }} borderRadius="full" zIndex={-1} />
-      <Box position="absolute" left={"60px"} bottom={"-50px"} border="30px solid rgba(92, 218, 197, 0.1)" w={{ base: "300px", md: "400px" }} h={{ base: "300px", md: "400px" }} borderRadius="full" zIndex={-1} />
+      {/* Positioned vs full-width section so calc(50vw …) matches Figma 1440 frame */}
+      <SimpleCircle
+        {...joinMissionTopRightCircle}
+        position="absolute"
+        zIndex={0}
+        top={{ base: "48px", md: "124px" }}
+        left={{
+          base: "auto",
+          md: `calc(50vw - ${DECOR_FRAME_HALF} + 1060px)`,
+        }}
+        right={{ base: "-24px", md: "auto" }}
+      />
+      <SimpleCircle
+        {...joinMissionBottomLeftCircle}
+        position="absolute"
+        zIndex={0}
+        top={{
+          base: "auto",
+          md: `calc(124px + 202px + 56px - 72px)`,
+        }}
+        bottom={{ base: "-72px", md: "auto" }}
+        left={{
+          base: "16px",
+          md: `calc(50vw - ${DECOR_FRAME_HALF} + 32px)`,
+        }}
+      />
 
       <Box
         maxW="1100px"
-        position="relative"
-        height="500px"
         mx="auto"
         px={{ base: 6, md: 12, lg: 20 }}
-        bg="white"
-        border="1px solid rgba(226, 232, 240, 1)"
-        py={{ base: 8, md: 12 }}
-        borderRadius={10}
-        boxShadow={"md"}
-        zindex={1}
+        position="relative"
+        zIndex={1}
       >
-        <Text
-          textAlign="center"
-          fontWeight={700}
-          fontSize={{ base: "30px", md: "40px", lg: "48px" }}
-          my={{ base: 8, md: 10 }}
-          textColor="black"
+        <Box
+          bg="white"
+          border="1px solid rgba(226, 232, 240, 1)"
+          py={{ base: 8, md: 12 }}
+          borderRadius={10}
+          boxShadow="md"
         >
-          Join Our Mission.
-        </Text>
+          <Text
+            textAlign="center"
+            fontWeight={700}
+            fontSize={{ base: "30px", md: "40px", lg: "48px" }}
+            my={{ base: 8, md: 10 }}
+            textColor="black"
+          >
+            Join Our Mission.
+          </Text>
 
-        <SimpleGrid
-          columns={{ base: 1, md: 3 }}
-          spacing={{ base: 18, md: 20 }}
-          w="full"
-        >
-          <InvolvementCard
-            title="Volunteer"
-            description="Lend your time at our events."
-            linkname="Volunteer With Us"
-            link="/getInvolved"
-          />
+          <SimpleGrid
+            columns={{ base: 1, md: 3 }}
+            spacing={{ base: 18, md: 20 }}
+            w="full"
+            alignItems="stretch"
+          >
+            <InvolvementCard
+              title="Volunteer"
+              description="Lend your time at our events."
+              linkname="Volunteer With Us"
+              link="/getInvolved"
+            />
 
-          <InvolvementCard
-            title="Partner"
-            description="Collaborate with us to expand our reach."
-            linkname="Become a Partner"
-            link="/partners"
-          />
+            <InvolvementCard
+              title="Partner"
+              description="Collaborate with us to expand our reach."
+              linkname="Become a Partner"
+              link="/partners"
+            />
 
-          <InvolvementCard
-            title="Donate"
-            description="Your financial support fuels our mission."
-            linkname="Support our Cause"
-            link="/donate"
-          />
-        </SimpleGrid>
+            <InvolvementCard
+              title="Donate"
+              description="Your financial support fuels our mission."
+              linkname="Support our Cause"
+              link="/donate"
+            />
+          </SimpleGrid>
+        </Box>
       </Box>
-
-
     </Box>
   );
 }

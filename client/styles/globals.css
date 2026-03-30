@@ -51,10 +51,27 @@ html {
 body {
   margin: 0;
   color: var(--color-neutral-text);
-  background-color: var(--color-surface-soft);
+  background-color: var(--color-surface-default);
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes hero-photo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * Hero section photos: fade from transparent on mount (e.g. home slogan, program heroes).
+ */
+.hero-photo-fade-in {
+  animation: hero-photo-fade-in 0.85s ease-out forwards;
+  opacity: 0;
 }
