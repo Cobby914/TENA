@@ -13,10 +13,12 @@ export const theme = extendTheme({
     brand: {
       primary: "var(--color-brand-primary)",
       accent: "var(--color-brand-accent)",
+      accentHover: "var(--color-brand-accent-hover)",
       heading: "var(--color-brand-heading)",
     },
     neutral: {
       text: "var(--color-neutral-text)",
+      secondary: "var(--color-neutral-secondary)",
       strong: "var(--color-neutral-strong)",
       muted: "var(--color-neutral-muted)",
       subtle: "var(--color-neutral-subtle)",
@@ -41,11 +43,33 @@ export const theme = extendTheme({
     sm: "var(--shadow-sm)",
     md: "var(--shadow-md)",
   },
+  components: {
+    Menu: {
+      baseStyle: {
+        list: {
+          borderRadius: "lg",
+          overflow: "hidden",
+        },
+        item: {
+          _focus: {
+            bg: "transparent",
+            boxShadow: "none",
+            outline: "none",
+          },
+          _focusVisible: {
+            bg: "surface.muted",
+            boxShadow: "none",
+            outline: "none",
+          },
+        },
+      },
+    },
+  },
   styles: {
     global: {
       body: {
         color: "neutral.text",
-        bg: "surface.default",
+        bg: "surface.soft",
       },
     },
   },

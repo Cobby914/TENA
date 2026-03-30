@@ -3,6 +3,9 @@
 /**
  * Design tokens — use in plain CSS as var(--token-name).
  * Chakra maps these in src/theme/index.js (brand.*, neutral.*, surface.*, border.*).
+ *
+ * Palette: #1573CF primary · #3F5F85 heading · #5CDAC5 accent · #F8F9FB soft surface
+ * · #1D232E text · #DEE3EB borders/muted · #2F344B secondary text
  */
 :root {
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -12,16 +15,21 @@
   --color-brand-heading: #3f5f85;
 
   --color-neutral-text: #1d232e;
+  /** Secondary body / nav emphasis */
+  --color-neutral-secondary: #2f344b;
   --color-neutral-strong: #111827;
   --color-neutral-muted: #4b5563;
   --color-neutral-subtle: #6b7280;
 
   --color-surface-default: #ffffff;
-  --color-surface-soft: #f3f5f7;
+  --color-surface-soft: #f8f9fb;
   --color-surface-muted: #dee3eb;
 
-  --color-border-default: #d8dce2;
-  --color-border-light: #e1e6ed;
+  --color-border-default: #dee3eb;
+  --color-border-light: #e8ecf2;
+
+  /** Darken #5cdac5 slightly for hover states */
+  --color-brand-accent-hover: #4bc9b4;
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -43,7 +51,7 @@ html {
 body {
   margin: 0;
   color: var(--color-neutral-text);
-  background-color: var(--color-surface-default);
+  background-color: var(--color-surface-soft);
 }
 
 * {

@@ -1,102 +1,18 @@
-import React from 'react';
-import { 
-  Menu, 
-  MenuButton, 
-  MenuList, 
-  MenuItem, 
-  Button as ChakraButton, 
-  Icon, 
-  useDisclosure 
-} from '@chakra-ui/react';
-import { ChevronDown } from 'lucide-react'; 
-import { NavLink, useNavigate } from 'react-router-dom';
+import DropdownButton from "../ui/DropdownButton";
 
-const GetInvolvedMenu = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const navigate = useNavigate();
-  const handleMainClick = () => {
-    navigate('/getInvolved');
-  
-  };
-    const menuAnimation={
-    initial: { opacity: 0, y: -10 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -10 },
-    transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
-  };
+const VOLUNTEER_FORM =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfHRyVM1116n02eKWHbwKME1WIrRWQbIy2S44Z-8Ap0V57hYA/viewform";
 
+export default function GetInvolvedMenu() {
   return (
-    <Menu isOpen={isOpen} isLazy gutter={0}>
-      <MenuButton
-        as={ChakraButton}
-        onMouseEnter={onOpen}
-        onMouseLeave={onClose}
-        onClick={handleMainClick}
-        rightIcon={<Icon as={ChevronDown} boxSize={{ base: "12px", lg: "18px" }} />}
-        bg="#FFFFFF"
-        justifyContent="space-between"
-        textAlign="left"
-        rounded="4"
-        
-        color="black"
-        fontWeight="600"
-        fontSize= {{base: 16, lg: 18}}
-        width ="auto"
-        height="6vh"
-        px = "1vw"
-        borderRadius={4}
-      >
-        Get Involved
-      </MenuButton>
-
-      <MenuList
-        onMouseEnter={onOpen}
-        onMouseLeave={onClose}
-        minW="100%"
-        w= {{base: "100px", md: "180px"}}
-        p="0"
-        align="center"
-        borderRadius="none"
-        rounded="0"
-        motionProps={menuAnimation} 
-      >
-        <MenuItem 
-          as={NavLink} 
-          to="/getInvolved" 
-          width="auto" 
-          height="autp" 
-          borderRadius="none" 
-          fontSize={{base: "8px", md: "16px"}}
-        >
-          Donations
-        </MenuItem>
-
-        <MenuItem 
-          as={NavLink} 
-          to="/partners" 
-          width="auto"
-          height="auto" 
-          borderRadius="none" 
-          fontSize={{base: "8px", md: "16px"}}
-        >
-          Partnerships
-        </MenuItem>
-
-        <MenuItem 
-          as="a" 
-          href="https://docs.google.com/forms/d/e/1FAIpQLSfHRyVM1116n02eKWHbwKME1WIrRWQbIy2S44Z-8Ap0V57hYA/viewform" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          width="auto" 
-          height="auto" 
-          borderRadius="none" 
-          fontSize={{base: "8px", md: "16px"}}
-        >
-          Volunteer
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <DropdownButton
+      label="Get Involved"
+      mainPath="/getInvolved"
+      items={[
+        { to: "/getInvolved", label: "Donations" },
+        { to: "/partners", label: "Partnership" },
+        { href: VOLUNTEER_FORM, label: "Volunteering" },
+      ]}
+    />
   );
-};
-
-export default GetInvolvedMenu;
+}
