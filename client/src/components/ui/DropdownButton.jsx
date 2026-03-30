@@ -79,13 +79,17 @@ export default function DropdownButton({ label, mainPath, items }) {
         onMouseEnter={handleEnter}
         onMouseLeave={scheduleClose}
         bg="surface.default"
-        borderRadius="lg"
+        rounded="lg"
+        overflow="hidden"
         boxShadow="md"
         borderWidth="1px"
         borderColor="border.default"
-        py={2}
         minW="220px"
-        p={0}
+        py={2}
+        px={0}
+        sx={{
+          borderRadius: "var(--radius-lg)",
+        }}
       >
         {items.map((item) =>
           item.href ? (

@@ -43,6 +43,16 @@ export const theme = extendTheme({
     sm: "var(--shadow-sm)",
     md: "var(--shadow-md)",
   },
+  components: {
+    Menu: {
+      baseStyle: {
+        list: {
+          borderRadius: "lg",
+          overflow: "hidden",
+        },
+      },
+    },
+  },
   styles: {
     global: {
       body: {
