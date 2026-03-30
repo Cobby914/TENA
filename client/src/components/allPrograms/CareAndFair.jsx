@@ -3,38 +3,8 @@ import {
   Spinner, Alert, AlertIcon, AlertTitle, AlertDescription, Heading, Center
 } from '@chakra-ui/react';
 import CareAndFairCard from "../ui/CareAndFairCard";
+import SimpleCircle from "../ui/SimpleCircle";
 import { createProgram } from "../../hooks/createProgram";
-
-function MultiRingCircle({ width = 300, height = 300 }) {
-  return (
-    <Box w={width} h={height} position="relative">
-      <svg viewBox="0 0 320 320" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="mainPageHalfGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#5CDAC5" />
-            <stop offset="50%" stopColor="#5CDAC5" />
-            <stop offset="50%" stopColor="#1573CF" />
-            <stop offset="100%" stopColor="#1573CF" />
-          </linearGradient>
-        </defs>
-        {Array.from({ length: 6 }).map((_, index) => {
-          const radius = 150 - index * 20;
-          return (
-            <circle
-              key={index}
-              cx="160"
-              cy="160"
-              r={radius}
-              fill="none"
-              stroke="url(#mainPageHalfGradient)"
-              strokeWidth="6"
-            />
-          );
-        })}
-      </svg>
-    </Box>
-  );
-}
 
 const Programs = () => {
     const {prog, loading, error} = createProgram();
@@ -72,17 +42,15 @@ const Programs = () => {
                 position="relative"
                 zIndex={1}
             >
-                <Box
+                <SimpleCircle
                     position="absolute"
                     right={{ base: -80, md: -100, lg: -120 }}
                     top={{ base: 260, md: 320, lg: 360 }}
-                    width={{ base: "180px", md: "220px", lg: "260px" }}
-                    height={{ base: "180px", md: "220px", lg: "260px" }}
-                    borderRadius="full"
-                    border="36px solid #5CDAC5"
+                    size={{ base: "180px", md: "220px", lg: "260px" }}
+                    strokeWidth="36px"
+                    color="#5CDAC5"
                     opacity={0.15}
                     zIndex={0}
-                    pointerEvents="none"
                     display={{ base: "none", md: "block" }}
                 />
 

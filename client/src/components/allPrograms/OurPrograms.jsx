@@ -1,37 +1,8 @@
 import { Text, Box, Flex, Link } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-const programsHeaderImg = "/programs/ProgramsHeaderIMG.jpg";
+import MultiRingCircle from "../ui/MultiRingCircle";
 
-function MultiRingCircle({ width = 300, height = 300 }) {
-  return (
-    <Box w={width} h={height} position="relative">
-      <svg viewBox="0 0 320 320" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="ourProgramsHalfGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#5CDAC5" />
-            <stop offset="50%" stopColor="#5CDAC5" />
-            <stop offset="50%" stopColor="#1573CF" />
-            <stop offset="100%" stopColor="#1573CF" />
-          </linearGradient>
-        </defs>
-        {Array.from({ length: 6 }).map((_, index) => {
-          const radius = 150 - index * 20;
-          return (
-            <circle
-              key={index}
-              cx="160"
-              cy="160"
-              r={radius}
-              fill="none"
-              stroke="url(#ourProgramsHalfGradient)"
-              strokeWidth="6"
-            />
-          );
-        })}
-      </svg>
-    </Box>
-  );
-}
+const programsHeaderImg = "/programs/ProgramsHeaderIMG.jpg";    
 
 export default function OurPrograms() {
     return(

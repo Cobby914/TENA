@@ -1,6 +1,6 @@
-import OurPartnersHeader from "./OurPartnersComponents/OurPartnersHeader";
-import OurPartnersConnections from "./OurPartnersComponents/OurPartnersConnections";
-import OurPartnersHelp from "./OurPartnersComponents/OurPartnersHelp";
+import OurPartnersHeader from "../../OurPartners/OurPartnersHeader";
+import OurPartnersConnections from "../../OurPartners/OurPartnersConnections";
+import OurPartnersHelp from "../../OurPartners/OurPartnersHelp";
 
 export default function OurPartners() {
   return (
