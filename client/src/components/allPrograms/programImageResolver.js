@@ -1,4 +1,4 @@
-const programImageModules = import.meta.glob("../../assets/programs/*", {
+const programImageModules = import.meta.glob("../../../public/programs/**/*.{png,jpg,jpeg}", {
   eager: true,
   import: "default",
 });
@@ -17,6 +17,8 @@ function normalizeImageKey(value) {
     .trim()
     .replace(/\\/g, "/")
     .replace(/^\/+/, "")
+    .replace(/^client\/public\/programs\//i, "")
+    .replace(/^public\/programs\//i, "")
     .replace(/^client\/src\/assets\/programs\//i, "")
     .replace(/^src\/assets\/programs\//i, "")
     .replace(/^assets\/programs\//i, "")

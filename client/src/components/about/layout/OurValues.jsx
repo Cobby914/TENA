@@ -1,12 +1,12 @@
 import { Box , Text, SimpleGrid, Flex, Image } from "@chakra-ui/react";
 import ValueIcon from "../../ui/ValueIcon";
-import placeholder from "../../../assets/logoplaceholder.png";
 
-import Diversity from "../../../assets/Diversity.png";
-import Integrity from "../../../assets/Integrity.png";
-import Compassion from "../../../assets/Compassion.png";
-import Excellence from "../../../assets/Excellence.png";
-import Equity from "../../../assets/Equity.png";
+const placeholder = "/logoplaceholder.png";
+const Diversity = "/AboutUs/Values/Diversity.png";
+const Integrity = "/AboutUs/Values/Integrity.png";
+const Compassion = "/AboutUs/Values/Compassion.png";
+const Excellence = "/AboutUs/Values/Excellence.png";
+const Equity = "/AboutUs/Values/Equity.png";
 
 
 export default function OurValues() {

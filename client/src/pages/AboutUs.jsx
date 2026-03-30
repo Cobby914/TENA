@@ -5,9 +5,9 @@ import OurPeople from "../components/about/layout/OurPeople";
 import OurValues from "../components/about/layout/OurValues";
 import Footer from "../components/globals/Footer"
 
-import RightSemi from "../assets/pageOverlays/RightSemi.png"
-import LeftTriangle from "../assets/pageOverlays/LeftTriangle.png"
-import RightFadedSemi from "../assets/pageOverlays/RightFadedSemi.png"
+const RightSemi = "/pageOverlays/RIghtSemi.png";
+const LeftTriangle = "/pageOverlays/LeftTriangle.png";
+const RightFadedSemi = "/pageOverlays/RIghtFadedSemi.png";
 
 import { Box, Container, Image } from "@chakra-ui/react";
 

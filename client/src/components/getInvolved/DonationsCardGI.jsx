@@ -1,8 +1,8 @@
 import { Box, Button, Flex, HStack, Text, VStack, Card, Image } from "@chakra-ui/react";
 
-import Donos from "../../assets/GetInvolved/GetInvolvedDonations.png"
-import DRight from "../../assets/GetInvolved/DonationsRight.svg"
-import DLeft from "../../assets/GetInvolved/DonationsLeft.svg"
+const Donos = "/GetInvolved/GetInvolvedDonations.png";
+const DRight = "/GetInvolved/vectors/DonationsRight.svg";
+const DLeft = "/GetInvolved/vectors/DonationsLeft.svg";
 import GIC from "./GetInvolvedCard"
 
 export default function GetInvolvedCard ({

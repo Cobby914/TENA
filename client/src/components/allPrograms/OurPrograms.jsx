@@ -1,6 +1,6 @@
 import { Text, Box, Flex, Link } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import programsHeaderImg from "../../assets/programs/ProgramsHeaderIMG.jpg";
+const programsHeaderImg = "/programs/ProgramsHeaderIMG.jpg";
 
 function MultiRingCircle({ width = 300, height = 300 }) {
   return (

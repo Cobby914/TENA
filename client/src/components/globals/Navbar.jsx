@@ -12,15 +12,12 @@ import { ChevronDown } from "lucide-react";
 import { NavLink, useNavigate} from "react-router-dom";
 import DropdownButton from "../home/ui/DropdownButton";
 import Button from "../ui/Button";
-import main_logo from "../../assets/transparent_tena_logo.png";
-import text_logo from "../../assets/tena_text_logo.png";
+const main_logo = "/transparent_tena_logo.png";
+const text_logo = "/tena_text_logo.png";
 
 import AUMenu from "./AboutUsMenu"
 import PMenu from "./ProgramsMenu"
 import GIMenu from "./GetInvolvedMenu"
-
-
-import Lock from "../../assets/Locked.png"
 
 export default function Navbar() {
   const menuAnimation={

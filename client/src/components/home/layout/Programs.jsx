@@ -6,7 +6,7 @@ import { useProgramData } from "../../allPrograms/useProgramsData";
 const MotionBox = motion(Box);
 
 const programImages = import.meta.glob(
-  "./programHomePageIMGS/*.{png,jpg,jpeg,webp}",
+  "../../../../public/programs/**/*.{png,jpg,jpeg,webp}",
   {
     eager: true,
     import: "default",

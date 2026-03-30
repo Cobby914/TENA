@@ -1,11 +1,11 @@
 import { Box, Flex, Stack, HStack, Image, VStack, Text, Link, Icon } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
-import logo from "../../assets/logoplaceholder.png";
 import Newsletter from "./Newsletter";
-import main_logo from "../../assets/transparent_tena_logo.png";
-import text_logo from "../../assets/tena_text_logo.png";
-import gold_transparency from "../../assets/gold_transparency_candid.png";
+
+const main_logo = "/transparent_tena_logo.png";
+const text_logo = "/tena_text_logo.png";
+const gold_transparency = "/Footer/gold_transparency_candid.png";
 
 
 // Still need to add the transparency seal

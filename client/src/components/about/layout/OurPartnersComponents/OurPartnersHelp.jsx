@@ -1,5 +1,6 @@
 import { Box, Flex, Image, ListItem, Text, UnorderedList, VStack } from "@chakra-ui/react";
-import helpImage from "../../../../assets/OurPartners/HowWeHelp/dfc9dda9b603d278afc8e3ee4615d2583f799421.jpg";
+const helpImage =
+  "/OurPartners/HowWeHelp/dfc9dda9b603d278afc8e3ee4615d2583f799421.jpg";
 
 export default function OurPartnersHelp() {
   return (

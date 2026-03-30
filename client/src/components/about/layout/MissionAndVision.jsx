@@ -2,8 +2,8 @@ import { Text, Box, Flex, VStack, Button, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import ImagePlaceholder from "../../ui/MVimagePH";
 
-import OurVision from "../../../assets/AboutUs-OurVision.jpg";
-import OurMission from "../../../assets/AboutUsMission.png";
+const OurVision = "/AboutUs/AboutUs-OurVision.jpg";
+const OurMission = "/AboutUs/AboutUsMission.png";
 
 export default function MissionAndVision() {
     return (

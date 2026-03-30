@@ -1,4 +1,4 @@
-import placeholder from "../../assets/logoplaceholder.png";
+const placeholder = "/logoplaceholder.png";
 
 function resolveImageSrc(member) {
   const imageKey = String(member.profile_image_key ?? member.image_key ?? "").trim();

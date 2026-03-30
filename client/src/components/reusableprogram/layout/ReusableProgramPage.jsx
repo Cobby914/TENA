@@ -1,7 +1,7 @@
 import Header from "../layout/Header";
 import Context from "../layout/Context";
 import Statistics from "../layout/Statistics";
-import placeholder from "../../../assets/logoplaceholder.png";
+const placeholder = "/logoplaceholder.png";
 
 export default function ReusableProgramPage() {
     return (

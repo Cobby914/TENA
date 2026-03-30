@@ -1,5 +1,5 @@
 import { Text, Box, Flex, VStack, HStack, Button, Image, Circle } from "@chakra-ui/react";
-import GroupPhoto from "../../../assets/SouthLACafeGroup.jpg"
+const GroupPhoto = "/Home/SouthLACafeGroup.jpg";
 
 export default function WhoWeAre() {
     return (

@@ -4,7 +4,7 @@ import DonationCard from "./DonationsCardGI";
 import PartnershipCard from "./PartnershipsCardGI";
 import VolunteerCard from "./VolunteerCardGI";
 
-import MidCirc from "../../assets/GetInvolved/GIMiddle.svg"
+const MidCirc = "/GetInvolved/vectors/GIMiddle.svg";
 
 export default function DPVCards() {
     return (

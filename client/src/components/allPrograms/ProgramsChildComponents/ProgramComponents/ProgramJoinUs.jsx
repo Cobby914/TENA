@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import joinUsBg from "../../../../assets/programs/JoinUsBackgroundIMG.png";
+const joinUsBg = "/programs/JoinUsBackgroundIMG.png";
 
 export default function ProgramJoinUs() {
   return (

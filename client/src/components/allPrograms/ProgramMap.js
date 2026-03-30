@@ -1,4 +1,4 @@
-import placeholder from "../../assets/logoplaceholder.png";
+const placeholder = "/logoplaceholder.png";
 import { resolveProgramImage } from "./programImageResolver";
 
 export function Program(data, ind) {

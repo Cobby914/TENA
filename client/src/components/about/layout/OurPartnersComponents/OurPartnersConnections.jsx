@@ -13,24 +13,21 @@ const sortImageModules = (modules) =>
     .map(([, imagePath]) => imagePath);
 
 const communityBasedOrgImages = sortImageModules(
-  import.meta.glob(
-    "../../../../assets/OurPartners/CommunityBasedOrgs/*.png", //only using pngs since that is the only file type in assests change it as a multi-extension pattern if diff file types will be used
-    {
-      eager: true,
-      import: "default",
-    },
-  ),
+  import.meta.glob("../../../../public/OurPartners/CommunityBasedOrgs/*.png", {
+    eager: true,
+    import: "default",
+  }),
 );
 
 const educationalImages = sortImageModules(
-  import.meta.glob("../../../../assets/OurPartners/Educational/*.png", {
+  import.meta.glob("../../../../public/OurPartners/Educational/*.png", {
     eager: true,
     import: "default",
   }),
 );
 
 const partnersSponsorsImages = sortImageModules(
-  import.meta.glob("../../../../assets/OurPartners/Sponsors/*.png", {
+  import.meta.glob("../../../../public/OurPartners/Sponsors/*.png", {
     eager: true,
     import: "default",
   }),

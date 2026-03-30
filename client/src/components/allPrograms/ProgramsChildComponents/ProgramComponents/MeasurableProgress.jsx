@@ -9,7 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useProgramById } from "../../useProgramsById";
-import inTheWorksImg from "../../../../assets/programs/InTheWorksIMG.png";
+const inTheWorksImg = "/programs/InTheWorksIMG.png";
 
 function parseStatString(rawStat) {
   if (!rawStat) return null;
