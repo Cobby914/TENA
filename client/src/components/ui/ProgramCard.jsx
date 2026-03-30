@@ -12,8 +12,10 @@ export default function ProgramCard({
   return (
     <Card
       w="100%"
-      minW="600px"
-      minH={{ base: "auto", md: "285px" }}
+      minW={{ base: "0", md: "600px" }}
+      h="100%"
+      display="flex"
+      flexDirection="column"
       px={{ base: 6, md: 8 }}
       py={{ base: 6, md: 8 }}
       bg="white"
@@ -22,7 +24,7 @@ export default function ProgramCard({
       boxShadow="sm"
       {...props}
     >
-      <VStack align="stretch" spacing={6}>
+      <VStack align="stretch" spacing={6} flex="1" minH="0">
         <Text
           fontWeight={700}
           fontSize={{ base: "2xl", md: "36px" }}
@@ -36,6 +38,8 @@ export default function ProgramCard({
           direction={{ base: "column", md: "row" }}
           align="stretch"
           gap={{ base: 5, md: 7 }}
+          flex="1"
+          minH="0"
         >
           <Image
             src={imageSrc}
@@ -54,7 +58,7 @@ export default function ProgramCard({
             }
           />
 
-          <Flex direction="column" flex="1" minH={{ md: "170px" }}>
+          <Flex direction="column" flex="1" minH={{ base: "auto", md: "170px" }}>
             <Text fontSize={{ base: "md", md: "18px" }} lineHeight="1.55" color="#1A202C">
               {description}
             </Text>

@@ -69,7 +69,7 @@ export const theme = extendTheme({
     global: {
       body: {
         color: "neutral.text",
-        bg: "surface.soft",
+        bg: "surface.default",
       },
     },
   },

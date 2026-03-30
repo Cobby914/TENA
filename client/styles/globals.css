@@ -51,7 +51,7 @@ html {
 body {
   margin: 0;
   color: var(--color-neutral-text);
-  background-color: var(--color-surface-soft);
+  background-color: var(--color-surface-default);
 }
 
 * {
