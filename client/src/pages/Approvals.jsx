@@ -5,7 +5,8 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import ApprovalsTable from "../components/approvals/ApprovalsTable";
-import { clearAuthSession, withAuthHeaders } from "../auth/session";
+import { withAuthHeaders } from "../auth/session";
+import { useAuthStore } from "../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
@@ -21,6 +22,7 @@ export default function Approvals() {
   const [processingByUser, setProcessingByUser] = useState({});
   const toast = useToast();
   const navigate = useNavigate();
+  const clearSession = useAuthStore((s) => s.clearSession);
 
   const fetchUsers = async (force = false) => {
     const cached = localStorage.getItem(CACHE_KEY);
@@ -32,7 +34,7 @@ export default function Approvals() {
     try {
       const res  = await fetch(API, { headers: withAuthHeaders() });
       if (res.status === 401) {
-        clearAuthSession();
+        clearSession();
         navigate("/login", { replace: true });
         return;
       }
@@ -72,7 +74,7 @@ export default function Approvals() {
         body: JSON.stringify(payload),
       });
       if (res.status === 401) {
-        clearAuthSession();
+        clearSession();
         navigate("/login", { replace: true });
         return false;
       }
@@ -103,7 +105,7 @@ export default function Approvals() {
         headers: withAuthHeaders()
       });
       if (res.status === 401) {
-        clearAuthSession();
+        clearSession();
         navigate("/login", { replace: true });
         return false;
       }
