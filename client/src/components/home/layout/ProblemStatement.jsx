@@ -1,104 +1,67 @@
-import { Text, Box, Flex, VStack } from "@chakra-ui/react";
-import Button from "../../ui/Button";
-import { NavLink } from "react-router-dom";
+import { Text, Box, VStack } from "@chakra-ui/react";
+import SimpleCircle from "../../ui/SimpleCircle";
+
+const subheadingColor = "#4A7A96";
+const bodyColor = "#1A1A1A";
+
+const problemDecorCircle = {
+  size: { base: "220px", sm: "252px", md: "272px" },
+  strokeWidth: { base: "24px", sm: "27px", md: "30px" },
+  opacity: 0.15,
+  color: "#5CDAC5",
+};
 
 export default function ProblemStatement() {
-    return (
-        <Box
-            as="section"
-            bg="rgb(217, 217, 217)"
-            width="100%"
-            py={{ base: 8, md: 12, lg: 16 }}
-            minHeight={{ base: "auto", lg: "600px" }}
+  return (
+    <Box position="relative" overflow="visible" w="100%">
+      <SimpleCircle
+        {...problemDecorCircle}
+        position="absolute"
+        left={{ base: "-130px", md: "-150px", lg: "-180px" }}
+        top={{ base: "-36px", md: "-44px" }}
+        zIndex={0}
+      />
+      <VStack align="start" spacing={5} position="relative" zIndex={1}>
+        <Text
+          fontWeight={700}
+          fontSize={{ base: "28px", md: "34px", lg: "36px" }}
+          lineHeight="120%"
+          color={subheadingColor}
         >
-            <Box
-                maxW="2500px"
-                mx="auto"
-                px={{ base: 4, md: 10, lg: 20 }}
-            >
-                {/* Top 2 Column Content */}
-                <Flex 
-                    justifyContent="space-between" 
-                    alignItems="flex-start"
-                    direction={{ base: "column", lg: "row" }}
-                    gap={{ base: 8, md: 10, lg: 12 }}
-                >
-                    {/* The Challenge */}
-                    <Box 
-                        width={{ base: "100%", lg: "600px" }} 
-                        display="flex" 
-                        flexDirection="column"
-                    >
-                        <Text 
-                            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} 
-                            mb={{ base: 3, md: 4 }}
-                        >
-                            The Challenge
-                        </Text>
-
-                        <Text 
-                            fontSize={{ base: "md", md: "lg", lg: "xl" }} 
-                            lineHeight="1.4" 
-                            mb={{ base: 6, md: 8, lg: 10 }}
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </Text>
-
-                        <Button>The Impact</Button>
-                    </Box>
-
-                    {/* TENA Solution */}
-                    <Box 
-                        width={{ base: "100%", lg: "700px" }} 
-                        display="flex" 
-                        flexDirection="column"
-                    >
-                        <Text 
-                            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} 
-                            mb={{ base: 1, md: 2 }}
-                        >
-                            TENA "Solution"
-                        </Text>
-
-                        <Text 
-                            fontSize={{ base: "md", md: "lg", lg: "xl" }} 
-                            letterSpacing="wide" 
-                            mb={{ base: 6, md: 8 }}
-                        >
-                            PROGRAM OVERALL SUMMARY
-                        </Text>
-
-                        <NavLink to="/about">
-                            <Button>About Us</Button>
-                        </NavLink>
-                    </Box>
-                </Flex>
-
-                {/* What We Do */}
-                <VStack 
-                    spacing={{ base: 1, md: 2 }} 
-                    mt={{ base: 10, md: 12, lg: 14 }} 
-                    textAlign="center"
-                >
-                    <Text fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}>
-                        What we do
-                    </Text>
-
-                    <Text 
-                        fontSize={{ base: "sm", md: "md", lg: "lg" }} 
-                        opacity="0.5"
-                    >
-                        subway:do...
-                    </Text>
-
-                    <Text 
-                        fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }} 
-                        lineHeight="1"
-                    >
-                        ↓
-                    </Text>
-                </VStack>
-            </Box>
-        </Box>
-    );
+          The Challenge
+        </Text>
+        <Text
+          fontWeight={400}
+          fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+          lineHeight="150%"
+          color={bodyColor}
+        >
+          Across Los Angeles County, structural inequities rooted in economic
+          disparity, housing instability, racial segregation, and uneven access
+          to care continue to shape who gets healthy and who gets left behind.
+        </Text>
+        <Text
+          fontWeight={400}
+          fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+          lineHeight="150%"
+          color={bodyColor}
+        >
+          Over 1 million LA County residents remain uninsured or underinsured.
+          Black and Latinx adults face disproportionate inequities in health
+          outcomes, insurance coverage, housing security, and economic stability
+          — outcomes shaped by decades of systemic injustice.
+        </Text>
+        <Text
+          fontWeight={400}
+          fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+          lineHeight="150%"
+          color={bodyColor}
+        >
+          Despite being one of the wealthiest counties in the nation, an
+          estimated 25% of households still struggle with food insecurity, a
+          powerful social determinant of chronic illness.
+        </Text>
+      </VStack>
+    </Box>
+  );
 }
