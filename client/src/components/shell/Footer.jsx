@@ -16,9 +16,9 @@ export default function Footer({
 ) {
     return (
         <Box width="100%" overflow="hidden" position="relative">
-            <Box as="footer" width="100vw" maxH="610px" background="rgba(248, 249, 251)" border="1px solid rgba(0, 0, 0, 0.17)" py={{ base: 1, md: 2 }} px={{ base: 8, md: 14 }}>
+            <Box as="footer" width="100vw" background="rgba(248, 249, 251)" border="1px solid rgba(0, 0, 0, 0.17)" py={{ base: 1, md: 2 }} px={{ base: 0, md: 14 }}>
                 <Flex direction={{ base: "column", lg: "row" }} justify={"center"} align={"center"} gap={20}>
-                    <VStack width="900px" height="600px" py={16}>
+                    <VStack width={{base:"500px",  lg: "900px"}} minH="600px" py={16}>
             
                             <VStack align="flex-start" width="100%" gap={4}>
                                 {/* Logos go here */}
@@ -29,9 +29,9 @@ export default function Footer({
                                 </HStack>
 
                                 {/* Separator Line */}
-                                <Box width="800px"  height="2px" background = "rgba(92, 218, 197, 1)" my={2} />
+                                <Box width={{base:"300px",  lg: "800px"}}  height="2px" background = "rgba(92, 218, 197, 1)" my={2} />
 
-                                <HStack pt={6} alignItems="flex-start" width="890px" justify="space-between">
+                                <Flex direction={{base: "column", lg: "row"}} pt={6} alignItems="flex-start" width="890px" justify="space-between" gap={{base: 20, lg:0}}> 
                                     <VStack  minW="200px" gap={8} alignItems="flex-start" >
                                         <Text fontSize={{ base: 12, md: 14, lg: 15}} fontWeight={500} lineHeight="20px" letterSpacing={0}>
                                             1001 E Rosecrans Ave<br/>Los Angeles, CA 90059<br/>United States
@@ -47,7 +47,7 @@ export default function Footer({
                                         </HStack>
                                     </VStack>
 
-                                    <VStack minW="150px" gap={6} px={6} alignItems="flex-start">
+                                    <VStack minW="150px" gap={6} alignItems="flex-start">
                                         <NavLink to="/about">
                                             <Text fontSize={{ base: 20, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>About Us</Text>
                                         </NavLink>
@@ -68,7 +68,7 @@ export default function Footer({
                                         </Text>
                                     </VStack>
 
-                                </HStack>
+                                </Flex>
 
                                 <HStack mt={6} align="flex-end" justify="space-between" width="100%">
                                     <Image src={gold_transparency} ratio={1} width={"90px"} />
