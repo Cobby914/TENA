@@ -25,7 +25,8 @@ export default function GetInvolved() {
       position="relative"
       as="section"
       w="100%"
-      overflow="visible"
+      overflowY="visible"
+      overflowX="hidden"
       py={{ base: 22, md: 40 }}
     >
       {/* Positioned vs full-width section so calc(50vw …) matches Figma 1440 frame */}
@@ -66,6 +67,7 @@ export default function GetInvolved() {
           bg="white"
           border="1px solid rgba(226, 232, 240, 1)"
           py={{ base: 8, md: 12 }}
+          px={{ base: 4, md: 0 }}
           borderRadius={10}
           boxShadow="md"
         >
@@ -83,7 +85,10 @@ export default function GetInvolved() {
             columns={{ base: 1, md: 3 }}
             spacing={{ base: 18, md: 20 }}
             w="full"
+            maxW="980px"
+            mx="auto"
             alignItems="stretch"
+            justifyItems="center"
           >
             <InvolvementCard
               title="Volunteer"
