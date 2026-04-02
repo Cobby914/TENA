@@ -4,7 +4,7 @@ import ProgramProblemSolution from "./ProgramProblemSolution";
 import MeasurableProgress from "./MeasurableProgress";
 import ProgramJoinUs from "./ProgramJoinUs";
 
-export default function ProgramPage({ id, title, backgroundPosition }) {
+export default function ProgramPage({ id, backgroundPosition }) {
   return (
     <Box position="relative" overflow="hidden">
       <Box
@@ -20,7 +20,7 @@ export default function ProgramPage({ id, title, backgroundPosition }) {
         pointerEvents="none"
       />
 
-      <ProgramHeader id={id} title={title} backgroundPosition={backgroundPosition} />
+      <ProgramHeader id={id} backgroundPosition={backgroundPosition} />
       <ProgramProblemSolution id={id} />
       <MeasurableProgress id={id} />
       <ProgramJoinUs />

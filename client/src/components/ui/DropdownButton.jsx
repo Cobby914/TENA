@@ -37,7 +37,8 @@ const menuItemProps = {
     outline: "none !important",
   },
   _focusVisible: {
-    bg: "surface.muted",
+    bg: "brand.primary",
+    color: "white",
     boxShadow: "none !important",
     outline: "none !important",
   },
@@ -110,9 +111,14 @@ export default function DropdownButton({ label, mainPath, items }) {
         px={{ base: 2, md: 3 }}
         py={2}
         borderRadius="md"
-        _hover={{ bg: "surface.soft" }}
-        _active={{ bg: "surface.muted" }}
-        _expanded={{ bg: "surface.soft" }}
+        transition="color 0.2s ease, text-decoration-color 0.2s ease"
+        _hover={{
+          bg: "transparent",
+          color: "brand.primary",
+          textDecoration: "underline",
+        }}
+        _active={{ bg: "transparent", color: "brand.primary" }}
+        _expanded={{ bg: "transparent", color: "brand.primary" }}
         _focus={{ boxShadow: "none", outline: "none" }}
         _focusVisible={{ boxShadow: "none", outline: "none" }}
         onMouseEnter={handleEnter}
@@ -138,7 +144,7 @@ export default function DropdownButton({ label, mainPath, items }) {
         borderWidth="1px"
         borderColor="border.default"
         minW="220px"
-        py={2}
+        py={0}
         px={0}
         sx={{
           borderRadius: "var(--radius-lg)",
