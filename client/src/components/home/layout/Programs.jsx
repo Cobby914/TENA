@@ -8,6 +8,7 @@ const MotionBox = motion.create(Box);
 
 export default function Programs() {
   const { programs, errorMsg, isLoading } = useProgramData(4);
+  const programsToShow = programs.slice(0, 4);
   const fadeInCard = {
     initial: { opacity: 0, y: 20},
     animate: { opacity: 1, y: 0},
@@ -40,7 +41,7 @@ export default function Programs() {
                 borderRadius="12px"
               />
             ))
-          : programs.map((program, index) => (
+          : programsToShow.map((program, index) => (
               <MotionBox
                 key={program.id}
                 initial="initial"
@@ -51,6 +52,22 @@ export default function Programs() {
                 h="100%"
                 display="flex"
                 flexDirection="column"
+                gridColumn={
+                  programsToShow.length % 2 === 1 && index === programsToShow.length - 1
+                    ? { base: "auto", xl: "1 / -1" }
+                    : "auto"
+                }
+                justifySelf={
+                  programsToShow.length % 2 === 1 && index === programsToShow.length - 1
+                    ? "center"
+                    : "stretch"
+                }
+                maxW={
+                  programsToShow.length % 2 === 1 && index === programsToShow.length - 1
+                    ? { base: "none", xl: "640px" }
+                    : "none"
+                }
+                w="100%"
               >
                 <ProgramCard
                   title={program.title}
@@ -64,7 +81,7 @@ export default function Programs() {
             ))}
       </SimpleGrid>
 
-      {!isLoading && !programs.length && !errorMsg ? (
+      {!isLoading && !programsToShow.length && !errorMsg ? (
         <Text mt={8} textAlign="center" color="#3F5F85">
           No programs available right now.
         </Text>
