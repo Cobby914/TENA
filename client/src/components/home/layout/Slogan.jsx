@@ -111,7 +111,6 @@ export default function Slogan() {
         </VStack>
 
         <Box
-          className="hero-photo-fade-in"
           position="relative"
           alignSelf={{ base: "center", md: "auto" }}
           flexShrink={0}

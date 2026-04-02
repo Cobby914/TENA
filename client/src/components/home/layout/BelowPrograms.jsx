@@ -9,6 +9,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import { ChevronRight } from "lucide-react";
 const diversifyImg = "/AboutUs/Values/Diversity.png";
 const compassionImg = "/AboutUs/Values/Compassion.png";
@@ -27,6 +28,7 @@ export default function BelowPrograms() {
     <Box as="section" bg="surface.section" w="100%" mt={{ base: 20, md: 40 }} py={{ base: 10, md: 28 }}>
       <Box maxW="1200px" mx="auto" px={{ base: 4, md: 12, lg: 20 }}>
         <Flex direction="column" align="center">
+          <FadeInWhenVisible amount={0.45}>
           <VStack spacing={{ base: 6, md: 8 }} textAlign="center" maxW="1140px">
             <Text
               fontSize={{ base: "24px", sm: "28px", md: "48px", lg: "60px" }}
@@ -56,7 +58,9 @@ export default function BelowPrograms() {
               promote lifelong wellness.
             </Text>
           </VStack>
+          </FadeInWhenVisible>
 
+          <FadeInWhenVisible delay={0.1} amount={0.4}>
           <SimpleGrid
             columns={{ base: 3, lg: 3 }}
             spacing={{ base: 3, sm: 6, md: 20, lg: 28 }}
@@ -82,7 +86,9 @@ export default function BelowPrograms() {
               </VStack>
             ))}
           </SimpleGrid>
+          </FadeInWhenVisible>
 
+          <FadeInWhenVisible delay={0.14} amount={0.5}>
           <Button
             type="button"
             onClick={() => navigate("/about")}
@@ -112,6 +118,7 @@ export default function BelowPrograms() {
                 About Us
               </Text>
           </Button>
+          </FadeInWhenVisible>
         </Flex>
       </Box>
     </Box>
