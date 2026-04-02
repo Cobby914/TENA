@@ -1,21 +1,23 @@
 import DropdownButton from "../ui/DropdownButton";
-
-const PROGRAM_ITEMS = [
-  { to: "/programs/carenavigation", label: "Care Navigation" },
-  { to: "/programs/communityhealthfairs", label: "Community Health Fairs" },
-  {
-    to: "/programs/prehealthworkforcereadiness",
-    label: "Pre-Health Workforce",
-  },
-  { to: "/programs/fitclub", label: "Fitclub" },
-];
+import { useMemo } from "react";
+import { useProgramData } from "../../hooks/useProgramsData";
+import { createProgramSlug } from "../../lib/programSlug";
 
 export default function ProgramsMenu() {
+  const { programs } = useProgramData();
+  const items = useMemo(() => {
+    if (!programs.length) return [{ to: "/programs", label: "All Programs" }];
+    return programs.map((program) => ({
+      to: `/programs/${createProgramSlug(program.title)}`,
+      label: String(program.title ?? "Program"),
+    }));
+  }, [programs]);
+
   return (
     <DropdownButton
       label="Programs"
       mainPath="/programs"
-      items={PROGRAM_ITEMS}
+      items={items}
     />
   );
 }

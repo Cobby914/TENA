@@ -15,12 +15,7 @@ const ReusableProgram = lazy(() => import("./pages/ReusableProgram"));
 const GetInvolved = lazy(() => import("./pages/GetInvolved"));
 const Programs = lazy(() => import("./pages/Programs"));
 const ProgramsLayout = lazy(() => import("./pages/ProgramsLayout"));
-const CareNavigation = lazy(() => import("./pages/CareNavigation"));
-const CommunityHealthFairs = lazy(() => import("./pages/CommunityHealthFairs"));
-const PreHealthWorkforceReadiness = lazy(() =>
-  import("./pages/PreHealthWorkforceReadiness")
-);
-const FitClub = lazy(() => import("./pages/FitClub"));
+const ProgramBySlug = lazy(() => import("./pages/ProgramBySlug"));
 const Board = lazy(() => import("./pages/Board"));
 const Team = lazy(() => import("./pages/Team"));
 const Admin = lazy(() => import("./pages/Admin"));
@@ -68,16 +63,7 @@ export default function App() {
 
           <Route path="/programs" element={<ProgramsLayout />}>
             <Route index element={<Programs />} />
-            <Route path="carenavigation" element={<CareNavigation />} />
-            <Route
-              path="communityhealthfairs"
-              element={<CommunityHealthFairs />}
-            />
-            <Route
-              path="prehealthworkforcereadiness"
-              element={<PreHealthWorkforceReadiness />}
-            />
-            <Route path="fitclub" element={<FitClub />} />
+            <Route path=":programSlug" element={<ProgramBySlug />} />
           </Route>
 
           <Route path="/board" element={<Board />} />
