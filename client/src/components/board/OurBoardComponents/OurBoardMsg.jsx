@@ -1,9 +1,11 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 
 export default function OurBoardMsg() {
   return (
     <Flex as="section" width="100%" pt={{ base: 8, md: 12, lg: 14 }}>
-      <Box maxW="1536px" mx="auto" px={{ base: 6, md: 12, lg: 20 }}>
+      <Box maxW="1536px" mx="auto" px={{ base: 6, md: 12, lg: 20 }} w="100%">
+        <FadeInWhenVisible w="100%" amount={0.4}>
         <Text
           fontFamily="body"
           fontWeight="700"
@@ -19,6 +21,7 @@ export default function OurBoardMsg() {
           guiding our mission to dismantle structural inequities and champion
           health justice.
         </Text>
+        </FadeInWhenVisible>
       </Box>
     </Flex>
   );

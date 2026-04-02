@@ -1,5 +1,6 @@
 import { Box, Text, Link } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import MultiRingCircle from "../../ui/MultiRingCircle";
 
 const RING_COLOR = "var(--color-brand-navy)";
@@ -45,7 +46,10 @@ export default function OurTeamHeader() {
         />
       </Box>
 
-      <Box
+      <FadeInWhenVisible
+        trigger="mount"
+        y={16}
+        duration={0.7}
         position="relative"
         zIndex={1}
         maxW="1536px"
@@ -81,7 +85,7 @@ export default function OurTeamHeader() {
         >
           Our Team
         </Text>
-      </Box>
+      </FadeInWhenVisible>
     </Box>
   );
 }

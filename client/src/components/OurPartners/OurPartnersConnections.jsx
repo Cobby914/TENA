@@ -1,5 +1,6 @@
 import OurPartnersCarousel from "./OurPartnersCarousel";
 import { Box, Text, VStack } from "@chakra-ui/react";
+import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 
 const communityBasedOrgImages = [
   "/OurPartners/CommunityBasedOrgs/12221 1.png",
@@ -38,6 +39,7 @@ export default function OurPartnersConnections() {
   return (
     <Box as="section" width="100%" py={{ base: 10, md: 14, lg: 20 }}>
       <Box maxW="1536px" mx="auto" px={{ base: 6, md: 12, lg: 20 }}>
+        <FadeInWhenVisible w="100%" amount={0.4}>
         <Text
           fontFamily="body"
           fontWeight="700"
@@ -64,21 +66,28 @@ export default function OurPartnersConnections() {
           there's no limit to the hope we can spark, the lives we can uplift,
           and the change we can create.
         </Text>
+        </FadeInWhenVisible>
 
         <VStack
           spacing={{ base: 10, md: 14 }}
           align="stretch"
           mt={{ base: 10, md: 16, lg: 20 }}
         >
-          <OurPartnersCarousel
-            title="Community Based Organizations"
-            images={communityBasedOrgImages}
-          />
-          <OurPartnersCarousel title="Educational" images={educationalImages} />
-          <OurPartnersCarousel
-            title="Partners/Sponsors"
-            images={partnersSponsorsImages}
-          />
+          <FadeInWhenVisible w="100%" amount={0.35}>
+            <OurPartnersCarousel
+              title="Community Based Organizations"
+              images={communityBasedOrgImages}
+            />
+          </FadeInWhenVisible>
+          <FadeInWhenVisible w="100%" amount={0.35} delay={0.08}>
+            <OurPartnersCarousel title="Educational" images={educationalImages} />
+          </FadeInWhenVisible>
+          <FadeInWhenVisible w="100%" amount={0.35} delay={0.14}>
+            <OurPartnersCarousel
+              title="Partners/Sponsors"
+              images={partnersSponsorsImages}
+            />
+          </FadeInWhenVisible>
         </VStack>
       </Box>
     </Box>
