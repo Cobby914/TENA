@@ -10,7 +10,6 @@ export function Program(data, ind) {
   const background_image = typeof data.background_image === "string" ? data.background_image.trim() : "";
   const im = resolveProgramImage(background_image, placeholder);
 
-  const providedLink = typeof data.link === "string" ? data.link.trim() : "";
   const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, "");
   const generatedLinkByTitle = {
     carenavigation: "/programs/carenavigation",
@@ -18,7 +17,7 @@ export function Program(data, ind) {
     prehealthworkforcereadiness: "/programs/prehealthworkforcereadiness",
     fitclub: "/programs/fitclub",
   };
-  const link = providedLink || generatedLinkByTitle[normalizedTitle] || "#";
+  const link = generatedLinkByTitle[normalizedTitle] || "#";
 
   const id = String(data.id).trim();
   const reversed = ind % 2 !== 0;
