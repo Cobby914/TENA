@@ -1,15 +1,5 @@
-import {
-  SimpleGrid,
-  VStack,
-  HStack,
-  Text,
-  List,
-  ListItem,
-  Box,
-  Button,
-} from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { SimpleGrid, VStack, HStack, Text, List, ListItem, Box, Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import ProblemStatement from "./ProblemStatement";
 import SimpleCircle from "../../ui/SimpleCircle";
 
@@ -25,6 +15,8 @@ const solutionDecorCircle = {
 };
 
 export default function ChallengeSolution() {
+  const navigate = useNavigate();
+
   return (
     <Box
       as="section"
@@ -114,26 +106,39 @@ export default function ChallengeSolution() {
         display="flex"
         justifyContent="center"
         pt={{ base: 10, md: 14, lg: 16 }}
+        position="relative"
+        zIndex={2}
       >
-        <NavLink to="/getInvolved" style={{ textDecoration: "none" }}>
-          <Button
-            height={12}
-            borderRadius="md"
-            px={6}
-            bg={buttonBlue}
-            color="white"
-            transition="opacity 0.2s ease"
-            _hover={{ opacity: 0.68, bg: buttonBlue }}
-            _active={{ opacity: 0.55 }}
-          >
-            <HStack gap={2}>
-              <Text fontWeight={600} fontSize={18} lineHeight={28} color="white">
-                Get Involved
-              </Text>
-              <ChevronRight size={18} style={{ marginTop: "4px" }} />
-            </HStack>
-          </Button>
-        </NavLink>
+        <Button
+          type="button"
+          onClick={() => navigate("/getInvolved")}
+          variant="unstyled"
+          display="inline-flex"
+          alignItems="center"
+          justifyContent="center"
+          h="48px"
+          minH="48px"
+          maxH="48px"
+          w="fit-content"
+          p={0}
+          py={0}
+          px={6}
+          border="none"
+          borderRadius="6px"
+          bg={buttonBlue}
+          color="white"
+          cursor="pointer"
+          whiteSpace="nowrap"
+          transition="opacity 0.2s ease"
+          _hover={{ opacity: 0.68, bg: buttonBlue }}
+          _active={{ opacity: 0.55 }}
+          _focus={{ outline: "none", boxShadow: "none" }}
+          _focusVisible={{ outline: "none", boxShadow: "none" }}
+        >
+          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1" color="white">
+            Get Involved
+          </Text>
+        </Button>
       </Box>
     </Box>
   );

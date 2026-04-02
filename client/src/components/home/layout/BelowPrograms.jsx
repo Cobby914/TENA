@@ -8,7 +8,7 @@ import {
   Button,
   Image,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 const diversifyImg = "/AboutUs/Values/Diversity.png";
 const compassionImg = "/AboutUs/Values/Compassion.png";
@@ -21,6 +21,8 @@ const valueCards = [
 ];
 
 export default function BelowPrograms() {
+  const navigate = useNavigate();
+
   return (
     <Box as="section" bg="rgba(241, 244, 248, 1)" w="100%" mt={{ base: 20, md: 40 }} py={{ base: 10, md: 28 }}>
       <Box maxW="1200px" mx="auto" px={{ base: 4, md: 12, lg: 20 }}>
@@ -81,28 +83,35 @@ export default function BelowPrograms() {
             ))}
           </SimpleGrid>
 
-          <NavLink to="/about">
-            <Button
-              h={{ base: 12, md: 14 }}
-              borderRadius={6}
-              mt={{ base: 6, md: 10 }}
-              px={{ base: 8, sm: 10, md: 20 }}
-              bgColor="rgba(21, 115, 207, 1)"
-              color="white"
-            >
-              <HStack gap={2}>
-                <Text
-                  fontWeight={600}
-                  fontSize={{ base: 16, md: 18 }}
-                  lineHeight={28}
-                  textColor="white"
-                >
-                  About Us
-                </Text>
-                <ChevronRight size={18} style={{ marginTop: "3px" }} />
-              </HStack>
-            </Button>
-          </NavLink>
+          <Button
+            type="button"
+            onClick={() => navigate("/about")}
+            variant="unstyled"
+            display="inline-flex"
+            alignItems="center"
+            justifyContent="center"
+            minW="unset"
+            minH="unset"
+            h={{ base: "48px", md: "56px" }}
+            p={0}
+            py={0}
+            borderRadius={6}
+            mt={{ base: 6, md: 10 }}
+            px={{ base: 8, sm: 10, md: 20 }}
+            border="none"
+            bg="rgba(21, 115, 207, 1)"
+            color="white"
+            cursor="pointer"
+            transition="opacity 0.2s ease"
+            _hover={{ opacity: 0.68, bg: "rgba(21, 115, 207, 1)" }}
+            _active={{ opacity: 0.55 }}
+            _focus={{ outline: "none", boxShadow: "none" }}
+            _focusVisible={{ outline: "none", boxShadow: "none" }}
+          >
+              <Text as="span" fontWeight={600} fontSize={{ base: 16, md: 18 }} lineHeight="1" color="white">
+                About Us
+              </Text>
+          </Button>
         </Flex>
       </Box>
     </Box>
