@@ -2,6 +2,7 @@ import { Box, Flex, HStack, Image, VStack, Text, Link, Icon, SimpleGrid } from "
 import { NavLink } from "react-router-dom";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 import Newsletter from "./Newsletter";
+import { openDonateWidget } from "../../lib/giveButter";
 
 const main_logo = "/transparent_tena_logo.png";
 const text_logo = "/tena_text_logo.png";
@@ -86,17 +87,18 @@ export default function Footer({
                                           Get Involved
                                         </Text>
                                         </NavLink>
-                                        <NavLink to="/donate">
-                                            <Text
-                                              fontSize={{ base: 32, md: 22}}
-                                              fontWeight={700}
-                                              textDecoration={{ base: "underline", md: "none" }}
-                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
-                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
-                                            >
-                                              Donate
-                                            </Text>
-                                        </NavLink>
+                                        <Text
+                                          as="button"
+                                          onClick={openDonateWidget}
+                                          fontSize={{ base: 32, md: 22}}
+                                          fontWeight={700}
+                                          textDecoration={{ base: "underline", md: "none" }}
+                                          cursor="pointer"
+                                          _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                          _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                        >
+                                          Donate
+                                        </Text>
                                     </SimpleGrid>
 
                                     <VStack maxW="260px" gap={5} alignItems={"flex-start"}>

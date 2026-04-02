@@ -1,6 +1,7 @@
 import { Box, Image } from "@chakra-ui/react";
 import SimpleCircle from "../ui/SimpleCircle";
 import MultiRingCircle from "../ui/MultiRingCircle";
+import { openDonateWidget } from "../../lib/giveButter";
 
 const Donos = "/GetInvolved/GetInvolvedDonations.png";
 import GIC from "./GetInvolvedCard"
@@ -17,6 +18,7 @@ export default function GetInvolvedCard ({
             title="Donations"
             description="Donations fund free health fairs, personalized care navigation, and training for future healthcare leaders. Every dollar helps remove barriers and bring care closer to home."
             buttonName="Donate Now"
+            onAction={openDonateWidget}
             image_here={Donos}
             decorations={
                 <>

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import AUMenu from "./AboutUsMenu";
 import PMenu from "./ProgramsMenu";
 import GIMenu from "./GetInvolvedMenu";
+import { openDonateWidget } from "../../lib/giveButter";
 
 const main_logo = "/transparent_tena_logo.png";
 const text_logo = "/tena_text_logo.png";
@@ -57,8 +58,7 @@ export default function Navbar() {
         <GIMenu />
 
         <ChakraButton
-          as={NavLink}
-          to="/donate"
+          onClick={openDonateWidget}
           bg="brand.accent"
           color="neutral.text"
           fontWeight="600"
