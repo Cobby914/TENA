@@ -17,9 +17,9 @@ const VALUES = [
 const VALUES_TOP = VALUES.slice(0, 3);
 const VALUES_BOTTOM = VALUES.slice(3, 5);
 
-const topGapX = { base: 4, md: 12, lg: 16 };
-const bottomGapX = { base: 6, md: 18, lg: 20 };
-const gapY = { base: 16, md: 24, lg: 32 };
+const topGapX = { base: 2, sm: 4, md: 12, lg: 16 };
+const bottomGapX = { base: 3, sm: 6, md: 18, lg: 20 };
+const gapY = { base: 10, md: 24, lg: 32 };
 
 function ValueCard({ label, src }) {
     return (
@@ -28,17 +28,17 @@ function ValueCard({ label, src }) {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            gap={{ base: 4, md: 6 }}
+            gap={{ base: 2, md: 6 }}
             w="100%"
-            maxW="250px"
-            minH={{ base: "220px", md: "250px" }}
+            maxW={{ base: "100px", sm: "130px", md: "250px" }}
+            minH={{ base: "130px", sm: "160px", md: "250px" }}
             bg="#F8F9FB"
             borderRadius="md"
-            py={6}
-            px={4}
+            py={{ base: 3, md: 6 }}
+            px={{ base: 2, md: 4 }}
         >
-            <Image src={src} alt="" maxH="120px" w="auto" objectFit="contain" />
-            <Text fontWeight="700" color="#3F5F85" fontSize={{ base: "xl", md: "2xl" }} textAlign="center">
+            <Image src={src} alt="" maxH={{ base: "54px", sm: "70px", md: "120px" }} w="auto" objectFit="contain" />
+            <Text fontWeight="700" color="#3F5F85" fontSize={{ base: "xs", sm: "sm", md: "2xl" }} textAlign="center">
                 {label}
             </Text>
         </Box>
@@ -96,7 +96,7 @@ export default function OurValues() {
                         zIndex="3"
                     >
                         <SimpleGrid
-                            columns={{ base: 1, md: 3 }}
+                            columns={{ base: 3, md: 3 }}
                             spacingX={topGapX}
                             spacingY={gapY}
                             w="100%"
@@ -111,7 +111,7 @@ export default function OurValues() {
                             justifyContent="center"
                             alignItems="center"
                             gap={bottomGapX}
-                            wrap="wrap"
+                            wrap="nowrap"
                             w="100%"
                             rowGap={gapY}
                         >
