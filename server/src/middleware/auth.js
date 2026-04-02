@@ -1,5 +1,6 @@
 import { verifyFirebaseIdToken } from "../lib/firebaseAdmin.js";
 import { sql } from "../db/index.js";
+import { DISALLOWED_EMAIL_ERROR, isAllowedSignInEmail } from "../lib/authEmailPolicy.js";
 
 export async function verifyAuth(req, res, next) {
   try {
@@ -13,6 +14,10 @@ export async function verifyAuth(req, res, next) {
     const email = String(decoded.email ?? "").trim().toLowerCase();
     if (!email) {
       return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    if (!isAllowedSignInEmail(email)) {
+      return res.status(403).json({ error: DISALLOWED_EMAIL_ERROR });
     }
 
     const rows = await sql`

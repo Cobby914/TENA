@@ -30,10 +30,19 @@ required.forEach((key) => {
 
 validateFirebaseCredentials();
 
+function parseAllowedDomains(raw) {
+  return String(raw ?? "")
+    .split(",")
+    .map((d) => d.trim().toLowerCase())
+    .filter(Boolean);
+}
+
 export const env = {
   port: process.env.PORT || 3001,
   databaseUrl: process.env.DATABASE_URL,
   nodeEnv: process.env.NODE_ENV || "development",
   firebaseServiceAccountJson: process.env.FIREBASE_SERVICE_ACCOUNT_JSON || "",
-  firebaseServiceAccountPath: process.env.FIREBASE_SERVICE_ACCOUNT_PATH || ""
+  firebaseServiceAccountPath: process.env.FIREBASE_SERVICE_ACCOUNT_PATH || "",
+  /** e.g. `tenacare.org` or `tenacare.org,partner.org` — empty = no domain filter */
+  allowedAuthEmailDomains: parseAllowedDomains(process.env.ALLOWED_AUTH_EMAIL_DOMAINS)
 };

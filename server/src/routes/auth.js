@@ -2,6 +2,7 @@ import { Router } from "express";
 import { sql } from "../db/index.js";
 import { verifyAuth, requireApproved } from "../middleware/auth.js";
 import { verifyFirebaseIdToken } from "../lib/firebaseAdmin.js";
+import { DISALLOWED_EMAIL_ERROR, isAllowedSignInEmail } from "../lib/authEmailPolicy.js";
 
 const router = Router();
 
@@ -45,6 +46,10 @@ router.post("/google", async (req, res, next) => {
     const email = String(decoded.email ?? "").trim().toLowerCase();
     if (!email) {
       return res.status(401).json({ error: "Invalid token: missing email" });
+    }
+
+    if (!isAllowedSignInEmail(email)) {
+      return res.status(403).json({ error: DISALLOWED_EMAIL_ERROR });
     }
 
     const emailVerified = Boolean(decoded.email_verified);
