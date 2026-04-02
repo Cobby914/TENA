@@ -18,7 +18,19 @@ const CLOSE_DELAY_MS = 120;
  * Chakra Menu also sets box-shadow rings; strip those everywhere.
  */
 const menuItemProps = {
-  _hover: { bg: "surface.soft" },
+  transition:
+    "background-color 0.18s ease, color 0.18s ease, padding-left 0.18s ease",
+  //
+  _hover: {
+    bg: "surface.muted",
+    color: "neutral.strong",
+    pl: 5, // Shifts text padding to add animation effect
+  },
+  // Runs so that highlight and background stays active
+  _active: {
+    bg: "surface.muted",
+    color: "neutral.strong",
+  },
   _focus: {
     bg: "transparent",
     boxShadow: "none !important",
@@ -166,7 +178,7 @@ export default function DropdownButton({ label, mainPath, items }) {
             >
               {item.label}
             </MenuItem>
-          )
+          ),
         )}
       </MenuList>
     </Menu>
