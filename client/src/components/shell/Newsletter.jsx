@@ -67,30 +67,30 @@ const [formData, setFormData] = useState({
         }
     };
     return (
-        <Box bg = "#DEE3EB" width = "100%" height = "100%" maxWidth = "500px" ratio = {450/500} rounded = {4} py={20} px={4}>
+        <Box bg = "rgba(222, 227, 235, 1)" width = "100%" height = "100%" maxWidth = "500px" ratio = {450/500} borderRadius={"5px"} py={9} px={6}>
             {/* We can create an input box component and use it here instead in future! */}
-            <VStack w="100%" ratio = {449/520} gap={10}>
+            <VStack w="100%" ratio = {449/520} gap={10} alignItems={"stretch"}>
                 <Box align = "center" textColor="rgba(21, 115, 207, 1)">
-                    <Text fontSize={24} fontWeight={600} lineHeight={"32px"}>
+                    <Text fontSize={24} fontWeight={600} lineHeight={"32px"} letterSpacing={0}>
                         Newsletter Signup
                     </Text>
                 </Box>
 
                 <form onSubmit={handleSubmit}>
-                    <VStack w="100%" align="stretch" textColor={"rgb(74, 92, 131)"} > 
+                    <VStack w="100%" textColor={"rgb(74, 92, 131)"} alignItems={"stretch"} spacing={8}> 
                         <FormControl isRequired>
-                            <FormLabel fontSize={20}>First Name</FormLabel>
-                            <Input name="firstName" value={formData.firstName} onChange={handleChange} bg={"white"} borderRadius={0} border="1px solid rgba(21, 115, 207, 1)" w="100%" />
+                            <FormLabel fontSize={18}>First Name</FormLabel>
+                            <Input name="firstName" value={formData.firstName} onChange={handleChange} h={9} bg={"white"} borderRadius={0} border="1px solid rgba(21, 115, 207, 1)" w="100%" mt={-1}/>
                         </FormControl>
 
                         <FormControl isRequired>
-                            <FormLabel fontSize={20}>Last Name</FormLabel>
-                            <Input name="lastName" value={formData.lastName} onChange={handleChange} bg={"white"} borderRadius={0} border="1px solid rgba(21, 115, 207, 1)" />
+                            <FormLabel fontSize={18}>Last Name</FormLabel>
+                            <Input name="lastName" value={formData.lastName} onChange={handleChange} mt={-1} h={9} bg={"white"} borderRadius={0} border="1px solid rgba(21, 115, 207, 1)" />
                         </FormControl>
 
                         <FormControl isRequired>
-                            <FormLabel fontSize={20}>Email</FormLabel>
-                            <Input type="email" name="email" value={formData.email} onChange={handleChange}bg={"white"} borderRadius={0} border="1px solid rgba(21, 115, 207, 1)" />
+                            <FormLabel fontSize={18}>Email</FormLabel>
+                            <Input type="email" name="email" value={formData.email} onChange={handleChange} mt={-1} h={9} bg={"white"} borderRadius={0} border="1px solid rgba(21, 115, 207, 1)" />
                         </FormControl>
 
                         <Box display="flex" justifyContent={"center"} mt={4}>
