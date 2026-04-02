@@ -1,5 +1,6 @@
 import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { prefetchGivebutterCampaign } from "../../../lib/giveButter";
 
 export default function InvolvementCard({
   title,
@@ -47,7 +48,11 @@ export default function InvolvementCard({
 
         <Button
           {...(onAction
-            ? { onClick: onAction }
+            ? {
+                onClick: onAction,
+                onMouseEnter: prefetchGivebutterCampaign,
+                onFocus: prefetchGivebutterCampaign,
+              }
             : isExternalLink
               ? { as: "a", href: link, target: "_blank", rel: "noopener noreferrer" }
               : { as: RouterLink, to: link })}

@@ -2,7 +2,7 @@ import { Box, Flex, HStack, Image, VStack, Text, Link, Icon, SimpleGrid } from "
 import { NavLink } from "react-router-dom";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 import Newsletter from "./Newsletter";
-import { openDonateWidget } from "../../lib/giveButter";
+import { donateButtonInteractionProps } from "../../lib/giveButter";
 
 const main_logo = "/transparent_tena_logo.png";
 const text_logo = "/tena_text_logo.png";
@@ -89,7 +89,7 @@ export default function Footer({
                                         </NavLink>
                                         <Text
                                           as="button"
-                                          onClick={openDonateWidget}
+                                          {...donateButtonInteractionProps}
                                           fontSize={{ base: 32, md: 22}}
                                           fontWeight={700}
                                           textDecoration={{ base: "underline", md: "none" }}

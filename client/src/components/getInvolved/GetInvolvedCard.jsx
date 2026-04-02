@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Text, VStack, Image, Icon } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import { prefetchGivebutterCampaign } from "../../lib/giveButter";
 
 export default function GetInvolvedCard ({
     title,
@@ -55,7 +56,11 @@ export default function GetInvolvedCard ({
                     <Flex width="100%" justifyContent={{ base: "center", lg: "flex-end" }} pt={{ base: 6, md: 8, lg: 10 }}>
                         <Button
                             {...(onAction
-                              ? { onClick: onAction }
+                              ? {
+                                  onClick: onAction,
+                                  onMouseEnter: prefetchGivebutterCampaign,
+                                  onFocus: prefetchGivebutterCampaign,
+                                }
                               : { as: NavLink, to: destination })}
                             bg="surface.default"
                             variant="outline"

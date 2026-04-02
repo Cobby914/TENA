@@ -1,7 +1,7 @@
 import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
 import MultiRingCircle from "../../ui/MultiRingCircle";
 import { SegmentedTypewriterText } from "../../ui/SegmentedTypewriter";
-import { openDonateWidget } from "../../../lib/giveButter";
+import { donateButtonInteractionProps } from "../../../lib/giveButter";
 const sloganImage = "/Home/SouthLACafeGroup.jpg";
 
 const donateHover = {
@@ -78,7 +78,7 @@ export default function Slogan() {
             {BODY}
           </Text>
           <Button
-            onClick={openDonateWidget}
+            {...donateButtonInteractionProps}
             variant="unstyled"
             display="inline-flex"
             alignItems="center"
