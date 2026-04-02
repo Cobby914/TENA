@@ -1,48 +1,52 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Box, Button, Flex, HStack, Image, Text } from "@chakra-ui/react";
+import { keyframes } from "@emotion/react";
+
 const leftArrow = "/OurPartners/ArrowButtons/left circle.svg";
 const leftArrowHover = "/OurPartners/ArrowButtons/left arrow filled.svg";
 const rightArrow = "/OurPartners/ArrowButtons/right arrow.svg";
 const rightArrowHover = "/OurPartners/ArrowButtons/right arrow filled.svg";
 
+const fadeSlideInRight = keyframes`
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+`;
+
+const fadeSlideInLeft = keyframes`
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+`;
+
 export default function OurPartnersCarousel({
   title,
   images = [],
   logosPerView = 4,
-  autoScrollInterval = 3000
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState("right");
+  const [animKey, setAnimKey] = useState(0);
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
 
   const totalImages = images.length;
 
-  //moves one step left then wraps to the last image based on user index
   const goToPrevious = () => {
     if (!totalImages) return;
+    setDirection("left");
+    setAnimKey((k) => k + 1);
     setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
-  //moves one set right then wraps the index to 0 after last image
   const goToNext = () => {
     if (!totalImages) return;
+    setDirection("right");
+    setAnimKey((k) => k + 1);
     setActiveIndex((prev) => (prev + 1) % totalImages);
   };
 
-  useEffect(() => {
-    if (totalImages <= logosPerView) return;
-    const interval = setInterval (() => {
-      goToNext();
-    }, autoScrollInterval);
-
-    return () => clearInterval(interval);
-  }, [goToNext, totalImages, logosPerView, autoScrollInterval]);
-
   const visibleImages = useMemo(() => {
     if (!totalImages) return [];
-    // If images are fewer than the view count, just show them all
     const count = Math.min(logosPerView, totalImages);
-    
     return Array.from({ length: count }, (_, offset) => {
       const imageIndex = (activeIndex + offset) % totalImages;
       return images[imageIndex];
@@ -114,7 +118,13 @@ export default function OurPartnersCarousel({
         bg="white"
         p={{ base: 6, md: 8 }}
       >
-        <Flex align="center" justify="space-between" gap={{ base: 4, md: 8 }}>
+        <Flex
+          key={animKey}
+          align="center"
+          justify="space-between"
+          gap={{ base: 4, md: 8 }}
+          animation={`${direction === "right" ? fadeSlideInRight : fadeSlideInLeft} 0.35s ease both`}
+        >
           {visibleImages.map((src, index) => (
             <Flex
               key={`${src}-${index}`}
