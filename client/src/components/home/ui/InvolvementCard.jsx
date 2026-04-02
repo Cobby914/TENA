@@ -1,5 +1,5 @@
 import { Box, Text, Button, Flex } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function InvolvementCard({
   title,
@@ -42,24 +42,22 @@ export default function InvolvementCard({
           {description}
         </Text>
 
-        <NavLink to={link} style={{ width: "100%" }}>
-          <Button
-            bgColor="#1573CF"
-            w="full"
-            borderRadius={8}
-            p={6}
-            mt={8}
-            flexShrink={0}
-          >
-            <Text
-              fontSize={{ base: 14, lg: 16 }}
-              fontWeight={500}
-              textColor="#FFFFFF"
-            >
-              {linkname}
-            </Text>
-          </Button>
-        </NavLink>
+        <Button
+          as={RouterLink}
+          to={link}
+          bgColor="#1573CF"
+          w="full"
+          borderRadius={8}
+          p={6}
+          mt={8}
+          flexShrink={0}
+          fontSize={{ base: 14, lg: 16 }}
+          fontWeight={500}
+          color="#FFFFFF"
+          textDecoration="none"
+        >
+          {linkname}
+        </Button>
       </Flex>
     </Box>
   );

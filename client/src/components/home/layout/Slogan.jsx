@@ -1,8 +1,6 @@
-import { Box, Flex, VStack, Text, HStack, Image, Button } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { Box, Flex, VStack, Text, Image } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import MultiRingCircle from "../../ui/MultiRingCircle";
-
 const sloganImage = "/Home/SouthLACafeGroup.jpg";
 
 const donateHover = {
@@ -73,37 +71,34 @@ export default function Slogan() {
             career pathways in healthcare, and empower every voice in Los
             Angeles County to thrive.
           </Text>
-          <NavLink to="/donate">
-            <Button
-              mb={10}
-              height={12}
-              borderRadius={6}
-              px={6}
-              bgColor="rgba(92, 218, 197, 1)"
-              color="black"
-              border="2px solid"
-              borderColor="rgba(92, 218, 197, 1)"
-              transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
-              _hover={donateHover}
-              _active={donateHover}
-            >
-              <HStack gap={2}>
-                <Text
-                  fontWeight={600}
-                  fontSize={18}
-                  lineHeight={28}
-                  textColor="inherit"
-                >
-                  Donate
-                </Text>
-                <ChevronRight
-                  size={16}
-                  style={{ marginTop: "4px" }}
-                  color="currentColor"
-                />
-              </HStack>
-            </Button>
-          </NavLink>
+          <Box
+            as={RouterLink}
+            to="/donate"
+            display="inline-flex"
+            alignItems="center"
+            justifyContent="center"
+            alignSelf="flex-start"
+            w="max-content"
+            maxW="100%"
+            mb={10}
+            h={12}
+            px={6}
+            borderRadius={6}
+            bg="rgba(92, 218, 197, 1)"
+            color="black"
+            border="2px solid"
+            borderColor="rgba(92, 218, 197, 1)"
+            fontWeight={600}
+            fontSize={18}
+            lineHeight="28px"
+            whiteSpace="nowrap"
+            textDecoration="none"
+            transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
+            _hover={donateHover}
+            _active={donateHover}
+          >
+            Donate
+          </Box>
         </VStack>
 
         <Box
