@@ -9,7 +9,7 @@ const adminOnly = [verifyAuth, requireApproved, requireRole("admin")];
 router.get("/", async (req, res, next) => {
   try {
     const rows = await sql`
-      SELECT id, title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
+      SELECT id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
       FROM "TENA_Admin".programs
       ORDER BY id ASC
     `;
@@ -28,7 +28,7 @@ router.get("/:id", async (req, res, next) => {
     }
 
     const rows = await sql`
-      SELECT id, title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
+      SELECT id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
       FROM "TENA_Admin".programs
       WHERE id = ${id}
     `;
@@ -45,7 +45,7 @@ router.get("/:id", async (req, res, next) => {
 // POST /api/programs
 router.post("/", ...adminOnly, async (req, res, next) => {
   try {
-    const { title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4 } = req.body;
+    const { title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4 } = req.body;
 
     if (!title || typeof title !== "string") {
       return res.status(400).json({ error: "Title is required (string)" });
@@ -65,17 +65,13 @@ router.post("/", ...adminOnly, async (req, res, next) => {
         return res.status(400).json({ error: `stat${i + 1} must be a string` });
       }
     }
-    if (subheader !== undefined && subheader !== null && typeof subheader !== "string") {
-      return res.status(400).json({ error: "subheader must be a string" });
-    }
-
     const rows = await sql`
-      INSERT INTO "TENA_Admin".programs (title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4)
+      INSERT INTO "TENA_Admin".programs (title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4)
       VALUES (
-        ${title}, ${summary ?? null}, ${subheader ?? null}, ${description ?? null}, ${problem ?? null}, ${solution ?? null}, ${problem_image ?? null}, ${solution_image ?? null}, ${background_image ?? null},
+        ${title}, ${summary ?? null}, ${description ?? null}, ${problem ?? null}, ${solution ?? null}, ${problem_image ?? null}, ${solution_image ?? null}, ${background_image ?? null},
         ${stat1 ?? null}, ${stat2 ?? null}, ${stat3 ?? null}, ${stat4 ?? null}
       )
-      RETURNING id, title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
+      RETURNING id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
     `;
 
     res.status(201).json(rows[0]);
@@ -92,7 +88,7 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const { title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4 } = req.body;
+    const { title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4 } = req.body;
 
     if (problem_image !== undefined && problem_image !== null && typeof problem_image !== "string") {
       return res.status(400).json({ error: "problem_image must be a string" });
@@ -109,16 +105,11 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
         return res.status(400).json({ error: `stat${i + 1} must be a string` });
       }
     }
-    if (subheader !== undefined && subheader !== null && typeof subheader !== "string") {
-      return res.status(400).json({ error: "subheader must be a string" });
-    }
-
     const rows = await sql`
       UPDATE "TENA_Admin".programs
       SET
         title            = COALESCE(${title ?? null}, title),
         summary          = COALESCE(${summary ?? null}, summary),
-        subheader        = COALESCE(${subheader ?? null}, subheader),
         description      = COALESCE(${description ?? null}, description),
         problem          = COALESCE(${problem ?? null}, problem),
         solution         = COALESCE(${solution ?? null}, solution),
@@ -131,7 +122,7 @@ router.put("/:id", ...adminOnly, async (req, res, next) => {
         stat4            = COALESCE(${stat4 ?? null}, stat4),
         updated_at       = NOW()
       WHERE id = ${id}
-      RETURNING id, title, summary, subheader, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
+      RETURNING id, title, summary, description, problem, solution, problem_image, solution_image, background_image, stat1, stat2, stat3, stat4, created_at, updated_at
     `;
 
     if (rows.length === 0) {
