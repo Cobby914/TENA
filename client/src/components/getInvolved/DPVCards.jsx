@@ -1,10 +1,8 @@
-import { Box, VStack, Image } from "@chakra-ui/react";
-import GetInvolvedCard from "./GetInvolvedCard";
+import { Box, VStack } from "@chakra-ui/react";
+import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 import DonationCard from "./DonationsCardGI";
 import PartnershipCard from "./PartnershipsCardGI";
 import VolunteerCard from "./VolunteerCardGI";
-
-const MidCirc = "/GetInvolved/vectors/GIMiddle.svg";
 
 export default function DPVCards() {
     return (
@@ -20,9 +18,15 @@ export default function DPVCards() {
                     >
 
                         <VStack spacing={{ base: 8, md: 10, lg: 12 }} mt={{ base: 6, md: 8, lg: 10 }}>
-                            <DonationCard></DonationCard>
-                            <PartnershipCard></PartnershipCard>
-                            <VolunteerCard></VolunteerCard>
+                            <FadeInWhenVisible w="100%" amount={0.35}>
+                                <DonationCard />
+                            </FadeInWhenVisible>
+                            <FadeInWhenVisible delay={0.08} w="100%" amount={0.35}>
+                                <PartnershipCard />
+                            </FadeInWhenVisible>
+                            <FadeInWhenVisible delay={0.14} w="100%" amount={0.35}>
+                                <VolunteerCard />
+                            </FadeInWhenVisible>
                         </VStack>
                     </Box>
                 </Box>

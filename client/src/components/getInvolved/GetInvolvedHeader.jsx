@@ -1,4 +1,5 @@
 import { Box, Text, VStack, Image } from "@chakra-ui/react";
+import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 
 const Right = "/GetInvolved/vectors/HeaderRight.svg";
 const Left = "/GetInvolved/vectors/HeaderLeft.svg";
@@ -69,6 +70,7 @@ export default function GetInvolvedHeader() {
                 mx="auto"
                 px={{ base: 4, md: 10, lg: 20 }}
             >
+                <FadeInWhenVisible trigger="mount" y={16} duration={0.7}>
                 <VStack spacing={{ base: 4, md: 6 }} textAlign="center" maxW="982px" mx="auto" zIndex = "3">
                     <Text fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "brand.primary">
                         Help us 
@@ -80,7 +82,8 @@ export default function GetInvolvedHeader() {
                         TENA’s work is powered by community, partnership, and shared purpose. Whether you want to give your time, support our mission, collaborate with us, or simply find help, here’s how you can be part of lasting change.
                     </Text>
                     
-                </VStack> 
+                </VStack>
+                </FadeInWhenVisible>
             </Box>
             </Box>
     
