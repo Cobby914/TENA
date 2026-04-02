@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image, VStack, Text, Link, Icon, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, HStack, Image, VStack, Text, Link, Icon } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 import Newsletter from "./Newsletter";
@@ -48,49 +48,57 @@ export default function Footer({
                                         </HStack>
                                     </VStack>
 
-                                    <SimpleGrid
+                                    <VStack
+                                      align="flex-start"
+                                      spacing={3}
                                       minW={{ base: "100%", lg: "150px" }}
-                                      columns={{ base: 2, lg: 1 }}
-                                      spacingX={{ base: 8, lg: 0 }}
-                                      spacingY={3}
                                     >
-                                        <NavLink to="/about">
-                                            <Text
-                                              fontSize={{ base: 32, md: 22}}
-                                              fontWeight={700}
-                                              textDecoration={{ base: "underline", md: "none" }}
-                                              _hover={{ color: "brand.accent" }}
-                                              _active={{ color: "brand.accent" }}
-                                            >
-                                              About Us
-                                            </Text>
-                                        </NavLink>
-                                        <NavLink to="/programs">
-                                            <Text
-                                              fontSize={{ base: 32, md: 22}}
-                                              fontWeight={700}
-                                              textDecoration={{ base: "underline", md: "none" }}
-                                              _hover={{ color: "brand.accent" }}
-                                              _active={{ color: "brand.accent" }}
-                                            >
-                                              Programs
-                                            </Text>
-                                        </NavLink>
-                                        <NavLink to="/getInvolved">
-                                        <Text
-                                          fontSize={{ base: 32, md: 22}}
+                                        <Link
+                                          as={NavLink}
+                                          to="/about"
+                                          display="block"
+                                          textAlign="left"
+                                          fontSize={{ base: 32, md: 22 }}
+                                          fontWeight={700}
+                                          textDecoration={{ base: "underline", md: "none" }}
+                                          _hover={{ color: "brand.accent" }}
+                                          _active={{ color: "brand.accent" }}
+                                        >
+                                          About Us
+                                        </Link>
+                                        <Link
+                                          as={NavLink}
+                                          to="/programs"
+                                          display="block"
+                                          textAlign="left"
+                                          fontSize={{ base: 32, md: 22 }}
+                                          fontWeight={700}
+                                          textDecoration={{ base: "underline", md: "none" }}
+                                          _hover={{ color: "brand.accent" }}
+                                          _active={{ color: "brand.accent" }}
+                                        >
+                                          Programs
+                                        </Link>
+                                        <Link
+                                          as={NavLink}
+                                          to="/getInvolved"
+                                          display="block"
+                                          textAlign="left"
+                                          fontSize={{ base: 32, md: 22 }}
                                           fontWeight={700}
                                           textDecoration={{ base: "underline", md: "none" }}
                                           _hover={{ color: "brand.accent" }}
                                           _active={{ color: "brand.accent" }}
                                         >
                                           Get Involved
-                                        </Text>
-                                        </NavLink>
+                                        </Link>
                                         <Text
                                           as="button"
+                                          type="button"
+                                          display="block"
+                                          textAlign="left"
                                           {...donateButtonInteractionProps}
-                                          fontSize={{ base: 32, md: 22}}
+                                          fontSize={{ base: 32, md: 22 }}
                                           fontWeight={700}
                                           textDecoration={{ base: "underline", md: "none" }}
                                           cursor="pointer"
@@ -99,7 +107,7 @@ export default function Footer({
                                         >
                                           Donate
                                         </Text>
-                                    </SimpleGrid>
+                                    </VStack>
 
                                     <VStack maxW="260px" gap={5} alignItems={"flex-start"}>
                                         <Text fontSize={{ base: 12, md: 14, lg: 15}} fontWeight={500} lineHeight="20px" width="100%">
