@@ -1,4 +1,4 @@
-import { Box, Flex, VStack, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import MultiRingCircle from "../../ui/MultiRingCircle";
 const sloganImage = "/Home/SouthLACafeGroup.jpg";
@@ -71,17 +71,21 @@ export default function Slogan() {
             career pathways in healthcare, and empower every voice in Los
             Angeles County to thrive.
           </Text>
-          <Box
+          <Button
             as={RouterLink}
             to="/donate"
+            variant="unstyled"
             display="inline-flex"
             alignItems="center"
             justifyContent="center"
             alignSelf="flex-start"
+            minW="unset"
+            minH="unset"
             w="max-content"
             maxW="100%"
             mb={10}
             h={12}
+            p={0}
             px={6}
             borderRadius={6}
             bg="rgba(92, 218, 197, 1)"
@@ -98,7 +102,7 @@ export default function Slogan() {
             _active={donateHover}
           >
             Donate
-          </Box>
+          </Button>
         </VStack>
 
         <Box
