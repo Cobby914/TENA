@@ -1,8 +1,20 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Link } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import MultiRingCircle from "../../ui/MultiRingCircle";
 
 const RING_COLOR = "#092751";
 const RING_SIZE_PX = 487;
+const breadcrumbLinkProps = {
+  fontFamily: "body",
+  color: "#F8F9FB",
+  fontWeight: "600",
+  transition: "font-weight 0.2s ease, opacity 0.2s ease",
+  textDecoration: "none",
+  _hover: { textDecoration: "underline", fontWeight: "800", opacity: 0.9 },
+  sx: {
+    "&[aria-current='page']": { fontWeight: "800" },
+  },
+};
 
 export default function OurTeamHeader() {
   return (
@@ -43,16 +55,20 @@ export default function OurTeamHeader() {
       >
         <Text
           fontFamily="body"
-          fontWeight="700"
+          fontWeight="600"
           fontSize={{ base: "xl", md: "2xl" }}
           color="#F8F9FB"
           mb={{ base: 3, md: 4 }}
         >
-          About Us{" "}
+          <Link as={NavLink} to="/aboutUs" {...breadcrumbLinkProps}>
+            About Us
+          </Link>{" "}
           <Box as="span" color="#F8F9FB">
             &gt;
           </Box>{" "}
-          Our Team
+          <Link as={NavLink} to="/team" end {...breadcrumbLinkProps}>
+            Our Team
+          </Link>
         </Text>
 
         <Text

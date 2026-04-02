@@ -1,5 +1,4 @@
-import { Text, Box, Flex, Link } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { Text, Box, Flex } from "@chakra-ui/react";
 import MultiRingCircle from "../ui/MultiRingCircle";
 
 const programsHeaderImg = "/programs/ProgramsHeaderIMG.jpg";    
@@ -44,23 +43,16 @@ export default function OurPrograms() {
             zIndex={1}
         >
             <Flex direction="column" alignItems="flex-start">
-                <Link
-                    as={NavLink}
-                    to="/programs"
+                <Text
                     fontFamily="Inter"
                     fontSize="26px"
                     fontWeight="800"
                     lineHeight="32px"
                     color="#F8F9FB"
                     mb={8}
-                    textDecoration="none"
-                    _hover={{
-                        textDecoration: "underline",
-                        opacity: 0.75,
-                    }}
                 >
                     Programs
-                </Link>
+                </Text>
                 <Text
                     fontFamily="Inter"
                     fontSize="64px"

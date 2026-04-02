@@ -3,9 +3,30 @@ import { NavLink } from "react-router-dom";
 import { useProgramById } from "../../../hooks/useProgramsById";
 import { resolveProgramImage } from "../../../lib/programImageResolver";
 
-export default function ProgramHeader({ id, title, backgroundPosition }) {
+const breadcrumbLinkProps = {
+  fontFamily: "Inter",
+  fontSize: "26px",
+  lineHeight: "32px",
+  color: "#F8F9FB",
+  fontWeight: "600",
+  transition: "font-weight 0.2s ease, opacity 0.2s ease",
+  textDecoration: "none",
+  _hover: {
+    textDecoration: "underline",
+    fontWeight: "800",
+    opacity: 0.9,
+  },
+  sx: {
+    "&[aria-current='page']": {
+      fontWeight: "800",
+    },
+  },
+};
+
+export default function ProgramHeader({ id, backgroundPosition }) {
   const { program } = useProgramById(id);
   const backgroundImageSrc = resolveProgramImage(program?.background_image);
+  const programTitle = String(program?.title ?? "").trim() || "Loading program...";
 
   return (
     <Box
@@ -57,16 +78,7 @@ export default function ProgramHeader({ id, title, backgroundPosition }) {
             <Link
               as={NavLink}
               to="/programs"
-              fontFamily="Inter"
-              fontSize="26px"
-              fontWeight="800"
-              lineHeight="32px"
-              color="#F8F9FB"
-              textDecoration="none"
-              _hover={{
-                  textDecoration: "underline",
-                  opacity: 0.75,
-              }}
+              {...breadcrumbLinkProps}
             >
               Programs
             </Link>
@@ -86,7 +98,7 @@ export default function ProgramHeader({ id, title, backgroundPosition }) {
               lineHeight="32px"
               color="#F8F9FB"
             >
-              {title}
+              {programTitle}
             </Text>
           </Flex>
 
@@ -99,7 +111,7 @@ export default function ProgramHeader({ id, title, backgroundPosition }) {
               textAlign="left"
               color="#F8F9FB"
           >
-            {title}
+            {programTitle}
           </Text>
         </Flex>
       </Box>
