@@ -47,8 +47,8 @@ export default function OurPeople() {
                     </Flex>
 
                     <SimpleGrid
-                        columns={{ base: 1, md: 3 }}
-                        spacing={{ base: 16, md: 20, lg: 24 }}
+                        columns={{ base: 3, md: 3 }}
+                        spacing={{ base: 3, sm: 5, md: 20, lg: 24 }}
                         maxW="1000px"
                         mx="auto"
                         position="relative"

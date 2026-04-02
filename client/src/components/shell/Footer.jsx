@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, HStack, Image, VStack, Text, Link, Icon } from "@chakra-ui/react";
+import { Box, Flex, HStack, Image, VStack, Text, Link, Icon, SimpleGrid } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
 import Newsletter from "./Newsletter";
@@ -15,10 +15,10 @@ export default function Footer({
  children, ...props}
 ) {
     return (
-        <Box width="100%" overflow="hidden" position="relative">
-            <Box as="footer" width="100vw" background="rgba(248, 249, 251)" border="1px solid rgba(0, 0, 0, 0.17)" py={{ base: 1, md: 2 }} px={{ base: 0, md: 14 }}>
-                <Flex direction={{ base: "column", lg: "row" }} justify={"center"} align={"center"} gap={20}>
-                    <VStack width={{base:"500px",  lg: "900px"}} minH="600px" py={16}>
+        <Box width="100%" overflowX="hidden" position="relative">
+            <Box as="footer" width="100%" background="rgba(248, 249, 251)" border="1px solid rgba(0, 0, 0, 0.17)" py={{ base: 4, md: 6 }} px={{ base: 3, md: 14 }}>
+                <Flex direction={{ base: "column", lg: "row" }} justify={"center"} align={{ base: "stretch", lg: "center" }} gap={{ base: 8, md: 12, lg: 20 }}>
+                    <VStack width="100%" maxW={{ base: "100%", lg: "900px" }} minH={{ base: "auto", lg: "600px" }} py={{ base: 2, md: 8, lg: 16 }}>
             
                             <VStack align="flex-start" width="100%" gap={4}>
                                 {/* Logos go here */}
@@ -29,10 +29,10 @@ export default function Footer({
                                 </HStack>
 
                                 {/* Separator Line */}
-                                <Box width={{base:"300px",  lg: "800px"}}  height="2px" background = "rgba(92, 218, 197, 1)" my={2} />
+                                <Box width="100%" maxW={{ base: "100%", lg: "800px" }} height="2px" background = "rgba(92, 218, 197, 1)" my={2} />
 
-                                <Flex direction={{base: "column", lg: "row"}} pt={6} alignItems="flex-start" width="890px" justify="space-between" gap={{base: 20, lg:0}}> 
-                                    <VStack  minW="200px" gap={8} alignItems="flex-start" >
+                                <Flex direction={{base: "column", lg: "row"}} pt={6} alignItems="flex-start" width="100%" justify="space-between" gap={{base: 8, lg: 0}}> 
+                                    <VStack minW={{ base: "auto", lg: "200px" }} gap={6} alignItems="flex-start" >
                                         <Text fontSize={{ base: 12, md: 14, lg: 15}} fontWeight={500} lineHeight="20px" letterSpacing={0}>
                                             1001 E Rosecrans Ave<br/>Los Angeles, CA 90059<br/>United States
                                         </Text>
@@ -47,20 +47,57 @@ export default function Footer({
                                         </HStack>
                                     </VStack>
 
-                                    <VStack minW="150px" gap={6} alignItems="flex-start">
+                                    <SimpleGrid
+                                      minW={{ base: "100%", lg: "150px" }}
+                                      columns={{ base: 2, lg: 1 }}
+                                      spacingX={{ base: 8, lg: 0 }}
+                                      spacingY={3}
+                                    >
                                         <NavLink to="/about">
-                                            <Text fontSize={{ base: 20, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>About Us</Text>
+                                            <Text
+                                              fontSize={{ base: 32, md: 22}}
+                                              fontWeight={700}
+                                              textDecoration={{ base: "underline", md: "none" }}
+                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                            >
+                                              About Us
+                                            </Text>
                                         </NavLink>
                                         <NavLink to="/programs">
-                                            <Text fontSize={{ base: 20, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Programs</Text>
+                                            <Text
+                                              fontSize={{ base: 32, md: 22}}
+                                              fontWeight={700}
+                                              textDecoration={{ base: "underline", md: "none" }}
+                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                            >
+                                              Programs
+                                            </Text>
                                         </NavLink>
                                         <NavLink to="/getInvolved">
-                                        <Text fontSize={{ base: 20, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Get Involved</Text>
+                                        <Text
+                                          fontSize={{ base: 32, md: 22}}
+                                          fontWeight={700}
+                                          textDecoration={{ base: "underline", md: "none" }}
+                                          _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                          _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                        >
+                                          Get Involved
+                                        </Text>
                                         </NavLink>
                                         <NavLink to="/donate">
-                                            <Text fontSize={{ base: 20, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Donate</Text>
+                                            <Text
+                                              fontSize={{ base: 32, md: 22}}
+                                              fontWeight={700}
+                                              textDecoration={{ base: "underline", md: "none" }}
+                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                            >
+                                              Donate
+                                            </Text>
                                         </NavLink>
-                                    </VStack>
+                                    </SimpleGrid>
 
                                     <VStack maxW="260px" gap={5} alignItems={"flex-start"}>
                                         <Text fontSize={{ base: 12, md: 14, lg: 15}} fontWeight={500} lineHeight="20px" width="100%">
@@ -70,16 +107,16 @@ export default function Footer({
 
                                 </Flex>
 
-                                <HStack mt={6} align="flex-end" justify="space-between" width="100%">
-                                    <Image src={gold_transparency} ratio={1} width={"90px"} />
-                                    <Box px={40}>
-                                        <Text fontSize={{ base: 12, md: 14, lg: 15}} fontWeight={500} lineHeight="24px" ml={-10}>© 2026 TENA CARE. All rights reserved</Text>
+                                <HStack mt={6} align="flex-end" justify="space-between" width="100%" flexWrap="wrap" gap={3}>
+                                    <Image src={gold_transparency} ratio={1} width={{ base: "64px", md: "90px" }} />
+                                    <Box px={{ base: 0, md: 4 }}>
+                                        <Text fontSize={{ base: 12, md: 14, lg: 15}} fontWeight={500} lineHeight={{ base: "18px", md: "24px" }}>© 2026 TENA CARE. All rights reserved</Text>
                                     </Box>
                                 </HStack>
                             </VStack>
                     </VStack>
 
-                    <Box align="center" w="450px" h="500px" >
+                    <Box align="center" w="100%" maxW={{ base: "100%", md: "450px" }} h="auto">
                         <Newsletter></Newsletter>
                     </Box>
                 </Flex>
