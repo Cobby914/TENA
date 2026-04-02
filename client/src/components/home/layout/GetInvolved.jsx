@@ -1,4 +1,4 @@
-import { Box, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Text, Grid } from "@chakra-ui/react";
 import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import InvolvementCard from "../ui/InvolvementCard";
 import SimpleCircle from "../../ui/SimpleCircle";
@@ -71,7 +71,7 @@ export default function GetInvolved() {
           border="1px solid"
           borderColor="border.light"
           py={{ base: 8, md: 12 }}
-          px={{ base: 4, md: 0 }}
+          px={{ base: 4, md: 6, lg: 8 }}
           borderRadius={10}
           boxShadow="md"
         >
@@ -85,14 +85,17 @@ export default function GetInvolved() {
             Join Our Mission.
           </Text>
 
-          <SimpleGrid
-            columns={{ base: 1, md: 3 }}
-            spacing={{ base: 18, md: 20 }}
+          <Grid
+            templateColumns={{
+              base: "minmax(0, 1fr)",
+              md: "repeat(3, minmax(0, 1fr))",
+            }}
+            gap={{ base: 18, md: 20 }}
             w="full"
             maxW="980px"
             mx="auto"
             alignItems="stretch"
-            justifyItems="center"
+            justifyItems="stretch"
           >
             <InvolvementCard
               title="Volunteer"
@@ -114,7 +117,7 @@ export default function GetInvolved() {
               linkname="Support our Cause"
               onAction={openDonateWidget}
             />
-          </SimpleGrid>
+          </Grid>
         </Box>
         </FadeInWhenVisible>
       </Box>

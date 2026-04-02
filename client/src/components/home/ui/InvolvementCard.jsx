@@ -14,9 +14,9 @@ export default function InvolvementCard({
   return (
     <Box
       bgColor="surface.default"
-      width={{ base: "100%", md: "235px" }}
+      w="100%"
+      minW={0}
       h="100%"
-      minW={{ base: "100%", md: "235px" }}
       shadow={false}
     >
       <Flex direction="column" align="stretch" h="100%" w="100%">
@@ -58,11 +58,20 @@ export default function InvolvementCard({
               : { as: RouterLink, to: link })}
           bgColor="brand.primary"
           w="full"
+          maxW="100%"
           borderRadius={8}
-          p={6}
+          px={{ base: 3, md: 4 }}
+          py={4}
           mt={8}
           flexShrink={0}
-          fontSize={{ base: 14, lg: 16 }}
+          h="auto"
+          minH="48px"
+          whiteSpace="normal"
+          overflowWrap="break-word"
+          wordBreak="break-word"
+          lineHeight="short"
+          textAlign="center"
+          fontSize={{ base: "13px", sm: "14px", md: "clamp(12px, 2.1vw, 16px)" }}
           fontWeight={500}
           color="surface.default"
           textDecoration="none"
