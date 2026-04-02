@@ -1,11 +1,9 @@
 import { Router } from "express";
-import { OAuth2Client } from "google-auth-library";
 import { sql } from "../db/index.js";
-import { env } from "../config/env.js";
 import { verifyAuth, requireApproved } from "../middleware/auth.js";
+import { verifyFirebaseIdToken } from "../lib/firebaseAdmin.js";
 
 const router = Router();
-const client = new OAuth2Client(env.googleClientId);
 
 function normalizeName(value) {
   if (typeof value !== "string") return null;
@@ -13,37 +11,47 @@ function normalizeName(value) {
   return normalized.length ? normalized : null;
 }
 
+function namesFromDecoded(decoded) {
+  let firstName = null;
+  let lastName = null;
+  const name = typeof decoded.name === "string" ? decoded.name.trim() : "";
+  if (name) {
+    const parts = name.split(/\s+/).filter(Boolean);
+    if (parts.length > 0) {
+      firstName = parts[0];
+      lastName = parts.length > 1 ? parts.slice(1).join(" ") : null;
+    }
+  }
+  return { firstName, lastName };
+}
+
+function googleProviderSubject(decoded) {
+  const ids = decoded.firebase?.identities?.["google.com"];
+  if (Array.isArray(ids) && ids[0]) {
+    return String(ids[0]);
+  }
+  return String(decoded.uid ?? "");
+}
+
 router.post("/google", async (req, res, next) => {
   try {
-    if (!env.googleClientId) {
-      return res.status(500).json({ error: "GOOGLE_CLIENT_ID is not configured" });
+    const { idToken } = req.body ?? {};
+    if (!idToken || typeof idToken !== "string") {
+      return res.status(400).json({ error: "idToken is required" });
     }
 
-    const { credential } = req.body ?? {};
-    if (!credential || typeof credential !== "string") {
-      return res.status(400).json({ error: "credential is required" });
+    const decoded = await verifyFirebaseIdToken(idToken);
+
+    const email = String(decoded.email ?? "").trim().toLowerCase();
+    if (!email) {
+      return res.status(401).json({ error: "Invalid token: missing email" });
     }
 
-    const ticket = await client.verifyIdToken({
-      idToken: credential,
-      audience: env.googleClientId
-    });
-    const payload = ticket.getPayload();
-
-    if (!payload?.email || !payload?.sub) {
-      return res.status(401).json({ error: "Invalid Google token payload" });
-    }
-
-    const email = String(payload.email).trim().toLowerCase();
-    const emailVerified = Boolean(payload.email_verified);
-    let firstName = normalizeName(payload.given_name);
-    let lastName = normalizeName(payload.family_name);
-    if ((!firstName || !lastName) && typeof payload.name === "string") {
-      const parts = payload.name.trim().split(/\s+/).filter(Boolean);
-      if (parts.length > 0) {
-        firstName = firstName ?? parts[0];
-        lastName = lastName ?? (parts.length > 1 ? parts.slice(1).join(" ") : null);
-      }
+    const emailVerified = Boolean(decoded.email_verified);
+    const { firstName, lastName } = namesFromDecoded(decoded);
+    const googleSub = googleProviderSubject(decoded);
+    if (!googleSub) {
+      return res.status(401).json({ error: "Invalid token: missing identity" });
     }
 
     let user =
@@ -90,7 +98,7 @@ router.post("/google", async (req, res, next) => {
 
     await sql`
       INSERT INTO "TENA_Admin".oauth_accounts (user_id, provider, provider_id)
-      VALUES (${user.id}, 'google', ${payload.sub})
+      VALUES (${user.id}, 'google', ${googleSub})
       ON CONFLICT (provider_id)
       DO UPDATE
       SET user_id = EXCLUDED.user_id, provider = EXCLUDED.provider
@@ -98,8 +106,12 @@ router.post("/google", async (req, res, next) => {
 
     res.json({ user });
   } catch (err) {
+    const code = err?.code ?? "";
+    if (typeof code === "string" && code.startsWith("auth/")) {
+      return res.status(401).json({ error: "Invalid or expired token" });
+    }
     if (err?.message?.toLowerCase?.().includes("token")) {
-      return res.status(401).json({ error: "Invalid Google token" });
+      return res.status(401).json({ error: "Invalid token" });
     }
     next(err);
   }

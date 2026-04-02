@@ -40,7 +40,7 @@ export default function AdminDashboard() {
           fetchCohorts(controller.signal),
           fetch(`${API_BASE}/api/users`, {
             signal: controller.signal,
-            headers: withAuthHeaders()
+            headers: await withAuthHeaders()
           })
         ]);
 

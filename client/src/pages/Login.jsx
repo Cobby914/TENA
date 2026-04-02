@@ -14,8 +14,10 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { getAuth, GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import { GoogleLogin } from "@react-oauth/google";
 import { useAuthStore } from "../store/useAuthStore";
+import { getFirebaseApp } from "../lib/firebase";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
@@ -37,18 +39,34 @@ export default function Login() {
   const destination = location.state?.from?.pathname || "/admin";
 
   const handleSuccess = async (response) => {
-    const credential = response?.credential;
-    if (!credential) {
+    const googleIdToken = response?.credential;
+    if (!googleIdToken) {
       toast({ title: "Google login failed", status: "error", duration: 3000 });
+      return;
+    }
+
+    const firebaseApp = getFirebaseApp();
+    if (!firebaseApp) {
+      toast({
+        title: "Firebase not configured",
+        description: "Add VITE_FIREBASE_* variables to the client environment.",
+        status: "error",
+        duration: 4000
+      });
       return;
     }
 
     try {
       setLoading(true);
+      const auth = getAuth(firebaseApp);
+      const fbCred = GoogleAuthProvider.credential(googleIdToken);
+      const fbUser = await signInWithCredential(auth, fbCred);
+      const idToken = await fbUser.user.getIdToken();
+
       const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ credential })
+        body: JSON.stringify({ idToken })
       });
 
       const data = await res.json();
@@ -56,7 +74,7 @@ export default function Login() {
         throw new Error(data?.error || "Unable to sign in");
       }
 
-      setSession({ token: credential, user: data.user });
+      setSession({ user: data.user });
       navigate(destination, { replace: true });
     } catch (err) {
       toast({
@@ -168,7 +186,8 @@ export default function Login() {
             </Text>
             {!clientId ? (
               <Text color="red.500" fontSize="sm">
-                Missing VITE_GOOGLE_CLIENT_ID. Add it to your client environment variables.
+                Missing VITE_GOOGLE_CLIENT_ID. Add it to your client environment variables (same Web client as in
+                Firebase Console → Authentication → Google).
               </Text>
             ) : (
               <GoogleLogin

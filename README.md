@@ -11,7 +11,7 @@ Full-stack web application built with a React (Vite) client and an Express serve
 | Client   | React 18, Vite 7, Chakra UI 2, React Router 7, Zustand, TanStack Query |
 | Server   | Node.js, Express 4, `@neondatabase/serverless`      |
 | Database | PostgreSQL (Neon)                                   |
-| Auth     | Google OAuth (`@react-oauth/google`, `google-auth-library`) |
+| Auth     | Google Sign-In → Firebase Auth (`signInWithCredential`); API uses **Firebase ID tokens** verified with `firebase-admin` |
 | Deploy   | Vercel (static client + Node serverless API)        |
 
 ---
@@ -47,23 +47,53 @@ Create a file at `server/.env` with the following keys:
 
 ```env
 DATABASE_URL=your_neon_postgres_connection_string
-GOOGLE_CLIENT_ID=your_google_oauth_client_id
 PORT=3001
 NODE_ENV=development
 ```
 
-> `DATABASE_URL` and `GOOGLE_CLIENT_ID` are **required** — the server will throw an error on startup if either is missing.
+**Firebase Admin (required for auth)** — download a service account JSON from [Firebase Console](https://console.firebase.google.com/) → Project settings → Service accounts → Generate new private key. Either:
+
+- Point to the file (good for local dev):
+
+  ```env
+  FIREBASE_SERVICE_ACCOUNT_PATH=C:\path\to\your-service-account.json
+  ```
+
+- Or paste the **entire JSON on one line** (common for hosted environments):
+
+  ```env
+  FIREBASE_SERVICE_ACCOUNT_JSON={"type":"service_account",...}
+  ```
+
+> `DATABASE_URL` and one of `FIREBASE_SERVICE_ACCOUNT_PATH` / `FIREBASE_SERVICE_ACCOUNT_JSON` are **required** on startup.
 
 ### Client (`client/.env`)
 
 Create a file at `client/.env` with the following keys:
 
 ```env
-VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
+VITE_GOOGLE_CLIENT_ID=your_google_oauth_web_client_id
 VITE_API_BASE_URL=http://localhost:3001
 ```
 
+**Firebase web app (required for sign-in)** — same project as the Admin SDK. From Firebase Console → Project settings → Your apps → Web app:
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+# Optional, for Google Analytics in Firebase
+VITE_FIREBASE_MEASUREMENT_ID=
+```
+
+In **Firebase Console → Authentication → Sign-in method**, enable **Google** and use the **same** OAuth Web client ID (and client secret) as `VITE_GOOGLE_CLIENT_ID` so `signInWithCredential` succeeds.
+
 > `VITE_API_BASE_URL` is optional and defaults to `http://localhost:3001` if not set.
+
+The client obtains a **Firebase ID token** after Google sign-in (`client/src/pages/Login.jsx`) and sends it to the API; `withAuthHeaders()` refreshes the token via `getAuth().currentUser.getIdToken()`. Keep service account JSON out of git (see `.gitignore`: `firebase-adminsdk.json`).
 
 ---
 
@@ -138,8 +168,9 @@ The project is configured for Vercel via `vercel.json`:
 | Variable            | Used by        |
 | ------------------- | -------------- |
 | `DATABASE_URL`      | Server & `api/`|
-| `GOOGLE_CLIENT_ID`  | Server         |
+| `FIREBASE_SERVICE_ACCOUNT_JSON` or `FIREBASE_SERVICE_ACCOUNT_PATH` | Server (verify ID tokens) |
 | `VITE_GOOGLE_CLIENT_ID` | Client build |
 | `VITE_API_BASE_URL` | Client build   |
+| `VITE_FIREBASE_*`   | Client build   |
 
 Set these under **Project Settings → Environment Variables** in the Vercel dashboard before deploying.
