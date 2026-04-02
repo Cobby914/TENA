@@ -30,84 +30,14 @@ Full-stack web application built with a React (Vite) client and an Express serve
 ```
 TENA/
 ├── client/          # React + Vite SPA (`src/auth/`, `src/components/auth/` — Google admin sign-in)
+│   └── .env.example # copy to client/.env (see Local Development)
 ├── server/          # Express API server
+│   └── .env.example # copy to server/.env
 │   └── db/schema/   # Raw SQL schema files
 ├── api/             # Vercel serverless function handlers
 ├── vercel.json      # Vercel deployment config
 └── package.json     # Root workspace (runs both client & server)
 ```
-
----
-
-## Environment Variables
-
-### Server (`server/.env`)
-
-Create a file at `server/.env` with the following keys:
-
-```env
-DATABASE_URL=your_neon_postgres_connection_string
-PORT=3001
-NODE_ENV=development
-```
-
-**Firebase Admin (required for auth)** — download a service account JSON from [Firebase Console](https://console.firebase.google.com/) → Project settings → Service accounts → Generate new private key. Either:
-
-- Point to the file (good for local dev):
-
-  ```env
-  FIREBASE_SERVICE_ACCOUNT_PATH=C:\path\to\your-service-account.json
-  ```
-
-- Or paste the **entire JSON on one line** (common for hosted environments):
-
-  ```env
-  FIREBASE_SERVICE_ACCOUNT_JSON={"type":"service_account",...}
-  ```
-
-> `DATABASE_URL` and one of `FIREBASE_SERVICE_ACCOUNT_PATH` / `FIREBASE_SERVICE_ACCOUNT_JSON` are **required** on startup.
-
-**Organization emails (recommended for production)** — only these domains may complete sign-in or call authenticated APIs. Comma-separated, no `@`. Leave unset during local dev if you use a personal Gmail.
-
-```env
-ALLOWED_AUTH_EMAIL_DOMAINS=tenacare.org
-```
-
-### Client (`client/.env`)
-
-Create a file at `client/.env` with the following keys:
-
-```env
-VITE_API_BASE_URL=http://localhost:3001
-# Optional: Google Workspace `hd` hint for the Google account picker (no @)
-# VITE_GOOGLE_HOSTED_DOMAIN=tenacare.org
-```
-
-**Firebase web app (required for sign-in)** — same project as the Admin SDK. From Firebase Console → Project settings → Your apps → Web app:
-
-```env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-# Optional, for Google Analytics in Firebase
-VITE_FIREBASE_MEASUREMENT_ID=
-```
-
-In **Firebase Console → Authentication → Sign-in method**, enable **Google** and complete the Web client ID and secret there (Firebase uses the OAuth client **in the same Google Cloud project** as this Firebase project). The admin sign-in button uses **`signInWithPopup`**, so you do **not** need a separate `VITE_GOOGLE_CLIENT_ID` unless you add other Google features.
-
-> `VITE_API_BASE_URL` is optional and defaults to `http://localhost:3001` if not set.
-
-Admin sign-in is **Google only**: `client/src/components/auth/AdminGoogleSignInCard.jsx` → `client/src/auth/completeGoogleSignIn.js` (Firebase `signInWithPopup`, then `POST /api/auth/google`). `withAuthHeaders()` refreshes the token via `getAuth().currentUser.getIdToken()`. Keep service account JSON out of git (see `.gitignore`: `firebase-adminsdk.json`).
-
-| Server | Role |
-| ------ | ---- |
-| `server/src/lib/authEmailPolicy.js` | Allowed email domains from `ALLOWED_AUTH_EMAIL_DOMAINS` |
-| `server/src/lib/firebaseAdmin.js` | Verify Firebase ID tokens |
-| `server/src/middleware/auth.js` | Bearer token + domain + DB user |
-| `server/src/routes/auth.js` | `POST /google`, `GET /me` |
 
 ---
 
@@ -128,7 +58,7 @@ Admin sign-in is **Google only**: `client/src/components/auth/AdminGoogleSignInC
 
 3. **Set up environment variables**
 
-   Copy the examples above into `server/.env` and `client/.env`, filling in your real values.
+   Copy `server/.env.example` → `server/.env` and `client/.env.example` → `client/.env`, then fill in secrets.
 
 4. **Set up the database**
 
@@ -177,14 +107,4 @@ The project is configured for Vercel via `vercel.json`:
 - Files under `api/` are deployed as **Node.js serverless functions**.
 - All `/api/*` requests are routed to the matching `api/*.js` handler; everything else is served from the client build.
 
-**Required environment variables in Vercel:**
-
-| Variable            | Used by        |
-| ------------------- | -------------- |
-| `DATABASE_URL`      | Server & `api/`|
-| `FIREBASE_SERVICE_ACCOUNT_JSON` or `FIREBASE_SERVICE_ACCOUNT_PATH` | Server (verify ID tokens) |
-| `ALLOWED_AUTH_EMAIL_DOMAINS` | Server (org-only sign-in; optional in dev) |
-| `VITE_API_BASE_URL` | Client build   |
-| `VITE_FIREBASE_*`   | Client build   |
-
-Set these under **Project Settings → Environment Variables** in the Vercel dashboard before deploying.
+Configure the same keys your app reads from `server/.env.example` and `client/.env.example` in your host’s environment (e.g. Vercel project settings) for production builds and the API.
