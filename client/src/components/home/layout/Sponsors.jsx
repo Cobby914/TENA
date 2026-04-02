@@ -1,15 +1,34 @@
 import { Box, Flex, Image, Text} from "@chakra-ui/react";
 
 const logos = [
-  { src: "/Home/Sponsers/BIUT.png", alt: "IBTU" },
-  { src: "/Home/Sponsers/SLA.png", alt: "South LA Cafe" },
-  { src: "/Home/Sponsers/USCMED.png", alt: "USC Keck School of Medicine" },
-  { src: "/Home/Sponsers/PEAR_SUITE.png", alt: "Pear Suite" },
-  { src: "/Home/Sponsers/KGI_LOGO.png", alt: "KGI" },
-  { src: "/Home/Sponsers/BOMBAS.png", alt: "Bombas" },
-  { src: "/Home/Sponsers/ICOH_LOGO.png", alt: "ICOH" },
-  { src: "/Home/Sponsers/MBKU.png", alt: "MBKU" },
-];
+  "/OurPartners/CommunityBasedOrgs/12221 1.png",
+  "/OurPartners/CommunityBasedOrgs/30045 1.png",
+  "/OurPartners/CommunityBasedOrgs/33784 1.png",
+  "/OurPartners/CommunityBasedOrgs/36354 1.png",
+  "/OurPartners/CommunityBasedOrgs/62141 1.png",
+  "/OurPartners/CommunityBasedOrgs/83406 1.png",
+  "/OurPartners/CommunityBasedOrgs/99933 1.png",
+  "/OurPartners/CommunityBasedOrgs/SCR-20260112-bsvd 1.png",
+  "/OurPartners/Educational/2486 1.png",
+  "/OurPartners/Educational/16055 1.png",
+  "/OurPartners/Educational/64671 1.png",
+  "/OurPartners/Educational/66838 1.png",
+  "/OurPartners/Educational/95664 1.png",
+  "/OurPartners/Educational/SCR-20260112-bspa 1.png",
+  "/OurPartners/Educational/SCR-20260112-bsrh 1.png",
+  "/OurPartners/Educational/SCR-20260112-bssf 1.png",
+  "/OurPartners/Sponsors/bombas.png",
+  "/OurPartners/Sponsors/DEO.png",
+  "/OurPartners/Sponsors/GroundGameHealth.png",
+  "/OurPartners/Sponsors/JCO.png",
+  "/OurPartners/Sponsors/Kaiser.png",
+  "/OurPartners/Sponsors/PublicHealth.png",
+  "/OurPartners/Sponsors/SCR-20260112-bsnr 1.png",
+  "/OurPartners/Sponsors/SouthLA.png",
+].map((src) => ({
+  src: encodeURI(src),
+  alt: src.split("/").pop()?.replace(/\.[^/.]+$/, "") || "Partner logo",
+}));
 
 export default function Sponsors () {
     const dupLogos = [...logos, ...logos];
@@ -23,7 +42,7 @@ export default function Sponsors () {
                 <style>
                     {`
                         @keyframes scroll {
-                            0% { transofrm: translateX(0); }
+                            0% { transform: translateX(0); }
                             100% { transform: translateX(-50%); }
                         }
                     `}
