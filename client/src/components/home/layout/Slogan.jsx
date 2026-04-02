@@ -1,6 +1,6 @@
 import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
 import MultiRingCircle from "../../ui/MultiRingCircle";
+import { openDonateWidget } from "../../../lib/giveButter";
 const sloganImage = "/Home/SouthLACafeGroup.jpg";
 
 const donateHover = {
@@ -72,8 +72,7 @@ export default function Slogan() {
             Angeles County to thrive.
           </Text>
           <Button
-            as={RouterLink}
-            to="/donate"
+            onClick={openDonateWidget}
             variant="unstyled"
             display="inline-flex"
             alignItems="center"

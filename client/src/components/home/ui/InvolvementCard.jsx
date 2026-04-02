@@ -6,8 +6,9 @@ export default function InvolvementCard({
   description,
   linkname,
   link,
+  onAction,
 }) {
-  const isExternalLink = /^https?:\/\//.test(link);
+  const isExternalLink = link && /^https?:\/\//.test(link);
 
   return (
     <Box
@@ -45,10 +46,11 @@ export default function InvolvementCard({
         </Text>
 
         <Button
-          as={isExternalLink ? "a" : RouterLink}
-          {...(isExternalLink
-            ? { href: link, target: "_blank", rel: "noopener noreferrer" }
-            : { to: link })}
+          {...(onAction
+            ? { onClick: onAction }
+            : isExternalLink
+              ? { as: "a", href: link, target: "_blank", rel: "noopener noreferrer" }
+              : { as: RouterLink, to: link })}
           bgColor="#1573CF"
           w="full"
           borderRadius={8}

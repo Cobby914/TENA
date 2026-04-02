@@ -1,6 +1,7 @@
 import { Box, Text, SimpleGrid } from "@chakra-ui/react";
 import InvolvementCard from "../ui/InvolvementCard";
 import SimpleCircle from "../../ui/SimpleCircle";
+import { openDonateWidget } from "../../../lib/giveButter";
 
 /** Figma 1440px frame — maps x with calc(50vw - 720px + x). Circles are 0° (no rotation). */
 const DECOR_FRAME_HALF = "720px";
@@ -108,7 +109,7 @@ export default function GetInvolved() {
               title="Donate"
               description="Your financial support fuels our mission."
               linkname="Support our Cause"
-              link="/donate"
+              onAction={openDonateWidget}
             />
           </SimpleGrid>
         </Box>

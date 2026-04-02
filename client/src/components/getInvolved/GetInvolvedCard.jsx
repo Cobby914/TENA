@@ -8,6 +8,7 @@ export default function GetInvolvedCard ({
     buttonName,
     image_here,
     destination,
+    onAction,
     decorations,
     imageDecorations,
 }) {
@@ -53,8 +54,9 @@ export default function GetInvolvedCard ({
 
                     <Flex width="100%" justifyContent={{ base: "center", lg: "flex-end" }} pt={{ base: 6, md: 8, lg: 10 }}>
                         <Button
-                            as={NavLink}
-                            to={destination}
+                            {...(onAction
+                              ? { onClick: onAction }
+                              : { as: NavLink, to: destination })}
                             bg="#FFFFFF"
                             variant="outline"
                             borderRadius="2px"
