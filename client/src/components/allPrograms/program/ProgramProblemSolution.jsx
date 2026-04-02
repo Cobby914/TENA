@@ -14,6 +14,7 @@ import {
   ListItem,
   VStack,
 } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useProgramById } from "../../../hooks/useProgramsById";
 import { resolveProgramImage } from "../../../lib/programImageResolver";
 
@@ -105,6 +106,7 @@ export default function ProgramProblemSolution({ id }) {
           spacing={{ base: 12, md: 16, lg: 20 }}
           align="stretch"
         >
+          <FadeInWhenVisible w="100%" amount={0.4}>
           <Heading
             as="h2"
             fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
@@ -112,7 +114,9 @@ export default function ProgramProblemSolution({ id }) {
           >
             {parseBold(program?.summary)}
           </Heading>
+          </FadeInWhenVisible>
 
+          <FadeInWhenVisible w="100%" amount={0.35} delay={0.06}>
           <Flex
             direction={{ base: "column", lg: "row" }}
             align="stretch"
@@ -152,7 +156,9 @@ export default function ProgramProblemSolution({ id }) {
               )}
             </Box>
           </Flex>
+          </FadeInWhenVisible>
 
+          <FadeInWhenVisible w="100%" amount={0.35} delay={0.12}>
           <Flex
             direction={{ base: "column", lg: "row" }}
             align="stretch"
@@ -209,6 +215,7 @@ export default function ProgramProblemSolution({ id }) {
               )}
             </Box>
           </Flex>
+          </FadeInWhenVisible>
         </VStack>
       </Box>
     </Box>

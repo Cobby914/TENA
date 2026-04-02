@@ -1,5 +1,6 @@
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 const joinUsBg = "/programs/JoinUsBackgroundIMG.png";
 
 export default function ProgramJoinUs() {
@@ -24,6 +25,7 @@ export default function ProgramJoinUs() {
         zIndex={0}
       />
 
+      <FadeInWhenVisible w="100%" amount={0.4}>
       <Flex
         direction="column"
         align="center"
@@ -74,6 +76,7 @@ export default function ProgramJoinUs() {
           Get Involved
         </Button>
       </Flex>
+      </FadeInWhenVisible>
     </Box>
   );
 }
