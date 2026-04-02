@@ -42,12 +42,15 @@ export default function Navbar() {
         </NavLink>
       </Flex>
 
-      <Flex
-        align="center"
-        justifyContent="flex-end"
-        gap={{ base: 2, md: 6, lg: 8 }}
-        flexWrap="wrap"
-        rowGap={2}
+      <Box
+        display={{ base: "grid", md: "flex" }}
+        gridTemplateColumns={{ base: "repeat(2, max-content)", md: "none" }}
+        justifyContent={{ base: "center", md: "flex-end" }}
+        justifyItems={{ base: "start", md: "initial" }}
+        columnGap={{ base: 4, md: 0 }}
+        rowGap={{ base: 2, md: 0 }}
+        alignItems="center"
+        gap={{ md: 6, lg: 8 }}
       >
         <AUMenu />
         <PMenu />
@@ -61,9 +64,11 @@ export default function Navbar() {
           fontWeight="600"
           fontSize={{ base: "14px", md: "16px" }}
           px={{ base: 5, md: 6 }}
-          py={2.5}
-          h="auto"
-          minH="40px"
+          py={2}
+          h="44px"
+          minH="44px"
+          lineHeight="1"
+          whiteSpace="nowrap"
           borderRadius="md"
           flexShrink={0}
           borderWidth="1px"
@@ -73,7 +78,7 @@ export default function Navbar() {
         >
           Donate
         </ChakraButton>
-      </Flex>
+      </Box>
     </Box>
   );
 }

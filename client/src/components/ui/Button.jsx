@@ -10,8 +10,17 @@ export default function Button({ children, ...props }) {
       height={{ base: "60px", md: "60px"}}
       width={{ base: "150px", md: "160px" }}
       borderRadius="none"
+      transition="background-color 0.2s ease, transform 0.1s ease"
       _hover={{}}
-      _active={{}}
+      _active={{
+        transform: "scale(0.98)",
+        filter: "brightness(0.95)",
+      }}
+      _focusVisible={{
+        outline: "2px solid",
+        outlineColor: "rgba(92, 218, 197, 1)",
+        outlineOffset: "2px",
+      }}
       {...props}
     >
       {children}

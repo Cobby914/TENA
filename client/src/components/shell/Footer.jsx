@@ -54,16 +54,48 @@ export default function Footer({
                                       spacingY={3}
                                     >
                                         <NavLink to="/about">
-                                            <Text fontSize={{ base: 32, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>About Us</Text>
+                                            <Text
+                                              fontSize={{ base: 32, md: 22}}
+                                              fontWeight={700}
+                                              textDecoration={{ base: "underline", md: "none" }}
+                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                            >
+                                              About Us
+                                            </Text>
                                         </NavLink>
                                         <NavLink to="/programs">
-                                            <Text fontSize={{ base: 32, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Programs</Text>
+                                            <Text
+                                              fontSize={{ base: 32, md: 22}}
+                                              fontWeight={700}
+                                              textDecoration={{ base: "underline", md: "none" }}
+                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                            >
+                                              Programs
+                                            </Text>
                                         </NavLink>
                                         <NavLink to="/getInvolved">
-                                        <Text fontSize={{ base: 32, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Get Involved</Text>
+                                        <Text
+                                          fontSize={{ base: 32, md: 22}}
+                                          fontWeight={700}
+                                          textDecoration={{ base: "underline", md: "none" }}
+                                          _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                          _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                        >
+                                          Get Involved
+                                        </Text>
                                         </NavLink>
                                         <NavLink to="/donate">
-                                            <Text fontSize={{ base: 32, md: 22}} fontWeight={700} _hover={{ color: "rgba(92, 218, 197, 1)" }}>Donate</Text>
+                                            <Text
+                                              fontSize={{ base: 32, md: 22}}
+                                              fontWeight={700}
+                                              textDecoration={{ base: "underline", md: "none" }}
+                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                            >
+                                              Donate
+                                            </Text>
                                         </NavLink>
                                     </SimpleGrid>
 
