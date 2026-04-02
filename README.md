@@ -11,7 +11,7 @@ Full-stack web application built with a React (Vite) client and an Express serve
 | Client   | React 18, Vite 7, Chakra UI 2, React Router 7, Zustand, TanStack Query |
 | Server   | Node.js, Express 4, `@neondatabase/serverless`      |
 | Database | PostgreSQL (Neon)                                   |
-| Auth     | Google OAuth (`@react-oauth/google`, `google-auth-library`) |
+| Auth     | Google via Firebase Auth (`signInWithPopup`); API uses **Firebase ID tokens** verified with `firebase-admin` |
 | Deploy   | Vercel (static client + Node serverless API)        |
 
 ---
@@ -21,7 +21,7 @@ Full-stack web application built with a React (Vite) client and an Express serve
 - **Node.js** v18 or later
 - **npm** v8 or later (workspaces support required)
 - A **Neon** PostgreSQL database (or any PostgreSQL-compatible `DATABASE_URL`)
-- A **Google OAuth 2.0** Client ID (from [Google Cloud Console](https://console.cloud.google.com/))
+- A **Firebase** project with **Google** sign-in enabled (OAuth client is configured inside Firebase / its linked Google Cloud project)
 
 ---
 
@@ -29,41 +29,15 @@ Full-stack web application built with a React (Vite) client and an Express serve
 
 ```
 TENA/
-├── client/          # React + Vite SPA
+├── client/          # React + Vite SPA (`src/auth/`, `src/components/auth/` — Google admin sign-in)
+│   └── .env.example # copy to client/.env (see Local Development)
 ├── server/          # Express API server
+│   └── .env.example # copy to server/.env
 │   └── db/schema/   # Raw SQL schema files
 ├── api/             # Vercel serverless function handlers
 ├── vercel.json      # Vercel deployment config
 └── package.json     # Root workspace (runs both client & server)
 ```
-
----
-
-## Environment Variables
-
-### Server (`server/.env`)
-
-Create a file at `server/.env` with the following keys:
-
-```env
-DATABASE_URL=your_neon_postgres_connection_string
-GOOGLE_CLIENT_ID=your_google_oauth_client_id
-PORT=3001
-NODE_ENV=development
-```
-
-> `DATABASE_URL` and `GOOGLE_CLIENT_ID` are **required** — the server will throw an error on startup if either is missing.
-
-### Client (`client/.env`)
-
-Create a file at `client/.env` with the following keys:
-
-```env
-VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
-VITE_API_BASE_URL=http://localhost:3001
-```
-
-> `VITE_API_BASE_URL` is optional and defaults to `http://localhost:3001` if not set.
 
 ---
 
@@ -84,7 +58,7 @@ VITE_API_BASE_URL=http://localhost:3001
 
 3. **Set up environment variables**
 
-   Copy the examples above into `server/.env` and `client/.env`, filling in your real values.
+   Copy `server/.env.example` → `server/.env` and `client/.env.example` → `client/.env`, then fill in secrets.
 
 4. **Set up the database**
 
@@ -133,13 +107,4 @@ The project is configured for Vercel via `vercel.json`:
 - Files under `api/` are deployed as **Node.js serverless functions**.
 - All `/api/*` requests are routed to the matching `api/*.js` handler; everything else is served from the client build.
 
-**Required environment variables in Vercel:**
-
-| Variable            | Used by        |
-| ------------------- | -------------- |
-| `DATABASE_URL`      | Server & `api/`|
-| `GOOGLE_CLIENT_ID`  | Server         |
-| `VITE_GOOGLE_CLIENT_ID` | Client build |
-| `VITE_API_BASE_URL` | Client build   |
-
-Set these under **Project Settings → Environment Variables** in the Vercel dashboard before deploying.
+Configure the same keys your app reads from `server/.env.example` and `client/.env.example` in your host’s environment (e.g. Vercel project settings) for production builds and the API.

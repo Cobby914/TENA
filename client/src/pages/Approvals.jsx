@@ -32,7 +32,7 @@ export default function Approvals() {
       return;
     }
     try {
-      const res  = await fetch(API, { headers: withAuthHeaders() });
+      const res = await fetch(API, { headers: await withAuthHeaders() });
       if (res.status === 401) {
         clearSession();
         navigate("/login", { replace: true });
@@ -70,7 +70,7 @@ export default function Approvals() {
     try {
       const res = await fetch(`${API}/${id}`, {
         method: "PUT",
-        headers: withAuthHeaders({ "Content-Type": "application/json" }),
+        headers: await withAuthHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify(payload),
       });
       if (res.status === 401) {
@@ -102,7 +102,7 @@ export default function Approvals() {
     try {
       const res = await fetch(`${API}/${id}`, {
         method: "DELETE",
-        headers: withAuthHeaders()
+        headers: await withAuthHeaders()
       });
       if (res.status === 401) {
         clearSession();

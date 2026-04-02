@@ -1,30 +1,23 @@
-import { OAuth2Client } from "google-auth-library";
-import { env } from "../config/env.js";
+import { verifyFirebaseIdToken } from "../lib/firebaseAdmin.js";
 import { sql } from "../db/index.js";
-
-const client = new OAuth2Client(env.googleClientId);
+import { DISALLOWED_EMAIL_ERROR, isAllowedSignInEmail } from "../lib/authEmailPolicy.js";
 
 export async function verifyAuth(req, res, next) {
   try {
-    if (!env.googleClientId) {
-      return res.status(500).json({ error: "GOOGLE_CLIENT_ID is not configured" });
-    }
-
     const authHeader = req.headers.authorization ?? "";
     const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
     if (!token) {
       return res.status(401).json({ error: "No token provided" });
     }
 
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: env.googleClientId
-    });
-
-    const payload = ticket.getPayload();
-    const email = String(payload?.email ?? "").trim().toLowerCase();
+    const decoded = await verifyFirebaseIdToken(token);
+    const email = String(decoded.email ?? "").trim().toLowerCase();
     if (!email) {
       return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    if (!isAllowedSignInEmail(email)) {
+      return res.status(403).json({ error: DISALLOWED_EMAIL_ERROR });
     }
 
     const rows = await sql`
@@ -38,7 +31,7 @@ export async function verifyAuth(req, res, next) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    req.user = payload;
+    req.user = { email, uid: decoded.uid, sub: decoded.sub };
     req.authUser = rows[0];
     next();
   } catch {

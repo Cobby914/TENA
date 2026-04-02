@@ -49,6 +49,7 @@ Desktop.ini
 .env
 .env.*
 !.env.example
+!**/.env.example
 
 ## Editor directories and files.
 .vscode/*

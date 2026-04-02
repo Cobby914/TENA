@@ -20,6 +20,7 @@ export default defineConfig({
           if (id.includes("framer-motion")) return "framer";
           if (id.includes("lucide-react")) return "icons";
           if (id.includes("@emotion")) return "emotion";
+          if (id.includes("firebase")) return "firebase";
           return "vendor";
         }
       }

@@ -3,6 +3,7 @@ import {
   getAuthSession,
   setAuthSession as persistSession,
   clearAuthSession as clearPersistedSession,
+  signOutFromFirebase,
 } from "../auth/session";
 
 export const useAuthStore = create((set) => ({
@@ -12,6 +13,7 @@ export const useAuthStore = create((set) => ({
     set({ session });
   },
   clearSession: () => {
+    void signOutFromFirebase();
     clearPersistedSession();
     set({ session: null });
   },
