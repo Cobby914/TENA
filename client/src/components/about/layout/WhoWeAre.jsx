@@ -1,5 +1,6 @@
 import { Text, Box, Flex, VStack, Image, Circle, Container } from "@chakra-ui/react";
 import SimpleCircle from "../../ui/SimpleCircle";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 
 const heroImage = "/AboutUs/AboutUs-Hero.jpg";
 
@@ -15,6 +16,7 @@ export default function WhoWeAre() {
     return (
         <Box as="section" bg="brand.heading" py={{ base: 8, md: 10, lg: 12 }} position="relative" zIndex="1" sx={fullBleedSx}>
             <Container maxW="1536px" px={{ base: 4, sm: 6, md: 8, lg: 10, xl: 12, "2xl": 14 }} centerContent={false}>
+                <FadeInWhenVisible trigger="mount" y={16} duration={0.7}>
                 <Flex
                     direction={{ base: "column", lg: "row" }}
                     alignItems="center"
@@ -131,6 +133,7 @@ export default function WhoWeAre() {
                         />
                     </Box>
                 </Flex>
+                </FadeInWhenVisible>
             </Container>
         </Box>
     );

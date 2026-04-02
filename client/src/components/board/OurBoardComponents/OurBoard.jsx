@@ -11,6 +11,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useBoardMembers } from "../../../hooks/useBoardMembers";
 import MemberCard from "../../ui/MemberCard";
 
@@ -57,14 +58,16 @@ export default function OurBoard() {
     >
       <Box maxW="1536px" mx="auto" px={{ base: 6, md: 12, lg: 20 }}>
         <Wrap spacing={{ base: 5, md: 6, lg: 7 }} justify="center">
-          {board.map((member) => (
+          {board.map((member, index) => (
             <WrapItem key={member.id}>
-              <MemberCard
-                name={member.name}
-                position={member.role}
-                imageSrc={member.imageSrc}
-                variant="board"
-              />
+              <FadeInWhenVisible amount={0.35} delay={index * 0.06}>
+                <MemberCard
+                  name={member.name}
+                  position={member.role}
+                  imageSrc={member.imageSrc}
+                  variant="board"
+                />
+              </FadeInWhenVisible>
             </WrapItem>
           ))}
         </Wrap>

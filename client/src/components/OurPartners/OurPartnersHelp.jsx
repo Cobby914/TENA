@@ -1,4 +1,5 @@
 import { Box, Flex, Image, ListItem, Text, UnorderedList, VStack } from "@chakra-ui/react";
+import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 const helpImage =
   "/OurPartners/HowWeHelp/dfc9dda9b603d278afc8e3ee4615d2583f799421.jpg";
 
@@ -12,7 +13,8 @@ export default function OurPartnersHelp() {
           py={{ base: 0, md: 2, lg: 4 }}
         >
           <Flex direction={{ base: "column", lg: "row" }} gap={{ base: 8, md: 10, lg: 12 }} align="center">
-            <Box flex={{ base: "unset", lg: "1" }} width="100%" maxW={{ base: "100%", lg: "620px" }}>
+            <FadeInWhenVisible flex={{ base: "unset", lg: "1" }} width="100%" maxW={{ base: "100%", lg: "620px" }} amount={0.35}>
+            <Box width="100%" maxW={{ base: "100%", lg: "620px" }}>
             <Image
               src={helpImage}
               alt="TENA team at community outreach event"
@@ -23,8 +25,10 @@ export default function OurPartnersHelp() {
               objectFit="cover"
             />
             </Box>
+            </FadeInWhenVisible>
 
-            <VStack flex={{ base: "unset", lg: "1.2" }} width="100%" align="stretch" spacing={{ base: 7, md: 8 }}>
+            <FadeInWhenVisible flex={{ base: "unset", lg: "1.2" }} width="100%" amount={0.35} delay={0.1}>
+            <VStack width="100%" align="stretch" spacing={{ base: 7, md: 8 }}>
               <Box>
                 <Text
                   fontFamily="body"
@@ -66,6 +70,7 @@ export default function OurPartnersHelp() {
                 </UnorderedList>
               </Box>
             </VStack>
+            </FadeInWhenVisible>
           </Flex>
         </Box>
       </Box>

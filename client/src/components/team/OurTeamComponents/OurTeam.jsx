@@ -10,6 +10,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useTeamMembers } from "../../../hooks/useTeamMembers";
 import MemberCard from "../../ui/MemberCard";
 
@@ -29,6 +30,7 @@ export default function OurTeam() {
           px={{ base: 6, md: 12, lg: 20 }}
           pt={{ base: 8, md: 10 }}
         >
+          <FadeInWhenVisible w="100%" amount={0.4}>
           <Text
             maxW="1060px"
             color="neutral.text"
@@ -42,6 +44,7 @@ export default function OurTeam() {
             </Box>{" "}
             through navigation and advocacy.
           </Text>
+          </FadeInWhenVisible>
 
           {loading ? (
             <Center py={12}>
@@ -59,20 +62,22 @@ export default function OurTeam() {
               w="100%"
               justifyItems="center"
             >
-              {members.map((member) => (
-                <MemberCard
-                  key={member.id}
-                  name={member.name}
-                  position={member.role}
-                  imageSrc={member.imageSrc}
-                  variant="team"
-                />
+              {members.map((member, index) => (
+                <FadeInWhenVisible key={member.id} w="100%" amount={0.35} delay={index * 0.05}>
+                  <MemberCard
+                    name={member.name}
+                    position={member.role}
+                    imageSrc={member.imageSrc}
+                    variant="team"
+                  />
+                </FadeInWhenVisible>
               ))}
             </SimpleGrid>
           )}
         </Box>
       </Box>
 
+      <FadeInWhenVisible w="100%" amount={0.38} delay={0.08}>
       <Box
         maxW="1536px"
         mx="auto"
@@ -140,6 +145,7 @@ export default function OurTeam() {
           ))}
         </Accordion>
       </Box>
+      </FadeInWhenVisible>
     </Box>
   );
 }

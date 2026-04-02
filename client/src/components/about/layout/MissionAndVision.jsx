@@ -1,6 +1,7 @@
 import { Text, Box, Flex, VStack, Button, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import SimpleCircle from "../../ui/SimpleCircle";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 
 const OurVision = "/AboutUs/AboutUs-OurVision.jpg";
 const OurMission = "/AboutUs/AboutUsMission.png";
@@ -24,6 +25,7 @@ export default function MissionAndVision() {
                 zIndex = "3"
             >
                 <VStack spacing={{ base: 8, md: 12, lg: 16 }} alignItems="stretch">
+                    <FadeInWhenVisible w="100%" amount={0.35}>
                     <Flex direction={{ base: "column", lg: "row" }} align="center" gap={{ base: 6, md: 8, lg: 12 }}>
                         <Box flex="1" maxW={{ lg: "700px" }} width="100%" align = "right">
                             <Text fontSize={{ base: "22px", md: "42px" }} mb={{ base: 3, md: 4 }} fontWeight = "700" color = "brand.primary">
@@ -68,7 +70,9 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                             <Image src={OurVision} position="relative" zIndex="1" width="100%" objectFit="cover" />
                         </Box>
                     </Flex>
+                    </FadeInWhenVisible>
 
+                    <FadeInWhenVisible delay={0.08} w="100%" amount={0.35}>
                     <Flex direction={{ base: "column-reverse", lg: "row" }} align="center" gap={{ base: 6, md: 8, lg: 12 }}>
                         <Box flex="1" width="100%" maxW = "1100px" maxH = "380px">
                             <Image src = {OurMission} width="100%" objectFit="contain"/>
@@ -99,6 +103,7 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                         </Box>
                         
                     </Flex>
+                    </FadeInWhenVisible>
                 </VStack>
             </Box>
         </Box>

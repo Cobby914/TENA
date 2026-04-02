@@ -1,5 +1,6 @@
 import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import ProgramCard from "../../ui/ProgramCard";
 import { useProgramData } from "../../../hooks/useProgramsData";
 import { resolveProgramImage } from "../../../lib/programImageResolver";
@@ -23,9 +24,11 @@ export default function Programs() {
       py={{ base: 12, md: 16 }}
       mt={20}
     >
+      <FadeInWhenVisible amount={0.45}>
       <Text fontWeight={700} fontSize={60} letterSpacing={0} lineHeight={"100%"} textColor="neutral.text" textAlign={"center"} my={20}>
         TENA Initiatives
       </Text>
+      </FadeInWhenVisible>
       <SimpleGrid
         columns={{ base: 1, xl: 2 }}
         spacing={{ base: 8, md: 10 }}

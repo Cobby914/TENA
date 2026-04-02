@@ -1,5 +1,6 @@
 import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
 import MultiRingCircle from "../../ui/MultiRingCircle";
+import { SegmentedTypewriterText } from "../../ui/SegmentedTypewriter";
 import { openDonateWidget } from "../../../lib/giveButter";
 const sloganImage = "/Home/SouthLACafeGroup.jpg";
 
@@ -8,6 +9,18 @@ const donateHover = {
   color: "brand.accent",
   borderColor: "brand.accent",
 };
+
+const HOME_HERO_HEADLINE_SEGMENTS = [
+  { text: "We strengthen communities through ", accent: false },
+  { text: "compassionate care", accent: true },
+  {
+    text: ", meaningful connection, and opportunities that transform lives.",
+    accent: false,
+  },
+];
+
+const BODY =
+  "At TENA, we partner with neighbors, students, volunteers, and organizations to expand equitable access to health services, build career pathways in healthcare, and empower every voice in Los Angeles County to thrive.";
 
 export default function Slogan() {
   return (
@@ -44,20 +57,16 @@ export default function Slogan() {
             Eradicating Health Disparity
           </Text>
 
-          <Text
+          <SegmentedTypewriterText
             as="h1"
+            segments={HOME_HERO_HEADLINE_SEGMENTS}
+            charDelayMs={26}
             maxW="750px"
             fontSize={{ base: 36, md: 48 }}
             fontWeight="700"
             lineHeight={{ base: "1.00", lg: "1.05" }}
             color="surface.default"
-          >
-            We strengthen communities through{" "}
-            <Text as="span" color="brand.accent">
-              compassionate care
-            </Text>
-            , meaningful connection, and opportunities that transform lives.
-          </Text>
+          />
 
           <Text
             fontSize={{ base: 16, md: 20 }}
@@ -66,10 +75,7 @@ export default function Slogan() {
             lineHeight="1.55"
             textColor="surface.default"
           >
-            At TENA, we partner with neighbors, students, volunteers, and
-            organizations to expand equitable access to health services, build
-            career pathways in healthcare, and empower every voice in Los
-            Angeles County to thrive.
+            {BODY}
           </Text>
           <Button
             onClick={openDonateWidget}
@@ -105,7 +111,6 @@ export default function Slogan() {
         </VStack>
 
         <Box
-          className="hero-photo-fade-in"
           position="relative"
           alignSelf={{ base: "center", md: "auto" }}
           flexShrink={0}

@@ -27,6 +27,18 @@ export default function SubteamSection({ link, src, whoText, buttonText }) {
                 bgColor="brand.heading"
                 color="surface.default"
                 rounded="3"
+                transition="transform 0.22s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.22s ease, background-color 0.22s ease"
+                boxShadow="sm"
+                _hover={{
+                    transform: "translateY(-3px)",
+                    boxShadow: "lg",
+                    bg: "brand.primary",
+                }}
+                _active={{
+                    transform: "translateY(-1px) scale(0.98)",
+                    boxShadow: "md",
+                    bg: "brand.primaryHover",
+                }}
             >
                 <NavLink to={link}>
                     {buttonText}

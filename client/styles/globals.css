@@ -85,6 +85,20 @@ body {
   }
 }
 
+@keyframes hero-cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero-typewriter-cursor {
+  animation: hero-cursor-blink 1s step-end infinite;
+}
+
 /**
  * Hero section photos: fade from transparent on mount (e.g. home slogan, program heroes).
  */

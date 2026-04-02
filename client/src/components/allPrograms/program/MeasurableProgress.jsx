@@ -8,6 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useProgramById } from "../../../hooks/useProgramsById";
 const inTheWorksImg = "/programs/InTheWorksIMG.png";
 
@@ -85,7 +86,9 @@ export default function MeasurableProgress({ id }) {
     <Box as="section" bg="brand.navy" width="100%" py={{ base: 12, md: 16, lg: 20 }} borderRadius="3xl" overflow="hidden">
       <Box maxW="2500px" mx="auto" px={{ base: 24, md: 52, lg: 80 }}>
         <Box bg="brand.navy" borderRadius="3xl" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 8, md: 10, lg: 12 }}>
-          <Box
+          <FadeInWhenVisible
+            w="100%"
+            amount={0.4}
             maxW="920px"
             mx={showStats ? 0 : "auto"}
             mb={{ base: 10, md: 14 }}
@@ -111,9 +114,10 @@ export default function MeasurableProgress({ id }) {
                 ? selectedMeasurableText
                 : "Check back soon and join us in developing progress."}
             </Text>
-          </Box>
+          </FadeInWhenVisible>
 
           {!showStats && (
+            <FadeInWhenVisible w="100%" amount={0.35} delay={0.08}>
             <Box textAlign="center" mt={{ base: 8, md: 10 }}>
               <Image
                 src={inTheWorksImg}
@@ -162,13 +166,14 @@ export default function MeasurableProgress({ id }) {
                 </Box>
               </Box>
             </Box>
+            </FadeInWhenVisible>
           )}
 
           {showStats ? (
             <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} rowGap={{ base: 4, md: 5, lg: 6 }} columnGap={{ base: 4, md: 6, lg: 8 }}>
               {displayStats.map((stat, idx) => (
+                <FadeInWhenVisible key={idx} w="100%" amount={0.35} delay={idx * 0.08}>
                 <Box
-                  key={idx}
                   py={{ base: 4, md: 6, lg: 8 }}
                   px={0}
                   minH="220px"
@@ -195,6 +200,7 @@ export default function MeasurableProgress({ id }) {
                     {stat.subtitle}
                   </Text>
                 </Box>
+                </FadeInWhenVisible>
               ))}
             </Grid>
           ) : null}

@@ -1,10 +1,32 @@
 import {
-  Box, Flex, Text, SimpleGrid, VStack, Container,
-  Spinner, Alert, AlertIcon, AlertTitle, AlertDescription, Heading, Center
+  Box, Text, VStack, Container,
+  Spinner, Alert, AlertIcon, AlertTitle, AlertDescription, Center
 } from '@chakra-ui/react';
 import CareAndFairCard from "../ui/CareAndFairCard";
 import SimpleCircle from "../ui/SimpleCircle";
+import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
+import { SegmentedTypewriterText } from "../ui/SegmentedTypewriter";
 import { createProgram } from "../../hooks/createProgram";
+
+/** ~2.3× faster than home hero (26ms); still readable on long copy. */
+const PROGRAMS_INTRO_CHAR_MS = 11;
+
+const PROGRAMS_INTRO_SEGMENTS = [
+  { text: "TENA", accent: true },
+  {
+    text: " is a community-centric nonprofit building ecosystems that ",
+    accent: false,
+  },
+  { text: "empower", accent: true },
+  { text: " underserved communities to ", accent: false },
+  { text: "overcome", accent: true },
+  { text: " systemic barriers through optimizing ", accent: false },
+  { text: "access", accent: true },
+  {
+    text: " to resources, knowledge, and entry to healthcare professions.",
+    accent: false,
+  },
+];
 
 const Programs = () => {
     const {prog, loading, error} = createProgram();
@@ -54,30 +76,37 @@ const Programs = () => {
                     display={{ base: "none", md: "block" }}
                 />
 
+                <FadeInWhenVisible w="100%" amount={0.4}>
                 <Box mb={{ base: 16, md: 24, lg: 36 }} mt={{ base: 4, md: 6, lg: 8 }}>
-                    <Heading
+                    <SegmentedTypewriterText
                         as="h2"
+                        segments={PROGRAMS_INTRO_SEGMENTS}
+                        charDelayMs={PROGRAMS_INTRO_CHAR_MS}
+                        accentColor="brand.primary"
                         fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                         lineHeight={{ base: 1.2, md: 1.25 }}
-                    >
-                        <Text as="span" color="brand.primary">TENA</Text> is a community-centric nonprofit building ecosystems that <Text as="span" color="brand.primary">empower</Text> underserved communities to <Text as="span" color="brand.primary">overcome</Text> systemic barriers through optimizing <Text as="span" color="brand.primary">access</Text> to resources, knowledge, and entry to healthcare professions.
-                    </Heading>
+                        fontWeight="700"
+                        color="neutral.text"
+                    />
                 </Box>
+                </FadeInWhenVisible>
 
                 <VStack
                     spacing={{ base: 16, md: 24, lg: 48 }}
                     align="center"
                     width="100%"
                 >
-                    {programList.map((data) => (
+                    {programList.map((data, index) => (
+                    <FadeInWhenVisible key={data.id} w="100%" amount={0.35} delay={index * 0.08}>
                     <CareAndFairCard 
-                        key={data.id} 
                         title={data.title} 
                         description={data.description} 
                         imageSrc={data.im} 
                         link={data.link}
                         reversed={data.reversed}
-                    />))}
+                    />
+                    </FadeInWhenVisible>
+                    ))}
                 </VStack>
 
                 {programList.length === 0 && (

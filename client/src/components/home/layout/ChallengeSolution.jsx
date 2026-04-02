@@ -2,6 +2,7 @@ import { SimpleGrid, VStack, Text, List, ListItem, Box, Button } from "@chakra-u
 import { useNavigate } from "react-router-dom";
 import ProblemStatement from "./ProblemStatement";
 import SimpleCircle from "../../ui/SimpleCircle";
+import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 
 const solutionDecorCircle = {
   size: { base: "380px", md: "440px", lg: "490px" },
@@ -21,6 +22,7 @@ export default function ChallengeSolution() {
       maxW="100%"
       overflow="visible"
     >
+      <FadeInWhenVisible amount={0.45}>
       <Text
         fontWeight={700}
         fontSize={{ base: "32px", sm: "40px", md: "48px", lg: "56px" }}
@@ -31,13 +33,17 @@ export default function ChallengeSolution() {
       >
         Solving Health Inequality One Step at a Time
       </Text>
+      </FadeInWhenVisible>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 14, md: 20, lg: 28 }}
         overflow="visible"
       >
+        <FadeInWhenVisible delay={0.05} amount={0.35}>
         <ProblemStatement />
+        </FadeInWhenVisible>
 
+        <FadeInWhenVisible delay={0.1} amount={0.35}>
         <Box position="relative" overflow="visible" w="100%">
           <SimpleCircle
             {...solutionDecorCircle}
@@ -95,8 +101,10 @@ export default function ChallengeSolution() {
             </List>
           </VStack>
         </Box>
+        </FadeInWhenVisible>
       </SimpleGrid>
 
+      <FadeInWhenVisible delay={0.12} amount={0.5}>
       <Box
         w="100%"
         display="flex"
@@ -136,6 +144,7 @@ export default function ChallengeSolution() {
           </Text>
         </Button>
       </Box>
+      </FadeInWhenVisible>
     </Box>
   );
 }

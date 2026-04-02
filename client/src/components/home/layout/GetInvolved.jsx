@@ -1,4 +1,5 @@
 import { Box, Text, SimpleGrid } from "@chakra-ui/react";
+import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import InvolvementCard from "../ui/InvolvementCard";
 import SimpleCircle from "../../ui/SimpleCircle";
 import { openDonateWidget } from "../../../lib/giveButter";
@@ -64,6 +65,7 @@ export default function GetInvolved() {
         position="relative"
         zIndex={1}
       >
+        <FadeInWhenVisible amount={0.4}>
         <Box
           bg="surface.default"
           border="1px solid"
@@ -114,6 +116,7 @@ export default function GetInvolved() {
             />
           </SimpleGrid>
         </Box>
+        </FadeInWhenVisible>
       </Box>
     </Box>
   );

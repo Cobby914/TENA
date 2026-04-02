@@ -1,4 +1,5 @@
 import { Box, Flex, Image, Text} from "@chakra-ui/react";
+import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 
 const logos = [
   "/OurPartners/CommunityBasedOrgs/12221 1.png",
@@ -35,9 +36,12 @@ export default function Sponsors () {
     
     return (
         <Box mt={20} overflow={"hidden"} bg="white" py={10} w="100%" >
+            <FadeInWhenVisible amount={0.5}>
             <Text fontWeight={700} fontSize={60} letterSpacing={0} textAlign={"center"}> 
                 Our Partners 
             </Text>
+            </FadeInWhenVisible>
+            <FadeInWhenVisible delay={0.08} amount={0.25}>
             <Box mt={20}>
                 <style>
                     {`
@@ -55,6 +59,7 @@ export default function Sponsors () {
                     ))}
                 </Flex>
             </Box>
+            </FadeInWhenVisible>
         </Box>
     );
 }
