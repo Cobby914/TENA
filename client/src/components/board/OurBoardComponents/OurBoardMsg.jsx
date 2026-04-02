@@ -7,13 +7,13 @@ export default function OurBoardMsg() {
         <Text
           fontFamily="body"
           fontWeight="700"
-          color="#1D232E"
+          color="neutral.text"
           fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }}
           lineHeight={{ base: "1.12", md: "1.08" }}
           maxW="1320px"
         >
           Meet our Board of Directors:{" "}
-          <Box as="span" color="#1573CF">
+          <Box as="span" color="brand.primary">
             visionary leaders
           </Box>{" "}
           guiding our mission to dismantle structural inequities and champion

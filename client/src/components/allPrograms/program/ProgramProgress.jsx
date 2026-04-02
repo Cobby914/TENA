@@ -4,7 +4,7 @@ export default function ProgramProgress() {
   return (
     <Box
       as="section"
-      bg="rgb(241, 241, 241)"
+      bg="surface.section"
       width="100%"
       pb={{ base: 12, md: 16, lg: 20 }}
     >

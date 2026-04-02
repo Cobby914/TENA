@@ -12,9 +12,13 @@ export const theme = extendTheme({
   colors: {
     brand: {
       primary: "var(--color-brand-primary)",
+      primaryHover: "var(--color-brand-primary-hover)",
       accent: "var(--color-brand-accent)",
       accentHover: "var(--color-brand-accent-hover)",
+      accentFaint: "var(--color-brand-accent-faint)",
       heading: "var(--color-brand-heading)",
+      subheading: "var(--color-brand-subheading)",
+      navy: "var(--color-brand-navy)",
     },
     neutral: {
       text: "var(--color-neutral-text)",
@@ -26,11 +30,16 @@ export const theme = extendTheme({
     surface: {
       default: "var(--color-surface-default)",
       soft: "var(--color-surface-soft)",
+      softAlpha: "var(--color-surface-soft-alpha)",
+      section: "var(--color-surface-section)",
+      auth: "var(--color-surface-auth)",
+      glass: "var(--color-surface-glass)",
       muted: "var(--color-surface-muted)",
     },
     border: {
       default: "var(--color-border-default)",
       light: "var(--color-border-light)",
+      strong: "var(--color-border-strong)",
     },
   },
   radii: {

@@ -20,7 +20,7 @@ export default function OurBoard() {
   if (loading) {
     return (
       <Center minH="30vh">
-        <Spinner size="xl" color="#1573CF" thickness="4px" />
+        <Spinner size="xl" color="brand.primary" thickness="4px" />
       </Center>
     );
   }

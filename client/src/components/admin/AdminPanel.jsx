@@ -33,12 +33,12 @@ export default function AdminPanel({ children }) {
 
     return (
         <Flex direction="row" >
-            <Box minWidth={{ base: "110px", md: "220px" }} minHeight="100vh" p={5} bgColor="rgb(224, 224, 224)" borderRight="2px solid rgb(153, 153, 153)">
+            <Box minWidth={{ base: "110px", md: "220px" }} minHeight="100vh" p={5} bgColor="surface.muted" borderRightWidth="2px" borderRightStyle="solid" borderRightColor="neutral.muted">
                 <VStack spacing={2} align="stretch">
-                    <Text mb={5} width="100%" fontSize={14} fontWeight={700} textColor="rgb(51, 51, 51)" letterSpacing={1}>
+                    <Text mb={5} width="100%" fontSize={14} fontWeight={700} textColor="neutral.strong" letterSpacing={1}>
                         ADMIN PANEL
                     </Text>
-                    <Text mb={3} width="100%" fontSize={12} textColor="rgb(102, 102, 102)">
+                    <Text mb={3} width="100%" fontSize={12} textColor="neutral.muted">
                         {session?.user?.email ?? "Not signed in"}
                     </Text>
                     {NAV_ITEMS.map((item) => (
@@ -46,17 +46,17 @@ export default function AdminPanel({ children }) {
                             key={item.path}
                             onClick={() => navigate(item.path)}
                             text={item.label}
-                            bgColor={activePath === item.path ? "rgb(102,102,102)" : "white"}
-                            textColor={activePath === item.path ? "white" : "rgb(51, 51, 51)"}
+                            bgColor={activePath === item.path ? "neutral.muted" : "surface.default"}
+                            textColor={activePath === item.path ? "surface.default" : "neutral.strong"}
                             fontWeight={activePath === item.path ? 600 : 400}
                         />
                     ))}
-                    <AdminPanelButton text="Logout" textColor="rgb(51, 51, 51)" bgColor= "white" fontWeight={400} onClick={handleLogout}/>
+                    <AdminPanelButton text="Logout" textColor="neutral.strong" bgColor="surface.default" fontWeight={400} onClick={handleLogout}/>
                 </VStack>
             </Box>
 
             {/* Main Admin Screen Content */}
-            <Box flex="1" p={{ base: 4, md: 8 }} bgColor="rgb(245,245,245)">
+            <Box flex="1" p={{ base: 4, md: 8 }} bgColor="surface.soft">
                 {children}
             </Box>
         </Flex>

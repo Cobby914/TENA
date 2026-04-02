@@ -4,11 +4,11 @@ export default function AdminPanelButton ({text, bgColor, textColor, fontWeight,
     return (
         <Button 
             onClick={onClick}
-            _hover={{ bg: "rgb(200,200,200)", color: textColor}}
+            _hover={{ bg: "surface.muted", color: textColor}}
             _active={{ bg: bgColor }}
 
             bgColor={bgColor}
-            borderColor="rgb(153,153,153)"
+            borderColor="neutral.muted"
             fontWeight={fontWeight}
             fontSize={{ base: "14px", md: "16px" }}
             textColor={textColor}

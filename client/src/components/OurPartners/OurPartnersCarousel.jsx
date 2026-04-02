@@ -113,9 +113,10 @@ export default function OurPartnersCarousel({
       </Flex>
 
       <Box
-        border="1px solid #D3D8DF"
+        border="1px solid"
+        borderColor="border.light"
         borderRadius="8px"
-        bg="white"
+        bg="surface.default"
         p={{ base: 6, md: 8 }}
       >
         <Flex
@@ -152,7 +153,7 @@ export default function OurPartnersCarousel({
                 height="8px"
                 borderRadius="full"
                 transition="all 0.3s"
-                bg={index === activeIndex ? "#1573CF" : "#000000"}
+                bg={index === activeIndex ? "brand.primary" : "neutral.strong"}
               />
             ))}
           </HStack>

@@ -13,7 +13,7 @@ const fullBleedSx = {
 
 export default function WhoWeAre() {
     return (
-        <Box as="section" bg="#3F5F85" py={{ base: 8, md: 10, lg: 12 }} position="relative" zIndex="1" sx={fullBleedSx}>
+        <Box as="section" bg="brand.heading" py={{ base: 8, md: 10, lg: 12 }} position="relative" zIndex="1" sx={fullBleedSx}>
             <Container maxW="1536px" px={{ base: 4, sm: 6, md: 8, lg: 10, xl: 12, "2xl": 14 }} centerContent={false}>
                 <Flex
                     direction={{ base: "column", lg: "row" }}
@@ -37,7 +37,7 @@ export default function WhoWeAre() {
                             fontStyle="normal"
                             lineHeight="100%"
                             mb={{ base: 4, md: 6 }}
-                            color="#F8F9FB"
+                            color="surface.soft"
                             fontSize={{ base: "24px", md: "clamp(28px, 3.2vw, 48px)" }}
                         >
                             Who We Are
@@ -47,7 +47,7 @@ export default function WhoWeAre() {
                                 lineHeight="150%"
                                 fontStyle="normal"
                                 fontWeight="400"
-                                color="#F8F9FB"
+                                color="surface.soft"
                                 fontSize={{ base: "12px", md: "clamp(14px, 1.35vw, 24px)" }}
                                 w="100%"
                             >
@@ -59,7 +59,7 @@ export default function WhoWeAre() {
                                 lineHeight="150%"
                                 fontStyle="normal"
                                 fontWeight="400"
-                                color="#F8F9FB"
+                                color="surface.soft"
                                 fontSize={{ base: "12px", md: "clamp(14px, 1.35vw, 24px)" }}
                                 w="100%"
                             >
@@ -107,7 +107,7 @@ export default function WhoWeAre() {
                                     "2xl": "285px",
                                 }}
                                 strokeWidth="20px"
-                                strokeColor="#092751"
+                                strokeColor="var(--color-brand-navy)"
                                 opacity={0.18}
                             />
                         </Box>

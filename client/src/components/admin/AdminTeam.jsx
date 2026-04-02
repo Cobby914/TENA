@@ -23,8 +23,8 @@ export default function AdminTeam() {
   }
 
   return (
-    <VStack gap={8} width="100%" maxW="1400px" textColor="rgb(51,51,51)" align="stretch">
-      <Box borderBottom="2px solid rgb(51,51,51)" pb={10} height={10} width="100%">
+    <VStack gap={8} width="100%" maxW="1400px" textColor="neutral.strong" align="stretch">
+      <Box borderBottom="2px solid" borderColor="neutral.strong" pb={10} height={10} width="100%">
         <Text textAlign="left" fontWeight={700} fontSize={24} width="100%">
           Team & Cohorts
         </Text>
@@ -37,12 +37,12 @@ export default function AdminTeam() {
       ) : null}
 
       <Flex width="100%" gap={6} direction={{ base: "column", xl: "row" }}>
-        <VStack width={{ base: "100%", xl: "50%" }} height="100%" border="2px solid rgb(51,51,51)" p={6} gap={4}>
-          <HStack borderBottom="2px solid rgb(51,51,51)" justifyContent="space-between" pb={2} width="100%">
+        <VStack width={{ base: "100%", xl: "50%" }} height="100%" borderWidth="2px" borderColor="neutral.strong" borderStyle="solid" p={6} gap={4}>
+          <HStack borderBottomWidth="2px" borderBottomStyle="solid" borderBottomColor="neutral.strong" justifyContent="space-between" pb={2} width="100%">
             <Text textAlign="left" fontWeight={600} fontSize={16} width={32}>
               TEAM MEMBERS
             </Text>
-            <Button width="100px" height="25px" border="1px solid rgb(102,102,102)" borderRadius={0} px="10px" py="5px" bgColor="rgb(245,245,245)">
+            <Button width="100px" height="25px" border="1px solid" borderColor="neutral.muted" borderRadius={0} px="10px" py="5px" bgColor="surface.soft">
               <Text fontWeight={500} fontSize={11}>
                 + Add Member
               </Text>
@@ -62,12 +62,12 @@ export default function AdminTeam() {
           ))}
         </VStack>
 
-        <VStack width={{ base: "100%", xl: "50%" }} height="100%" border="2px solid rgb(51,51,51)" p={6} gap={4}>
-          <HStack borderBottom="2px solid rgb(51,51,51)" justifyContent="space-between" pb={2} width="100%">
+        <VStack width={{ base: "100%", xl: "50%" }} height="100%" borderWidth="2px" borderColor="neutral.strong" borderStyle="solid" p={6} gap={4}>
+          <HStack borderBottomWidth="2px" borderBottomStyle="solid" borderBottomColor="neutral.strong" justifyContent="space-between" pb={2} width="100%">
             <Text textAlign="left" fontWeight={600} fontSize={16} width={32}>
               COHORTS
             </Text>
-            <Button width="100px" height="25px" border="1px solid rgb(102,102,102)" borderRadius={0} px="10px" py="5px" bgColor="rgb(245,245,245)">
+            <Button width="100px" height="25px" border="1px solid" borderColor="neutral.muted" borderRadius={0} px="10px" py="5px" bgColor="surface.soft">
               <Text fontWeight={500} fontSize={11}>
                 + New Cohort
               </Text>

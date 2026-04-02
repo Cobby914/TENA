@@ -8,7 +8,7 @@ export default function IconBlock({ children, text, route, ...props }) {
                 <Box
                     width={{ base: '120px', md: '160px', lg: '192px' }}
                     height={{ base: '120px', md: '160px', lg: '192px' }}
-                    bg="rgb(217, 217, 217)"
+                    bg="neutral.muted"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"

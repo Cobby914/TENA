@@ -55,7 +55,7 @@ export default function GetInvolvedHeader() {
         {/* Actual Header Stuff */}
         <Box 
             as="section"
-            bg="#092751"
+            bg="brand.navy"
             width="100%"
             align = "center"
             gap = "40px"
@@ -70,13 +70,13 @@ export default function GetInvolvedHeader() {
                 px={{ base: 4, md: 10, lg: 20 }}
             >
                 <VStack spacing={{ base: 4, md: 6 }} textAlign="center" maxW="982px" mx="auto" zIndex = "3">
-                    <Text fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "#1573CF">
+                    <Text fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "brand.primary">
                         Help us 
-                        <Text as = "span" fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "#5CDAC5"> Out</Text>
+                        <Text as = "span" fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "brand.accent"> Out</Text>
                         . Get 
-                        <Text as = "span" fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "#5CDAC5"> Involved</Text>
+                        <Text as = "span" fontSize ={{base: "36px", md : "72px"}} fontStyle = "normal" fontWeight = "800" lineHeight="100%" color = "brand.accent"> Involved</Text>
                     </Text>
-                    <Text color = "#F8F9FB" maxW = "982px" fontSize = {{base: "12px", md : "25px"}} fontStyle = "normal" fontWeight = "400" lineHeight="150%">
+                    <Text color = "surface.soft" maxW = "982px" fontSize = {{base: "12px", md : "25px"}} fontStyle = "normal" fontWeight = "400" lineHeight="150%">
                         TENA’s work is powered by community, partnership, and shared purpose. Whether you want to give your time, support our mission, collaborate with us, or simply find help, here’s how you can be part of lasting change.
                     </Text>
                     

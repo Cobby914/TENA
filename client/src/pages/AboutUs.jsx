@@ -24,7 +24,7 @@ export default function AboutUs() {
                     <SimpleCircle
                         size={{ base: "80px", md: "130px" }}
                         strokeWidth={{ base: "8px", md: "12px" }}
-                        strokeColor="#5CDAC5"
+                        strokeColor="var(--color-brand-accent)"
                         opacity={0.25}
                     />
                 </Box>

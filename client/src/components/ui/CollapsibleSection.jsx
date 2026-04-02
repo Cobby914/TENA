@@ -5,7 +5,7 @@ export default function CollapsibleSection ({title, children}) {
     const { isOpen, onToggle } = useDisclosure()
 
     return (
-        <Stack gap={4} align="stretch" bgColor="rgb(244, 244, 244)" width="100%">
+        <Stack gap={4} align="stretch" bgColor="surface.soft" width="100%">
             <Box height={ isOpen ? { base: "auto", lg: "527px" } : { base: "60px", lg: "100px" }}>
                 <HStack spacing={4} py={isOpen ? { base: 4, md: 6, lg: 10 } : { base: 3, md: 4, lg: 4 }} px={{ base: 4, md: 5 }} cursor="pointer" onClick={onToggle}>
                     <Icon  boxSize={{ base: "30px", md: "50px", lg: "70px" }}>

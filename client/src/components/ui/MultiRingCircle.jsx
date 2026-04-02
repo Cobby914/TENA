@@ -3,8 +3,8 @@ import { Box } from "@chakra-ui/react";
 
 const CX = 160;
 const CY = 160;
-const TEAL = "#5CDAC5";
-const BLUE = "#1573CF";
+const TEAL = "var(--color-brand-accent)";
+const BLUE = "var(--color-brand-primary)";
 
 /** Left semicircle: θ(t) = -π/2 − t, t ∈ [0, π] (top → bottom along the left arc). */
 /* GOD I LOVE MATH, WHY DID I HAVE TO LOOK TRIG TO DO THIS*/

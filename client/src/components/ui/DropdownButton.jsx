@@ -123,7 +123,7 @@ export default function DropdownButton({ label, mainPath, items }) {
           _active={{ bg: "transparent", color: "brand.primary", transform: "scale(0.98)" }}
           _focusVisible={{
             outline: "2px solid",
-            outlineColor: "rgba(92, 218, 197, 1)",
+            outlineColor: "var(--color-brand-accent)",
             outlineOffset: "2px",
             boxShadow: "none",
           }}
@@ -146,7 +146,7 @@ export default function DropdownButton({ label, mainPath, items }) {
             _active={{ bg: "transparent", color: "brand.primary", transform: "scale(0.96)" }}
             _focusVisible={{
               outline: "2px solid",
-              outlineColor: "rgba(92, 218, 197, 1)",
+              outlineColor: "var(--color-brand-accent)",
               outlineOffset: "2px",
               boxShadow: "none",
             }}
@@ -245,7 +245,7 @@ export default function DropdownButton({ label, mainPath, items }) {
         _focusVisible={{
           boxShadow: "none",
           outline: "2px solid",
-          outlineColor: "rgba(92, 218, 197, 1)",
+          outlineColor: "var(--color-brand-accent)",
           outlineOffset: "2px",
         }}
         textDecoration={{ base: "underline", md: "none" }}

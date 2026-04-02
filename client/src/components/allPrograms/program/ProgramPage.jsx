@@ -14,7 +14,8 @@ export default function ProgramPage({ id, backgroundPosition }) {
         width="334px"
         height="334px"
         borderRadius="334px"
-        border="40px solid #5CDAC5"
+        border="40px solid"
+        borderColor="brand.accent"
         opacity={0.15}
         zIndex={2}
         pointerEvents="none"

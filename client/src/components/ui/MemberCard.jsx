@@ -23,7 +23,7 @@ const CARD_VARIANTS = {
     nameSize: { base: "2xl", md: "30px" },
     roleSize: { base: "sm", md: "md" },
     padding: { base: 4, md: 5 },
-    cardBg: "#F0F2F5",
+    cardBg: "surface.section",
     nameUnderline: true,
     fillGrid: false,
     borderRadius: "4px",
@@ -33,7 +33,7 @@ const CARD_VARIANTS = {
     nameSize: { base: "lg", md: "xl" },
     roleSize: { base: "xs", md: "sm" },
     padding: { base: 3, md: 4 },
-    cardBg: "#F0F2F5",
+    cardBg: "surface.section",
     nameUnderline: true,
     fixedSize: TEAM,
     borderRadius: `${TEAM.radius}px`,
@@ -44,7 +44,7 @@ const CARD_VARIANTS = {
     nameSize: { base: "md", md: "md" },
     roleSize: { base: "xs", md: "xs" },
     padding: "10px",
-    cardBg: "#F4F5F7",
+    cardBg: "surface.section",
     nameUnderline: false,
     fixedSize: COHORT,
     borderRadius: `${COHORT.radius}px`,
@@ -56,7 +56,7 @@ const CARD_VARIANTS = {
     nameSize: { base: "md", md: "lg" },
     roleSize: { base: "xs", md: "xs" },
     padding: { base: 3, md: 3 },
-    cardBg: "#F0F2F5",
+    cardBg: "surface.section",
     nameUnderline: true,
     fillGrid: false,
     borderRadius: "4px",
@@ -71,11 +71,11 @@ export default function MemberCard({
   variant = "board"
 }) {
   const style = CARD_VARIANTS[variant] ?? CARD_VARIANTS.board;
-  const cardBg = style.cardBg ?? "#F0F2F5";
+  const cardBg = style.cardBg ?? "surface.section";
   const nameUnderline = style.nameUnderline !== false;
   const fillGrid = style.fillGrid === true;
   const fixedSize = style.fixedSize;
-  const roleColor = variant === "cohort" ? "#6B7280" : "#1D232E";
+  const roleColor = variant === "cohort" ? "neutral.subtle" : "neutral.text";
   const borderRadius = style.borderRadius ?? "4px";
   const borderWidth = style.borderWidth ?? "1px";
 
@@ -104,7 +104,7 @@ export default function MemberCard({
       flexDirection="column"
       bg={cardBg}
       borderStyle="solid"
-      borderColor="#D8DCE2"
+      borderColor="border.light"
       borderWidth={borderWidth}
       borderRadius={borderRadius}
       p={style.padding}
@@ -117,7 +117,7 @@ export default function MemberCard({
           position="relative"
           overflow="hidden"
           borderRadius="2px"
-          bg="#E5E7EB"
+          bg="neutral.muted"
           flexShrink={0}
           sx={{ aspectRatio: "1 / 1" }}
         >
@@ -147,7 +147,7 @@ export default function MemberCard({
           minH={fixedSize != null ? 0 : undefined}
           flexShrink={fixedSize != null ? 1 : 0}
           objectFit="cover"
-          bg={variant === "cohort" ? "#E8EAED" : "#D9D9D9"}
+          bg={variant === "cohort" ? "surface.muted" : "neutral.muted"}
         />
       )}
 
@@ -161,7 +161,7 @@ export default function MemberCard({
         <Text
           fontSize={style.nameSize}
           fontWeight={variant === "cohort" ? "700" : undefined}
-          color="#111827"
+          color="neutral.strong"
           lineHeight="1.25"
           textAlign="left"
           textDecoration={nameUnderline ? "underline" : "none"}

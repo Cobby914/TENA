@@ -44,7 +44,7 @@ export default function AdminGoogleSignInCard({ onSignedIn }) {
     <Box
       w="100%"
       maxW="440px"
-      bg="rgba(245,245,245,0.96)"
+      bg="surface.softAlpha"
       borderWidth="1px"
       borderColor="gray.400"
       boxShadow="2xl"
@@ -71,7 +71,7 @@ export default function AdminGoogleSignInCard({ onSignedIn }) {
           <Center>
             <Button
               size="lg"
-              bg="white"
+              bg="surface.default"
               color="gray.800"
               borderWidth="1px"
               borderColor="gray.400"

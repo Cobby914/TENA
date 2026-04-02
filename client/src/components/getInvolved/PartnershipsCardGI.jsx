@@ -27,7 +27,7 @@ export default function GetInvolvedCard ({}) {
                         <SimpleCircle
                             size="190px"
                             strokeWidth="35px"
-                            strokeColor="#5CDAC5"
+                            strokeColor="var(--color-brand-accent)"
                             opacity={0.15}
                             position="absolute"
                             left="-40px"
@@ -46,7 +46,7 @@ export default function GetInvolvedCard ({}) {
                         <SimpleCircle
                             size="160px"
                             strokeWidth="35px"
-                            strokeColor="#5CDAC5"
+                            strokeColor="var(--color-brand-accent)"
                             opacity={0.15}
                             position="relative"
                         />

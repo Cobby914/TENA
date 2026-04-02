@@ -10,7 +10,7 @@ export default function ImagePlaceholder({
             width={width}
             maxW={{ base: "100%", lg: "800px" }}
             height={{ base: "300px", md: "375px", lg: height }}
-            bg="rgb(217, 217, 217)"
+            bg="neutral.muted"
             display="flex"
             alignItems="center"
             justifyContent="center"

@@ -4,15 +4,20 @@
  * Design tokens — use in plain CSS as var(--token-name).
  * Chakra maps these in src/theme/index.js (brand.*, neutral.*, surface.*, border.*).
  *
- * Palette: #1573CF primary · #3F5F85 heading · #5CDAC5 accent · #F8F9FB soft surface
- * · #1D232E text · #DEE3EB borders/muted · #2F344B secondary text
+ * Brand + neutrals + surfaces — consumed as var(--*) and via Chakra theme (src/theme/index.js).
  */
 :root {
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-brand-primary: #1573cf;
+  /** Darker primary for buttons / hovers */
+  --color-brand-primary-hover: #0f64b5;
   --color-brand-accent: #5cdac5;
   --color-brand-heading: #3f5f85;
+  /** Problem/solution & stat subheads (blue-gray) */
+  --color-brand-subheading: #4a7a96;
+  /** Hero bands, portrait rings, dark headers */
+  --color-brand-navy: #092751;
 
   --color-neutral-text: #1d232e;
   /** Secondary body / nav emphasis */
@@ -23,13 +28,25 @@
 
   --color-surface-default: #ffffff;
   --color-surface-soft: #f8f9fb;
+  /** Frosted panels over imagery (e.g. admin sign-in) */
+  --color-surface-soft-alpha: rgb(248 249 251 / 0.96);
+  /** Alternating sections (programs, about) */
+  --color-surface-section: #f1f4f8;
+  /** Auth / dark overlay panels */
+  --color-surface-auth: #282828;
+  /** Translucent panel on dark backgrounds */
+  --color-surface-glass: rgb(255 255 255 / 0.06);
   --color-surface-muted: #dee3eb;
 
   --color-border-default: #dee3eb;
   --color-border-light: #e8ecf2;
+  /** Footer outline, subtle dividers */
+  --color-border-strong: rgb(0 0 0 / 0.17);
 
   /** Darken #5cdac5 slightly for hover states */
   --color-brand-accent-hover: #4bc9b4;
+  /** Accent at low opacity (e.g. stat callout bands) */
+  --color-brand-accent-faint: rgb(92 218 197 / 0.1);
 
   --radius-sm: 4px;
   --radius-md: 8px;

@@ -39,7 +39,7 @@ export default function ProgramJoinUs() {
           fontWeight="700"
           lineHeight="100%"
           textAlign="center"
-          color="#1D232E"
+          color="neutral.text"
         >
           Join Us
         </Text>
@@ -50,7 +50,7 @@ export default function ProgramJoinUs() {
           fontWeight="400"
           lineHeight="150%"
           textAlign="center"
-          color="#1D232E"
+          color="neutral.text"
         >
           Work with us to create limitless change
         </Text>
@@ -61,14 +61,14 @@ export default function ProgramJoinUs() {
           borderRadius="md"
           px={8}
           py={5}
-          background="white"
+          background="surface.default"
           border="1px solid"
-          borderColor="gray.300"
+          borderColor="border.light"
           fontFamily="Inter"
           fontSize="18px"
           fontWeight="600"
           lineHeight="28px"
-          color="#1A202C"
+          color="neutral.text"
           _hover={{ background: "gray.100" }}
         >
           Get Involved

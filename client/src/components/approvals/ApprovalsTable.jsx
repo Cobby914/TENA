@@ -23,25 +23,25 @@ export default function ApprovalsTable({
   return (
     <Box
       border="2px solid"
-      borderColor="gray.400"
+      borderColor="neutral.muted"
       borderRadius="sm"
       overflow="hidden"
     >
       <TableContainer>
         <Table variant="simple" size="sm">
-          <Thead bg="rgb(228, 228, 228)">
+          <Thead bg="surface.muted">
             <Tr>
               {["USER", "REQUESTED", "STATUS", "ASSIGN ROLE", "ACTIONS"].map((col) => (
                 <Th
                   key={col}
                   fontSize="xs"
                   letterSpacing="widest"
-                  color="rgb(85,85,85)"
+                  color="neutral.secondary"
                   fontWeight="700"
                   fontFamily="body"
                   py={4}
                   borderBottom="2px solid"
-                  borderColor="gray.400"
+                  borderColor="neutral.muted"
                 >
                   {col}
                 </Th>
@@ -70,10 +70,10 @@ export default function ApprovalsTable({
         px={4}
         py={3}
         borderTop="2px solid"
-        borderColor="gray.400"
-        bg="rgb(238,238,238)"
+        borderColor="neutral.muted"
+        bg="surface.soft"
       >
-        <Text fontSize="sm" color="rgb(136,136,136)" fontFamily="body">
+        <Text fontSize="sm" color="neutral.subtle" fontFamily="body">
           Showing {pageUsers.length} of {users.length} users
         </Text>
 
@@ -84,7 +84,7 @@ export default function ApprovalsTable({
             variant="outline"
             borderRadius="sm"
             borderWidth="2px"
-            borderColor="gray.400"
+            borderColor="neutral.muted"
             isDisabled={currentPage === 1}
             onClick={() => onPageChange(currentPage - 1)}
             aria-label="Previous page"
@@ -113,7 +113,7 @@ export default function ApprovalsTable({
             variant="outline"
             borderRadius="sm"
             borderWidth="2px"
-            borderColor="gray.400"
+            borderColor="neutral.muted"
             isDisabled={currentPage === totalPages || totalPages === 0}
             onClick={() => onPageChange(currentPage + 1)}
             aria-label="Next page"

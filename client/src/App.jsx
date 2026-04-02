@@ -34,7 +34,7 @@ function RouteFallback() {
       style={{
         minHeight: "45vh",
         width: "100%",
-        background: "rgb(241, 244, 248)",
+        background: "var(--color-surface-section)",
       }}
     />
   );

@@ -1,14 +1,11 @@
 import { Text, Box, VStack } from "@chakra-ui/react";
 import SimpleCircle from "../../ui/SimpleCircle";
 
-const subheadingColor = "#4A7A96";
-const bodyColor = "#1A1A1A";
-
 const problemDecorCircle = {
   size: { base: "220px", sm: "252px", md: "272px" },
   strokeWidth: { base: "24px", sm: "27px", md: "30px" },
   opacity: 0.15,
-  color: "#5CDAC5",
+  color: "var(--color-brand-accent)",
 };
 
 export default function ProblemStatement() {
@@ -26,7 +23,7 @@ export default function ProblemStatement() {
           fontWeight={700}
           fontSize={{ base: "28px", md: "34px", lg: "36px" }}
           lineHeight="120%"
-          color={subheadingColor}
+          color="brand.subheading"
         >
           The Challenge
         </Text>
@@ -34,7 +31,7 @@ export default function ProblemStatement() {
           fontWeight={400}
           fontSize={{ base: "18px", md: "20px", lg: "22px" }}
           lineHeight="150%"
-          color={bodyColor}
+          color="neutral.text"
         >
           Across Los Angeles County, structural inequities rooted in economic
           disparity, housing instability, racial segregation, and uneven access
@@ -44,7 +41,7 @@ export default function ProblemStatement() {
           fontWeight={400}
           fontSize={{ base: "18px", md: "20px", lg: "22px" }}
           lineHeight="150%"
-          color={bodyColor}
+          color="neutral.text"
         >
           Over 1 million LA County residents remain uninsured or underinsured.
           Black and Latinx adults face disproportionate inequities in health
@@ -55,7 +52,7 @@ export default function ProblemStatement() {
           fontWeight={400}
           fontSize={{ base: "18px", md: "20px", lg: "22px" }}
           lineHeight="150%"
-          color={bodyColor}
+          color="neutral.text"
         >
           Despite being one of the wealthiest counties in the nation, an
           estimated 25% of households still struggle with food insecurity, a

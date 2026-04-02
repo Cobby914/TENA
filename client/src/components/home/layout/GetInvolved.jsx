@@ -10,14 +10,14 @@ const joinMissionTopRightCircle = {
   size: "272px",
   strokeWidth: "30px",
   opacity: 0.1,
-  color: "#5CDAC5",
+  color: "var(--color-brand-accent)",
 };
 
 const joinMissionBottomLeftCircle = {
   size: "490px",
   strokeWidth: "40px",
   opacity: 0.07,
-  color: "#5CDAC5",
+  color: "var(--color-brand-accent)",
 };
 
 export default function GetInvolved() {
@@ -65,8 +65,9 @@ export default function GetInvolved() {
         zIndex={1}
       >
         <Box
-          bg="white"
-          border="1px solid rgba(226, 232, 240, 1)"
+          bg="surface.default"
+          border="1px solid"
+          borderColor="border.light"
           py={{ base: 8, md: 12 }}
           px={{ base: 4, md: 0 }}
           borderRadius={10}
@@ -77,7 +78,7 @@ export default function GetInvolved() {
             fontWeight={700}
             fontSize={{ base: "30px", md: "40px", lg: "48px" }}
             my={{ base: 8, md: 10 }}
-            textColor="black"
+            textColor="neutral.strong"
           >
             Join Our Mission.
           </Text>

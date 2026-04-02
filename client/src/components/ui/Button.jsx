@@ -18,7 +18,7 @@ export default function Button({ children, ...props }) {
       }}
       _focusVisible={{
         outline: "2px solid",
-        outlineColor: "rgba(92, 218, 197, 1)",
+        outlineColor: "var(--color-brand-accent)",
         outlineOffset: "2px",
       }}
       {...props}

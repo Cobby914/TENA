@@ -17,9 +17,9 @@ export default function OurTeam() {
   const { members, cohorts, loading, errorMsg } = useTeamMembers();
 
   return (
-    <Box width="100%" bg="#FFFFFF">
+    <Box width="100%" bg="surface.default">
       <Box
-        bg="#DEE3EB"
+        bg="surface.muted"
         borderBottomRadius={{ base: "18px", md: "24px" }}
         pb={{ base: 10, md: 14, lg: 16 }}
       >
@@ -31,13 +31,13 @@ export default function OurTeam() {
         >
           <Text
             maxW="1060px"
-            color="#1D232E"
+            color="neutral.text"
             fontWeight="700"
             fontSize={{ base: "2xl", md: "4xl", lg: "5xl" }}
             lineHeight={{ base: "1.2", md: "1.15" }}
           >
             Meet our team: change-makers committed to{" "}
-            <Box as="span" color="#1573CF">
+            <Box as="span" color="brand.primary">
               transforming equity
             </Box>{" "}
             through navigation and advocacy.
@@ -45,7 +45,7 @@ export default function OurTeam() {
 
           {loading ? (
             <Center py={12}>
-              <Spinner size="lg" color="#1573CF" />
+              <Spinner size="lg" color="brand.primary" />
             </Center>
           ) : errorMsg ? (
             <Text color="red.600" mt={6}>
@@ -84,7 +84,8 @@ export default function OurTeam() {
             <AccordionItem
               key={cohort.id}
               border="none"
-              borderBottom="1px solid #E1E6ED"
+              borderBottom="1px solid"
+              borderColor="border.light"
             >
               <h3>
                 <AccordionButton
@@ -98,14 +99,14 @@ export default function OurTeam() {
                       as="span"
                       fontWeight="700"
                       fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
-                      color="#111827"
+                      color="neutral.strong"
                       lineHeight="1.2"
                     >
                       {cohort.title}
                     </Text>
                   </Box>
                   <AccordionIcon
-                    color="#111827"
+                    color="neutral.strong"
                     fontSize={{ base: "xl", md: "2xl" }}
                   />
                 </AccordionButton>
@@ -113,7 +114,7 @@ export default function OurTeam() {
 
               <AccordionPanel px={0} pb={{ base: 8, md: 10 }} pt={0}>
                 {cohort.interns.length === 0 ? (
-                  <Text color="#6B7280" fontSize={{ base: "sm", md: "md" }}>
+                  <Text color="neutral.subtle" fontSize={{ base: "sm", md: "md" }}>
                     No interns listed for this cohort yet.
                   </Text>
                 ) : (
