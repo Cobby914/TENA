@@ -1,5 +1,6 @@
 import { Text, Box, Flex } from "@chakra-ui/react";
 import MultiRingCircle from "../ui/MultiRingCircle";
+import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 
 const programsHeaderImg = "/programs/ProgramsHeaderIMG.jpg";    
 
@@ -36,7 +37,10 @@ export default function OurPrograms() {
           <MultiRingCircle width={300} height={300} />
         </Box>
 
-        <Box
+        <FadeInWhenVisible
+            trigger="mount"
+            y={16}
+            duration={0.7}
             position="absolute"
             top={{ base: 16, md: 20, lg: 28 }}
             left={{ base: 8, md: 14, lg: 28 }}
@@ -65,7 +69,7 @@ export default function OurPrograms() {
                     Our Programs
                 </Text>
             </Flex>
-        </Box>
+        </FadeInWhenVisible>
         </Box>
     );    
 }
