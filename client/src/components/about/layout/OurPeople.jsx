@@ -1,4 +1,5 @@
 import { Box, Flex, VStack, Text, SimpleGrid } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import SubteamSection from "../../ui/SubteamSection";
 
 const OurBoardPNG = "/AboutUs/People/OurBoard.png";
@@ -15,6 +16,7 @@ export default function OurPeople() {
         >
             <Box maxW="2500px" mx="auto" px={{ base: 4, md: 10, lg: 20 }} position="relative" zIndex="1">
                 <VStack spacing={{ base: 6, md: 8, lg: 10 }} alignItems="stretch">
+                    <FadeInWhenVisible amount={0.45}>
                     <Flex
                         maxW="750px"
                         alignItems="center"
@@ -45,6 +47,7 @@ export default function OurPeople() {
                             </Text>
                         </VStack>
                     </Flex>
+                    </FadeInWhenVisible>
 
                     <SimpleGrid
                         columns={{ base: 3, md: 3 }}
@@ -54,14 +57,20 @@ export default function OurPeople() {
                         position="relative"
                         zIndex="3"
                     >
-                        <SubteamSection link={"/board"} src={OurBoardPNG} whoText="Our Board" buttonText="Find Out More >" />
-                        <SubteamSection link={"/team"} src={OurTeamPNG} whoText="Our Team" buttonText="Find Out More >" />
-                        <SubteamSection
-                            link={"/partners"}
-                            src={OurPartnersPNG}
-                            whoText="Our Partners"
-                            buttonText="Find Out More >"
-                        />
+                        <FadeInWhenVisible delay={0.06} amount={0.35} w="100%" h="100%">
+                            <SubteamSection link={"/board"} src={OurBoardPNG} whoText="Our Board" buttonText="Find Out More >" />
+                        </FadeInWhenVisible>
+                        <FadeInWhenVisible delay={0.12} amount={0.35} w="100%" h="100%">
+                            <SubteamSection link={"/team"} src={OurTeamPNG} whoText="Our Team" buttonText="Find Out More >" />
+                        </FadeInWhenVisible>
+                        <FadeInWhenVisible delay={0.18} amount={0.35} w="100%" h="100%">
+                            <SubteamSection
+                                link={"/partners"}
+                                src={OurPartnersPNG}
+                                whoText="Our Partners"
+                                buttonText="Find Out More >"
+                            />
+                        </FadeInWhenVisible>
                     </SimpleGrid>
                 </VStack>
             </Box>

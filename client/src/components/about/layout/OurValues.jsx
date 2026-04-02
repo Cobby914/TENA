@@ -1,4 +1,5 @@
 import { Box, Flex, VStack, Text, SimpleGrid, Image } from "@chakra-ui/react";
+import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 
 const Diversity = "/AboutUs/Values/Diversity.png";
 const Integrity = "/AboutUs/Values/Integrity.png";
@@ -55,6 +56,7 @@ export default function OurValues() {
         >
             <Box maxW="2500px" mx="auto" px={{ base: 4, md: 10, lg: 20 }} position="relative" zIndex="1">
                 <VStack spacing={{ base: 16, md: 20, lg: 24 }} alignItems="stretch">
+                    <FadeInWhenVisible amount={0.45}>
                     <Flex
                         maxW="750px"
                         alignItems="center"
@@ -85,7 +87,9 @@ export default function OurValues() {
                             </Text>
                         </VStack>
                     </Flex>
+                    </FadeInWhenVisible>
 
+                    <FadeInWhenVisible delay={0.1} amount={0.3} w="100%">
                     <VStack
                         spacing={gapY}
                         align="stretch"
@@ -120,6 +124,7 @@ export default function OurValues() {
                             ))}
                         </Flex>
                     </VStack>
+                    </FadeInWhenVisible>
                 </VStack>
             </Box>
         </Box>
