@@ -1,8 +1,8 @@
-import { Box, Button, Flex, HStack, Text, VStack, Card, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
+import SimpleCircle from "../ui/SimpleCircle";
+import MultiRingCircle from "../ui/MultiRingCircle";
 
 const Donos = "/GetInvolved/GetInvolvedDonations.png";
-const DRight = "/GetInvolved/vectors/DonationsRight.svg";
-const DLeft = "/GetInvolved/vectors/DonationsLeft.svg";
 import GIC from "./GetInvolvedCard"
 
 export default function GetInvolvedCard ({
@@ -13,40 +13,56 @@ export default function GetInvolvedCard ({
           
           <Box position="relative" width="100%" maxW="2500px" mx="auto">
 
-        <Box
-                position="absolute"
-                right="-5px"
-                top="35%"
-                zIndex="2"
-                pointerEvents="none"
-                width={{ base: "50px", md: "95px" }}
-                height={{ base: "100px", md: "209px" }}
-                >
+        <GIC
+            title="Donations"
+            description="Donations fund free health fairs, personalized care navigation, and training for future healthcare leaders. Every dollar helps remove barriers and bring care closer to home."
+            buttonName="Donate Now"
+            image_here={Donos}
+            decorations={
+                <>
+                    <Box
+                        position="absolute"
+                        right="0"
+                        top={{ base: "26%", md: "28%" }}
+                        width={{ base: "64px", md: "84px" }}
+                        height={{ base: "148px", md: "180px" }}
+                        overflow="hidden"
+                        pointerEvents="none"
+                        zIndex={0}
+                    >
+                        <SimpleCircle
+                            size="180px"
+                            strokeWidth="20px"
+                            strokeColor="var(--Primary, #1573CF)"
+                            opacity={0.2}
+                            position="absolute"
+                            left="0"
+                            top="0"
+                        />
+                    </Box>
 
-                <Image src={DRight} objectFit="contain" />
-            </Box>
+                    <Box
+                        position="absolute"
+                        bottom="0"
+                        left="0"
+                        width={{ base: "96px", md: "116px" }}
+                        height={{ base: "96px", md: "116px" }}
+                        overflow="hidden"
+                        pointerEvents="none"
+                        zIndex={0}
+                    >
+                        <MultiRingCircle
+                            width={220}
+                            height={220}
+                            position="absolute"
+                            top="-20px"
+                            right="55px"
+                        />
+                    </Box>
+                </>
+            }
+        />
 
-        <Box
-                position="absolute"
-
-                bottom= "0.3%"
-                zIndex="2"
-                pointerEvents="none"
-                width={{ base: "50px", md: "90px" }}
-                height={{ base: "70px", md: "120px" }}
-                
-                >
-
-                <Image src={DLeft} objectFit="contain" width={{ base: "50px", md: "90px" }}
-                height={{ base: "70px", md: "120px" }}/>
-            </Box>
-        
-
-
-        <GIC title = "Donations" description = "Donations fund free health fairs, personalized care navigation, and training for future healthcare leaders. Every dollar helps remove barriers and bring care closer to home." buttonName = "Donate Now" image_here = {Donos}></GIC>
-
-
-        
     </Box>
     </Box>
 

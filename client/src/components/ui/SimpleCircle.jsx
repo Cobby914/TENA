@@ -16,10 +16,12 @@ export default function SimpleCircle({
     return (
         <Box
             boxSize={size}
+            boxSizing="border-box"
             borderRadius="full"
             borderStyle="solid"
             borderWidth={strokeWidth}
             borderColor={resolvedColor}
+            bg="transparent"
             opacity={opacity}
             pointerEvents="none"
             aria-hidden
