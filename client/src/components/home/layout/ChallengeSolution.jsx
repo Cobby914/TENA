@@ -1,4 +1,4 @@
-import { SimpleGrid, VStack, HStack, Text, List, ListItem, Box, chakra } from "@chakra-ui/react";
+import { SimpleGrid, VStack, HStack, Text, List, ListItem, Box, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import ProblemStatement from "./ProblemStatement";
 import SimpleCircle from "../../ui/SimpleCircle";
@@ -109,9 +109,10 @@ export default function ChallengeSolution() {
         position="relative"
         zIndex={2}
       >
-        <chakra.button
+        <Button
           type="button"
           onClick={() => navigate("/getInvolved")}
+          variant="unstyled"
           display="inline-flex"
           alignItems="center"
           justifyContent="center"
@@ -131,11 +132,13 @@ export default function ChallengeSolution() {
           transition="opacity 0.2s ease"
           _hover={{ opacity: 0.68, bg: buttonBlue }}
           _active={{ opacity: 0.55 }}
+          _focus={{ outline: "none", boxShadow: "none" }}
+          _focusVisible={{ outline: "none", boxShadow: "none" }}
         >
           <Text as="span" fontWeight={600} fontSize={18} lineHeight="1" color="white">
             Get Involved
           </Text>
-        </chakra.button>
+        </Button>
       </Box>
     </Box>
   );
