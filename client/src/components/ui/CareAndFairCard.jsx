@@ -23,7 +23,7 @@ export default function CareAndFairCard ({
                 backgroundSize="cover"
                 backgroundPosition="center"
                 backgroundRepeat="no-repeat"
-                bg={!imageSrc ? "gray.200" : undefined}
+                bg={!imageSrc ? "neutral.muted" : undefined}
             />
 
             <Box
@@ -32,7 +32,7 @@ export default function CareAndFairCard ({
             >
                 <VStack h="full" align={{ base: "center", lg: reversed ? "end" : "start" }} justifyContent="space-between" spacing={{ base: 6, md: 8 }}>
                     <Box textAlign={{ base: "center", lg: reversed ? "right" : "left" }} width="100%">
-                        <Text fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight={700} color="#1573CF">
+                        <Text fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} fontWeight={700} color="brand.primary">
                             {title}
                         </Text>
                         <Text mt={{ base: 3, md: 5 }} fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }} lineHeight={1.25}>
@@ -45,7 +45,7 @@ export default function CareAndFairCard ({
                         to={link}
                         borderRadius="6px"
                         border="1px solid"
-                        borderColor="#E2E8F0"
+                        borderColor="border.light"
                         h="48px"
                         px="24px"
                         py={0}
@@ -55,7 +55,7 @@ export default function CareAndFairCard ({
                         gap="8px"
                         leftIcon={reversed ? <Text>←</Text> : undefined}
                         rightIcon={!reversed ? <Text>→</Text> : undefined}
-                        background="rgb(245,245,245)"
+                        background="surface.soft"
                         fontSize={{ base: "sm", md: "md" }}
                         _hover={{ background: "gray.100" }}
                     >

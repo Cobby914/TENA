@@ -48,7 +48,7 @@ export default function OurPrograms() {
                     fontSize="26px"
                     fontWeight="800"
                     lineHeight="32px"
-                    color="#F8F9FB"
+                    color="surface.soft"
                     mb={8}
                 >
                     Programs
@@ -60,7 +60,7 @@ export default function OurPrograms() {
                     fontWeight="800"
                     lineHeight="100%"
                     textAlign="left"
-                    color="#F8F9FB"
+                    color="surface.soft"
                 >
                     Our Programs
                 </Text>

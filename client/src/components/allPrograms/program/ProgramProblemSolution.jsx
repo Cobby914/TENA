@@ -52,7 +52,7 @@ function parseBold(text) {
     const subParts = part.split(/(\S+?)\^/g);
     return subParts.map((sub, j) =>
       j % 2 === 1 ? (
-        <Text as="span" key={`blue-${i}-${j}`} color="#1573CF">
+        <Text as="span" key={`blue-${i}-${j}`} color="brand.primary">
           {sub}
         </Text>
       ) : (
@@ -70,9 +70,9 @@ export default function ProgramProblemSolution({ id }) {
 
   if (isLoading) {
     return (
-      <Center minH="50vh" bg="rgb(241, 241, 241)">
+      <Center minH="50vh" bg="surface.section">
         <VStack spacing={4}>
-          <Spinner size="xl" color="blue.500" thickness="4px" />
+          <Spinner size="xl" color="brand.primary" thickness="4px" />
           <Text color="gray.600">Loading program content...</Text>
         </VStack>
       </Center>
@@ -81,7 +81,7 @@ export default function ProgramProblemSolution({ id }) {
 
   if (errorMsg) {
     return (
-      <Center minH="50vh" bg="rgb(241, 241, 241)">
+      <Center minH="50vh" bg="surface.section">
         <Alert status="error" maxW="600px" borderRadius="md">
           <AlertIcon />
           <Box>
@@ -96,7 +96,7 @@ export default function ProgramProblemSolution({ id }) {
   return (
     <Box
       as="section"
-      bg="rgb(241, 241, 241)"
+      bg="surface.section"
       width="100%"
       py={{ base: 12, md: 16, lg: 20 }}
     >
@@ -119,7 +119,7 @@ export default function ProgramProblemSolution({ id }) {
             gap={{ base: 8, md: 10, lg: 14 }}
           >
             <Box flex="1.2">
-              <Heading as="h3" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} mb={5} color="#3F5F85">
+              <Heading as="h3" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
                 The Problem
               </Heading>
               <Text
@@ -180,7 +180,7 @@ export default function ProgramProblemSolution({ id }) {
             </Box>
 
             <Box flex="1.2">
-              <Heading as="h3" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} mb={5} color="#3F5F85">
+              <Heading as="h3" fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
                 What We're Doing
               </Heading>
 

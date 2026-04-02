@@ -24,7 +24,7 @@ export default function BelowPrograms() {
   const navigate = useNavigate();
 
   return (
-    <Box as="section" bg="rgba(241, 244, 248, 1)" w="100%" mt={{ base: 20, md: 40 }} py={{ base: 10, md: 28 }}>
+    <Box as="section" bg="surface.section" w="100%" mt={{ base: 20, md: 40 }} py={{ base: 10, md: 28 }}>
       <Box maxW="1200px" mx="auto" px={{ base: 4, md: 12, lg: 20 }}>
         <Flex direction="column" align="center">
           <VStack spacing={{ base: 6, md: 8 }} textAlign="center" maxW="1140px">
@@ -33,10 +33,10 @@ export default function BelowPrograms() {
               fontWeight={700}
               lineHeight={{ base: "1.25", md: "1.1" }}
               maxW="1070px"
-              color="black"
+              color="neutral.strong"
             >
               A community driven non-profit focused on lasting{" "}
-              <Text as="span" color="rgba(21, 115, 207, 1)">
+              <Text as="span" color="brand.primary">
                 health equity.
               </Text>
             </Text>
@@ -47,7 +47,7 @@ export default function BelowPrograms() {
               letterSpacing={0}
               fontWeight={400}
               mt={{ base: 4, md: 10 }}
-              color="black"
+              color="neutral.strong"
               maxW="1180px"
             >
               To eradicate health disparities by empowering underrepresented
@@ -99,16 +99,16 @@ export default function BelowPrograms() {
             mt={{ base: 6, md: 10 }}
             px={{ base: 8, sm: 10, md: 20 }}
             border="none"
-            bg="rgba(21, 115, 207, 1)"
-            color="white"
+            bg="brand.primary"
+            color="surface.default"
             cursor="pointer"
             transition="opacity 0.2s ease"
-            _hover={{ opacity: 0.68, bg: "rgba(21, 115, 207, 1)" }}
+            _hover={{ opacity: 0.68, bg: "brand.primary" }}
             _active={{ opacity: 0.55 }}
             _focus={{ outline: "none", boxShadow: "none" }}
             _focusVisible={{ outline: "none", boxShadow: "none" }}
           >
-              <Text as="span" fontWeight={600} fontSize={{ base: 16, md: 18 }} lineHeight="1" color="white">
+              <Text as="span" fontWeight={600} fontSize={{ base: 16, md: 18 }} lineHeight="1" color="surface.default">
                 About Us
               </Text>
           </Button>

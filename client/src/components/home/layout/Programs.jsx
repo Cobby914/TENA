@@ -18,12 +18,12 @@ export default function Programs() {
   return (
     <Box
       as="section"
-      bg="#F1F4F8"
+      bg="surface.section"
       px={{ base: 6, md: 10, lg: 24 }}
       py={{ base: 12, md: 16 }}
       mt={20}
     >
-      <Text fontWeight={700} fontSize={60} letterSpacing={0} lineHeight={"100%"} textColor={"rgba(29, 35, 46, 1)"} textAlign={"center"} my={20}>
+      <Text fontWeight={700} fontSize={60} letterSpacing={0} lineHeight={"100%"} textColor="neutral.text" textAlign={"center"} my={20}>
         TENA Initiatives
       </Text>
       <SimpleGrid
@@ -82,7 +82,7 @@ export default function Programs() {
       </SimpleGrid>
 
       {!isLoading && !programsToShow.length && !errorMsg ? (
-        <Text mt={8} textAlign="center" color="#3F5F85">
+        <Text mt={8} textAlign="center" color="brand.heading">
           No programs available right now.
         </Text>
       ) : null}

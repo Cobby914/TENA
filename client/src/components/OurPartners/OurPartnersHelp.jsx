@@ -4,7 +4,7 @@ const helpImage =
 
 export default function OurPartnersHelp() {
   return (
-    <Box as="section" width="100%" bg="#DEE3EB" py={{ base: 10, md: 14, lg: 16 }}>
+    <Box as="section" width="100%" bg="surface.muted" py={{ base: 10, md: 14, lg: 16 }}>
       <Box maxW="1536px" mx="auto" px={{ base: 6, md: 12, lg: 20 }}>
         <Box
           width="100%"
@@ -30,20 +30,20 @@ export default function OurPartnersHelp() {
                   fontFamily="body"
                   fontWeight="700"
                   fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
-                  color="#000000"
+                  color="neutral.strong"
                   mb={{ base: 4, md: 5 }}
                 >
                   How Our Partners Help:
                 </Text>
 
                 <UnorderedList spacing={{ base: 4, md: 5 }} ml={{ base: 5, md: 6 }}>
-                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="#000000">
+                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="neutral.strong">
                     Direct Community Impact: Financial support directly funds our front-line navigation services, connecting vulnerable individuals to essential healthcare, housing, and economic resources.
                   </ListItem>
-                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="#000000">
+                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="neutral.strong">
                     Driving Systemic Change: Strategic partnerships empower our advocacy efforts, allowing us to actively challenge the structural inequities and injustices that shape health outcomes.
                   </ListItem>
-                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="#000000">
+                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="neutral.strong">
                     Sustaining &amp; Scaling Operations: Ongoing funding builds the essential infrastructure and capacity we need to expand our reach.
                   </ListItem>
                 </UnorderedList>
@@ -54,13 +54,13 @@ export default function OurPartnersHelp() {
                   fontFamily="body"
                   fontWeight="700"
                   fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
-                  color="#000000"
+                  color="neutral.strong"
                   mb={{ base: 4, md: 5 }}
                 >
                   Reach out to Join Us:
                 </Text>
                 <UnorderedList ml={{ base: 5, md: 6 }}>
-                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="#000000">
+                  <ListItem fontFamily="body" fontWeight="400" lineHeight="1.4" fontSize={{ base: "md", md: "lg", lg: "2xl" }} color="neutral.strong">
                     To support our work, volunteer, or partner with us please reach out to Jemal at jemal.hussein@tenacares.org
                   </ListItem>
                 </UnorderedList>

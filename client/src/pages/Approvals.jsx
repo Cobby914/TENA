@@ -180,7 +180,7 @@ export default function Approvals() {
   const filterButtons = ["All", "Pending", "Approved", "Denied"];
 
   return (
-    <Box minH="100vh" bg="rgb(245,245,245)" py={10}>
+    <Box minH="100vh" bg="surface.soft" py={10}>
       <Container maxW="1300px" px={6}>
         {/* Header */}
         <HStack justify="space-between" align="baseline" mb={2}>
@@ -188,7 +188,7 @@ export default function Approvals() {
             User Approvals
           </Heading>
           {pendingCount > 0 && (
-            <Text fontSize="sm" color="rgb(136,136,136)" fontFamily="body">
+            <Text fontSize="sm" color="neutral.subtle" fontFamily="body">
               {pendingCount} pending request{pendingCount !== 1 ? "s" : ""}
             </Text>
           )}

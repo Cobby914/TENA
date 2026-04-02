@@ -15,7 +15,7 @@ export default function GetInvolvedCard ({
     return (
         <Box
             position="relative"
-            bg="#FFFFFF"
+            bg="surface.default"
             width="100%"
             maxW="1283px"
             mx="auto"
@@ -23,7 +23,7 @@ export default function GetInvolvedCard ({
             px={{ base: 6, md: 10, lg: 14 }}
             py={{ base: 8, md: 10, lg: 12 }}
             borderWidth="2px"
-            borderColor="#dedede"
+            borderColor="border.light"
             zIndex="1"
             overflow="hidden"
         >
@@ -57,14 +57,14 @@ export default function GetInvolvedCard ({
                             {...(onAction
                               ? { onClick: onAction }
                               : { as: NavLink, to: destination })}
-                            bg="#FFFFFF"
+                            bg="surface.default"
                             variant="outline"
                             borderRadius="2px"
                             width={{ base: "140px", md: "179px" }}
                             height={{ base: "38px", md: "48px" }}
                             px={{ base: 8, md: 10 }}
                             rightIcon={<Icon as={ChevronRight} boxSize={{ base: "12px", lg: "18px" }} />}
-                            _hover={{ bg: "#3f5f85" }}
+                            _hover={{ bg: "brand.heading", color: "surface.default" }}
                             zIndex="2"
                         >
                             {buttonName}

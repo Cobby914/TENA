@@ -7,7 +7,7 @@ const breadcrumbLinkProps = {
   fontFamily: "Inter",
   fontSize: "26px",
   lineHeight: "32px",
-  color: "#F8F9FB",
+  color: "surface.soft",
   fontWeight: "600",
   transition: "font-weight 0.2s ease, opacity 0.2s ease",
   textDecoration: "none",
@@ -60,7 +60,8 @@ export default function ProgramHeader({ id, backgroundPosition }) {
         width="334px"
         height="334px"
         borderRadius="334px"
-        border="40px solid #5CDAC5"
+        border="40px solid"
+        borderColor="brand.accent"
         opacity={0.15}
         zIndex={2}
         pointerEvents="none"
@@ -87,7 +88,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
               fontSize="26px"
               fontWeight="800"
               lineHeight="32px"
-              color="#F8F9FB"
+              color="surface.soft"
             >
               &gt;
             </Text>
@@ -96,7 +97,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
               fontSize="26px"
               fontWeight="800"
               lineHeight="32px"
-              color="#F8F9FB"
+              color="surface.soft"
             >
               {programTitle}
             </Text>
@@ -109,7 +110,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
               fontWeight="800"
               lineHeight="100%"
               textAlign="left"
-              color="#F8F9FB"
+              color="surface.soft"
           >
             {programTitle}
           </Text>

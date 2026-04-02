@@ -5,8 +5,8 @@ const sloganImage = "/Home/SouthLACafeGroup.jpg";
 
 const donateHover = {
   bg: "transparent",
-  color: "#5CDAC5",
-  borderColor: "#5CDAC5",
+  color: "brand.accent",
+  borderColor: "brand.accent",
 };
 
 export default function Slogan() {
@@ -14,7 +14,7 @@ export default function Slogan() {
     <Box
       as="section"
       maxW="100%"
-      bg="rgba(9, 39, 81, 1)"
+      bg="brand.navy"
       py={{ base: 12, md: 20 }}
       px={{ base: 6, md: 12, lg: 32 }}
       borderBottomRadius={50}
@@ -39,7 +39,7 @@ export default function Slogan() {
             fontSize={{ base: 16, md: 20 }}
             fontWeight="400"
             lineHeight="1.4"
-            color="white"
+            color="surface.default"
           >
             Eradicating Health Disparity
           </Text>
@@ -50,10 +50,10 @@ export default function Slogan() {
             fontSize={{ base: 36, md: 48 }}
             fontWeight="700"
             lineHeight={{ base: "1.00", lg: "1.05" }}
-            color="white"
+            color="surface.default"
           >
             We strengthen communities through{" "}
-            <Text as="span" color="#5CDAC5">
+            <Text as="span" color="brand.accent">
               compassionate care
             </Text>
             , meaningful connection, and opportunities that transform lives.
@@ -64,7 +64,7 @@ export default function Slogan() {
             py={10}
             maxW="780px"
             lineHeight="1.55"
-            textColor="white"
+            textColor="surface.default"
           >
             At TENA, we partner with neighbors, students, volunteers, and
             organizations to expand equitable access to health services, build
@@ -87,10 +87,10 @@ export default function Slogan() {
             p={0}
             px={6}
             borderRadius={6}
-            bg="rgba(92, 218, 197, 1)"
+            bg="brand.accent"
             color="black"
             border="2px solid"
-            borderColor="rgba(92, 218, 197, 1)"
+            borderColor="brand.accent"
             fontWeight={600}
             fontSize={18}
             lineHeight="28px"
@@ -132,7 +132,7 @@ export default function Slogan() {
             overflow="hidden"
             w="100%"
             h="100%"
-            bg="rgba(9, 39, 81, 1)"
+            bg="brand.navy"
           >
             <Image
               src={sloganImage}

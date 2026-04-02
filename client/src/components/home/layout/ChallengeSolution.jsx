@@ -1,17 +1,13 @@
-import { SimpleGrid, VStack, HStack, Text, List, ListItem, Box, Button } from "@chakra-ui/react";
+import { SimpleGrid, VStack, Text, List, ListItem, Box, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import ProblemStatement from "./ProblemStatement";
 import SimpleCircle from "../../ui/SimpleCircle";
-
-const subheadingColor = "#4A7A96";
-const bodyColor = "#1A1A1A";
-const buttonBlue = "#0070BA";
 
 const solutionDecorCircle = {
   size: { base: "380px", md: "440px", lg: "490px" },
   strokeWidth: { base: "32px", md: "36px", lg: "40px" },
   opacity: 0.15,
-  color: "#5CDAC5",
+  color: "var(--color-brand-accent)",
 };
 
 export default function ChallengeSolution() {
@@ -20,7 +16,7 @@ export default function ChallengeSolution() {
   return (
     <Box
       as="section"
-      bg="white"
+      bg="surface.default"
       p={{ base: 10, md: 16, lg: 28 }}
       maxW="100%"
       overflow="visible"
@@ -31,7 +27,7 @@ export default function ChallengeSolution() {
         maxW="1100px"
         py={{ base: 8, md: 12, lg: 16 }}
         lineHeight="110%"
-        color={bodyColor}
+        color="neutral.text"
       >
         Solving Health Inequality One Step at a Time
       </Text>
@@ -57,7 +53,7 @@ export default function ChallengeSolution() {
               fontWeight={700}
               fontSize={{ base: "28px", md: "34px", lg: "36px" }}
               lineHeight="120%"
-              color={subheadingColor}
+              color="brand.subheading"
             >
               TENA&apos;s Solution
             </Text>
@@ -65,7 +61,7 @@ export default function ChallengeSolution() {
               fontWeight={400}
               fontSize={{ base: "18px", md: "20px", lg: "22px" }}
               lineHeight="150%"
-              color={bodyColor}
+              color="neutral.text"
             >
               At the heart of TENA&apos;s mission is the belief that health equity
               isn&apos;t just access to services — it&apos;s access with dignity,
@@ -73,7 +69,7 @@ export default function ChallengeSolution() {
             </Text>
             <List fontSize={{ base: "18px", md: "20px", lg: "22px" }} mt={2} spacing={6}>
               <ListItem>
-                <Text as="span" color={bodyColor} lineHeight="150%">
+                <Text as="span" color="neutral.text" lineHeight="150%">
                   <Text as="span" fontWeight={700}>
                     Personalized Care Navigation
                   </Text>
@@ -81,7 +77,7 @@ export default function ChallengeSolution() {
                 </Text>
               </ListItem>
               <ListItem>
-                <Text as="span" color={bodyColor} lineHeight="150%">
+                <Text as="span" color="neutral.text" lineHeight="150%">
                   <Text as="span" fontWeight={700}>
                     Community Health Access Points
                   </Text>
@@ -89,7 +85,7 @@ export default function ChallengeSolution() {
                 </Text>
               </ListItem>
               <ListItem>
-                <Text as="span" color={bodyColor} lineHeight="150%">
+                <Text as="span" color="neutral.text" lineHeight="150%">
                   <Text as="span" fontWeight={700}>
                     Workforce Readiness & Youth Empowerment
                   </Text>
@@ -125,17 +121,17 @@ export default function ChallengeSolution() {
           px={6}
           border="none"
           borderRadius="6px"
-          bg={buttonBlue}
-          color="white"
+          bg="brand.primary"
+          color="surface.default"
           cursor="pointer"
           whiteSpace="nowrap"
           transition="opacity 0.2s ease"
-          _hover={{ opacity: 0.68, bg: buttonBlue }}
+          _hover={{ opacity: 0.68, bg: "brand.primary" }}
           _active={{ opacity: 0.55 }}
           _focus={{ outline: "none", boxShadow: "none" }}
           _focusVisible={{ outline: "none", boxShadow: "none" }}
         >
-          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1" color="white">
+          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1" color="surface.default">
             Get Involved
           </Text>
         </Button>

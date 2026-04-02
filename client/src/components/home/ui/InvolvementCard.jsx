@@ -12,7 +12,7 @@ export default function InvolvementCard({
 
   return (
     <Box
-      bgColor="white"
+      bgColor="surface.default"
       width={{ base: "100%", md: "235px" }}
       h="100%"
       minW={{ base: "100%", md: "235px" }}
@@ -25,7 +25,7 @@ export default function InvolvementCard({
           fontWeight={700}
           fontSize={{ base: 24, md: 26, lg: 30 }}
           lineHeight={"133%"}
-          textColor="#3F5F85"
+          textColor="brand.heading"
           mb={2}
           flexShrink={0}
         >
@@ -40,7 +40,7 @@ export default function InvolvementCard({
           textAlign={"center"}
           lineHeight={"150%"}
           letterSpacing={0}
-          textColor="rgba(29, 35, 46, 1)"
+          textColor="neutral.text"
         >
           {description}
         </Text>
@@ -51,7 +51,7 @@ export default function InvolvementCard({
             : isExternalLink
               ? { as: "a", href: link, target: "_blank", rel: "noopener noreferrer" }
               : { as: RouterLink, to: link })}
-          bgColor="#1573CF"
+          bgColor="brand.primary"
           w="full"
           borderRadius={8}
           p={6}
@@ -59,7 +59,7 @@ export default function InvolvementCard({
           flexShrink={0}
           fontSize={{ base: 14, lg: 16 }}
           fontWeight={500}
-          color="#FFFFFF"
+          color="surface.default"
           textDecoration="none"
         >
           {linkname}

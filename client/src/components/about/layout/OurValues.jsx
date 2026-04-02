@@ -32,13 +32,13 @@ function ValueCard({ label, src }) {
             w="100%"
             maxW={{ base: "100px", sm: "130px", md: "250px" }}
             minH={{ base: "130px", sm: "160px", md: "250px" }}
-            bg="#F8F9FB"
+            bg="surface.soft"
             borderRadius="md"
             py={{ base: 3, md: 6 }}
             px={{ base: 2, md: 4 }}
         >
             <Image src={src} alt="" maxH={{ base: "54px", sm: "70px", md: "120px" }} w="auto" objectFit="contain" />
-            <Text fontWeight="700" color="#3F5F85" fontSize={{ base: "xs", sm: "sm", md: "2xl" }} textAlign="center">
+            <Text fontWeight="700" color="brand.heading" fontSize={{ base: "xs", sm: "sm", md: "2xl" }} textAlign="center">
                 {label}
             </Text>
         </Box>
@@ -75,11 +75,11 @@ export default function OurValues() {
                                 fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }}
                                 mb={0}
                                 fontWeight="700"
-                                color="#1573CF"
+                                color="brand.primary"
                             >
                                 Our Values
                             </Text>
-                            <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontWeight="400" color="#3F5F85">
+                            <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontWeight="400" color="brand.heading">
                                 These principles guide how we work with communities, partners, and each other—grounding our
                                 programs and relationships in shared purpose.
                             </Text>

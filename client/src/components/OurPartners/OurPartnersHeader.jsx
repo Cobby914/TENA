@@ -2,12 +2,11 @@ import { Box, Text, Link } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import MultiRingCircle from "../ui/MultiRingCircle";
 
-const HEADER_BG = "#3F5F85";
-const RING_COLOR = "#092751";
+const RING_COLOR = "var(--color-brand-navy)";
 const RING_SIZE_PX = 487;
 const breadcrumbLinkProps = {
   fontFamily: "body",
-  color: "#F8F9FB",
+  color: "surface.soft",
   fontWeight: "600",
   transition: "font-weight 0.2s ease, opacity 0.2s ease",
   textDecoration: "none",
@@ -23,7 +22,7 @@ export default function OurPartnersHeader() {
       as="section"
       position="relative"
       width="100%"
-      bg={HEADER_BG}
+      bg="brand.heading"
       minH={{ base: "280px", md: "360px", lg: "415px" }}
       overflow="hidden"
     >
@@ -58,13 +57,13 @@ export default function OurPartnersHeader() {
           fontFamily="body"
           fontWeight="600"
           fontSize={{ base: "xl", md: "2xl" }}
-          color="#F8F9FB"
+          color="surface.soft"
           mb={{ base: 3, md: 4 }}
         >
           <Link as={NavLink} to="/aboutUs" {...breadcrumbLinkProps}>
             About Us
           </Link>{" "}
-          <Box as="span" color="#F8F9FB">
+          <Box as="span" color="surface.soft">
             &gt;
           </Box>{" "}
           <Link as={NavLink} to="/partners" end {...breadcrumbLinkProps}>
@@ -78,7 +77,7 @@ export default function OurPartnersHeader() {
           fontWeight="700"
           fontSize={{ base: "5xl", md: "6xl", lg: "7xl" }}
           lineHeight="1"
-          color="#F8F9FB"
+          color="surface.soft"
         >
           Our Partners
         </Text>

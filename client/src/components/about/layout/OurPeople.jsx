@@ -10,7 +10,7 @@ export default function OurPeople() {
         <Box
             pt={{ base: 10, md: 16, lg: 20 }}
             pb={{ base: 32, md: 40, lg: 48 }}
-            bg="#F1F4F8"
+            bg="surface.section"
             zIndex="-0.5"
         >
             <Box maxW="2500px" mx="auto" px={{ base: 4, md: 10, lg: 20 }} position="relative" zIndex="1">
@@ -35,11 +35,11 @@ export default function OurPeople() {
                                 fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }}
                                 mb={0}
                                 fontWeight="700"
-                                color="#1573CF"
+                                color="brand.primary"
                             >
                                 Our People
                             </Text>
-                            <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontWeight="400" color="#3F5F85">
+                            <Text fontSize={{ base: "md", md: "lg", lg: "xl" }} fontWeight="400" color="brand.heading">
                                 Our staff, board, and partners bring lived experience, professional expertise, and deep
                                 community commitment to everything we do.
                             </Text>

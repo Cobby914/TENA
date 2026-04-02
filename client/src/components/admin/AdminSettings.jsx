@@ -3,7 +3,7 @@ import { Box, Text, VStack } from "@chakra-ui/react";
 export default function AdminSettings() {
   return (
     <VStack align="stretch" gap={6}>
-      <Box borderBottom="2px solid rgb(51,51,51)" pb={4}>
+      <Box borderBottom="2px solid" borderColor="neutral.strong" pb={4}>
         <Text fontWeight={700} fontSize={24} color="gray.800">
           Settings
         </Text>

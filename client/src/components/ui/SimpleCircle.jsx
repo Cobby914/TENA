@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react";
 export default function SimpleCircle({
     size = "220px",
     strokeWidth = "32px",
-    color = "#5CDAC5",
+    color = "var(--color-brand-accent)",
     strokeColor,
     opacity = 0.15,
     ...boxProps

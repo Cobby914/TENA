@@ -35,7 +35,7 @@ export default function GetInvolvedCard ({
                         <SimpleCircle
                             size="180px"
                             strokeWidth="20px"
-                            strokeColor="var(--Primary, #1573CF)"
+                            strokeColor="var(--color-brand-primary)"
                             opacity={0.2}
                             position="absolute"
                             left="0"

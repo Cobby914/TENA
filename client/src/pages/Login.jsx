@@ -16,7 +16,7 @@ export default function Login() {
   const destination = location.state?.from?.pathname || "/admin";
 
   return (
-    <Center minH="100vh" bg="rgb(40, 40, 40)" px={4}>
+    <Center minH="100vh" bg="surface.auth" px={4}>
       <AdminGoogleSignInCard
         onSignedIn={(user) => {
           setSession({ user });

@@ -17,7 +17,7 @@ export default function Footer({
 ) {
     return (
         <Box width="100%" overflowX="hidden" position="relative">
-            <Box as="footer" width="100%" background="rgba(248, 249, 251)" border="1px solid rgba(0, 0, 0, 0.17)" py={{ base: 4, md: 6 }} px={{ base: 3, md: 14 }}>
+            <Box as="footer" width="100%" bg="surface.soft" border="1px solid" borderColor="border.strong" py={{ base: 4, md: 6 }} px={{ base: 3, md: 14 }}>
                 <Flex direction={{ base: "column", lg: "row" }} justify={"center"} align={{ base: "stretch", lg: "center" }} gap={{ base: 8, md: 12, lg: 20 }}>
                     <VStack width="100%" maxW={{ base: "100%", lg: "900px" }} minH={{ base: "auto", lg: "600px" }} py={{ base: 2, md: 8, lg: 16 }}>
             
@@ -30,7 +30,7 @@ export default function Footer({
                                 </HStack>
 
                                 {/* Separator Line */}
-                                <Box width="100%" maxW={{ base: "100%", lg: "800px" }} height="2px" background = "rgba(92, 218, 197, 1)" my={2} />
+                                <Box width="100%" maxW={{ base: "100%", lg: "800px" }} height="2px" bg="brand.accent" my={2} />
 
                                 <Flex direction={{base: "column", lg: "row"}} pt={6} alignItems="flex-start" width="100%" justify="space-between" gap={{base: 8, lg: 0}}> 
                                     <VStack minW={{ base: "auto", lg: "200px" }} gap={6} alignItems="flex-start" >
@@ -59,8 +59,8 @@ export default function Footer({
                                               fontSize={{ base: 32, md: 22}}
                                               fontWeight={700}
                                               textDecoration={{ base: "underline", md: "none" }}
-                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
-                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _hover={{ color: "brand.accent" }}
+                                              _active={{ color: "brand.accent" }}
                                             >
                                               About Us
                                             </Text>
@@ -70,8 +70,8 @@ export default function Footer({
                                               fontSize={{ base: 32, md: 22}}
                                               fontWeight={700}
                                               textDecoration={{ base: "underline", md: "none" }}
-                                              _hover={{ color: "rgba(92, 218, 197, 1)" }}
-                                              _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                              _hover={{ color: "brand.accent" }}
+                                              _active={{ color: "brand.accent" }}
                                             >
                                               Programs
                                             </Text>
@@ -81,8 +81,8 @@ export default function Footer({
                                           fontSize={{ base: 32, md: 22}}
                                           fontWeight={700}
                                           textDecoration={{ base: "underline", md: "none" }}
-                                          _hover={{ color: "rgba(92, 218, 197, 1)" }}
-                                          _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                          _hover={{ color: "brand.accent" }}
+                                          _active={{ color: "brand.accent" }}
                                         >
                                           Get Involved
                                         </Text>
@@ -94,8 +94,8 @@ export default function Footer({
                                           fontWeight={700}
                                           textDecoration={{ base: "underline", md: "none" }}
                                           cursor="pointer"
-                                          _hover={{ color: "rgba(92, 218, 197, 1)" }}
-                                          _active={{ color: "rgba(92, 218, 197, 1)" }}
+                                          _hover={{ color: "brand.accent" }}
+                                          _active={{ color: "brand.accent" }}
                                         >
                                           Donate
                                         </Text>

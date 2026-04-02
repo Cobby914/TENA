@@ -41,23 +41,23 @@ export default function OurPartnersConnections() {
         <Text
           fontFamily="body"
           fontWeight="700"
-          color="#1D232E"
+          color="neutral.text"
           fontSize={{ base: "3xl", md: "5xl", lg: "6xl" }}
           lineHeight={{ base: "1.12", md: "1.08" }}
           maxW="1320px"
         >
-          <Box as="span" color="#1573CF">
+          <Box as="span" color="brand.primary">
             Together
           </Box>
           ,{" "}
           we create hope.{" "}
-          <Box as="span" color="#1573CF">
+          <Box as="span" color="brand.primary">
             Together
           </Box>
           ,{" "}
           we change lives. Thank you for believing in our mission. Because when
           we work{" "}
-          <Box as="span" color="#1573CF">
+          <Box as="span" color="brand.primary">
             together
           </Box>
           ,{" "}

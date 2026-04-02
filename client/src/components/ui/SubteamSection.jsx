@@ -15,7 +15,7 @@ export default function SubteamSection({ link, src, whoText, buttonText }) {
                 <Image src={src} alt="placeholder" maxH="100%" maxW="100%" objectFit="contain" />
             </Box>
 
-            <Text fontSize={{ base: "sm", sm: "md", md: "2xl" }} textAlign="center" fontFamily="INTER" color="#1573CF" fontWeight="700">
+            <Text fontSize={{ base: "sm", sm: "md", md: "2xl" }} textAlign="center" fontFamily="body" color="brand.primary" fontWeight="700">
                 {whoText}
             </Text>
             <Button
@@ -24,8 +24,8 @@ export default function SubteamSection({ link, src, whoText, buttonText }) {
                 height={{ base: "36px", sm: "42px", md: "65px" }}
                 width={{ base: "96px", sm: "110px", md: "240px" }}
                 fontSize={{ base: "10px", sm: "11px", md: "16px" }}
-                bgColor="#3F5F85"
-                color="#FFFFFF"
+                bgColor="brand.heading"
+                color="surface.default"
                 rounded="3"
             >
                 <NavLink to={link}>

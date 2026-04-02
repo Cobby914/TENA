@@ -33,28 +33,28 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
 
   return (
     <Tr
-      bg="rgb(255, 255, 255)"
-      _hover={{ bg: "rgb(228,228,228)" }}
+      bg="surface.default"
+      _hover={{ bg: "surface.muted" }}
       transition="background 0.15s"
     >
       {/* USER */}
-      <Td borderColor="gray.300" borderBottomWidth="1px" py={7}>
+      <Td borderColor="border.default" borderBottomWidth="1px" py={7}>
         <HStack spacing={3}>
           <Avatar
             size="sm"
             name={initials}
-            bg="rgb(199, 199, 199)"
-            color="rgb(100, 100, 100)"
-            borderColor="rgb(120, 120, 120)"
+            bg="surface.muted"
+            color="neutral.strong"
+            borderColor="neutral.muted"
             borderWidth="1px"
             borderStyle="solid"
             getInitials={() => initials}
           />
           <VStack align="start" spacing={0}>
-            <Text fontWeight="600" fontSize="sm" color="gray.800" fontFamily="body">
+            <Text fontWeight="600" fontSize="sm" color="neutral.text" fontFamily="body">
               {displayName}
             </Text>
-            <Text fontSize="xs" color="rgb(136,136,136)" fontFamily="body">
+            <Text fontSize="xs" color="neutral.subtle" fontFamily="body">
               {user.email}
             </Text>
           </VStack>
@@ -62,8 +62,8 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
       </Td>
 
       {/* REQUESTED */}
-      <Td borderColor="gray.300" borderBottomWidth="1px" py={7}>
-        <Text fontSize="sm" color="rgb(136,136,136)" fontFamily="body">
+      <Td borderColor="border.default" borderBottomWidth="1px" py={7}>
+        <Text fontSize="sm" color="neutral.subtle" fontFamily="body">
           {new Date(user.created_at).toLocaleDateString("en-US", {
             month: "short", day: "numeric", year: "numeric",
           })}
@@ -71,7 +71,7 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
       </Td>
 
       {/* STATUS */}
-      <Td borderColor="gray.300" borderBottomWidth="1px" py={7}>
+      <Td borderColor="border.default" borderBottomWidth="1px" py={7}>
         <Badge
         fontSize="xs"
         px={2}
@@ -80,9 +80,9 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
         letterSpacing="wide"
         fontFamily="body"
         borderWidth="1px"
-        borderColor={isDenied ? "rgb(180,180,180)" : isApproved ? "rgb(100,100,100)" : "gray.500"}
-        color={isDenied ? "rgb(180,180,180)" : isApproved ? "rgb(100,100,100)" : "gray.700"}
-        bg={isApproved ? "rgb(228,228,228)" : isPending ? "rgb(228,228,228)" : "transparent"}
+        borderColor={isDenied ? "border.default" : isApproved ? "neutral.muted" : "neutral.muted"}
+        color={isDenied ? "neutral.subtle" : isApproved ? "neutral.strong" : "neutral.text"}
+        bg={isApproved ? "surface.muted" : isPending ? "surface.muted" : "transparent"}
         opacity={isDenied ? 0.5 : 1}
         >
         {status.label}
@@ -90,7 +90,7 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
       </Td>
 
       {/* ASSIGN ROLE */}
-      <Td borderColor="gray.300" borderBottomWidth="1px" py={7}>
+      <Td borderColor="border.default" borderBottomWidth="1px" py={7}>
         {isDenied ? (
           <Select
             size="sm"
@@ -98,13 +98,13 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
             isDisabled={isProcessing}
-            bg="white"
-            borderColor="gray.400"
+            bg="surface.default"
+            borderColor="neutral.muted"
             borderWidth="2px"
             borderRadius="sm"
             fontFamily="body"
             w="145px"
-            _focus={{ borderColor: "gray.600", boxShadow: "none" }}
+            _focus={{ borderColor: "neutral.strong", boxShadow: "none" }}
           >
             <option value="user">User</option>
             <option value="admin">Admin</option>
@@ -120,13 +120,13 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
               }
             }}
             isDisabled={isProcessing}
-            bg="white"
-            borderColor="gray.400"
+            bg="surface.default"
+            borderColor="neutral.muted"
             borderWidth="2px"
             borderRadius="sm"
             fontFamily="body"
             w="145px"
-            _focus={{ borderColor: "gray.600", boxShadow: "none" }}
+            _focus={{ borderColor: "neutral.strong", boxShadow: "none" }}
           >
             {approvedRoleOptions.map((role) => (
               <option key={role} value={role}>
@@ -141,13 +141,13 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
             isDisabled={isProcessing}
-            bg="white"
-            borderColor="gray.400"
+            bg="surface.default"
+            borderColor="neutral.muted"
             borderWidth="2px"
             borderRadius="sm"
             fontFamily="body"
             w="145px"
-            _focus={{ borderColor: "gray.600", boxShadow: "none" }}
+            _focus={{ borderColor: "neutral.strong", boxShadow: "none" }}
           >
             <option value="user">User</option>
             <option value="admin">Admin</option>
@@ -156,18 +156,18 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
       </Td>
 
       {/* ACTIONS */}
-      <Td borderColor="gray.300" borderBottomWidth="1px" py={7}>
+      <Td borderColor="border.default" borderBottomWidth="1px" py={7}>
         {isDenied && (
           <HStack spacing={2}>
             <Button
               size="sm"
               borderRadius="sm"
               borderWidth="2px"
-              bg={canRestore ? "gray.700" : "gray.300"}
-              color="white"
+              bg={canRestore ? "neutral.strong" : "neutral.muted"}
+              color="surface.default"
               fontFamily="body"
-              borderColor={canRestore ? "gray.700" : "gray.300"}
-              _hover={canRestore ? { bg: "gray.600" } : {}}
+              borderColor={canRestore ? "neutral.strong" : "neutral.muted"}
+              _hover={canRestore ? { bg: "neutral.text" } : {}}
               isDisabled={!canRestore || isProcessing}
               isLoading={isProcessing}
               onClick={() => onApprove(user.id, selectedRole)}
@@ -184,8 +184,8 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
               variant="outline"
               borderRadius="sm"
               borderWidth="2px"
-              borderColor="gray.400"
-              color="gray.700"
+              borderColor="neutral.muted"
+              color="neutral.text"
               fontFamily="body"
               isDisabled={isProcessing}
               onClick={() => onRevoke(user.id)}
@@ -201,11 +201,11 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
               size="sm"
               borderRadius="sm"
               borderWidth="2px"
-              bg={canApprove ? "gray.700" : "gray.300"}
-              color="white"
+              bg={canApprove ? "neutral.strong" : "neutral.muted"}
+              color="surface.default"
               fontFamily="body"
-              borderColor={canApprove ? "gray.700" : "gray.300"}
-              _hover={canApprove ? { bg: "gray.600" } : {}}
+              borderColor={canApprove ? "neutral.strong" : "neutral.muted"}
+              _hover={canApprove ? { bg: "neutral.text" } : {}}
               isDisabled={!canApprove || isProcessing}
               isLoading={isProcessing}
               onClick={() => onApprove(user.id, selectedRole)}
@@ -217,8 +217,8 @@ export default function UserRow({ user, onApprove, onAssignRole, onDeny, onRevok
               variant="outline"
               borderRadius="sm"
               borderWidth="2px"
-              borderColor="gray.400"
-              color="gray.700"
+              borderColor="neutral.muted"
+              color="neutral.text"
               fontFamily="body"
               isDisabled={isProcessing}
               onClick={() => onDeny(user.id)}

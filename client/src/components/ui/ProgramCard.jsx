@@ -16,7 +16,7 @@ function parseRichText(text) {
     const subParts = part.split(/(\S+?)\^/g);
     return subParts.map((sub, j) =>
       j % 2 === 1 ? (
-        <Text as="span" key={`blue-${i}-${j}`} color="#1573CF">
+        <Text as="span" key={`blue-${i}-${j}`} color="brand.primary">
           {sub}
         </Text>
       ) : (
@@ -42,8 +42,9 @@ export default function ProgramCard({
       flexDirection="column"
       px={{ base: 6, md: 8 }}
       py={{ base: 6, md: 8 }}
-      bg="white"
-      border="1px solid #E2E8F0"
+      bg="surface.default"
+      border="1px solid"
+      borderColor="border.light"
       borderRadius="12px"
       boxShadow="sm"
       {...props}
@@ -53,7 +54,7 @@ export default function ProgramCard({
           fontWeight={700}
           fontSize={{ base: "2xl", md: "36px" }}
           lineHeight="1.2"
-          color="#1573CF"
+          color="brand.primary"
         >
           {title}
         </Text>
@@ -83,7 +84,7 @@ export default function ProgramCard({
           />
 
           <Flex direction="column" flex="1" minH={{ base: "auto", md: "170px" }}>
-            <Text fontSize={{ base: "md", md: "18px" }} lineHeight="1.55" color="#1A202C">
+            <Text fontSize={{ base: "md", md: "18px" }} lineHeight="1.55" color="neutral.text">
               {parseRichText(description)}
             </Text>
 
@@ -93,12 +94,12 @@ export default function ProgramCard({
                   height="40px"
                   borderRadius="8px"
                   px={4}
-                  bg="#1573CF"
-                  color="white"
-                  _hover={{ bg: "#0F64B5" }}
+                  bg="brand.primary"
+                  color="surface.default"
+                  _hover={{ bg: "brand.primaryHover" }}
                 >
                   <HStack gap={2}>
-                    <Text fontWeight={600} fontSize="14px" lineHeight="20px" color="white">
+                    <Text fontWeight={600} fontSize="14px" lineHeight="20px" color="surface.default">
                       Learn More
                     </Text>
                     <ChevronRight size={16} />

@@ -77,7 +77,7 @@ export default function AdminDashboard() {
 
   return (
     <VStack align="stretch" gap={6}>
-      <Box borderBottom="2px solid rgb(51,51,51)" pb={4}>
+      <Box borderBottom="2px solid" borderColor="neutral.strong" pb={4}>
         <Heading size="lg" color="gray.800">
           Dashboard
         </Heading>

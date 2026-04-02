@@ -55,11 +55,11 @@ export default function MeasurableProgress({ id }) {
 
   if (isLoading) {
     return (
-      <Box as="section" bg="#092751" width="100%" py={{ base: 12, md: 16, lg: 20 }}>
+      <Box as="section" bg="brand.navy" width="100%" py={{ base: 12, md: 16, lg: 20 }}>
         <Center minH="40vh">
           <VStack spacing={4}>
-            <Spinner size="xl" color="white" thickness="4px" />
-            <Text color="white">Loading measurable progress...</Text>
+            <Spinner size="xl" color="surface.default" thickness="4px" />
+            <Text color="surface.default">Loading measurable progress...</Text>
           </VStack>
         </Center>
       </Box>
@@ -68,10 +68,10 @@ export default function MeasurableProgress({ id }) {
 
   if (errorMsg) {
     return (
-      <Box as="section" bg="#092751" width="100%" py={{ base: 12, md: 16, lg: 20 }}>
+      <Box as="section" bg="brand.navy" width="100%" py={{ base: 12, md: 16, lg: 20 }}>
         <Box maxW="1200px" mx="auto" px={{ base: 4, md: 10, lg: 20 }}>
-          <Box bg="rgba(255,255,255,0.06)" borderRadius="2xl" p={{ base: 6, md: 8 }}>
-            <Heading fontSize={{ base: "4xl", md: "5xl" }} color="white" mb={4}>
+          <Box bg="surface.glass" borderRadius="2xl" p={{ base: 6, md: 8 }}>
+            <Heading fontSize={{ base: "4xl", md: "5xl" }} color="surface.default" mb={4}>
               Measurable Progress
             </Heading>
             <Text color="gray.200">{errorMsg}</Text>
@@ -82,9 +82,9 @@ export default function MeasurableProgress({ id }) {
   }
 
   return (
-    <Box as="section" bg="#092751" width="100%" py={{ base: 12, md: 16, lg: 20 }} borderRadius="3xl" overflow="hidden">
+    <Box as="section" bg="brand.navy" width="100%" py={{ base: 12, md: 16, lg: 20 }} borderRadius="3xl" overflow="hidden">
       <Box maxW="2500px" mx="auto" px={{ base: 24, md: 52, lg: 80 }}>
-        <Box bg="#092751" borderRadius="3xl" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 8, md: 10, lg: 12 }}>
+        <Box bg="brand.navy" borderRadius="3xl" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 8, md: 10, lg: 12 }}>
           <Box
             maxW="920px"
             mx={showStats ? 0 : "auto"}
@@ -95,7 +95,7 @@ export default function MeasurableProgress({ id }) {
               as="h2"
               fontSize={{ base: "4xl", md: "6xl", lg: "7xl" }}
               lineHeight={1.02}
-              color="white"
+              color="surface.default"
               fontWeight="800"
             >
               {showStats ? "Measurable Progress" : "In the Works"}
@@ -125,7 +125,7 @@ export default function MeasurableProgress({ id }) {
               <Box
                 mt={{ base: 8, md: 10 }}
                 position="relative"
-                bg="rgba(92, 218, 197, 0.1)"
+                bg="brand.accentFaint"
                 borderRadius="0 15px 15px 0"
                 px={{ base: 6, md: 8 }}
                 py={{ base: 6, md: 8 }}
@@ -139,7 +139,7 @@ export default function MeasurableProgress({ id }) {
                   top={0}
                   bottom={0}
                   w="8px"
-                  bg="#5CDAC5"
+                  bg="brand.accent"
                   borderRadius="0 5px 5px 0"
                 />
                 <Box pl={{ base: 3, md: 4 }}>
@@ -153,7 +153,7 @@ export default function MeasurableProgress({ id }) {
                   </Text>
                   <Text
                     mt={4}
-                    color="#5CDAC5"
+                    color="brand.accent"
                     fontSize={{ base: "lg", md: "2xl", lg: "3xl" }}
                     fontWeight="500"
                   >
@@ -180,7 +180,7 @@ export default function MeasurableProgress({ id }) {
                   <Text
                     fontSize={{ base: "7xl", md: "8xl", lg: "8xl" }}
                     fontWeight="800"
-                    color="#5CDAC5"
+                    color="brand.accent"
                     lineHeight={1}
                   >
                     {stat.title}

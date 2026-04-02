@@ -13,7 +13,7 @@ const Programs = () => {
         return (
           <Center minH="60vh">
             <VStack spacing={4}>
-              <Spinner size="xl" color="blue.500" thickness="4px" />
+              <Spinner size="xl" color="brand.primary" thickness="4px" />
               <Text color="gray.500">Fetching programs...</Text>
             </VStack>
           </Center>
@@ -48,7 +48,7 @@ const Programs = () => {
                     top={{ base: 260, md: 320, lg: 360 }}
                     size={{ base: "180px", md: "220px", lg: "260px" }}
                     strokeWidth="36px"
-                    color="#5CDAC5"
+                    color="var(--color-brand-accent)"
                     opacity={0.15}
                     zIndex={0}
                     display={{ base: "none", md: "block" }}
@@ -60,7 +60,7 @@ const Programs = () => {
                         fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                         lineHeight={{ base: 1.2, md: 1.25 }}
                     >
-                        <Text as="span" color="#1573CF">TENA</Text> is a community-centric nonprofit building ecosystems that <Text as="span" color="#1573CF">empower</Text> underserved communities to <Text as="span" color="#1573CF">overcome</Text> systemic barriers through optimizing <Text as="span" color="#1573CF">access</Text> to resources, knowledge, and entry to healthcare professions.
+                        <Text as="span" color="brand.primary">TENA</Text> is a community-centric nonprofit building ecosystems that <Text as="span" color="brand.primary">empower</Text> underserved communities to <Text as="span" color="brand.primary">overcome</Text> systemic barriers through optimizing <Text as="span" color="brand.primary">access</Text> to resources, knowledge, and entry to healthcare professions.
                     </Heading>
                 </Box>
 
