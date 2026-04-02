@@ -2,6 +2,30 @@ import { Box, Button, Card, Flex, HStack, Image, Text, VStack } from "@chakra-ui
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
+function parseRichText(text) {
+  const parts = String(text ?? "").split(/\*\*(.*?)\*\*/g);
+  return parts.flatMap((part, i) => {
+    if (i % 2 === 1) {
+      return (
+        <Text as="span" key={`bold-${i}`} fontWeight="700">
+          {part}
+        </Text>
+      );
+    }
+
+    const subParts = part.split(/(\S+?)\^/g);
+    return subParts.map((sub, j) =>
+      j % 2 === 1 ? (
+        <Text as="span" key={`blue-${i}-${j}`} color="#1573CF">
+          {sub}
+        </Text>
+      ) : (
+        sub
+      )
+    );
+  });
+}
+
 export default function ProgramCard({
   title,
   description,
@@ -60,7 +84,7 @@ export default function ProgramCard({
 
           <Flex direction="column" flex="1" minH={{ base: "auto", md: "170px" }}>
             <Text fontSize={{ base: "md", md: "18px" }} lineHeight="1.55" color="#1A202C">
-              {description}
+              {parseRichText(description)}
             </Text>
 
             <Flex justify={{ base: "flex-start", md: "flex-end" }} mt={{ base: 6, md: "auto" }}>
