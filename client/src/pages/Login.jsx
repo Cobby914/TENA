@@ -10,7 +10,9 @@ export default function Login() {
   const setSession = useAuthStore((s) => s.setSession);
 
   if (session) {
-    return <Navigate to="/admin" replace />;
+    const role = String(session?.user?.role ?? "").toLowerCase();
+    const to = role === "admin" ? "/admin" : "/";
+    return <Navigate to={to} replace />;
   }
 
   const destination = location.state?.from?.pathname || "/admin";
