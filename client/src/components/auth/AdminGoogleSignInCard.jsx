@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Box, Button, Center, Heading, Text, VStack, useToast } from "@chakra-ui/react";
 import { completeGoogleAdminSignIn } from "../../auth/completeGoogleSignIn";
 import { getFirebaseApp } from "../../lib/firebase";
+import { getApiBaseUrl } from "../../lib/apiBase.js";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+const API_BASE = getApiBaseUrl();
 
 /** Optional: Google Workspace domain hint (`hd`) for the account picker. */
 const HOSTED_DOMAIN = (import.meta.env.VITE_GOOGLE_HOSTED_DOMAIN || "").trim() || undefined;

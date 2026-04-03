@@ -5,7 +5,7 @@ import { getFirebaseApp } from "../lib/firebase";
  * Opens Google sign-in via Firebase (same OAuth client as Firebase Console → Auth → Google).
  * Then registers the session with the API using a Firebase ID token.
  *
- * @param {string} apiBase - e.g. import.meta.env.VITE_API_BASE_URL
+ * @param {string} apiBase - from `getApiBaseUrl()` (empty = same origin on Vercel)
  * @param {{ hostedDomain?: string }} [options] - optional Google Workspace `hd` hint
  * @returns {Promise<object>} API user row
  */

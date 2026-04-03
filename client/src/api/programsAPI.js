@@ -2,8 +2,9 @@
  * HTTP client for public program content from `/api/programs`.
  * Used by program listing pages, home “Programs” section, hooks, and admin dashboards.
  */
-const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
-const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
+import { getApiBaseUrl } from "../lib/apiBase.js";
+
+const API_BASE = getApiBaseUrl();
 const baseEndpoint = `${API_BASE}/api/programs`;
 
 let lastError;

@@ -2,6 +2,7 @@ import { Text, Button, Input, Box, VStack, FormControl, FormLabel, Icon, useToas
 import { useState } from "react";
 import InputBox from "../ui/InputBox.jsx";
 import { ChevronRight } from "lucide-react";
+import { getApiBaseUrl } from "../../lib/apiBase.js";
 
 export default function NewsLetter(){
     
@@ -32,7 +33,7 @@ const [formData, setFormData] = useState({
         };
 
         try {
-            const response = await fetch("http://localhost:3001/api/newsletter_subscribers", {
+            const response = await fetch(`${getApiBaseUrl()}/api/newsletter_subscribers`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
