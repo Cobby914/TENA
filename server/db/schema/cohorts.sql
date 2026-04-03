@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS cohorts (
     term_order INTEGER NOT NULL,        -- ensures correct ordering
 
     name VARCHAR(100),                  -- "2024 Winter Cohort"
+    profile_picture BOOLEAN NOT NULL DEFAULT FALSE, -- tracks if intern profile picture exists
 
     created_at TIMESTAMP DEFAULT NOW(),
 
