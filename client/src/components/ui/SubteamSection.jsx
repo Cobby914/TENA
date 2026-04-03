@@ -19,6 +19,8 @@ export default function SubteamSection({ link, src, whoText, buttonText }) {
                 {whoText}
             </Text>
             <Button
+            as = {NavLink}
+                to = {link}
                 fontWeight="bold"
                 mt={{ base: 1, md: 4 }}
                 height={{ base: "36px", sm: "42px", md: "65px" }}
@@ -39,10 +41,8 @@ export default function SubteamSection({ link, src, whoText, buttonText }) {
                     boxShadow: "md",
                     bg: "brand.primaryHover",
                 }}
-            >
-                <NavLink to={link}>
+            >     
                     {buttonText}
-                </NavLink>
             </Button>
         </VStack>
     );
