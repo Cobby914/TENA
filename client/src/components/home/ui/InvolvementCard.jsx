@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { prefetchGivebutterCampaign } from "../../../lib/giveButter";
@@ -10,6 +11,25 @@ export default function InvolvementCard({
   onAction,
 }) {
   const isExternalLink = link && /^https?:\/\//.test(link);
+  const opensExternally = Boolean(onAction || isExternalLink);
+  const ctaRef = useRef(null);
+
+  useEffect(() => {
+    if (!opensExternally) return;
+    const clearStuckInteraction = () => {
+      if (document.visibilityState !== "visible") return;
+      const el = ctaRef.current;
+      if (el && document.activeElement === el && typeof el.blur === "function") {
+        el.blur();
+      }
+    };
+    document.addEventListener("visibilitychange", clearStuckInteraction);
+    window.addEventListener("pageshow", clearStuckInteraction);
+    return () => {
+      document.removeEventListener("visibilitychange", clearStuckInteraction);
+      window.removeEventListener("pageshow", clearStuckInteraction);
+    };
+  }, [opensExternally]);
 
   return (
     <Box
@@ -56,6 +76,7 @@ export default function InvolvementCard({
             : isExternalLink
               ? { as: "a", href: link, target: "_blank", rel: "noopener noreferrer" }
               : { as: RouterLink, to: link })}
+          ref={opensExternally ? ctaRef : undefined}
           bgColor="brand.primary"
           w="full"
           maxW="100%"
@@ -75,6 +96,23 @@ export default function InvolvementCard({
           fontWeight={500}
           color="surface.default"
           textDecoration="none"
+          boxShadow="none"
+          _hover={{
+            bgColor: "brand.primary",
+            color: "surface.default",
+            opacity: 1,
+            boxShadow: "inset 0 0 0 9999px rgb(0 0 0 / 0.14)",
+          }}
+          _active={{
+            bgColor: "brand.primary",
+            color: "surface.default",
+            opacity: 1,
+            boxShadow: "inset 0 0 0 9999px rgb(0 0 0 / 0.2)",
+          }}
+          sx={{
+            WebkitTapHighlightColor: "transparent",
+            transition: "box-shadow 0.2s ease",
+          }}
         >
           {linkname}
         </Button>

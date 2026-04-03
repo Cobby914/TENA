@@ -27,7 +27,7 @@ export default function GetInvolved() {
       position="relative"
       as="section"
       w="100%"
-      overflowY="visible"
+      overflowY="hidden"
       overflowX="hidden"
       py={{ base: 22, md: 40 }}
     >
