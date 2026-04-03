@@ -1,5 +1,6 @@
-import { Box, Flex, Image, Button as ChakraButton } from "@chakra-ui/react";
+import { Box, Flex, Image, Button as ChakraButton, IconButton, Collapse, useDisclosure } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { Menu as MenuIcon, X } from "lucide-react";
 import AUMenu from "./AboutUsMenu";
 import PMenu from "./ProgramsMenu";
 import GIMenu from "./GetInvolvedMenu";
@@ -9,76 +10,123 @@ const main_logo = "/transparent_tena_logo.png";
 const text_logo = "/tena_text_logo.png";
 
 export default function Navbar() {
+  const { isOpen, onToggle, onClose } = useDisclosure();
+
   return (
     <Box
       as="nav"
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
       bg="surface.default"
       w="100%"
-      px={{ base: 4, md: 8, lg: 12 }}
-      py={{ base: 3, md: 4 }}
-      minH={{ base: "64px", md: "72px" }}
       borderBottomWidth="1px"
       borderBottomColor="border.default"
     >
-      <Flex align="center" gap={{ base: 2, md: 3 }} flexShrink={0}>
-        <NavLink to="/">
-          <Image
-            src={main_logo}
-            alt="TENA Logo"
-            width={{ base: 35, lg: 51 }}
-            height={{ base: 30, lg: 45 }}
-          />
-        </NavLink>
-        <NavLink to="/">
-          <Image
-            src={text_logo}
-            alt="TENA"
-            width={{ base: 120, lg: 140 }}
-            height={{ base: 38, lg: 37 }}
-            display={{ base: "none", md: "flex" }}
-          />
-        </NavLink>
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        px={{ base: 4, md: 8, lg: 12 }}
+        py={{ base: 3, md: 4 }}
+        minH={{ base: "64px", md: "72px" }}
+      >
+        <Flex align="center" gap={{ base: 2, md: 3 }} flexShrink={0}>
+          <NavLink to="/" onClick={onClose}>
+            <Image
+              src={main_logo}
+              alt="TENA Logo"
+              objectFit="contain"
+              sx={{ width: "clamp(40px, 7vw, 120px)", height: "auto" }}
+            />
+          </NavLink>
+          <NavLink to="/" onClick={onClose}>
+            <Image
+              src={text_logo}
+              alt="TENA"
+              objectFit="contain"
+              sx={{ width: "clamp(100px, 14vw, 230px)", height: "auto" }}
+            />
+          </NavLink>
+        </Flex>
+
+        <Flex align="center" gap={{ md: 6, lg: 8 }} display={{ base: "none", md: "flex" }}>
+          <AUMenu />
+          <PMenu />
+          <GIMenu />
+          <ChakraButton
+            {...donateButtonInteractionProps}
+            bg="brand.accent"
+            color="neutral.text"
+            fontWeight="600"
+            lineHeight="1"
+            whiteSpace="nowrap"
+            borderRadius="md"
+            flexShrink={0}
+            borderWidth="1px"
+            borderColor="neutral.text"
+            _hover={{ bg: "brand.accentHover", color: "neutral.text" }}
+            _active={{ bg: "brand.accent", color: "neutral.text" }}
+            sx={{
+              fontSize: "clamp(13px, 1.6vw, 24px)",
+              px: "clamp(16px, 2vw, 40px)",
+              py: "clamp(10px, 1.2vw, 16px)",
+              height: "clamp(40px, 4.5vw, 64px)",
+              minHeight: "clamp(40px, 4.5vw, 64px)",
+            }}
+          >
+            Donate
+          </ChakraButton>
+        </Flex>
+
+        <IconButton
+          display={{ base: "flex", md: "none" }}
+          aria-label="Toggle menu"
+          icon={isOpen ? <X size={24} /> : <MenuIcon size={24} />}
+          variant="ghost"
+          color="neutral.text"
+          bg="transparent"
+          onClick={onToggle}
+          _hover={{ bg: "transparent", color: "brand.primary" }}
+          _active={{ bg: "transparent" }}
+          _focus={{ boxShadow: "none" }}
+          _focusVisible={{ boxShadow: "none", outline: "none" }}
+        />
       </Flex>
 
-      <Box
-        display={{ base: "grid", md: "flex" }}
-        gridTemplateColumns={{ base: "repeat(2, max-content)", md: "none" }}
-        justifyContent={{ base: "center", md: "flex-end" }}
-        justifyItems={{ base: "start", md: "initial" }}
-        columnGap={{ base: 4, md: 0 }}
-        rowGap={{ base: 2, md: 0 }}
-        alignItems="center"
-        gap={{ md: 6, lg: 8 }}
-      >
-        <AUMenu />
-        <PMenu />
-        <GIMenu />
-
-        <ChakraButton
-          {...donateButtonInteractionProps}
-          bg="brand.accent"
-          color="neutral.text"
-          fontWeight="600"
-          fontSize={{ base: "14px", md: "16px" }}
-          px={{ base: 5, md: 6 }}
-          py={2}
-          h="44px"
-          minH="44px"
-          lineHeight="1"
-          whiteSpace="nowrap"
-          borderRadius="md"
-          flexShrink={0}
-          borderWidth="1px"
-          borderColor="neutral.text"
-          _hover={{ bg: "brand.accentHover", color: "neutral.text" }}
-          _active={{ bg: "brand.accent", color: "neutral.text" }}
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          display={{ base: "flex", md: "none" }}
+          flexDirection="column"
+          alignItems="flex-start"
+          px={4}
+          pb={4}
+          gap={2}
+          borderTopWidth="1px"
+          borderTopColor="border.default"
         >
-          Donate
-        </ChakraButton>
-      </Box>
+          <AUMenu onClose={onClose} />
+          <PMenu onClose={onClose} />
+          <GIMenu onClose={onClose} />
+          <ChakraButton
+            {...donateButtonInteractionProps}
+            bg="brand.accent"
+            color="neutral.text"
+            fontWeight="600"
+            fontSize="18px"
+            px={6}
+            py={3}
+            h="52px"
+            minH="52px"
+            lineHeight="1"
+            whiteSpace="nowrap"
+            borderRadius="md"
+            borderWidth="1px"
+            borderColor="neutral.text"
+            alignSelf="flex-start"
+            _hover={{ bg: "brand.accentHover", color: "neutral.text" }}
+            _active={{ bg: "brand.accent", color: "neutral.text" }}
+          >
+            Donate
+          </ChakraButton>
+        </Box>
+      </Collapse>
     </Box>
   );
 }

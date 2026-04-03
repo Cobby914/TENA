@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -16,20 +16,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const CLOSE_DELAY_MS = 120;
 
-/**
- * No blue browser/Chakra focus ring — keyboard users still get a muted fill via _focusVisible.
- * Chakra Menu also sets box-shadow rings; strip those everywhere.
- */
 const menuItemProps = {
   transition:
     "background-color 0.18s ease, color 0.18s ease, padding-left 0.18s ease",
-  //
   _hover: {
     bg: "surface.muted",
     color: "neutral.strong",
-    pl: 5, // Shifts text padding to add animation effect
+    pl: 5,
   },
-  // Runs so that highlight and background stays active
   _active: {
     bg: "surface.muted",
     color: "neutral.strong",
@@ -54,23 +48,32 @@ const menuItemProps = {
     "&:focus:not(:focus-visible)": {
       bg: "transparent",
     },
-    // Chakra roving-focus attribute (often keeps a shadow ring)
     "&[data-focus], &[data-focus-visible]": {
       boxShadow: "none !important",
       outline: "none !important",
     },
+    "&.active": {
+      background: "transparent !important",
+    },
   },
 };
 
-/**
- * Navbar-style hover dropdown: hover opens the panel; clicking the label navigates to `mainPath`.
- * Items are `{ label, to }` for in-app routes or `{ label, href }` for external links.
- */
-export default function DropdownButton({ label, mainPath, items }) {
+export default function DropdownButton({ label, mainPath, items, onClose: onNavClose }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const closeTimerRef = useRef(null);
-  const isMobileNav = useBreakpointValue({ base: true, md: false });
+  const isNarrowViewport = useBreakpointValue({ base: true, md: false });
+  const [hasHover, setHasHover] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setHasHover(mq.matches);
+    const handler = (e) => setHasHover(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const isMobileNav = isNarrowViewport && !hasHover;
 
   const cancelScheduledClose = () => {
     if (closeTimerRef.current != null) {
@@ -102,110 +105,108 @@ export default function DropdownButton({ label, mainPath, items }) {
 
   if (isMobileNav) {
     return (
-      <Flex align="center" gap={1} minH="44px" flexShrink={0}>
-        <ChakraButton
-          as={NavLink}
-          to={mainPath}
-          variant="ghost"
-          bg="transparent"
-          color="neutral.text"
-          fontWeight="500"
-          fontSize="14px"
-          h="auto"
-          minH="44px"
-          px={2}
-          py={2}
-          borderRadius="md"
-          textDecoration="underline"
-          whiteSpace="nowrap"
-          transition="color 0.2s ease, transform 0.1s ease"
-          _hover={{ bg: "transparent", color: "brand.primary" }}
-          _active={{ bg: "transparent", color: "brand.primary", transform: "scale(0.98)" }}
-          _focusVisible={{
-            outline: "2px solid",
-            outlineColor: "var(--color-brand-accent)",
-            outlineOffset: "2px",
-            boxShadow: "none",
-          }}
-        >
-          {label}
-        </ChakraButton>
-
-        <Menu isOpen={isOpen} onClose={onClose} placement="bottom-start" gutter={4} closeOnBlur>
-          <MenuButton
-            as={IconButton}
-            aria-label={`Open ${label} menu`}
-            icon={<Icon as={ChevronDown} boxSize={4} strokeWidth={2} />}
+      <Flex direction="column" w="100%">
+        <Flex align="center" justify="space-between" w="100%">
+          <ChakraButton
+            as={NavLink}
+            to={mainPath}
             variant="ghost"
-            minW="36px"
-            h="36px"
-            p={1}
-            borderRadius="md"
             bg="transparent"
-            color={isOpen ? "brand.primary" : "neutral.text"}
-            _active={{ bg: "transparent", color: "brand.primary", transform: "scale(0.96)" }}
-            _focusVisible={{
-              outline: "2px solid",
-              outlineColor: "var(--color-brand-accent)",
-              outlineOffset: "2px",
-              boxShadow: "none",
-            }}
-            onClick={toggleMobileMenu}
-            sx={{
-              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.2s ease, color 0.2s ease",
-            }}
-          />
-          <MenuList
-            bg="surface.default"
-            rounded="lg"
-            overflow="hidden"
-            boxShadow="md"
-            borderWidth="1px"
-            borderColor="border.default"
-            minW="220px"
-            py={0}
-            px={0}
-            sx={{ borderRadius: "var(--radius-lg)" }}
+            color="neutral.text"
+            fontWeight="500"
+            fontSize="18px"
+            h="auto"
+            minH="44px"
+            px={2}
+            py={2}
+            borderRadius="md"
+            textDecoration="underline"
+            whiteSpace="nowrap"
+            transition="color 0.2s ease"
+            _hover={{ bg: "transparent", color: "brand.primary" }}
+            _active={{ bg: "transparent", color: "brand.primary" }}
+            _focusVisible={{ outline: "2px solid", boxShadow: "none" }}
+            onClick={onNavClose}
           >
-            {items.map((item) =>
-              item.href ? (
-                <MenuItem
-                  key={item.label}
-                  as="a"
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="neutral.text"
-                  fontSize="14px"
-                  fontWeight="400"
-                  py={2.5}
-                  px={4}
-                  borderRadius="none"
-                  {...menuItemProps}
-                >
-                  {item.label}
-                </MenuItem>
-              ) : (
-                <MenuItem
-                  key={item.to}
-                  as={NavLink}
-                  to={item.to}
-                  color="neutral.text"
-                  fontSize="14px"
-                  fontWeight="400"
-                  py={2.5}
-                  px={4}
-                  borderRadius="none"
-                  {...menuItemProps}
-                  onClick={onClose}
-                >
-                  {item.label}
-                </MenuItem>
-              ),
-            )}
-          </MenuList>
-        </Menu>
+            {label}
+          </ChakraButton>
+
+          <Menu isOpen={isOpen} onClose={onClose} placement="bottom-start" gutter={4} closeOnBlur>
+            <MenuButton
+              as={IconButton}
+              aria-label={`Open ${label} menu`}
+              icon={<Icon as={ChevronDown} boxSize={4} strokeWidth={2} />}
+              variant="ghost"
+              minW="36px"
+              h="36px"
+              p={1}
+              borderRadius="md"
+              bg="transparent"
+              color={isOpen ? "brand.primary" : "neutral.text"}
+              _active={{ bg: "transparent", color: "brand.primary" }}
+              _focusVisible={{ outline: "none", boxShadow: "none" }}
+              onClick={toggleMobileMenu}
+              sx={{
+                transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 0.2s ease, color 0.2s ease",
+              }}
+            />
+            <MenuList
+              bg="surface.default"
+              rounded="lg"
+              overflow="hidden"
+              boxShadow="md"
+              borderWidth="1px"
+              borderColor="border.default"
+              minW="200px"
+              py={0}
+              px={0}
+              sx={{ borderRadius: "var(--radius-lg)" }}
+            >
+              {items.map((item) =>
+                item.href ? (
+                  <MenuItem
+                    key={item.label}
+                    as="a"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    color="neutral.text"
+                    fontWeight="400"
+                    fontSize="16px"
+                    py={3}
+                    px={4}
+                    borderRadius="none"
+                    {...menuItemProps}
+                  >
+                    {item.label}
+                  </MenuItem>
+                ) : (
+                  <MenuItem
+                    key={item.to}
+                    as="a"
+                    href={item.to}
+                    color="neutral.text"
+                    fontWeight="400"
+                    fontSize="16px"
+                    py={3}
+                    px={4}
+                    borderRadius="none"
+                    {...menuItemProps}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onClose();
+                      onNavClose?.();
+                      navigate(item.to);
+                    }}
+                  >
+                    {item.label}
+                  </MenuItem>
+                ),
+              )}
+            </MenuList>
+          </Menu>
+        </Flex>
       </Flex>
     );
   }
@@ -221,41 +222,32 @@ export default function DropdownButton({ label, mainPath, items }) {
       <MenuButton
         as={ChakraButton}
         variant="ghost"
-        rightIcon={
-          <Icon as={ChevronDown} boxSize={{ base: 4, md: 4 }} strokeWidth={2} />
-        }
+        rightIcon={<Icon as={ChevronDown} boxSize={4} strokeWidth={2} />}
         bg="transparent"
         color="neutral.text"
         fontWeight="500"
-        fontSize={{ base: "14px", md: "16px" }}
         h="auto"
-        minH="44px"
-        px={{ base: 2, md: 3 }}
+        minH="clamp(40px, 4.5vw, 64px)"
+        px={{ base: 1, md: 2 }}
         py={2}
         borderRadius="md"
+        whiteSpace="nowrap"
         transition="color 0.2s ease, text-decoration-color 0.2s ease"
-        _hover={{
-          bg: "transparent",
-          color: "brand.primary",
-          textDecoration: "underline",
-        }}
+        _hover={{ bg: "transparent", color: "brand.primary", textDecoration: "underline" }}
         _active={{ bg: "transparent", color: "brand.primary" }}
         _expanded={{ bg: "transparent", color: "brand.primary" }}
-        _focus={{ boxShadow: "none", outline: "none" }}
-        _focusVisible={{
-          boxShadow: "none",
-          outline: "2px solid",
-          outlineColor: "var(--color-brand-accent)",
-          outlineOffset: "2px",
-        }}
-        textDecoration={{ base: "underline", md: "none" }}
+        _focus={{ boxShadow: "none !important", outline: "none !important", bg: "transparent" }}
+        _focusVisible={{ boxShadow: "none !important", outline: "none !important", bg: "transparent" }}
+        textDecoration="none"
         onMouseEnter={handleEnter}
         onMouseLeave={scheduleClose}
         onClick={() => navigate(mainPath)}
         sx={{
+          fontSize: "clamp(9px, 2.2vw, 24px)",
           "&:focus, &:focus-visible": {
-            outlineOffset: "2px",
+            outline: "none !important",
             boxShadow: "none !important",
+            background: "transparent !important",
           },
         }}
       >
@@ -271,12 +263,10 @@ export default function DropdownButton({ label, mainPath, items }) {
         boxShadow="md"
         borderWidth="1px"
         borderColor="border.default"
-        minW="220px"
+        minW="200px"
         py={0}
         px={0}
-        sx={{
-          borderRadius: "var(--radius-lg)",
-        }}
+        sx={{ borderRadius: "var(--radius-lg)" }}
       >
         {items.map((item) =>
           item.href ? (
@@ -287,28 +277,32 @@ export default function DropdownButton({ label, mainPath, items }) {
               target="_blank"
               rel="noopener noreferrer"
               color="neutral.text"
-              fontSize={{ base: "14px", md: "15px" }}
               fontWeight="400"
-              py={2.5}
+              py={3}
               px={4}
               borderRadius="none"
               {...menuItemProps}
+              sx={{ ...menuItemProps.sx, fontSize: "clamp(9px, 1.8vw, 20px)" }}
             >
               {item.label}
             </MenuItem>
           ) : (
             <MenuItem
               key={item.to}
-              as={NavLink}
-              to={item.to}
+              as="a"
+              href={item.to}
               color="neutral.text"
-              fontSize={{ base: "14px", md: "15px" }}
               fontWeight="400"
-              py={2.5}
+              py={3}
               px={4}
               borderRadius="none"
               {...menuItemProps}
-              onClick={onClose}
+              sx={{ ...menuItemProps.sx, fontSize: "clamp(9px, 1.8vw, 20px)" }}
+              onClick={(e) => {
+                e.preventDefault();
+                onClose();
+                navigate(item.to);
+              }}
             >
               {item.label}
             </MenuItem>

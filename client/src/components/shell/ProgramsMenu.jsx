@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useProgramData } from "../../hooks/useProgramsData";
 import { createProgramSlug } from "../../lib/programSlug";
 
-export default function ProgramsMenu() {
+export default function ProgramsMenu({ onClose }) {
   const { programs } = useProgramData();
   const items = useMemo(() => {
     if (!programs.length) return [{ to: "/programs", label: "All Programs" }];
@@ -17,6 +17,7 @@ export default function ProgramsMenu() {
     <DropdownButton
       label="Programs"
       mainPath="/programs"
+      onClose={onClose}
       items={items}
     />
   );
