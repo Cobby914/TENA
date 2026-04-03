@@ -51,7 +51,7 @@ export default function Footer({
                                                 <Icon as={FaInstagram} boxSize={7} transition="all 0s" _groupHover={{ opacity: 0 }} />
                                                 <Image src={color_insta_logo} boxSize={7} position="absolute" top={0} left={0} opacity={0} transition="all 0s" _groupHover={{ opacity: 1 }} />
                                             </Link>
-                                            <Link href="https://www.instagram.com/tenacares/" isExternal role="group" position="relative" display="inline-block">
+                                            <Link href="https://linktr.ee/tenacares?utm_source=ig&utm_medium=social&utm_content=link_in_bio" isExternal role="group" position="relative" display="inline-block">
                                                 <Icon as={PiLinktreeLogoFill} boxSize={7} transition="all 0s" _groupHover={{ opacity: 0 }} />
                                                 <Image Src={color_linktree_logo} boxSize={7} position="absolute" top={0} left={0} opacity={0} transition="all 0s" _groupHover={{ opacity: 1 }} />
                                             </Link>
