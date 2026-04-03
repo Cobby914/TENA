@@ -15,6 +15,8 @@ export default function Navbar() {
   return (
     <Box
       as="nav"
+      position="relative"
+      zIndex={20}
       bg="surface.default"
       w="100%"
       borderBottomWidth="1px"
