@@ -1,12 +1,16 @@
 import { Box, Flex, HStack, Image, VStack, Text, Link, Icon } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FaLinkedin, FaInstagram } from "react-icons/fa6";
+import { PiLinktreeLogoFill } from "react-icons/pi";
 import Newsletter from "./Newsletter";
 import { donateButtonInteractionProps } from "../../lib/giveButter";
 
 const main_logo = "/transparent_tena_logo.png";
 const text_logo = "/tena_text_logo.png";
 const gold_transparency = "/Footer/gold_transparency_candid.png";
+const colored_linkedin_logo = "/Footer/linkedin-svgrepo-com.svg";
+const color_insta_logo = "/Footer/instagram-color-svgrepo-com.svg";
+const color_linktree_logo = "/Footer/linktree-Icon.png";
 
 
 // Still need to add the transparency seal
@@ -39,11 +43,17 @@ export default function Footer({
                                         </Text>
                                         
                                         <HStack gap={4}>
-                                            <Link href="https://www.linkedin.com/company/tena-cares/" isExternal>
-                                                <Icon as={FaLinkedin} boxSize={7} />
+                                            <Link href="https://www.linkedin.com/company/tena-cares/" isExternal role="group" position="relative" display="inline-block">
+                                                <Icon as={FaLinkedin} boxSize={7} transition="all 0s" _groupHover={{ opacity: 0 }} />
+                                                <Image src={colored_linkedin_logo} boxSize={7} position="absolute" top={0} left={0} opacity={0} transition="all 0s" _groupHover={{ opacity: 1 }} />
                                             </Link>
-                                            <Link href="https://www.instagram.com/tenacares/" isExternal>
-                                                <Icon as={FaInstagram} boxSize={7} />
+                                            <Link href="https://www.instagram.com/tenacares/" isExternal role="group" position="relative" display="inline-block">
+                                                <Icon as={FaInstagram} boxSize={7} transition="all 0s" _groupHover={{ opacity: 0 }} />
+                                                <Image src={color_insta_logo} boxSize={7} position="absolute" top={0} left={0} opacity={0} transition="all 0s" _groupHover={{ opacity: 1 }} />
+                                            </Link>
+                                            <Link href="https://www.instagram.com/tenacares/" isExternal role="group" position="relative" display="inline-block">
+                                                <Icon as={PiLinktreeLogoFill} boxSize={7} transition="all 0s" _groupHover={{ opacity: 0 }} />
+                                                <Image Src={color_linktree_logo} boxSize={7} position="absolute" top={0} left={0} opacity={0} transition="all 0s" _groupHover={{ opacity: 1 }} />
                                             </Link>
                                         </HStack>
                                     </VStack>
