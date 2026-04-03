@@ -68,6 +68,7 @@ export default function OurTeam() {
                     name={member.name}
                     position={member.role}
                     imageSrc={member.imageSrc}
+                    linkedinUrl={member.linkedinUrl}
                     variant="team"
                   />
                 </FadeInWhenVisible>
@@ -128,6 +129,7 @@ export default function OurTeam() {
                     spacing={{ base: 4, md: 5 }}
                     w="100%"
                     justifyItems="center"
+                    alignItems="start"
                   >
                     {cohort.interns.map((intern) => (
                       <MemberCard
@@ -135,7 +137,9 @@ export default function OurTeam() {
                         name={intern.name}
                         position={intern.role}
                         imageSrc={intern.imageSrc}
+                        linkedinUrl={intern.linkedinUrl}
                         variant="cohort"
+                        showProfilePhoto={cohort.profilePicture}
                       />
                     ))}
                   </SimpleGrid>
