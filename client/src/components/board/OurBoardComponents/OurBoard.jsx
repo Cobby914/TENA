@@ -65,6 +65,7 @@ export default function OurBoard() {
                   name={member.name}
                   position={member.role}
                   imageSrc={member.imageSrc}
+                  linkedinUrl={member.linkedinUrl}
                   variant="board"
                 />
               </FadeInWhenVisible>

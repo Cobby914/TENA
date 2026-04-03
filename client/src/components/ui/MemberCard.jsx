@@ -1,4 +1,8 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Box, Image, Link, Text } from "@chakra-ui/react";
+import { memberImagePlaceholder } from "../../lib/memberImageResolver";
+
+const linkedinIconSrc = "/Footer/linkedin-svgrepo-com.svg";
 
 /** Design specs (px): cohort / intern cards */
 const COHORT = {
@@ -68,8 +72,16 @@ export default function MemberCard({
   name,
   position,
   imageSrc,
+  linkedinUrl,
   variant = "board"
 }) {
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const photoSrc = photoFailed ? memberImagePlaceholder : imageSrc;
+
+  useEffect(() => {
+    setPhotoFailed(false);
+  }, [imageSrc]);
+
   const style = CARD_VARIANTS[variant] ?? CARD_VARIANTS.board;
   const cardBg = style.cardBg ?? "surface.section";
   const nameUnderline = style.nameUnderline !== false;
@@ -122,18 +134,19 @@ export default function MemberCard({
           sx={{ aspectRatio: "1 / 1" }}
         >
           <Image
-            src={imageSrc}
+            src={photoSrc}
             alt={name}
             position="absolute"
             inset={0}
             w="100%"
             h="100%"
             objectFit="cover"
+            onError={() => setPhotoFailed(true)}
           />
         </Box>
       ) : (
         <Image
-          src={imageSrc}
+          src={photoSrc}
           alt={name}
           width="100%"
           height={
@@ -148,6 +161,7 @@ export default function MemberCard({
           flexShrink={fixedSize != null ? 1 : 0}
           objectFit="cover"
           bg={variant === "cohort" ? "surface.muted" : "neutral.muted"}
+          onError={() => setPhotoFailed(true)}
         />
       )}
 
@@ -181,6 +195,26 @@ export default function MemberCard({
         >
           {position}
         </Text>
+
+        {linkedinUrl ? (
+          <Link
+            href={linkedinUrl}
+            isExternal
+            mt={variant === "cohort" ? 2 : 3}
+            display="inline-flex"
+            alignItems="center"
+            gap={1.5}
+            fontSize="xs"
+            fontWeight="600"
+            color="brand.primary"
+            _hover={{ textDecoration: "underline" }}
+            alignSelf="flex-start"
+            aria-label={`${name} on LinkedIn`}
+          >
+            <Image src={linkedinIconSrc} alt="" boxSize={variant === "cohort" ? "14px" : "16px"} flexShrink={0} />
+            LinkedIn
+          </Link>
+        ) : null}
       </Box>
     </Box>
   );

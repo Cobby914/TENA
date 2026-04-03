@@ -1,13 +1,12 @@
-const placeholder = "/logoplaceholder.png";
+import { resolveMemberImageSrc } from "./memberImageResolver";
 
-function resolveImageSrc(member) {
-  const imageKey = String(member.profile_image_key ?? member.image_key ?? "").trim();
-  if (!imageKey) return placeholder;
+export { memberImagePlaceholder, resolveMemberImage, resolveMemberImageSrc } from "./memberImageResolver";
 
-  if (/^https?:\/\//i.test(imageKey)) return imageKey;
-  if (imageKey.startsWith("/")) return imageKey;
-  if (imageKey.startsWith("team/")) return `/${imageKey}`;
-  return `/team/${imageKey}`;
+export function normalizeLinkedInUrl(raw) {
+  const s = String(raw ?? "").trim();
+  if (!s) return null;
+  if (/^https?:\/\//i.test(s)) return s;
+  return `https://${s.replace(/^\/+/, "")}`;
 }
 
 export function toCardMember(member, index) {
@@ -28,7 +27,8 @@ export function toCardMember(member, index) {
     role,
     cohortId: Number.isFinite(cohortId) ? cohortId : null,
     cohortName: String(member.cohort_name ?? "").trim(),
-    imageSrc: resolveImageSrc(member),
+    imageSrc: resolveMemberImageSrc(member),
+    linkedinUrl: normalizeLinkedInUrl(member.linkedin_link),
     displayOrder:
       Number.isInteger(Number(member.display_order)) ? Number(member.display_order) : Number.MAX_SAFE_INTEGER
   };

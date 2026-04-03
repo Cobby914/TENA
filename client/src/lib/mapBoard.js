@@ -1,14 +1,4 @@
-const placeholder = "/logoplaceholder.png";
-
-function resolveImageSrc(member) {
-  const imageKey = String(member.profile_image_key ?? member.image_key ?? "").trim();
-  if (!imageKey) return placeholder;
-
-  if (/^https?:\/\//i.test(imageKey)) return imageKey;
-  if (imageKey.startsWith("/")) return imageKey;
-  if (imageKey.startsWith("team/")) return `/${imageKey}`;
-  return `/team/${imageKey}`;
-}
+import { normalizeLinkedInUrl, resolveMemberImageSrc } from "./teamMemberMapper";
 
 export function toBoardCardMember(member, index) {
   const first = String(member.first_name ?? "").trim();
@@ -20,7 +10,8 @@ export function toBoardCardMember(member, index) {
     id: member.id != null ? String(member.id) : `${name}-${index}`,
     name,
     role,
-    imageSrc: resolveImageSrc(member),
+    imageSrc: resolveMemberImageSrc(member),
+    linkedinUrl: normalizeLinkedInUrl(member.linkedin_link),
     displayOrder:
       Number.isInteger(Number(member.display_order)) ? Number(member.display_order) : Number.MAX_SAFE_INTEGER
   };

@@ -68,6 +68,7 @@ export default function OurTeam() {
                     name={member.name}
                     position={member.role}
                     imageSrc={member.imageSrc}
+                    linkedinUrl={member.linkedinUrl}
                     variant="team"
                   />
                 </FadeInWhenVisible>
@@ -135,6 +136,7 @@ export default function OurTeam() {
                         name={intern.name}
                         position={intern.role}
                         imageSrc={intern.imageSrc}
+                        linkedinUrl={intern.linkedinUrl}
                         variant="cohort"
                       />
                     ))}
