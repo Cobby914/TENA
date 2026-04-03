@@ -4,16 +4,8 @@ import { memberImagePlaceholder } from "../../lib/memberImageResolver";
 
 const linkedinIconSrc = "/Footer/linkedin-svgrepo-com.svg";
 
-/** Design specs (px): cohort / intern cards */
-const COHORT = {
-  w: 221,
-  h: 284,
-  radius: 2.83,
-  border: 0.71
-};
-
-/** Design specs (px): main team strip */
-const TEAM = {
+/** Single footprint for board, team, and intern cards */
+const STANDARD = {
   w: 276,
   h: 352,
   radius: 3.53,
@@ -22,37 +14,43 @@ const TEAM = {
 
 const CARD_VARIANTS = {
   board: {
-    width: { base: "260px", md: "288px" },
-    imageHeight: { base: "200px", md: "242px" },
+    fixedSize: STANDARD,
     nameSize: { base: "2xl", md: "30px" },
     roleSize: { base: "sm", md: "md" },
     padding: { base: 4, md: 5 },
     cardBg: "surface.section",
     nameUnderline: true,
-    fillGrid: false,
-    borderRadius: "4px",
-    borderWidth: "1px"
+    nameFontWeight: undefined,
+    roleFontWeight: undefined,
+    roleSubtle: false,
+    borderRadius: `${STANDARD.radius}px`,
+    borderWidth: `${STANDARD.border}px`
   },
   team: {
+    fixedSize: STANDARD,
     nameSize: { base: "lg", md: "xl" },
     roleSize: { base: "xs", md: "sm" },
     padding: { base: 3, md: 4 },
     cardBg: "surface.section",
     nameUnderline: true,
-    fixedSize: TEAM,
-    borderRadius: `${TEAM.radius}px`,
-    borderWidth: `${TEAM.border}px`
+    nameFontWeight: undefined,
+    roleFontWeight: undefined,
+    roleSubtle: false,
+    borderRadius: `${STANDARD.radius}px`,
+    borderWidth: `${STANDARD.border}px`
   },
-  /** Cohort interns: fixed 221×284 — square photo, bold name, light panel */
   cohort: {
+    fixedSize: STANDARD,
     nameSize: { base: "md", md: "md" },
     roleSize: { base: "xs", md: "xs" },
     padding: "10px",
     cardBg: "surface.section",
     nameUnderline: false,
-    fixedSize: COHORT,
-    borderRadius: `${COHORT.radius}px`,
-    borderWidth: `${COHORT.border}px`
+    nameFontWeight: "700",
+    roleFontWeight: "400",
+    roleSubtle: true,
+    borderRadius: `${STANDARD.radius}px`,
+    borderWidth: `${STANDARD.border}px`
   },
   compact: {
     width: { base: "160px", md: "190px" },
@@ -62,6 +60,9 @@ const CARD_VARIANTS = {
     padding: { base: 3, md: 3 },
     cardBg: "surface.section",
     nameUnderline: true,
+    nameFontWeight: undefined,
+    roleFontWeight: undefined,
+    roleSubtle: false,
     fillGrid: false,
     borderRadius: "4px",
     borderWidth: "1px"
@@ -87,7 +88,7 @@ export default function MemberCard({
   const nameUnderline = style.nameUnderline !== false;
   const fillGrid = style.fillGrid === true;
   const fixedSize = style.fixedSize;
-  const roleColor = variant === "cohort" ? "neutral.subtle" : "neutral.text";
+  const roleColor = style.roleSubtle ? "neutral.subtle" : "neutral.text";
   const borderRadius = style.borderRadius ?? "4px";
   const borderWidth = style.borderWidth ?? "1px";
 
@@ -123,44 +124,28 @@ export default function MemberCard({
       boxSizing="border-box"
       overflow="hidden"
     >
-      {variant === "cohort" && fixedSize != null ? (
-        <Box
-          w="100%"
-          position="relative"
-          overflow="hidden"
-          borderRadius="2px"
+      {fixedSize != null ? (
+        <Image
+          src={photoSrc}
+          alt={name}
+          width="100%"
+          height="100%"
+          flex="1"
+          minH={0}
+          flexShrink={1}
+          objectFit="cover"
           bg="neutral.muted"
-          flexShrink={0}
-          sx={{ aspectRatio: "1 / 1" }}
-        >
-          <Image
-            src={photoSrc}
-            alt={name}
-            position="absolute"
-            inset={0}
-            w="100%"
-            h="100%"
-            objectFit="cover"
-            onError={() => setPhotoFailed(true)}
-          />
-        </Box>
+          onError={() => setPhotoFailed(true)}
+        />
       ) : (
         <Image
           src={photoSrc}
           alt={name}
           width="100%"
-          height={
-            fixedSize != null
-              ? "100%"
-              : style.imageHeight != null
-                ? style.imageHeight
-                : "auto"
-          }
-          flex={fixedSize != null ? "1" : undefined}
-          minH={fixedSize != null ? 0 : undefined}
-          flexShrink={fixedSize != null ? 1 : 0}
+          height={style.imageHeight != null ? style.imageHeight : "auto"}
+          flexShrink={0}
           objectFit="cover"
-          bg={variant === "cohort" ? "surface.muted" : "neutral.muted"}
+          bg="neutral.muted"
           onError={() => setPhotoFailed(true)}
         />
       )}
@@ -170,11 +155,11 @@ export default function MemberCard({
         display="flex"
         flexDirection="column"
         minH={0}
-        mt={fixedSize != null ? (variant === "cohort" ? 3 : 2) : { base: 3, md: 3 }}
+        mt={fixedSize != null ? 2 : { base: 3, md: 3 }}
       >
         <Text
           fontSize={style.nameSize}
-          fontWeight={variant === "cohort" ? "700" : undefined}
+          fontWeight={style.nameFontWeight}
           color="neutral.strong"
           lineHeight="1.25"
           textAlign="left"
@@ -187,7 +172,7 @@ export default function MemberCard({
         <Text
           mt={1}
           fontSize={style.roleSize}
-          fontWeight={variant === "cohort" ? "400" : undefined}
+          fontWeight={style.roleFontWeight}
           color={roleColor}
           lineHeight="1.35"
           textAlign="left"
@@ -200,7 +185,7 @@ export default function MemberCard({
           <Link
             href={linkedinUrl}
             isExternal
-            mt={variant === "cohort" ? 2 : 3}
+            mt={2}
             display="inline-flex"
             alignItems="center"
             gap={1.5}
@@ -211,7 +196,7 @@ export default function MemberCard({
             alignSelf="flex-start"
             aria-label={`${name} on LinkedIn`}
           >
-            <Image src={linkedinIconSrc} alt="" boxSize={variant === "cohort" ? "14px" : "16px"} flexShrink={0} />
+            <Image src={linkedinIconSrc} alt="" boxSize="16px" flexShrink={0} />
             LinkedIn
           </Link>
         ) : null}
