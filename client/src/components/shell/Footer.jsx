@@ -65,7 +65,7 @@ export default function Footer({
                                     >
                                         <Link
                                           as={NavLink}
-                                          to="/about"
+                                          to="/aboutUs"
                                           display="block"
                                           textAlign="left"
                                           fontSize={{ base: 32, md: 22 }}
