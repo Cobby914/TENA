@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import Home from "./pages/Home";
-import ProtectedRoute from "./auth/ProtectedRoute";
+import AdminRoute from "./auth/AdminRoute";
 
 /** Code-split everything except Home so first paint downloads less JS. */
 const AboutUs = lazy(() => import("./pages/AboutUs"));
@@ -72,9 +72,9 @@ export default function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute>
+              <AdminRoute>
                 <Admin />
-              </ProtectedRoute>
+              </AdminRoute>
             }
           >
             <Route index element={<Navigate to="dashboard" replace />} />

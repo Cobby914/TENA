@@ -146,7 +146,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // POST /api/team_member_types
-router.post("/", async (req, res, next) => {
+router.post("/", ...adminOnly, async (req, res, next) => {
   try {
     const body = readBody(req);
     const teamMemberId = toId(body.team_member_id);
@@ -193,7 +193,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // PUT /api/team_member_types/:id
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", ...adminOnly, async (req, res, next) => {
   try {
     const id = toId(req.params.id);
     if (!id) return res.status(400).json({ error: "Invalid ID" });
@@ -257,7 +257,7 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // DELETE /api/team_member_types/:id
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", ...adminOnly, async (req, res, next) => {
   try {
     const id = toId(req.params.id);
     if (!id) return res.status(400).json({ error: "Invalid ID" });

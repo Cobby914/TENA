@@ -61,7 +61,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // POST /api/cohorts (body: year, term, term_order, name?, profile_picture?)
-router.post("/", async (req, res, next) => {
+router.post("/", ...adminOnly, async (req, res, next) => {
   try {
     const { year, term, term_order, name } = req.body;
     const profilePicture =
@@ -102,7 +102,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // PUT /api/cohorts/:id (body: year?, term?, term_order?, name?, profile_picture?)
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", ...adminOnly, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) {
