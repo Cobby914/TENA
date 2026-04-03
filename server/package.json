@@ -4,6 +4,7 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
+    "build": "node -e \"process.exit(0)\"",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js"
   },
