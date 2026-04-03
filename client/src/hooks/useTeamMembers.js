@@ -34,9 +34,7 @@ export function useTeamMembers() {
     return rawCohorts
       .map(toCohortOption)
       .sort((a, b) => {
-        if (a.year !== null && b.year !== null && a.year !== b.year) return a.year - b.year;
-        if (a.termOrder !== b.termOrder) return b.termOrder - a.termOrder;
-        return a.title.localeCompare(b.title);
+        (b.termOrder ?? 0) - (a.termOrder ?? 0)
       })
       .map((cohort) => ({
         ...cohort,
