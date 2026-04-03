@@ -34,7 +34,7 @@ export function useTeamMembers() {
     return rawCohorts
       .map(toCohortOption)
       .sort((a, b) => {
-        (b.termOrder ?? 0) - (a.termOrder ?? 0)
+        return (b.termOrder ?? 0) - (a.termOrder ?? 0)
       })
       .map((cohort) => ({
         ...cohort,
