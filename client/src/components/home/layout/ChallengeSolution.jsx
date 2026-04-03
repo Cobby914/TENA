@@ -20,7 +20,7 @@ export default function ChallengeSolution() {
       bg="surface.default"
       p={{ base: 10, md: 16, lg: 28 }}
       maxW="100%"
-      overflow="visible"
+      overflow="hidden"
     >
       <FadeInWhenVisible amount={0.45}>
       <Text
