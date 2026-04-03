@@ -19,6 +19,7 @@ router.get("/", async (req, res, next) => {
         c.term,
         c.term_order,
         c.name,
+        c.profile_picture,
         COUNT(DISTINCT tm.id) FILTER (WHERE LOWER(mt.name) = 'intern')::INT AS enrollment
       FROM "TENA_Admin".cohorts c
       LEFT JOIN "TENA_Admin".team_members tm
@@ -27,7 +28,7 @@ router.get("/", async (req, res, next) => {
         ON tmt.team_member_id = tm.id
       LEFT JOIN "TENA_Admin".member_types mt
         ON mt.id = tmt.member_type_id
-      GROUP BY c.id, c.year, c.term, c.term_order, c.name
+      GROUP BY c.id, c.year, c.term, c.term_order, c.name, c.profile_picture
       ORDER BY c.year DESC, c.term_order ASC, c.id ASC
     `;
     res.json(rows);
@@ -45,7 +46,7 @@ router.get("/:id", async (req, res, next) => {
     }
 
     const rows = await sql`
-      SELECT id, year, term, term_order, name, created_at
+      SELECT id, year, term, term_order, name, profile_picture, created_at
       FROM "TENA_Admin".cohorts
       WHERE id = ${id}
     `;
@@ -59,10 +60,12 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// POST /api/cohorts (body: year, term, term_order, name?)
+// POST /api/cohorts (body: year, term, term_order, name?, profile_picture?)
 router.post("/", async (req, res, next) => {
   try {
     const { year, term, term_order, name } = req.body;
+    const profilePicture =
+      req.body.profile_picture === undefined ? false : req.body.profile_picture;
 
     if (!Number.isInteger(Number(year))) {
       return res
@@ -80,11 +83,16 @@ router.post("/", async (req, res, next) => {
     if (name !== undefined && name !== null && typeof name !== "string") {
       return res.status(400).json({ error: "name must be a string" });
     }
+    if (typeof profilePicture !== "boolean") {
+      return res
+        .status(400)
+        .json({ error: "profile_picture must be a boolean" });
+    }
 
     const rows = await sql`
-      INSERT INTO "TENA_Admin".cohorts (year, term, term_order, name)
-      VALUES (${year}, ${term}, ${term_order}, ${name ?? null})
-      RETURNING id, year, term, term_order, name, created_at
+      INSERT INTO "TENA_Admin".cohorts (year, term, term_order, name, profile_picture)
+      VALUES (${year}, ${term}, ${term_order}, ${name ?? null}, ${profilePicture})
+      RETURNING id, year, term, term_order, name, profile_picture, created_at
     `;
 
     res.status(201).json(rows[0]);
@@ -93,7 +101,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// PUT /api/cohorts/:id (body: year?, term?, term_order?, name?)
+// PUT /api/cohorts/:id (body: year?, term?, term_order?, name?, profile_picture?)
 router.put("/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
@@ -102,7 +110,7 @@ router.put("/:id", async (req, res, next) => {
     }
 
     const existingRows = await sql`
-      SELECT id, year, term, term_order, name, created_at
+      SELECT id, year, term, term_order, name, profile_picture, created_at
       FROM "TENA_Admin".cohorts
       WHERE id = ${id}
     `;
@@ -124,6 +132,9 @@ router.put("/:id", async (req, res, next) => {
         ? null
         : String(req.body.name).trim()
       : existing.name;
+    const profilePicture = has("profile_picture")
+      ? req.body.profile_picture
+      : existing.profile_picture;
 
     if (!Number.isInteger(Number(year))) {
       return res.status(400).json({ error: "year must be an integer" });
@@ -134,6 +145,11 @@ router.put("/:id", async (req, res, next) => {
     if (!Number.isInteger(Number(term_order))) {
       return res.status(400).json({ error: "term_order must be an integer" });
     }
+    if (typeof profilePicture !== "boolean") {
+      return res
+        .status(400)
+        .json({ error: "profile_picture must be a boolean" });
+    }
 
     const updated = await sql`
       UPDATE "TENA_Admin".cohorts
@@ -141,9 +157,10 @@ router.put("/:id", async (req, res, next) => {
         year = ${year},
         term = ${term},
         term_order = ${term_order},
-        name = ${name}
+        name = ${name},
+        profile_picture = ${profilePicture}
       WHERE id = ${id}
-      RETURNING id, year, term, term_order, name, created_at
+      RETURNING id, year, term, term_order, name, profile_picture, created_at
     `;
 
     res.json(updated[0]);
@@ -153,4 +170,3 @@ router.put("/:id", async (req, res, next) => {
 });
 
 export default router;
-
