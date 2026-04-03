@@ -2,8 +2,9 @@
  * Board-of-directors listing: same underlying data as team members but filtered to
  * `by-type/board`. The Our Board page loads this through the `useBoardMembers` hook.
  */
-const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
-const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
+import { getApiBaseUrl } from "../lib/apiBase.js";
+
+const API_BASE = getApiBaseUrl();
 
 /** Loads board members; tries kebab-case and snake_case route variants. */
 export async function getBoard(signal) {

@@ -2,8 +2,9 @@
  * Team roster and cohort data from the backend (`/api/team-members`, `/api/cohorts`, etc.).
  * Endpoints use kebab-case and snake_case fallbacks where the server may expose either style.
  */
-const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
-const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
+import { getApiBaseUrl } from "../lib/apiBase.js";
+
+const API_BASE = getApiBaseUrl();
 
 /** Tries each URL in order until one returns a JSON array (handles API naming differences). */
 async function fetchArrayWithFallback(endpoints, signal) {

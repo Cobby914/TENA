@@ -17,8 +17,9 @@ import { useNavigate } from "react-router-dom";
 import { fetchPrograms } from "../../api/programsAPI";
 import { fetchTeamMembers, fetchCohorts } from "../../api/teamMembersApi";
 import { withAuthHeaders } from "../../auth/session";
+import { getApiBaseUrl } from "../../lib/apiBase.js";
 
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:3001").replace(/\/+$/, "");
+const API_BASE = getApiBaseUrl();
 
 export default function AdminDashboard() {
   const [programCount, setProgramCount] = useState(0);

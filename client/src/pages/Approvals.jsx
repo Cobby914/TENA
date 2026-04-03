@@ -8,8 +8,9 @@ import ApprovalsTable from "../components/approvals/ApprovalsTable";
 import { withAuthHeaders } from "../auth/session";
 import { useAuthStore } from "../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { getApiBaseUrl } from "../lib/apiBase.js";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+const API_BASE = getApiBaseUrl();
 const API = `${API_BASE}/api/users`;
 const CACHE_KEY = "approvals_users";
 
