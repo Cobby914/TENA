@@ -1,7 +1,8 @@
-import { Text, Box, Flex, VStack, Button, Image } from "@chakra-ui/react";
+import { Text, Box, Flex, VStack, Button, Image} from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import SimpleCircle from "../../ui/SimpleCircle";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
+import { donateButtonInteractionProps } from "../../../lib/giveButter";
 
 const OurVision = "/AboutUs/AboutUs-OurVision.jpg";
 const OurMission = "/AboutUs/AboutUsMission.png";
@@ -11,7 +12,7 @@ export default function MissionAndVision() {
         <Box
             as="section"
             bg="surface.default"
-            width="100%"
+            width="100%"s
             pt={{ base: 10, md: 16, lg: 20 }}
             pb={{ base: 32, md: 40, lg: 48 }}
             position="relative"
@@ -84,8 +85,9 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
                             <Text fontSize={{ base: "13px", md: "22px" }} lineHeight="1.5" mb={{ base: 2, md: 4 }} fontStyle = "normal"  fontWeight = "400" color = "brand.heading">
                                 To eradicate health disparities by empowering underrepresented individuals, building a diverse healthcare workforce, and connecting communities to resources, care, and opportunities that promote lifelong wellness.
                             </Text>
-                            <NavLink to="/home">
-                                <Button
+                            
+                            <Button
+                                {...donateButtonInteractionProps}
                                     bg="brand.primary"
                                     color="surface.default"
                                     borderRadius="none"
@@ -98,8 +100,8 @@ Today, TENA continues to grow as a community-anchored nonprofit tackling inequit
 
                                 >
                                     Support Us
-                                </Button>
-                            </NavLink>
+                            </Button>
+                            
                         </Box>
                         
                     </Flex>

@@ -91,7 +91,7 @@ export default function BelowPrograms() {
           <FadeInWhenVisible delay={0.14} amount={0.5}>
           <Button
             type="button"
-            onClick={() => navigate("/about")}
+            onClick={() => navigate("/aboutUs")}
             variant="unstyled"
             display="inline-flex"
             alignItems="center"
