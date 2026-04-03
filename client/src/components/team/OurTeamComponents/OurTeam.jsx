@@ -129,6 +129,7 @@ export default function OurTeam() {
                     spacing={{ base: 4, md: 5 }}
                     w="100%"
                     justifyItems="center"
+                    alignItems="start"
                   >
                     {cohort.interns.map((intern) => (
                       <MemberCard
@@ -138,6 +139,7 @@ export default function OurTeam() {
                         imageSrc={intern.imageSrc}
                         linkedinUrl={intern.linkedinUrl}
                         variant="cohort"
+                        showProfilePhoto={cohort.profilePicture}
                       />
                     ))}
                   </SimpleGrid>

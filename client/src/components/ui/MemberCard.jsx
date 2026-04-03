@@ -111,7 +111,9 @@ export default function MemberCard({
   position,
   imageSrc,
   linkedinUrl,
-  variant = "board"
+  variant = "board",
+  /** When `variant` is `cohort`, mirrors `cohorts.profile_picture` from the API. */
+  showProfilePhoto = true
 }) {
   const [photoFailed, setPhotoFailed] = useState(false);
   const photoSrc = photoFailed ? memberImagePlaceholder : imageSrc;
@@ -120,15 +122,26 @@ export default function MemberCard({
     setPhotoFailed(false);
   }, [imageSrc]);
 
+  const cohortTextOnly = variant === "cohort" && !showProfilePhoto;
+
   const style = CARD_VARIANTS[variant] ?? CARD_VARIANTS.board;
-  const nameFontSize = useMemo(
-    () => pickNameFontSize(variant, String(name ?? "").length, style.nameSize),
-    [variant, name, style.nameSize]
-  );
-  const roleFontSize = useMemo(
-    () => pickRoleFontSize(variant, String(position ?? "").length, style.roleSize),
-    [variant, position, style.roleSize]
-  );
+  const nameFontSize = useMemo(() => {
+    const len = String(name ?? "").length;
+    if (cohortTextOnly) {
+      if (len > 36) return { base: "sm", md: "md" };
+      if (len > 22) return { base: "md", md: "md" };
+      return { base: "md", md: "lg" };
+    }
+    return pickNameFontSize(variant, len, style.nameSize);
+  }, [cohortTextOnly, variant, name, style.nameSize]);
+  const roleFontSize = useMemo(() => {
+    const len = String(position ?? "").length;
+    if (cohortTextOnly) {
+      if (len > 48) return { base: "10px", md: "xs" };
+      return { base: "xs", md: "sm" };
+    }
+    return pickRoleFontSize(variant, len, style.roleSize);
+  }, [cohortTextOnly, variant, position, style.roleSize]);
   const cardBg = style.cardBg ?? "surface.section";
   const nameUnderline = style.nameUnderline !== false;
   const fillGrid = style.fillGrid === true;
@@ -137,8 +150,19 @@ export default function MemberCard({
   const borderRadius = style.borderRadius ?? "4px";
   const borderWidth = style.borderWidth ?? "1px";
 
-  const boxProps =
-    fixedSize != null
+  const showHeadshot = fixedSize != null && !cohortTextOnly;
+
+  const boxProps = cohortTextOnly
+    ? {
+        w: `min(${STANDARD.w}px, 100%)`,
+        maxW: `${STANDARD.w}px`,
+        minW: 0,
+        h: "auto",
+        minH: "unset",
+        flex: "none",
+        alignSelf: "start"
+      }
+    : fixedSize != null
       ? {
           w: `min(${fixedSize.w}px, 100%)`,
           h: `${fixedSize.h}px`,
@@ -167,9 +191,9 @@ export default function MemberCard({
       borderRadius={borderRadius}
       p={style.padding}
       boxSizing="border-box"
-      overflow="hidden"
+      overflow={cohortTextOnly ? "visible" : "hidden"}
     >
-      {fixedSize != null ? (
+      {showHeadshot ? (
         <Box
           flexShrink={0}
           w="100%"
@@ -187,7 +211,7 @@ export default function MemberCard({
             onError={() => setPhotoFailed(true)}
           />
         </Box>
-      ) : (
+      ) : !cohortTextOnly ? (
         <Image
           src={photoSrc}
           alt={name}
@@ -198,42 +222,45 @@ export default function MemberCard({
           bg="neutral.muted"
           onError={() => setPhotoFailed(true)}
         />
-      )}
+      ) : null}
 
       <Box
-        flex={fixedSize != null ? "1 1 auto" : "1"}
+        flex={showHeadshot ? "1 1 auto" : cohortTextOnly ? "none" : "1"}
+        flexShrink={cohortTextOnly ? 0 : undefined}
         display="flex"
         flexDirection="column"
         alignItems="stretch"
-        minH={0}
+        minH={cohortTextOnly ? undefined : 0}
         w="100%"
-        overflow="hidden"
-        mt={fixedSize != null ? 2 : { base: 3, md: 3 }}
+        overflow={cohortTextOnly ? "visible" : "hidden"}
+        mt={showHeadshot ? 2 : cohortTextOnly ? 0 : { base: 3, md: 3 }}
       >
         <Text
           fontSize={nameFontSize}
-          fontWeight={style.nameFontWeight}
+          fontWeight={cohortTextOnly ? "700" : style.nameFontWeight}
           color="neutral.strong"
           lineHeight="1.2"
           textAlign="left"
           w="100%"
           textDecoration={nameUnderline ? "underline" : "none"}
-          noOfLines={2}
+          noOfLines={3}
+          wordBreak="break-word"
         >
-          {name}
+          {name?.trim() ? name : "Member"}
         </Text>
 
         <Text
           mt={1}
           fontSize={roleFontSize}
-          fontWeight={style.roleFontWeight}
+          fontWeight={cohortTextOnly ? "400" : style.roleFontWeight}
           color={roleColor}
           lineHeight="1.3"
           textAlign="left"
           w="100%"
-          noOfLines={2}
+          noOfLines={3}
+          wordBreak="break-word"
         >
-          {position}
+          {position?.trim() ? position : "Position in Organization"}
         </Text>
 
         {linkedinUrl ? (
@@ -242,8 +269,8 @@ export default function MemberCard({
             display="flex"
             justifyContent="flex-start"
             alignItems="center"
-            mt="auto"
-            pt={3}
+            mt={cohortTextOnly ? 3 : "auto"}
+            pt={cohortTextOnly ? 0 : 3}
             flexShrink={0}
           >
             <Link

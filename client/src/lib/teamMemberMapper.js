@@ -46,6 +46,9 @@ export function toCohortOption(cohort, index) {
       ? Number(cohortIdRaw)
       : null;
 
+  const rawFlag = cohort.profile_picture ?? cohort.profilePicture;
+  const profilePicture = rawFlag === true || rawFlag === "true";
+
   return {
     id: cohort.id ?? `${title}-${index}`,
     numericId: Number.isFinite(cohortNumericId) ? cohortNumericId : null,
@@ -53,6 +56,7 @@ export function toCohortOption(cohort, index) {
     year: Number.isInteger(Number(cohort.year)) ? Number(cohort.year) : null,
     term: String(cohort.term ?? "").trim(),
     termOrder:
-      Number.isInteger(Number(cohort.term_order)) ? Number(cohort.term_order) : Number.MAX_SAFE_INTEGER
+      Number.isInteger(Number(cohort.term_order)) ? Number(cohort.term_order) : Number.MAX_SAFE_INTEGER,
+    profilePicture
   };
 }
