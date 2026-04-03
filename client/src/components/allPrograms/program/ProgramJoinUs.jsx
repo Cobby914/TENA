@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
-const joinUsBg = "/programs/JoinUsBackgroundIMG.png";
+const joinUsBg = "/program-assets/JoinUsBackgroundIMG.png";
 
 export default function ProgramJoinUs() {
   return (

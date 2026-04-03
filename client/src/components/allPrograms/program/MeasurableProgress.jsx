@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useProgramById } from "../../../hooks/useProgramsById";
-const inTheWorksImg = "/programs/InTheWorksIMG.png";
+const inTheWorksImg = "/program-assets/InTheWorksIMG.png";
 
 function parseStatString(rawStat) {
   if (!rawStat) return null;

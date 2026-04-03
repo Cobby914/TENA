@@ -2,7 +2,7 @@ import { Text, Box, Flex } from "@chakra-ui/react";
 import MultiRingCircle from "../ui/MultiRingCircle";
 import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 
-const programsHeaderImg = "/programs/ProgramsHeaderIMG.jpg";    
+const programsHeaderImg = "/program-assets/ProgramsHeaderIMG.jpg";    
 
 export default function OurPrograms() {
     return(
