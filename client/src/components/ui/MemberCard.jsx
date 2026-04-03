@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Box, Image, Link, Text } from "@chakra-ui/react";
 import { memberImagePlaceholder } from "../../lib/memberImageResolver";
 
@@ -7,28 +7,52 @@ const linkedinIconSrc = "/Footer/linkedin-svgrepo-com.svg";
 /** Single footprint for board, team, and intern cards */
 const STANDARD = {
   w: 276,
-  h: 352,
+  h: 364,
+  /** Fixed headshot area so every card matches regardless of caption length */
+  photoHeightPx: 238,
   radius: 3.53,
   border: 0.88
 };
 
+function pickNameFontSize(variant, nameLen, fallback) {
+  if (variant === "board") {
+    if (nameLen > 38) return { base: "md", md: "18px" };
+    if (nameLen > 24) return { base: "lg", md: "20px" };
+    return fallback;
+  }
+  if (variant === "team") {
+    if (nameLen > 34) return { base: "sm", md: "md" };
+    if (nameLen > 20) return { base: "sm", md: "sm" };
+    return fallback;
+  }
+  if (variant === "cohort") {
+    if (nameLen > 16) return { base: "xs", md: "xs" };
+    return fallback;
+  }
+  return fallback;
+}
+
+function pickRoleFontSize(variant, roleLen, fallback) {
+  if (variant === "board") {
+    if (roleLen > 50) return { base: "10px", md: "10px" };
+    if (roleLen > 32) return { base: "10px", md: "xs" };
+    return fallback;
+  }
+  if (variant === "team") {
+    if (roleLen > 28) return { base: "10px", md: "10px" };
+    return fallback;
+  }
+  if (variant === "cohort") {
+    if (roleLen > 26) return { base: "10px", md: "10px" };
+    return fallback;
+  }
+  return fallback;
+}
+
 const CARD_VARIANTS = {
   board: {
     fixedSize: STANDARD,
-    nameSize: { base: "2xl", md: "30px" },
-    roleSize: { base: "sm", md: "md" },
-    padding: { base: 4, md: 5 },
-    cardBg: "surface.section",
-    nameUnderline: true,
-    nameFontWeight: undefined,
-    roleFontWeight: undefined,
-    roleSubtle: false,
-    borderRadius: `${STANDARD.radius}px`,
-    borderWidth: `${STANDARD.border}px`
-  },
-  team: {
-    fixedSize: STANDARD,
-    nameSize: { base: "lg", md: "xl" },
+    nameSize: { base: "lg", md: "22px" },
     roleSize: { base: "xs", md: "sm" },
     padding: { base: 3, md: 4 },
     cardBg: "surface.section",
@@ -39,11 +63,24 @@ const CARD_VARIANTS = {
     borderRadius: `${STANDARD.radius}px`,
     borderWidth: `${STANDARD.border}px`
   },
+  team: {
+    fixedSize: STANDARD,
+    nameSize: { base: "md", md: "lg" },
+    roleSize: { base: "10px", md: "xs" },
+    padding: { base: 3, md: 3 },
+    cardBg: "surface.section",
+    nameUnderline: true,
+    nameFontWeight: undefined,
+    roleFontWeight: undefined,
+    roleSubtle: false,
+    borderRadius: `${STANDARD.radius}px`,
+    borderWidth: `${STANDARD.border}px`
+  },
   cohort: {
     fixedSize: STANDARD,
-    nameSize: { base: "md", md: "md" },
-    roleSize: { base: "xs", md: "xs" },
-    padding: "10px",
+    nameSize: { base: "sm", md: "sm" },
+    roleSize: { base: "10px", md: "10px" },
+    padding: "8px",
     cardBg: "surface.section",
     nameUnderline: false,
     nameFontWeight: "700",
@@ -84,6 +121,14 @@ export default function MemberCard({
   }, [imageSrc]);
 
   const style = CARD_VARIANTS[variant] ?? CARD_VARIANTS.board;
+  const nameFontSize = useMemo(
+    () => pickNameFontSize(variant, String(name ?? "").length, style.nameSize),
+    [variant, name, style.nameSize]
+  );
+  const roleFontSize = useMemo(
+    () => pickRoleFontSize(variant, String(position ?? "").length, style.roleSize),
+    [variant, position, style.roleSize]
+  );
   const cardBg = style.cardBg ?? "surface.section";
   const nameUnderline = style.nameUnderline !== false;
   const fillGrid = style.fillGrid === true;
@@ -125,18 +170,23 @@ export default function MemberCard({
       overflow="hidden"
     >
       {fixedSize != null ? (
-        <Image
-          src={photoSrc}
-          alt={name}
-          width="100%"
-          height="100%"
-          flex="1"
-          minH={0}
-          flexShrink={1}
-          objectFit="cover"
+        <Box
+          flexShrink={0}
+          w="100%"
+          h={`${fixedSize.photoHeightPx}px`}
+          borderRadius="2px"
+          overflow="hidden"
           bg="neutral.muted"
-          onError={() => setPhotoFailed(true)}
-        />
+        >
+          <Image
+            src={photoSrc}
+            alt={name}
+            w="100%"
+            h="100%"
+            objectFit="cover"
+            onError={() => setPhotoFailed(true)}
+          />
+        </Box>
       ) : (
         <Image
           src={photoSrc}
@@ -151,18 +201,22 @@ export default function MemberCard({
       )}
 
       <Box
-        flex={fixedSize != null ? "0 0 auto" : "1"}
+        flex={fixedSize != null ? "1 1 auto" : "1"}
         display="flex"
         flexDirection="column"
+        alignItems="stretch"
         minH={0}
+        w="100%"
+        overflow="hidden"
         mt={fixedSize != null ? 2 : { base: 3, md: 3 }}
       >
         <Text
-          fontSize={style.nameSize}
+          fontSize={nameFontSize}
           fontWeight={style.nameFontWeight}
           color="neutral.strong"
-          lineHeight="1.25"
+          lineHeight="1.2"
           textAlign="left"
+          w="100%"
           textDecoration={nameUnderline ? "underline" : "none"}
           noOfLines={2}
         >
@@ -171,34 +225,50 @@ export default function MemberCard({
 
         <Text
           mt={1}
-          fontSize={style.roleSize}
+          fontSize={roleFontSize}
           fontWeight={style.roleFontWeight}
           color={roleColor}
-          lineHeight="1.35"
+          lineHeight="1.3"
           textAlign="left"
+          w="100%"
           noOfLines={2}
         >
           {position}
         </Text>
 
         {linkedinUrl ? (
-          <Link
-            href={linkedinUrl}
-            isExternal
-            mt={2}
-            display="inline-flex"
+          <Box
+            w="100%"
+            display="flex"
+            justifyContent="flex-start"
             alignItems="center"
-            gap={1.5}
-            fontSize="xs"
-            fontWeight="600"
-            color="brand.primary"
-            _hover={{ textDecoration: "underline" }}
-            alignSelf="flex-start"
-            aria-label={`${name} on LinkedIn`}
+            mt="auto"
+            pt={3}
+            flexShrink={0}
           >
-            <Image src={linkedinIconSrc} alt="" boxSize="16px" flexShrink={0} />
-            LinkedIn
-          </Link>
+            <Link
+              href={linkedinUrl}
+              isExternal
+              display="inline-flex"
+              alignItems="center"
+              gap={2}
+              fontSize="sm"
+              fontWeight="600"
+              lineHeight="1"
+              color="brand.primary"
+              _hover={{ textDecoration: "underline" }}
+              aria-label={`${name} on LinkedIn`}
+            >
+              <Image
+                src={linkedinIconSrc}
+                alt=""
+                boxSize="22px"
+                flexShrink={0}
+                display="block"
+              />
+              LinkedIn
+            </Link>
+          </Box>
         ) : null}
       </Box>
     </Box>
