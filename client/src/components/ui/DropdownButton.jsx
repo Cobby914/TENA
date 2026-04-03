@@ -8,25 +8,36 @@ import {
   IconButton,
   Flex,
   Icon,
+  Box,
   useDisclosure,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 const CLOSE_DELAY_MS = 120;
+
+/** Matches globals.css `--color-brand-primary` (#1573cf); used so ghost-button defaults cannot override nav hover. */
+const NAV_HOVER_BLUE = "var(--color-brand-primary)";
+
+/** Light primary tint for dropdown rows (tracks CSS tokens). */
+const DROPDOWN_ITEM_HOVER_BG =
+  "color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-surface-default))";
+
+const DROPDOWN_ITEM_ACTIVE_BG =
+  "color-mix(in srgb, var(--color-brand-primary) 20%, var(--color-surface-default))";
 
 const menuItemProps = {
   transition:
     "background-color 0.18s ease, color 0.18s ease, padding-left 0.18s ease",
   _hover: {
-    bg: "surface.muted",
-    color: "neutral.strong",
+    bg: DROPDOWN_ITEM_HOVER_BG,
+    color: NAV_HOVER_BLUE,
     pl: 5,
   },
   _active: {
-    bg: "surface.muted",
-    color: "neutral.strong",
+    bg: DROPDOWN_ITEM_ACTIVE_BG,
+    color: NAV_HOVER_BLUE,
   },
   _focus: {
     bg: "transparent",
@@ -59,9 +70,17 @@ const menuItemProps = {
 };
 
 export default function DropdownButton({ label, mainPath, items, onClose: onNavClose }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: mobileMenuOpen,
+    onOpen: onMobileMenuOpen,
+    onClose: onMobileMenuClose,
+  } = useDisclosure();
+  const [desktopOpen, setDesktopOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const closeTimerRef = useRef(null);
+  const onMobileMenuCloseRef = useRef(onMobileMenuClose);
+  onMobileMenuCloseRef.current = onMobileMenuClose;
   const isNarrowViewport = useBreakpointValue({ base: true, md: false });
   const [hasHover, setHasHover] = useState(true);
 
@@ -73,6 +92,23 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current != null) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (closeTimerRef.current != null) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setDesktopOpen(false);
+    onMobileMenuCloseRef.current();
+  }, [pathname]);
+
   const isMobileNav = isNarrowViewport && !hasHover;
 
   const cancelScheduledClose = () => {
@@ -82,25 +118,25 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
     }
   };
 
-  const scheduleClose = () => {
+  const scheduleDesktopClose = () => {
     cancelScheduledClose();
     closeTimerRef.current = window.setTimeout(() => {
-      onClose();
+      setDesktopOpen(false);
       closeTimerRef.current = null;
     }, CLOSE_DELAY_MS);
   };
 
-  const handleEnter = () => {
+  const handleDesktopEnter = () => {
     cancelScheduledClose();
-    onOpen();
+    setDesktopOpen(true);
   };
 
   const toggleMobileMenu = () => {
-    if (isOpen) {
-      onClose();
+    if (mobileMenuOpen) {
+      onMobileMenuClose();
       return;
     }
-    onOpen();
+    onMobileMenuOpen();
   };
 
   if (isMobileNav) {
@@ -123,15 +159,21 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
             textDecoration="underline"
             whiteSpace="nowrap"
             transition="color 0.2s ease"
-            _hover={{ bg: "transparent", color: "brand.primary" }}
-            _active={{ bg: "transparent", color: "brand.primary" }}
+            _hover={{ bg: "transparent", color: NAV_HOVER_BLUE }}
+            _active={{ bg: "transparent", color: NAV_HOVER_BLUE }}
             _focusVisible={{ outline: "2px solid", boxShadow: "none" }}
             onClick={onNavClose}
           >
             {label}
           </ChakraButton>
 
-          <Menu isOpen={isOpen} onClose={onClose} placement="bottom-start" gutter={4} closeOnBlur>
+          <Menu
+            isOpen={mobileMenuOpen}
+            onClose={onMobileMenuClose}
+            placement="bottom-start"
+            gutter={4}
+            closeOnBlur
+          >
             <MenuButton
               as={IconButton}
               aria-label={`Open ${label} menu`}
@@ -142,12 +184,12 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
               p={1}
               borderRadius="md"
               bg="transparent"
-              color={isOpen ? "brand.primary" : "neutral.text"}
-              _active={{ bg: "transparent", color: "brand.primary" }}
+              color={mobileMenuOpen ? NAV_HOVER_BLUE : "neutral.text"}
+              _active={{ bg: "transparent", color: NAV_HOVER_BLUE }}
               _focusVisible={{ outline: "none", boxShadow: "none" }}
               onClick={toggleMobileMenu}
               sx={{
-                transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transform: mobileMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 0.2s ease, color 0.2s ease",
               }}
             />
@@ -195,7 +237,7 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
                     {...menuItemProps}
                     onClick={(e) => {
                       e.preventDefault();
-                      onClose();
+                      onMobileMenuClose();
                       onNavClose?.();
                       navigate(item.to);
                     }}
@@ -211,20 +253,29 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
     );
   }
 
+  /** Desktop: plain button + panel — avoids Chakra MenuButton focus/expanded styles overriding :hover after SPA navigation. */
   return (
-    <Menu
-      isOpen={isOpen}
-      onClose={onClose}
-      placement="bottom-start"
-      gutter={6}
-      closeOnBlur={false}
+    <Box
+      position="relative"
+      display="inline-block"
+      onMouseEnter={handleDesktopEnter}
+      onMouseLeave={scheduleDesktopClose}
     >
-      <MenuButton
-        as={ChakraButton}
+      <ChakraButton
         variant="ghost"
-        rightIcon={<Icon as={ChevronDown} boxSize={4} strokeWidth={2} />}
+        rightIcon={
+          <Icon
+            as={ChevronDown}
+            boxSize={4}
+            strokeWidth={2}
+            sx={{
+              transform: desktopOpen ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.2s ease",
+            }}
+          />
+        }
         bg="transparent"
-        color="neutral.text"
+        color={desktopOpen ? NAV_HOVER_BLUE : "neutral.text"}
         fontWeight="500"
         h="auto"
         minH="clamp(40px, 4.5vw, 64px)"
@@ -233,17 +284,31 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
         borderRadius="md"
         whiteSpace="nowrap"
         transition="color 0.2s ease, text-decoration-color 0.2s ease"
-        _hover={{ bg: "transparent", color: "brand.primary", textDecoration: "underline" }}
-        _active={{ bg: "transparent", color: "brand.primary" }}
-        _expanded={{ bg: "transparent", color: "brand.primary" }}
         _focus={{ boxShadow: "none !important", outline: "none !important", bg: "transparent" }}
         _focusVisible={{ boxShadow: "none !important", outline: "none !important", bg: "transparent" }}
         textDecoration="none"
-        onMouseEnter={handleEnter}
-        onMouseLeave={scheduleClose}
-        onClick={() => navigate(mainPath)}
+        aria-expanded={desktopOpen}
+        aria-haspopup="true"
+        onClick={() => {
+          cancelScheduledClose();
+          setDesktopOpen(false);
+          navigate(mainPath);
+        }}
         sx={{
           fontSize: "clamp(9px, 2.2vw, 24px)",
+          "&:hover": {
+            bg: "transparent",
+            color: `${NAV_HOVER_BLUE} !important`,
+            textDecoration: "underline",
+            textDecorationColor: NAV_HOVER_BLUE,
+          },
+          "&:active": {
+            bg: "transparent",
+            color: `${NAV_HOVER_BLUE} !important`,
+          },
+          "& svg": {
+            color: "currentColor",
+          },
           "&:focus, &:focus-visible": {
             outline: "none !important",
             boxShadow: "none !important",
@@ -252,63 +317,81 @@ export default function DropdownButton({ label, mainPath, items, onClose: onNavC
         }}
       >
         {label}
-      </MenuButton>
+      </ChakraButton>
 
-      <MenuList
-        onMouseEnter={handleEnter}
-        onMouseLeave={scheduleClose}
-        bg="surface.default"
-        rounded="lg"
-        overflow="hidden"
-        boxShadow="md"
-        borderWidth="1px"
-        borderColor="border.default"
-        minW="200px"
-        py={0}
-        px={0}
-        sx={{ borderRadius: "var(--radius-lg)" }}
-      >
-        {items.map((item) =>
-          item.href ? (
-            <MenuItem
-              key={item.label}
-              as="a"
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              color="neutral.text"
-              fontWeight="400"
-              py={3}
-              px={4}
-              borderRadius="none"
-              {...menuItemProps}
-              sx={{ ...menuItemProps.sx, fontSize: "clamp(9px, 1.8vw, 20px)" }}
-            >
-              {item.label}
-            </MenuItem>
-          ) : (
-            <MenuItem
-              key={item.to}
-              as="a"
-              href={item.to}
-              color="neutral.text"
-              fontWeight="400"
-              py={3}
-              px={4}
-              borderRadius="none"
-              {...menuItemProps}
-              sx={{ ...menuItemProps.sx, fontSize: "clamp(9px, 1.8vw, 20px)" }}
-              onClick={(e) => {
-                e.preventDefault();
-                onClose();
-                navigate(item.to);
-              }}
-            >
-              {item.label}
-            </MenuItem>
-          ),
-        )}
-      </MenuList>
-    </Menu>
+      {desktopOpen ? (
+        <Box
+          position="absolute"
+          left={0}
+          top="100%"
+          pt={6}
+          minW="200px"
+          zIndex={1}
+          onMouseEnter={handleDesktopEnter}
+          onMouseLeave={scheduleDesktopClose}
+        >
+          <Box
+            bg="surface.default"
+            rounded="lg"
+            overflow="hidden"
+            boxShadow="md"
+            borderWidth="1px"
+            borderColor="border.default"
+            py={0}
+            px={0}
+            sx={{ borderRadius: "var(--radius-lg)" }}
+          >
+            {items.map((item) =>
+              item.href ? (
+                <Box
+                  key={item.label}
+                  as="a"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  display="block"
+                  cursor="pointer"
+                  color="neutral.text"
+                  fontWeight="400"
+                  py={3}
+                  px={4}
+                  borderRadius="none"
+                  {...menuItemProps}
+                  sx={{
+                    ...menuItemProps.sx,
+                    fontSize: "clamp(9px, 1.8vw, 20px)",
+                  }}
+                >
+                  {item.label}
+                </Box>
+              ) : (
+                <Box
+                  key={item.to}
+                  as="a"
+                  href={item.to}
+                  display="block"
+                  cursor="pointer"
+                  color="neutral.text"
+                  fontWeight="400"
+                  py={3}
+                  px={4}
+                  borderRadius="none"
+                  {...menuItemProps}
+                  sx={{ ...menuItemProps.sx, fontSize: "clamp(9px, 1.8vw, 20px)" }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    cancelScheduledClose();
+                    setDesktopOpen(false);
+                    navigate(item.to);
+                  }}
+                >
+                  {item.label}
+                </Box>
+              ),
+            )}
+          </Box>
+        </Box>
+      ) : null}
+    </Box>
   );
 }
