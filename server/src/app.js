@@ -4,9 +4,36 @@ import { sql } from "./db/index.js";
 import routes from "./routes/index.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
+function buildAllowedOrigins() {
+  const fromEnv =
+    process.env.CORS_ORIGINS?.split(",")
+      .map((s) => s.trim())
+      .filter(Boolean) ?? [];
+  if (process.env.NODE_ENV !== "production") {
+    const dev = [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "http://localhost:5174",
+      "http://127.0.0.1:5174",
+    ];
+    return [...new Set([...fromEnv, ...dev])];
+  }
+  return fromEnv;
+}
+
+const allowedOrigins = buildAllowedOrigins();
+
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      callback(null, false);
+    },
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => res.send("Server is Working!"));

@@ -1,11 +1,11 @@
 import { Box, Flex, VStack, Text, SimpleGrid, Image } from "@chakra-ui/react";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 
-const Diversity = "/AboutUs/Values/Diversity.png";
-const Integrity = "/AboutUs/Values/Integrity.png";
-const Compassion = "/AboutUs/Values/Compassion.png";
-const Excellence = "/AboutUs/Values/Excellence.png";
-const Equity = "/AboutUs/Values/Equity.png";
+const Diversity = "/static/about/Values/Diversity.png";
+const Integrity = "/static/about/Values/Integrity.png";
+const Compassion = "/static/about/Values/Compassion.png";
+const Excellence = "/static/about/Values/Excellence.png";
+const Equity = "/static/about/Values/Equity.png";
 
 const VALUES = [
     { label: "Diversity", src: Diversity },

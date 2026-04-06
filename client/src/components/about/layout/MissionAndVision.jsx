@@ -4,8 +4,8 @@ import SimpleCircle from "../../ui/SimpleCircle";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { donateButtonInteractionProps } from "../../../lib/giveButter";
 
-const OurVision = "/AboutUs/AboutUs-OurVision.jpg";
-const OurMission = "/AboutUs/AboutUsMission.png";
+const OurVision = "/static/about/AboutUs-OurVision.jpg";
+const OurMission = "/static/about/AboutUsMission.png";
 
 export default function MissionAndVision() {
     return (

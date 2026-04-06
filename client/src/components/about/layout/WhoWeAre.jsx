@@ -2,7 +2,7 @@ import { Text, Box, Flex, VStack, Image, Circle, Container } from "@chakra-ui/re
 import SimpleCircle from "../../ui/SimpleCircle";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 
-const heroImage = "/AboutUs/AboutUs-Hero.jpg";
+const heroImage = "/static/about/AboutUs-Hero.jpg";
 
 /** Full-viewport-width strip (breaks out of max-width page wrappers). */
 const fullBleedSx = {
