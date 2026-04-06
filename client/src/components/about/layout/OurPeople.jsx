@@ -2,9 +2,9 @@ import { Box, Flex, VStack, Text, SimpleGrid } from "@chakra-ui/react";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import SubteamSection from "../../ui/SubteamSection";
 
-const OurBoardPNG = "/AboutUs/People/OurBoard.png";
-const OurTeamPNG = "/AboutUs/People/OurTeam.png";
-const OurPartnersPNG = "/AboutUs/People/OurPartners.png";
+const OurBoardPNG = "/static/about/People/OurBoard.png";
+const OurTeamPNG = "/static/about/People/OurTeam.png";
+const OurPartnersPNG = "/static/about/People/OurPartners.png";
 
 export default function OurPeople() {
     return (

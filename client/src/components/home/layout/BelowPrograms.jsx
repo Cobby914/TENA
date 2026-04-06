@@ -11,9 +11,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import { ChevronRight } from "lucide-react";
-const diversifyImg = "/AboutUs/Values/Diversity.png";
-const compassionImg = "/AboutUs/Values/Compassion.png";
-const equityImg = "/AboutUs/Values/Equity.png";
+const diversifyImg = "/static/about/Values/Diversity.png";
+const compassionImg = "/static/about/Values/Compassion.png";
+const equityImg = "/static/about/Values/Equity.png";
 
 const valueCards = [
   { imageSrc: diversifyImg, alt: "Diversify icon" },

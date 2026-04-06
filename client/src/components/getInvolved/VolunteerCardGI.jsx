@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import SimpleCircle from "../ui/SimpleCircle";
 
-const Volun = "/GetInvolved/GetInvolvedVolunteering.jpg";
+const Volun = "/static/get-involved/GetInvolvedVolunteering.jpg";
 import GIC from "./GetInvolvedCard"
 
 export default function GetInvolvedCard ({}) {
