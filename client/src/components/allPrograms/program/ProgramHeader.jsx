@@ -1,4 +1,5 @@
 import { Box, Flex, Text, Link } from "@chakra-ui/react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useProgramById } from "../../../hooks/useProgramsById";
@@ -26,8 +27,26 @@ const breadcrumbLinkProps = {
 
 export default function ProgramHeader({ id, backgroundPosition }) {
   const { program } = useProgramById(id);
+  const [ isImgLoaded, setIsImgLoaded ] = useEffect(false);
+
   const backgroundImageSrc = resolveProgramImage(program?.background_image);
   const programTitle = String(program?.title ?? "").trim() || "Loading program...";
+
+  useEffect (() => {
+    if (!backgroundImageSrc) return;
+
+    setIsImgLoaded(false);
+    const img = new Image();
+    img.src = backgroundImageSrc;
+
+    img.decode()
+      .then(() => {
+        setIsImgLoaded(true);
+      })
+      .catch(() => {
+        setIsImgLoaded(true);
+      });
+  }, [backgroundImageSrc]);
 
   return (
     <Box
@@ -37,7 +56,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
       overflow="visible"
       minH={{ base: "300px", md: "400px", lg: "500px" }}
       py={{ base: 24, md: 36, lg: 52 }}
-      {...(backgroundImageSrc && {
+      {...(backgroundImageSrc && isImgLoaded && {
         backgroundImage: `url(${backgroundImageSrc})`,
         backgroundSize: "cover",
         backgroundPosition: backgroundPosition,
