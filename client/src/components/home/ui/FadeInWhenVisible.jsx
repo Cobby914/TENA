@@ -18,35 +18,32 @@ export default function FadeInWhenVisible({
 }) {
   const variants = {
     initial: { opacity: 0, y },
-    animate: { opacity: 1, y: 0 },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration, 
+        delay, 
+        ease: [0.25, 0.1, 0.25, 1],
+        type: "tween" 
+      }
+    },
   };
-  const transition = { duration, ease: [0.25, 0.1, 0.25, 1], delay };
   const viewport = { once: true, amount, margin: "0px 0px -48px 0px" };
-
-  if (trigger === "mount") {
-    return (
-      <MotionBox
-        initial="initial"
-        animate="animate"
-        variants={variants}
-        transition={transition}
-        {...boxProps}
-      >
-        {children}
-      </MotionBox>
-    );
-  }
 
   return (
     <MotionBox
       initial="initial"
-      whileInView="animate"
+      animate={trigger === "mount" ? "animate": undefined}
+      whileInView={trigger === "view" ? "animate" : undefined}
       viewport={viewport}
       variants={variants}
-      transition={transition}
+      style={{ willChange: "opacity, transform" }}
+      layout="position"
       {...boxProps}
     >
       {children}
     </MotionBox>
   );
+  
 }
