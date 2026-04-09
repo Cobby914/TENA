@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Link } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useProgramById } from "../../../hooks/useProgramsById";
@@ -92,7 +92,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
           trigger="mount"
           y={16}
           duration={0.7}
-          position="absolute"
+          position="relative"
           top={{ base: 16, md: 20, lg: 28 }}
           left={{ base: 8, md: 14, lg: 28 }}
           zIndex={1}
