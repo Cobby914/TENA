@@ -14,6 +14,7 @@ export default function FadeInWhenVisible({
   y = 18,
   amount = 0.35,
   trigger = "view",
+  isLoaded=true,
   ...boxProps
 }) {
   const variants = {
@@ -25,28 +26,38 @@ export default function FadeInWhenVisible({
 
   if (trigger === "mount") {
     return (
-      <MotionBox
-        initial="initial"
-        animate="animate"
-        variants={variants}
-        transition={transition}
-        {...boxProps}
-      >
-        {children}
-      </MotionBox>
+      <AnimatePresence>
+        {isLoaded && (
+          <MotionBox
+            key="fadeInWhenVisible"
+            initial="initial"
+            animate="animate"
+            variants={variants}
+            transition={transition}
+            {...boxProps}
+          >
+            {children}
+          </MotionBox>
+        )}
+      </AnimatePresence>
+
     );
   }
 
   return (
-    <MotionBox
-      initial="initial"
-      whileInView="animate"
-      viewport={viewport}
-      variants={variants}
-      transition={transition}
-      {...boxProps}
-    >
-      {children}
-    </MotionBox>
+    <AnimatePresence>
+        {isLoaded && (
+          <MotionBox
+            initial="initial"
+            whileInView="animate"
+            viewport={viewport}
+            variants={variants}
+            transition={transition}
+            {...boxProps}
+          >
+            {children}
+          </MotionBox>
+        )}
+      </AnimatePresence>
   );
 }

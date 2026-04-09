@@ -96,6 +96,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
           top={{ base: 16, md: 20, lg: 28 }}
           left={{ base: 8, md: 14, lg: 28 }}
           zIndex={1}
+          isLoaded={isImgLoaded}
       >
         <Flex direction="column" alignItems="flex-start">
           <Flex align="center" mb={8} gap={2}>
