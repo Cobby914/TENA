@@ -11,7 +11,7 @@ export default function ProgramPage({ id, backgroundPosition }) {
         position="absolute"
         left="-167px"
         top="25%"
-        width= {{base: "334px", md: "725px"}}
+        width="334px"
         height="334px"
         borderRadius="334px"
         border="40px solid"

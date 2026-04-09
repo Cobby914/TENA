@@ -101,10 +101,9 @@ export default function ProgramProblemSolution({ id }) {
       width="100%"
       py={{ base: 12, md: 16, lg: 20 }}
     >
-      <Box maxW="2500px" mx="auto" px={{ base: 24, md: 52, lg: 80 }}>
+      <Box maxW="2500px" mx="auto" px={{ base: 24, md: 26, lg: 32  }}>
         <VStack
           spacing={{ base: 12, md: 16, lg: 20 }}
-          align="stretch"
         >
           <FadeInWhenVisible w="100%" amount={0.4}>
           <Heading
