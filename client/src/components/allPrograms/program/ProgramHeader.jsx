@@ -67,7 +67,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
         <Box
           position="absolute"
           inset={0}
-          bg="white"
+          bg="blackAlpha.500"
           zIndex={0}
         />
       )}
