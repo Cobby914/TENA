@@ -128,7 +128,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
 
           <Text
               fontFamily="Inter"
-              fontSize= {{base: "32px", sm  : "40px", md : "54px", lg:"64px"}}
+              fontSize= {{base: "45px", md: "54px", lg:"64px"}}
               fontStyle="normal"
               fontWeight="800"
               lineHeight="100%"
