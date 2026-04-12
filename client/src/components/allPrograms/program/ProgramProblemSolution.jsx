@@ -101,14 +101,14 @@ export default function ProgramProblemSolution({ id }) {
       width="100%"
       py={{ base: 12, md: 16, lg: 20 }}
     >
-      <Box maxW="2500px" mx="auto" px={{ sm: 2, md: 12, lg: 32  }}>
+      <Box maxW="2500px" mx="auto" px={{ sm: 12, md: 22, lg: 32  }}>
         <VStack
           spacing={{ base: 12, md: 16, lg: 20 }}
         >
           <FadeInWhenVisible w="100%" amount={0.4}>
           <Heading
             as="h2"
-            fontSize={{ sm: "2xl", md: "5xl", lg: "6xl" }}
+            fontSize={{ sm: "3xl", md: "5xl", lg: "6xl" }}
             lineHeight={{ base: 1.2, md: 1.25 }}
           >
             {parseBold(program?.summary)}
@@ -122,11 +122,11 @@ export default function ProgramProblemSolution({ id }) {
             gap={{ base: 8, md: 10, lg: 14 }}
           >
             <Box flex="1.2">
-              <Heading as="h3" fontSize={{ sm: "2xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
+              <Heading as="h3" fontSize={{ sm: "3xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
                 The Problem
               </Heading>
               <Text
-                fontSize={{ sm: "lg", md: "3xl", lg: "4xl" }}
+                fontSize={{ sm: "2xl", md: "3xl", lg: "4xl" }}
                 lineHeight={1.5}
                 whiteSpace="pre-line"
               >
@@ -185,14 +185,14 @@ export default function ProgramProblemSolution({ id }) {
             </Box>
 
             <Box flex="1.2">
-              <Heading as="h3" fontSize={{ sm: "2xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
+              <Heading as="h3" fontSize={{ sm: "3xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
                 What We're Doing
               </Heading>
 
               {paragraphs.map((paragraph, idx) => (
                 <Text
                   key={`solution-paragraph-${idx}`}
-                  fontSize={{ sm: "lg", md: "3xl", lg: "4xl" }}
+                  fontSize={{ sm: "2xl", md: "3xl", lg: "4xl" }}
                   lineHeight={1.5}
                   mb={bullets.length > 0 || idx < paragraphs.length - 1 ? 4 : 0}
                 >
@@ -205,7 +205,7 @@ export default function ProgramProblemSolution({ id }) {
                   {bullets.map((bullet, idx) => (
                     <ListItem
                       key={`solution-bullet-${idx}`}
-                      fontSize={{ sm: "lg", md: "3xl", lg: "4xl" }}
+                      fontSize={{ sm: "2xl", md: "3xl", lg: "4xl" }}
                     >
                       {parseBold(bullet)}
                     </ListItem>
