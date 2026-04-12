@@ -72,7 +72,7 @@ export default function MeasurableProgress({ id }) {
       <Box as="section" bg="brand.navy" width="100%" py={{ base: 12, md: 16, lg: 20 }}>
         <Box maxW="1200px" mx="auto" px={{ base: 4, md: 10, lg: 20 }}>
           <Box bg="surface.glass" borderRadius="2xl" p={{ base: 6, md: 8 }}>
-            <Heading fontSize={{ base: "4xl", md: "5xl" }} color="surface.default" mb={4}>
+            <Heading fontSize={{ base: "3xl", md: "5xl" }} color="surface.default" mb={4}>
               Measurable Progress
             </Heading>
             <Text color="gray.200">{errorMsg}</Text>
@@ -84,7 +84,7 @@ export default function MeasurableProgress({ id }) {
 
   return (
     <Box as="section" bg="brand.navy" width="100%" py={{ base: 12, md: 16, lg: 20 }} borderRadius="3xl" overflow="hidden">
-      <Box maxW="2500px" mx="auto" px={{ base: 24, md: 52, lg: 80 }}>
+      <Box maxW="2500px" mx="auto" px={{ base: "14", sm: 24, md: 52, lg: 80 }}>
         <Box bg="brand.navy" borderRadius="3xl" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 8, md: 10, lg: 12 }}>
           <FadeInWhenVisible
             w="100%"
@@ -96,7 +96,7 @@ export default function MeasurableProgress({ id }) {
           >
             <Heading
               as="h2"
-              fontSize={{ base: "4xl", md: "6xl", lg: "7xl" }}
+              fontSize={{ base: "2xl", small: "4xl", md: "6xl", lg: "7xl" }}
               lineHeight={1.02}
               color="surface.default"
               fontWeight="800"

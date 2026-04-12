@@ -108,7 +108,7 @@ export default function ProgramProblemSolution({ id }) {
           <FadeInWhenVisible w="100%" amount={0.4}>
           <Heading
             as="h2"
-            fontSize={{base: "2xl", sm: "3xl", md: "5xl", lg: "6xl" }}
+            fontSize={{base: "4xl", sm: "4xl", md: "5xl", lg: "6xl" }}
             lineHeight={{ base: 1.2, md: 1.25 }}
           >
             {parseBold(program?.summary)}
