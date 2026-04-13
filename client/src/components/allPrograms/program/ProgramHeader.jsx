@@ -24,7 +24,7 @@ const breadcrumbLinkProps = {
   },
 };
 
-export default function ProgramHeader({ id, backgroundPosition }) {
+export default function ProgramHeader({ id }) {
   const { program } = useProgramById(id);
   const backgroundImageSrc = resolveProgramImage(program?.background_image);
   const programTitle = String(program?.title ?? "").trim() || "Loading program...";
@@ -40,7 +40,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
       {...(backgroundImageSrc && {
         backgroundImage: `url(${backgroundImageSrc})`,
         backgroundSize: "cover",
-        backgroundPosition: backgroundPosition,
+        backgroundPosition: "center 40%",
         backgroundRepeat: "no-repeat",
       })}
     >
