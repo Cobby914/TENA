@@ -25,7 +25,7 @@ const breadcrumbLinkProps = {
   },
 };
 
-export default function ProgramHeader({ id, backgroundPosition }) {
+export default function ProgramHeader({ id }) {
   const { program } = useProgramById(id);
   const [ isImgLoaded, setIsImgLoaded ] = useState(false);
 
@@ -59,7 +59,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
       {...(backgroundImageSrc && isImgLoaded && {
         backgroundImage: `url(${backgroundImageSrc})`,
         backgroundSize: "cover",
-        backgroundPosition: backgroundPosition,
+        backgroundPosition: "center 40%",
         backgroundRepeat: "no-repeat",
       })}
     >
