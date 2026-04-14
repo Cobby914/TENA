@@ -76,13 +76,13 @@ export default function GetInvolvedHeader() {
                   lineHeight="1.05"
                   color="white"
                 >
-                  Help us{" "}
+                  There's a Spot for {" "}
                   <Text as="span" color="brand.primary">
-                    Out.
+                    You
                   </Text>{" "}
-                  Get{" "}
+                  in This {" "}
                   <Text as="span" color="brand.primary">
-                    Involved.
+                    Work.
                   </Text>
                 </Text>
                 <Text
