@@ -114,7 +114,7 @@ export default function GetInvolved() {
             <InvolvementCard
               title="Donate"
               description="Your financial support fuels our mission."
-              linkname="Support our Cause"
+              linkname="Support the Movement"
               onAction={openDonateWidget}
             />
           </Grid>

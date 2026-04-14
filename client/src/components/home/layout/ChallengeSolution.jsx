@@ -27,7 +27,7 @@ export default function ChallengeSolution() {
         fontWeight={700}
         fontSize={{ base: "32px", sm: "40px", md: "48px", lg: "56px" }}
         maxW="1100px"
-        py={{ base: 8, md: 12, lg: 16 }}
+        py={{ base: 8, md: 12, lg: 14 }}
         lineHeight="110%"
         color="neutral.text"
       >

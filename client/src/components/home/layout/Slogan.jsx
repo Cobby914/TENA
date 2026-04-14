@@ -2,7 +2,7 @@ import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
 import MultiRingCircle from "../../ui/MultiRingCircle";
 import { SegmentedTypewriterText } from "../../ui/SegmentedTypewriter";
 import { donateButtonInteractionProps } from "../../../lib/giveButter";
-const sloganImage = "/Home/SouthLACafeGroup.jpg";
+const sloganImage = "/Home/TENABooth.HEIC";
 
 const donateHover = {
   bg: "transparent",
@@ -11,16 +11,14 @@ const donateHover = {
 };
 
 const HOME_HERO_HEADLINE_SEGMENTS = [
-  { text: "We strengthen communities through ", accent: false },
-  { text: "compassionate care", accent: true },
-  {
-    text: ", meaningful connection, and opportunities that transform lives.",
-    accent: false,
-  },
+  { text: "Building a Healthier Los Angeles County Together. ", accent: false },
+  { text: "Create. ", accent: true },
+  { text: "Connect. ", accent: false,},
+  { text: "Empower. ", accent: true },
 ];
 
 const BODY =
-  "At TENA, we partner with neighbors, students, volunteers, and organizations to expand equitable access to health services, build career pathways in healthcare, and empower every voice in Los Angeles County to thrive.";
+  "TENA partners with neighbors, students, volunteers, and local organizations to expand access to health services, build careers in healthcare, and help every person in Los Angeles County thrive.";
 
 export default function Slogan() {
   return (
@@ -106,7 +104,7 @@ export default function Slogan() {
             _hover={donateHover}
             _active={donateHover}
           >
-            Donate
+            Support the Movement
           </Button>
         </VStack>
 
