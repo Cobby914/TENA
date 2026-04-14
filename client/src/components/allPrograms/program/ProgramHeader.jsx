@@ -32,7 +32,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
   const backgroundImageSrc = resolveProgramImage(program?.background_image);
   const programTitle = String(program?.title ?? "").trim() || "Loading program...";
 
-  useEffect (() => {
+  useState (() => {
     if (!backgroundImageSrc) return;
 
     setIsImgLoaded(false);
@@ -129,7 +129,7 @@ export default function ProgramHeader({ id, backgroundPosition }) {
 
           <Text
               fontFamily="Inter"
-              fontSize="64px"
+              fontSize= {{base: "45px", md: "54px", lg:"64px"}}
               fontStyle="normal"
               fontWeight="800"
               lineHeight="100%"
