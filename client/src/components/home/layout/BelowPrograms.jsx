@@ -15,6 +15,13 @@ const diversifyImg = "/static/about/Values/Diversity.png";
 const compassionImg = "/static/about/Values/Compassion.png";
 const equityImg = "/static/about/Values/Equity.png";
 
+
+const buttonHover = {
+  bg: "transparent",
+  color: "brand.primary",
+  borderColor: "brand.primary",
+};
+
 const valueCards = [
   { imageSrc: diversifyImg, alt: "Diversify icon" },
   { imageSrc: compassionImg, alt: "Compassion icon" },
@@ -104,17 +111,16 @@ export default function BelowPrograms() {
             borderRadius={6}
             mt={{ base: 6, md: 10 }}
             px={{ base: 8, sm: 10, md: 20 }}
-            border="none"
             bg="brand.primary"
             color="surface.default"
             cursor="pointer"
-            transition="opacity 0.2s ease"
-            _hover={{ opacity: 0.68, bg: "brand.primary" }}
-            _active={{ opacity: 0.55 }}
-            _focus={{ outline: "none", boxShadow: "none" }}
-            _focusVisible={{ outline: "none", boxShadow: "none" }}
+            transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
+            border="2px solid"
+            borderColor="brand.primary"
+            _hover={buttonHover}
+            _active={buttonHover}
           >
-              <Text as="span" fontWeight={600} fontSize={{ base: 16, md: 18 }} lineHeight="1" color="surface.default">
+              <Text as="span" fontWeight={600} fontSize={{ base: 16, md: 18 }} lineHeight="1">
                 About Us
               </Text>
           </Button>

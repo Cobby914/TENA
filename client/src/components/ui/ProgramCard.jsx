@@ -2,6 +2,13 @@ import { Box, Button, Card, Flex, HStack, Image, Text, VStack } from "@chakra-ui
 import { NavLink } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
+
+const buttonHover = {
+  bg: "transparent",
+  color: "brand.primary",
+  borderColor: "brand.primary",
+};
+
 function parseRichText(text) {
   const parts = String(text ?? "").split(/\*\*(.*?)\*\*/g);
   return parts.flatMap((part, i) => {
@@ -96,7 +103,8 @@ export default function ProgramCard({
                   px={4}
                   bg="brand.primary"
                   color="surface.default"
-                  _hover={{ bg: "brand.primaryHover" }}
+                  _hover={buttonHover}
+                  _active={buttonHover}
                 >
                   <HStack gap={2}>
                     <Text fontWeight={600} fontSize="14px" lineHeight="20px" color="surface.default">

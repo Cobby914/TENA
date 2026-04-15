@@ -3,6 +3,13 @@ import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { prefetchGivebutterCampaign } from "../../../lib/giveButter";
 
+
+const buttonHover = {
+  bg: "transparent",
+  color: "brand.primary",
+  borderColor: "brand.primary",
+};
+
 export default function InvolvementCard({
   title,
   description,
@@ -97,18 +104,11 @@ export default function InvolvementCard({
           color="surface.default"
           textDecoration="none"
           boxShadow="none"
-          _hover={{
-            bgColor: "brand.primary",
-            color: "surface.default",
-            opacity: 1,
-            boxShadow: "inset 0 0 0 9999px rgb(0 0 0 / 0.14)",
-          }}
-          _active={{
-            bgColor: "brand.primary",
-            color: "surface.default",
-            opacity: 1,
-            boxShadow: "inset 0 0 0 9999px rgb(0 0 0 / 0.2)",
-          }}
+          transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
+          border="2px solid"
+          borderColor="brand.primary"
+          _hover={buttonHover}
+          _active={buttonHover}
           sx={{
             WebkitTapHighlightColor: "transparent",
             transition: "box-shadow 0.2s ease",

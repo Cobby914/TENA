@@ -4,6 +4,12 @@ import ProblemStatement from "./ProblemStatement";
 import SimpleCircle from "../../ui/SimpleCircle";
 import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 
+const buttonHover = {
+  bg: "transparent",
+  color: "brand.primary",
+  borderColor: "brand.primary",
+};
+
 const solutionDecorCircle = {
   size: { base: "380px", md: "440px", lg: "490px" },
   strokeWidth: { base: "32px", md: "36px", lg: "40px" },
@@ -128,19 +134,18 @@ export default function ChallengeSolution() {
           p={0}
           py={0}
           px={6}
-          border="none"
           borderRadius="6px"
           bg="brand.primary"
           color="surface.default"
           cursor="pointer"
           whiteSpace="nowrap"
-          transition="opacity 0.2s ease"
-          _hover={{ opacity: 0.68, bg: "brand.primary" }}
-          _active={{ opacity: 0.55 }}
-          _focus={{ outline: "none", boxShadow: "none" }}
-          _focusVisible={{ outline: "none", boxShadow: "none" }}
+          transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
+          border="2px solid"
+          borderColor="brand.primary"
+          _hover={ buttonHover }
+          _active={ buttonHover }
         >
-          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1" color="surface.default">
+          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1">
             Get Involved
           </Text>
         </Button>
