@@ -26,8 +26,8 @@ function arcSegmentD(cx, cy, r, tStart, tEnd) {
  * staggered teal/blue split (About-style: inner rings shift to blue earlier along the arc).
  */
 export default function MultiRingCircle({
-    width = 300,
-    height = 300,
+    width = 280,
+    height = 280,
     variant = "gradient",
     solidColor = TEAL,
     gradientStyle = "vertical",
@@ -74,7 +74,7 @@ export default function MultiRingCircle({
                                         d={arcSegmentD(CX, CY, r, 0, tSplit)}
                                         fill="none"
                                         stroke={TEAL}
-                                        strokeWidth="5"
+                                        strokeWidth="4"
                                         strokeLinecap="round"
                                     />
                                     <path
