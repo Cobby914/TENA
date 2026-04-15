@@ -25,9 +25,9 @@ export default function ChallengeSolution() {
       <FadeInWhenVisible amount={0.45}>
       <Text
         fontWeight={700}
-        fontSize={{ base: "32px", sm: "40px", md: "48px", lg: "56px" }}
+        fontSize={{ base: "32px", sm: "40px", md: "48px", lg: "50px" }}
         maxW="1100px"
-        py={{ base: 8, md: 9, lg: 3 }}
+        py={{ base: 8, md: 12, lg: 16 }}
         lineHeight="110%"
         color="neutral.text"
       >
