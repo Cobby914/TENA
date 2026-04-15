@@ -24,8 +24,8 @@ export default function ChallengeSolution() {
     >
       <FadeInWhenVisible amount={0.45}>
       <Text
-        fontWeight={700}
-        fontSize={{ base: "32px", sm: "35px", md: "38px", lg: "48px" }}
+        fontWeight={800}
+        fontSize={{ base: "32px", sm: "35px", md: "38px", lg: "50px" }}
         maxW="1100px"
         py={{ base: 8, md: 12, lg: 16 }}
         lineHeight="110%"
@@ -69,36 +69,37 @@ export default function ChallengeSolution() {
               lineHeight="150%"
               color="neutral.text"
             >
-              At the heart of TENA&apos;s mission is the belief that health equity
-              isn&apos;t just access to services — it&apos;s access with dignity,
-              trust, and relationship.
+              Care Navigation: <br />
+              One on one with community members, we assess their 
+              social needs and connect them to local health resources. 
+              No one should have to figure out the system alone.
             </Text>
-            <List fontSize={{ base: "18px", md: "20px", lg: "22px" }} mt={2} spacing={6}>
-              <ListItem>
-                <Text as="span" color="neutral.text" lineHeight="150%">
-                  <Text as="span" fontWeight={700}>
-                    Personalized Care Navigation
-                  </Text>
-                  {" — Connecting residents to insurance, medical homes, preventive care, and social resources that truly work for them."}
-                </Text>
-              </ListItem>
-              <ListItem>
-                <Text as="span" color="neutral.text" lineHeight="150%">
-                  <Text as="span" fontWeight={700}>
-                    Community Health Access Points
-                  </Text>
-                  {" — Free health fairs offering screenings, education, referrals, and support in trusted neighborhood spaces."}
-                </Text>
-              </ListItem>
-              <ListItem>
-                <Text as="span" color="neutral.text" lineHeight="150%">
-                  <Text as="span" fontWeight={700}>
-                    Workforce Readiness & Youth Empowerment
-                  </Text>
-                  {" — Training the next generation of diverse healthcare leaders rooted in lived experience."}
-                </Text>
-              </ListItem>
-            </List>
+            <Text
+              fontWeight={400}
+              fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+              lineHeight="150%"
+              color="neutral.text"
+            >
+              Community Health and Resource Hubs: <br />
+              With our partners, we convert local coffee shops into full 
+              access points for health and social services: free 
+              screenings, primary care, housing support, food 
+              resources, and insurance enrollment. We offer real 
+              support in a place you already know.
+            </Text>
+            <Text
+              fontWeight={400}
+              fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+              lineHeight="150%"
+              color="neutral.text"
+            >
+              Workforce Development: <br />
+              We run a training program for pre-health students from 
+              diverse and underserved communities. We offer 
+              mentorship, hands-on learning, professional 
+              development, and CHW certificate of completion.
+            </Text>
+            
           </VStack>
         </Box>
         </FadeInWhenVisible>
