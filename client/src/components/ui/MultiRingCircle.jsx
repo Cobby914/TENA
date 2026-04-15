@@ -74,7 +74,7 @@ export default function MultiRingCircle({
                                         d={arcSegmentD(CX, CY, r, 0, tSplit)}
                                         fill="none"
                                         stroke={TEAL}
-                                        strokeWidth="5"
+                                        strokeWidth="4"
                                         strokeLinecap="round"
                                     />
                                     <path
