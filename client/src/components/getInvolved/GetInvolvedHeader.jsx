@@ -87,7 +87,7 @@ export default function GetInvolvedHeader() {
                 </Text>
                 <Text
                   color="white"
-                  maxW={{ base: "100%", md: "640px", lg: "680px" }}
+                  maxW={{ base: "100%", md: "640px", lg: "982px" }}
                   fontSize={{ base: "14px", md: "22px", lg: "25px" }}
                   fontStyle="normal"
                   fontWeight="400"

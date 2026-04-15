@@ -3,7 +3,7 @@ import SimpleCircle from "../ui/SimpleCircle";
 import MultiRingCircle from "../ui/MultiRingCircle";
 import { openDonateWidget } from "../../lib/giveButter";
 
-const Donos = "/static/get-involved/GetInvolvedDonationsNew.JPG";
+const Donos = "/static/get-involved/GetInvolvedDonation.JPG";
 import GIC from "./GetInvolvedCard"
 
 export default function GetInvolvedCard ({
