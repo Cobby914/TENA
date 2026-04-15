@@ -2,7 +2,7 @@ import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
 import MultiRingCircle from "../../ui/MultiRingCircle";
 import { SegmentedTypewriterText } from "../../ui/SegmentedTypewriter";
 import { donateButtonInteractionProps } from "../../../lib/giveButter";
-const sloganImage = "/Home/TENABooth.HEIC";
+const sloganImage = "/Home/TENABooth.jpg";
 
 const donateHover = {
   bg: "transparent",
