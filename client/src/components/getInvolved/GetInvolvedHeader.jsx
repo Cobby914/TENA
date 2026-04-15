@@ -12,6 +12,7 @@ export default function GetInvolvedHeader() {
           width="100%"
           position="relative"
           minH={{ base: "260px", md: "450px" }}
+          height = {{base: "auto", lg: "500px"}}
           pt={{ base: 10, md: 16, lg: 20 }}
           pb={{ base: 10, md: 12, lg: 14 }}
           overflow="hidden"
