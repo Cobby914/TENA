@@ -13,7 +13,7 @@ let lastError;
 export async function fetchPrograms(limit, signal) {
   try {
     const query = limit ? `?limit=${limit}` : "";
-    const res = await fetch(baseEndpoint + query, { signal });
+    const res = await fetch(baseEndpoint + query, { signal , cache: 'no-store' });
     if (!res.ok) throw new Error(`Request failed (${res.status})`);
     const data = await res.json();
     if (!Array.isArray(data)) throw new Error("Expected an array response");
