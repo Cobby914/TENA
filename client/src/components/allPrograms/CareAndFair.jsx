@@ -8,24 +8,17 @@ import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
 import { SegmentedTypewriterText } from "../ui/SegmentedTypewriter";
 import { createProgram } from "../../hooks/createProgram";
 
-/** ~2.3× faster than home hero (26ms); still readable on long copy. */
 const PROGRAMS_INTRO_CHAR_MS = 11;
 
 const PROGRAMS_INTRO_SEGMENTS = [
   { text: "TENA", accent: true },
-  {
-    text: " is a community-centric nonprofit building ecosystems that ",
-    accent: false,
-  },
+  { text: " is a community-centric nonprofit building ecosystems that ", accent: false },
   { text: "empower", accent: true },
   { text: " underserved communities to ", accent: false },
   { text: "overcome", accent: true },
   { text: " systemic barriers through optimizing ", accent: false },
   { text: "access", accent: true },
-  {
-    text: " to resources, knowledge, and entry to healthcare professions.",
-    accent: false,
-  },
+  { text: " to resources, knowledge, and entry to healthcare professions.", accent: false },
 ];
 
 const Programs = () => {
@@ -56,11 +49,11 @@ const Programs = () => {
         }     
         const programList = prog ?? [];
     return(
-        <Box w="full" py={{ base: 12, md: 16, lg: 40 }} position="relative">
+        <Box w="full" py={{ base: 8, md: 12, lg: 24 }} position="relative">
             <Box
                 maxW="2500px"
                 mx="auto"
-                px={{ base: 24, md: 52, lg: 80 }}
+                px={{ base: 8, md: 16, lg: 32 }}
                 position="relative"
                 zIndex={1}
             >
@@ -77,13 +70,13 @@ const Programs = () => {
                 />
 
                 <FadeInWhenVisible w="100%" amount={0.4}>
-                <Box mb={{ base: 16, md: 24, lg: 36 }} mt={{ base: 4, md: 6, lg: 8 }}>
+                <Box mb={{ base: 10, md: 14, lg: 20 }} mt={{ base: 4, md: 6, lg: 8 }} maxW="1400px" mx="auto">
                     <SegmentedTypewriterText
                         as="h2"
                         segments={PROGRAMS_INTRO_SEGMENTS}
                         charDelayMs={PROGRAMS_INTRO_CHAR_MS}
                         accentColor="brand.primary"
-                        fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
+                        fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
                         lineHeight={{ base: 1.2, md: 1.25 }}
                         fontWeight="700"
                         color="neutral.text"
@@ -92,7 +85,7 @@ const Programs = () => {
                 </FadeInWhenVisible>
 
                 <VStack
-                    spacing={{ base: 16, md: 24, lg: 48 }}
+                    spacing={{ base: 10, md: 16, lg: 24 }}
                     align="center"
                     width="100%"
                 >
@@ -111,13 +104,12 @@ const Programs = () => {
 
                 {programList.length === 0 && (
                 <Center py={20}>
-                <Text color="gray.400 italic">No programs found matching the criteria.</Text>
+                <Text color="gray.400" fontStyle="italic">No programs found matching the criteria.</Text>
                 </Center>
                 )}
 
             </Box>
         </Box>
-
     )};
 
 export default Programs;
