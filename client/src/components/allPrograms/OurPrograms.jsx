@@ -11,8 +11,8 @@ export default function OurPrograms() {
         width="100%"
         position="relative"
         overflow="visible"
-        minH={{ base: "300px", md: "400px", lg: "500px" }}
-        py={{ base: 24, md: 36, lg: 52 }}
+        minH={{ base: "200px", md: "280px", lg: "360px" }}
+        py={{ base: 16, md: 24, lg: 36 }}
         backgroundImage={`url(${programsHeaderImg})`}
         backgroundSize="cover"
         backgroundPosition="center 30%"
@@ -42,24 +42,24 @@ export default function OurPrograms() {
             y={16}
             duration={0.7}
             position="absolute"
-            top={{ base: 16, md: 20, lg: 28 }}
+            top={{ base: 10, md: 14, lg: 20 }}
             left={{ base: 8, md: 14, lg: 28 }}
             zIndex={1}
         >
             <Flex direction="column" alignItems="flex-start">
                 <Text
                     fontFamily="Inter"
-                    fontSize="26px"
+                    fontSize="18px"
                     fontWeight="800"
                     lineHeight="32px"
                     color="surface.soft"
-                    mb={8}
+                    mb={4}
                 >
                     Programs
                 </Text>
                 <Text
                     fontFamily="Inter"
-                    fontSize="64px"
+                    fontSize={{ base: "36px", md: "44px", lg: "52px" }}
                     fontStyle="normal"
                     fontWeight="800"
                     lineHeight="100%"

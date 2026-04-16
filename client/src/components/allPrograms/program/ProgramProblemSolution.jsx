@@ -10,35 +10,26 @@ import {
   Image,
   Spinner,
   Text,
-  UnorderedList,
-  ListItem,
   VStack,
 } from "@chakra-ui/react";
 import FadeInWhenVisible from "../../home/ui/FadeInWhenVisible";
 import { useProgramById } from "../../../hooks/useProgramsById";
 import { resolveProgramImage } from "../../../lib/programImageResolver";
 
-function splitSolutionText(solutionText) {
-  const lines = String(solutionText ?? "")
-    .split("\n")
+function parseSolutionText(solutionText) {
+  return String(solutionText ?? "")
+    .replace(/\\n/g, "\n")
+    .split(/\r?\n/)
     .map((line) => line.trim())
-    .filter(Boolean);
-
-  const paragraphs = [];
-  const bullets = [];
-
-  lines.forEach((line) => {
-    if (/^[-*•]\s+/.test(line)) {
-      bullets.push(line.replace(/^[-*•]\s+/, ""));
-    } else {
-      paragraphs.push(line);
-    }
-  });
-
-  return { paragraphs, bullets };
+    .map((line) => {
+      if (line === "") return { type: "spacer" };
+      if (/^[-*•]\s+/.test(line)) {
+        return { type: "bullet", text: line.replace(/^[-*•]\s+/, "") };
+      }
+      return { type: "paragraph", text: line };
+    });
 }
 
-// Parses **word** markers into bold spans and word^ suffix markers into blue text
 function parseBold(text) {
   const parts = String(text ?? "").split(/\*\*(.*?)\*\*/g);
   return parts.flatMap((part, i) => {
@@ -65,7 +56,7 @@ function parseBold(text) {
 
 export default function ProgramProblemSolution({ id }) {
   const { program, isLoading, errorMsg } = useProgramById(id);
-  const { paragraphs, bullets } = splitSolutionText(program?.solution);
+  const lines = parseSolutionText(program?.solution);
   const problemImageSrc = resolveProgramImage(program?.problem_image);
   const solutionImageSrc = resolveProgramImage(program?.solution_image);
 
@@ -101,119 +92,126 @@ export default function ProgramProblemSolution({ id }) {
       width="100%"
       py={{ base: 12, md: 16, lg: 20 }}
     >
-      <Box maxW="2500px" mx="auto" px={{base: 8, sm: 12, md: 22, lg: 32  }}>
-        <VStack
-          spacing={{ base: 12, md: 16, lg: 20 }}
-        >
+      <Box maxW="1700px" mx="auto" px={{ base: 8, sm: 12, md: 22, lg: 32 }}>
+        <VStack spacing={{ base: 12, md: 16, lg: 20 }}>
           <FadeInWhenVisible w="100%" amount={0.4}>
-          <Heading
-            as="h2"
-            fontSize={{base: "4xl", sm: "4xl", md: "5xl", lg: "6xl" }}
-            lineHeight={{ base: 1.2, md: 1.25 }}
-          >
-            {parseBold(program?.summary)}
-          </Heading>
+            <Heading
+              as="h2"
+              fontSize={{ base: "2xl", sm: "3xl", md: "3xl", lg: "4xl" }}
+              lineHeight={{ base: 1.2, md: 1.25 }}
+              textAlign="left"
+            >
+              {parseBold(program?.summary)}
+            </Heading>
           </FadeInWhenVisible>
 
           <FadeInWhenVisible w="100%" amount={0.35} delay={0.06}>
-          <Flex
-            direction={{ base: "column", lg: "row" }}
-            align="stretch"
-            gap={{ base: 8, md: 10, lg: 14 }}
-          >
-            <Box flex="1.2">
-              <Heading as="h3" fontSize={{ base: "2xl", sm: "3xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
-                The Problem
-              </Heading>
-              <Text
-                fontSize={{base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
-                lineHeight={1.5}
-                whiteSpace="pre-line"
-              >
-                {parseBold(program?.problem)}
-              </Text>
-            </Box>
-
-            <Box
-              flex="1"
-              minH={{ base: "300px", lg: 0 }}
-              position="relative"
-              overflow="hidden"
-              borderRadius="md"
-              bg="gray.200"
+            <Flex
+              direction={{ base: "column", lg: "row" }}
+              align="stretch"
+              gap={{ base: 8, md: 10, lg: 14 }}
             >
-              {problemImageSrc && (
-                <Image
-                  src={problemImageSrc}
-                  alt="The problem"
-                  position="absolute"
-                  inset={0}
-                  objectFit="cover"
-                  w="100%"
-                  h="100%"
-                />
-              )}
-            </Box>
-          </Flex>
+              <Box flex="1.2">
+                <Heading
+                  as="h3"
+                  fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
+                  mb={5}
+                  color="brand.heading"
+                >
+                  The Problem
+                </Heading>
+                <Text
+                  fontSize={{ base: "md", sm: "lg", md: "xl", lg: "2xl" }}
+                  lineHeight={1.5}
+                  whiteSpace="pre-line"
+                >
+                  {parseBold(program?.problem)}
+                </Text>
+              </Box>
+
+              <Box
+                flex="1"
+                minH={{ base: "400px", lg: 0 }}
+                position="relative"
+                overflow="hidden"
+                borderRadius="md"
+                bg="gray.100"
+              >
+                {problemImageSrc && (
+                  <Image
+                    src={problemImageSrc}
+                    alt="The problem"
+                    position="absolute"
+                    inset={0}
+                    objectFit="cover"
+                    w="100%"
+                    h="100%"
+                  />
+                )}
+              </Box>
+            </Flex>
           </FadeInWhenVisible>
 
           <FadeInWhenVisible w="100%" amount={0.35} delay={0.12}>
-          <Flex
-            direction={{ base: "column", lg: "row" }}
-            align="stretch"
-            gap={{ base: 8, md: 10, lg: 14 }}
-          >
-            <Box
-              flex="1"
-              minH={{ base: "300px", lg: 0 }}
-              position="relative"
-              overflow="hidden"
-              borderRadius="md"
-              bg="gray.200"
+            <Flex
+              direction={{ base: "column", lg: "row" }}
+              align="stretch"
+              gap={{ base: 8, md: 10, lg: 14 }}
             >
-              {solutionImageSrc && (
-                <Image
-                  src={solutionImageSrc}
-                  alt="What we're doing"
-                  position="absolute"
-                  inset={0}
-                  objectFit="cover"
-                  w="100%"
-                  h="100%"
-                />
-              )}
-            </Box>
+              <Box
+                flex="1"
+                minH={{ base: "400px", lg: 0 }}
+                position="relative"
+                overflow="hidden"
+                borderRadius="md"
+                bg="gray.100"
+              >
+                {solutionImageSrc && (
+                  <Image
+                    src={solutionImageSrc}
+                    alt="What we're doing"
+                    position="absolute"
+                    inset={0}
+                    objectFit="cover"
+                    w="100%"
+                    h="100%"
+                  />
+                )}
+              </Box>
 
-            <Box flex="1.2">
-              <Heading as="h3" fontSize={{ base: "2xl", sm: "3xl", md: "5xl", lg: "6xl" }} mb={5} color="brand.heading">
-                What We're Doing
-              </Heading>
-
-              {paragraphs.map((paragraph, idx) => (
-                <Text
-                  key={`solution-paragraph-${idx}`}
-                  fontSize={{base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
-                  lineHeight={1.5}
-                  mb={bullets.length > 0 || idx < paragraphs.length - 1 ? 4 : 0}
+              <Box flex="1.2">
+                <Heading
+                  as="h3"
+                  fontSize={{ base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
+                  mb={5}
+                  color="brand.heading"
                 >
-                  {parseBold(paragraph)}
-                </Text>
-              ))}
+                  What We're Doing
+                </Heading>
 
-              {bullets.length > 0 && (
-                <UnorderedList spacing={2} pl={6} mb={4}>
-                  {bullets.map((bullet, idx) => (
-                    <ListItem
-                      key={`solution-bullet-${idx}`}
-                      fontSize={{base: "xl", sm: "2xl", md: "3xl", lg: "4xl" }}
+                {lines.map((line, idx) =>
+                line.type === "spacer" ? (
+                    <Box key={idx} h={4} />
+                ) : line.type === "paragraph" ? (
+                    <Text
+                    key={idx}
+                    fontSize={{ base: "md", sm: "lg", md: "xl", lg: "2xl" }}
+                    lineHeight={1.5}
+                    mb={2}
                     >
-                      {parseBold(bullet)}
-                    </ListItem>
-                  ))}
-                </UnorderedList>
-              )}
-            </Box>
-          </Flex>
+                    {parseBold(line.text)}
+                    </Text>
+                ) : (
+                    <Flex key={idx} alignItems="flex-start" gap={2} mb={2}>
+                    <Text as="span" mt="0.1em" flexShrink={0} fontSize="1.5em" lineHeight={1.5}>•</Text>
+                    <Text as="span" fontSize={{ base: "md", sm: "lg", md: "xl", lg: "2xl" }} lineHeight={1.5}>
+                        {parseBold(line.text)}
+                    </Text>
+                    </Flex>
+                )
+                )}
+              </Box>
+            </Flex>
           </FadeInWhenVisible>
         </VStack>
       </Box>
