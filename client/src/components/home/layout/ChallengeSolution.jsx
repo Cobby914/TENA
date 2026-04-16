@@ -4,6 +4,12 @@ import ProblemStatement from "./ProblemStatement";
 import SimpleCircle from "../../ui/SimpleCircle";
 import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 
+const buttonHover = {
+  bg: "transparent",
+  color: "brand.primary",
+  borderColor: "brand.primary",
+};
+
 const solutionDecorCircle = {
   size: { base: "380px", md: "440px", lg: "490px" },
   strokeWidth: { base: "32px", md: "36px", lg: "40px" },
@@ -24,8 +30,8 @@ export default function ChallengeSolution() {
     >
       <FadeInWhenVisible amount={0.45}>
       <Text
-        fontWeight={700}
-        fontSize={{ base: "32px", sm: "40px", md: "48px", lg: "56px" }}
+        fontWeight={800}
+        fontSize={{ base: "32px", sm: "35px", md: "38px", lg: "50px" }}
         maxW="1100px"
         py={{ base: 8, md: 12, lg: 16 }}
         lineHeight="110%"
@@ -69,36 +75,37 @@ export default function ChallengeSolution() {
               lineHeight="150%"
               color="neutral.text"
             >
-              At the heart of TENA&apos;s mission is the belief that health equity
-              isn&apos;t just access to services — it&apos;s access with dignity,
-              trust, and relationship.
+              Care Navigation: <br />
+              One on one with community members, we assess their 
+              social needs and connect them to local health resources. 
+              No one should have to figure out the system alone.
             </Text>
-            <List fontSize={{ base: "18px", md: "20px", lg: "22px" }} mt={2} spacing={6}>
-              <ListItem>
-                <Text as="span" color="neutral.text" lineHeight="150%">
-                  <Text as="span" fontWeight={700}>
-                    Personalized Care Navigation
-                  </Text>
-                  {" — Connecting residents to insurance, medical homes, preventive care, and social resources that truly work for them."}
-                </Text>
-              </ListItem>
-              <ListItem>
-                <Text as="span" color="neutral.text" lineHeight="150%">
-                  <Text as="span" fontWeight={700}>
-                    Community Health Access Points
-                  </Text>
-                  {" — Free health fairs offering screenings, education, referrals, and support in trusted neighborhood spaces."}
-                </Text>
-              </ListItem>
-              <ListItem>
-                <Text as="span" color="neutral.text" lineHeight="150%">
-                  <Text as="span" fontWeight={700}>
-                    Workforce Readiness & Youth Empowerment
-                  </Text>
-                  {" — Training the next generation of diverse healthcare leaders rooted in lived experience."}
-                </Text>
-              </ListItem>
-            </List>
+            <Text
+              fontWeight={400}
+              fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+              lineHeight="150%"
+              color="neutral.text"
+            >
+              Community Health and Resource Hubs: <br />
+              With our partners, we convert local coffee shops into full 
+              access points for health and social services: free 
+              screenings, primary care, housing support, food 
+              resources, and insurance enrollment. We offer real 
+              support in a place you already know.
+            </Text>
+            <Text
+              fontWeight={400}
+              fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+              lineHeight="150%"
+              color="neutral.text"
+            >
+              Workforce Development: <br />
+              We run a training program for pre-health students from 
+              diverse and underserved communities. We offer 
+              mentorship, hands-on learning, professional 
+              development, and CHW certificate of completion.
+            </Text>
+            
           </VStack>
         </Box>
         </FadeInWhenVisible>
@@ -127,19 +134,18 @@ export default function ChallengeSolution() {
           p={0}
           py={0}
           px={6}
-          border="none"
           borderRadius="6px"
           bg="brand.primary"
           color="surface.default"
           cursor="pointer"
           whiteSpace="nowrap"
-          transition="opacity 0.2s ease"
-          _hover={{ opacity: 0.68, bg: "brand.primary" }}
-          _active={{ opacity: 0.55 }}
-          _focus={{ outline: "none", boxShadow: "none" }}
-          _focusVisible={{ outline: "none", boxShadow: "none" }}
+          transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
+          border="2px solid"
+          borderColor="brand.primary"
+          _hover={ buttonHover }
+          _active={ buttonHover }
         >
-          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1" color="surface.default">
+          <Text as="span" fontWeight={600} fontSize={18} lineHeight="1">
             Get Involved
           </Text>
         </Button>

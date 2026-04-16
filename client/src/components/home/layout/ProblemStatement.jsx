@@ -33,9 +33,9 @@ export default function ProblemStatement() {
           lineHeight="150%"
           color="neutral.text"
         >
-          Across Los Angeles County, structural inequities rooted in economic
-          disparity, housing instability, racial segregation, and uneven access
-          to care continue to shape who gets healthy and who gets left behind.
+         Your health was shaped long before your first doctor&apos;s 
+         visit; decades of disinvestment, racial segregation, and 
+         economic inequality shaped conditions around health. 
         </Text>
         <Text
           fontWeight={400}
@@ -43,10 +43,10 @@ export default function ProblemStatement() {
           lineHeight="150%"
           color="neutral.text"
         >
-          Over 1 million LA County residents remain uninsured or underinsured.
-          Black and Latinx adults face disproportionate inequities in health
-          outcomes, insurance coverage, housing security, and economic stability
-          — outcomes shaped by decades of systemic injustice.
+          Nearly one in four LA County households experience 
+          food insecurity. Housing instability, utilities crises, and 
+          lack of insurance leave families in a constant state of 
+          survival. 
         </Text>
         <Text
           fontWeight={400}
@@ -54,9 +54,20 @@ export default function ProblemStatement() {
           lineHeight="150%"
           color="neutral.text"
         >
-          Despite being one of the wealthiest counties in the nation, an
-          estimated 25% of households still struggle with food insecurity, a
-          powerful social determinant of chronic illness.
+          Health services and social support exist but are 
+          difficult to access: clinics are hard to reach, waiting 
+          rooms feel unwelcoming, and there is an overall lack of 
+          trust in formal healthcare. 
+        </Text>
+        <Text
+          fontWeight={400}
+          fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+          lineHeight="150%"
+          color="neutral.text"
+        >
+          For those able and willing, whether accessing local 
+          resources or providing care for others, navigating the 
+          system alone is overwhelming.
         </Text>
       </VStack>
     </Box>
