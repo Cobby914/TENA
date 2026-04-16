@@ -38,21 +38,13 @@ export default function MeasurableProgress({ id }) {
   const isLoading = programLoading;
   const errorMsg = programError;
 
-  const measurableProgressSubtexts = [
-    "Real impact, one member at a time.",
-    "Bringing care to the corners of the community.",
-    "Building the workforce LA County needs, from within.",
-  ];
+  const measurableProgressSubtexts = {
+    3: "Everyone deserves someone in their corner.",
+    4: "Your neighborhood coffee shop just became your health resource.",
+    5: "Training the healers our communities have always deserved.",
+  };
 
-  const selectedMeasurableText = (() => {
-    if (!program) return measurableProgressSubtexts[0];
-    const key = Number.isInteger(program.id) ? program.id : String(program.title ?? "");
-    if (Number.isInteger(key)) {
-      return measurableProgressSubtexts[key % measurableProgressSubtexts.length];
-    }
-    const hash = Array.from(String(key)).reduce((sum, char) => sum + char.charCodeAt(0), 0);
-    return measurableProgressSubtexts[hash % measurableProgressSubtexts.length];
-  })();
+  const selectedMeasurableText = measurableProgressSubtexts[id] ?? measurableProgressSubtexts[3];
 
   if (isLoading) {
     return (

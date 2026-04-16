@@ -19,12 +19,21 @@ export default function CareAndFairCard ({
                 flex="1"
                 width="100%"
                 height={{ base: "250px", md: "320px", lg: "430px" }}
-                backgroundImage={imageSrc ? `url(${imageSrc})` : undefined}
-                backgroundSize="cover"
-                backgroundPosition="center"
-                backgroundRepeat="no-repeat"
-                bg={!imageSrc ? "neutral.muted" : undefined}
-            />
+                overflow="hidden"
+                borderRadius="md"
+            >
+                <Box
+                    width="100%"
+                    height="100%"
+                    backgroundImage={imageSrc ? `url(${imageSrc})` : undefined}
+                    backgroundSize="cover"
+                    backgroundPosition="center"
+                    backgroundRepeat="no-repeat"
+                    bg={!imageSrc ? "neutral.muted" : undefined}
+                    transition="transform 0.4s ease"
+                    _hover={{ transform: "scale(1.05)" }}
+                />
+            </Box>
 
             <Box
                 flex="1"

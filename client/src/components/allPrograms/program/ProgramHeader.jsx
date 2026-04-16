@@ -31,22 +31,17 @@ export default function ProgramHeader({ id }) {
 
   const backgroundImageSrc = resolveProgramImage(program?.background_image);
   const programTitle = String(program?.title ?? "").trim() || "Loading program...";
-
-  useState (() => {
+    useEffect(() => {
     if (!backgroundImageSrc) return;
 
     setIsImgLoaded(false);
-    const img = new Image();
+    const img = new window.Image();
     img.src = backgroundImageSrc;
 
     img.decode()
-      .then(() => {
-        setIsImgLoaded(true);
-      })
-      .catch(() => {
-        setIsImgLoaded(true);
-      });
-  }, [backgroundImageSrc]);
+        .then(() => setIsImgLoaded(true))
+        .catch(() => setIsImgLoaded(true));
+    }, [backgroundImageSrc]);
 
   return (
     <Box
@@ -59,7 +54,7 @@ export default function ProgramHeader({ id }) {
       {...(backgroundImageSrc && isImgLoaded && {
         backgroundImage: `url(${backgroundImageSrc})`,
         backgroundSize: "cover",
-        backgroundPosition: "center 40%",
+        backgroundPosition: "center 47%",
         backgroundRepeat: "no-repeat",
       })}
     >
