@@ -12,6 +12,7 @@ export default function GetInvolvedHeader() {
           width="100%"
           position="relative"
           minH={{ base: "260px", md: "450px" }}
+          height = {{base: "auto", lg: "500px"}}
           pt={{ base: 10, md: 16, lg: 20 }}
           pb={{ base: 10, md: 12, lg: 14 }}
           overflow="hidden"
@@ -76,18 +77,18 @@ export default function GetInvolvedHeader() {
                   lineHeight="1.05"
                   color="white"
                 >
-                  Help us{" "}
+                  There's a Spot for {" "}
                   <Text as="span" color="brand.primary">
-                    Out.
+                    You
                   </Text>{" "}
-                  Get{" "}
+                  in This {" "}
                   <Text as="span" color="brand.primary">
-                    Involved.
+                    Work.
                   </Text>
                 </Text>
                 <Text
                   color="white"
-                  maxW={{ base: "100%", md: "640px", lg: "680px" }}
+                  maxW={{ base: "100%", md: "640px", lg: "982px" }}
                   fontSize={{ base: "14px", md: "22px", lg: "25px" }}
                   fontStyle="normal"
                   fontWeight="400"

@@ -3,7 +3,7 @@ import SimpleCircle from "../ui/SimpleCircle";
 import MultiRingCircle from "../ui/MultiRingCircle";
 import { openDonateWidget } from "../../lib/giveButter";
 
-const Donos = "/static/get-involved/GetInvolvedDonations.png";
+const Donos = "/static/get-involved/GetInvolvedDonation.JPG";
 import GIC from "./GetInvolvedCard"
 
 export default function GetInvolvedCard ({
@@ -16,7 +16,7 @@ export default function GetInvolvedCard ({
 
         <GIC
             title="Donations"
-            description="Donations fund free health fairs, personalized care navigation, and training for future healthcare leaders. Every dollar helps remove barriers and bring care closer to home."
+            description="Every donation funds a screening that catches something early, a navigation session that connects someone to care, or a student who becomes the healthcare provider their community never had."
             buttonName="Donate Now"
             onAction={openDonateWidget}
             image_here={Donos}

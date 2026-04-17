@@ -1,6 +1,7 @@
 import { Box, Flex, VStack, Text, Image, Button } from "@chakra-ui/react";
 import MultiRingCircle from "../../ui/MultiRingCircle";
-import { SegmentedTypewriterText } from "../../ui/SegmentedTypewriter";
+import { SegmentedStaticText } from "../../ui/SegmentedTypewriter";
+import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import { donateButtonInteractionProps } from "../../../lib/giveButter";
 const sloganImage = "/Home/TENABooth.jpg";
 
@@ -55,16 +56,17 @@ export default function Slogan() {
             Eradicating Health Disparity
           </Text>
 
-          <SegmentedTypewriterText
-            as="h1"
-            segments={HOME_HERO_HEADLINE_SEGMENTS}
-            charDelayMs={26}
-            maxW="750px"
-            fontSize={{ base: 36, md: 48 }}
-            fontWeight="700"
-            lineHeight={{ base: "1.00", lg: "1.05" }}
-            color="surface.default"
-          />
+          <FadeInWhenVisible trigger="mount" y={16} duration={0.7}>
+            <SegmentedStaticText
+              as="h1"
+              segments={HOME_HERO_HEADLINE_SEGMENTS}
+              maxW="750px"
+              fontSize={{ base: 36, md: 48 }}
+              fontWeight="700"
+              lineHeight={{ base: "1.00", lg: "1.05" }}
+              color="surface.default"
+            />
+          </FadeInWhenVisible>
 
           <Text
             fontSize={{ base: 16, md: 20 }}
