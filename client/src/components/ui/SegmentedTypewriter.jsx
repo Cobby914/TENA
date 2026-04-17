@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useSegmentedTypewriter } from "../../hooks/useSegmentedTypewriter";
+import { segmentCharCount } from "../../lib/segmentedTypewriter";
 
 /**
  * Renders typewriter segments as inline spans (accent uses theme color).
@@ -93,6 +94,31 @@ export function SegmentedTypewriterText({
       {showCursor && !isComplete && (
         <TypewriterCursor bg={accentColor} {...cursorProps} />
       )}
+    </Text>
+  );
+}
+
+/**
+ * Full segmented copy at once (accent spans). Pair with `FadeInWhenVisible` for a fade-in hero.
+ *
+ * @param {object} props
+ * @param {import("../../lib/segmentedTypewriter").TypewriterSegment[]} props.segments
+ * @param {string} [props.accentColor="brand.accent"]
+ * @param {import("@chakra-ui/react").TextProps} props — forwarded to `Text`
+ */
+export function SegmentedStaticText({
+  segments,
+  accentColor = "brand.accent",
+  ...textProps
+}) {
+  const total = segmentCharCount(segments);
+  return (
+    <Text {...textProps}>
+      <SegmentedTypewriterSpans
+        segments={segments}
+        visibleChars={total}
+        accentColor={accentColor}
+      />
     </Text>
   );
 }

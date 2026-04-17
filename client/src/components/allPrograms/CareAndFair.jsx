@@ -5,10 +5,8 @@ import {
 import CareAndFairCard from "../ui/CareAndFairCard";
 import SimpleCircle from "../ui/SimpleCircle";
 import FadeInWhenVisible from "../home/ui/FadeInWhenVisible";
-import { SegmentedTypewriterText } from "../ui/SegmentedTypewriter";
+import { SegmentedStaticText } from "../ui/SegmentedTypewriter";
 import { createProgram } from "../../hooks/createProgram";
-
-const PROGRAMS_INTRO_CHAR_MS = 11;
 
 const PROGRAMS_INTRO_SEGMENTS = [
   { text: "TENA", accent: true },
@@ -71,10 +69,9 @@ const Programs = () => {
 
                 <FadeInWhenVisible w="100%" amount={0.4}>
                 <Box mb={{ base: 10, md: 14, lg: 20 }} mt={{ base: 4, md: 6, lg: 8 }} maxW="1400px" mx="auto">
-                    <SegmentedTypewriterText
+                    <SegmentedStaticText
                         as="h2"
                         segments={PROGRAMS_INTRO_SEGMENTS}
-                        charDelayMs={PROGRAMS_INTRO_CHAR_MS}
                         accentColor="brand.primary"
                         fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
                         lineHeight={{ base: 1.2, md: 1.25 }}
