@@ -103,14 +103,17 @@ export default function ProgramCard({
                   px={4}
                   bg="brand.primary"
                   color="surface.default"
+                  border="2px solid"
+                  borderColor="brand.primary"
+                  transition="background 0.2s ease, color 0.2s ease, border-color 0.2s ease"
                   _hover={buttonHover}
                   _active={buttonHover}
                 >
                   <HStack gap={2}>
-                    <Text fontWeight={600} fontSize="14px" lineHeight="20px" color="surface.default">
+                    <Text fontWeight={600} fontSize="14px" lineHeight="20px">
                       Learn More
                     </Text>
-                    <ChevronRight size={16} />
+                    <ChevronRight size={16} aria-hidden />
                   </HStack>
                 </Button>
               </NavLink>
