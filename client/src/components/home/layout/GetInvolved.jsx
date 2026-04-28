@@ -101,7 +101,7 @@ export default function GetInvolved() {
               title="Volunteer"
               description="Lend your time at our events."
               linkname="Volunteer With Us"
-              link="https://docs.google.com/forms/d/e/1FAIpQLSfHRyVM1116n02eKWHbwKME1WIrRWQbIy2S44Z-8Ap0V57hYA/viewform"
+              link="https://forms.gle/xofKMZtegNAgPvgWA"
             />
 
             <InvolvementCard

@@ -1,7 +1,6 @@
 import DropdownButton from "../ui/DropdownButton";
 
-const VOLUNTEER_FORM =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfHRyVM1116n02eKWHbwKME1WIrRWQbIy2S44Z-8Ap0V57hYA/viewform";
+const VOLUNTEER_FORM = "https://forms.gle/xofKMZtegNAgPvgWA";
 
 export default function GetInvolvedMenu({ onClose }) {
   return (

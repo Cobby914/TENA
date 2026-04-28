@@ -14,7 +14,7 @@ export default function GetInvolvedCard ({}) {
                 description="Make a real impact in your community. Volunteers support health fairs, care navigation, and outreach efforts across Los Angeles County. Your time helps neighbors access care, build confidence, and feel supported."
                 buttonName="Learn More"
                 image_here={Volun}
-                destination="https://docs.google.com/forms/d/e/1FAIpQLSfHRyVM1116n02eKWHbwKME1WIrRWQbIy2S44Z-8Ap0V57hYA/viewform"
+                destination="https://forms.gle/xofKMZtegNAgPvgWA"
                 imageDecorations={
                     <Box
                         position="absolute"

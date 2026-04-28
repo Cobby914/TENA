@@ -1,15 +1,15 @@
 /**
- * Givebutter campaign URL (slug from https://givebutter.com/tenahealth-thegiver).
+ * Givebutter campaign URL (slug from https://givebutter.com/the-change-maker-abio1v).
  *
  * Opens in a new tab on Donate. The click handler itself is synchronous; any long
  * wait after that is mostly Givebutter’s page (network + their app). We preconnect in
  * index.html and prefetch on hover/focus to shave off cold DNS/TLS and sometimes the
  * HTML fetch.
  */
-export const GIVEBUTTER_CAMPAIGN = "tenahealth-thegiver";
+export const GIVEBUTTER_CAMPAIGN = "the-change-maker-abio1v";
 
 export const GIVEBUTTER_CAMPAIGN_URL =
-  "https://givebutter.com/tenahealth-thegiver";
+  "https://givebutter.com/the-change-maker-abio1v";
 
 let prefetchRequested = false;
 
