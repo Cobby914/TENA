@@ -4,6 +4,7 @@ import FadeInWhenVisible from "../ui/FadeInWhenVisible";
 import ProgramCard from "../../ui/ProgramCard";
 import { useProgramData } from "../../../hooks/useProgramsData";
 import { resolveProgramImage } from "../../../lib/programImageResolver";
+import { createProgramSlug } from "../../../lib/programSlug";
 
 const MotionBox = motion.create(Box);
 
@@ -76,7 +77,7 @@ export default function Programs() {
                   title={program.title}
                   description={program.summary}
                   imageSrc={resolveProgramImage(program.background_image)}
-                  link="/programs"
+                  link={`/programs/${createProgramSlug(program.title)}`}
                   flex="1"
                   minH="0"
                 />
